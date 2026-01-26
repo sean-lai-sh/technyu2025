@@ -4,7 +4,20 @@ const nextConfig: NextConfig = {
   // output: 'export',
   /* config options here */
   images: {
-    domains: ['cdn.sanity.io'],
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'cdn.sanity.io',
+      }
+    ],
+  },
+  turbopack: {
+    rules: {
+      '*.svg': {
+        loaders: ['@svgr/webpack'],
+        as: '*.js',
+      },
+    },
   },
   webpack(config) {
     // Exclude SVG from the default file-loader
