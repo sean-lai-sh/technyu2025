@@ -52,3 +52,10 @@ export type EboardBio = {
     } | null;
   }[];
 };
+
+export type SectionContent = {
+  title: string;
+  description: React.ReactNode;
+  image?: string;
+  flip?: boolean;
+};

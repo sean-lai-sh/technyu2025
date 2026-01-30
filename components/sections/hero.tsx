@@ -134,7 +134,7 @@ const Hero = () => {
               <div className="mb-4 md:mb-6 lg:mb-8 overflow-hidden">
                 <h1 
                   ref={headlineRef}
-                  className="text-[12vw] sm:text-[10vw] md:text-[8vw] lg:text-[7vw] font-bold leading-[0.8] tracking-tight opacity-0"
+                  className="text-[12vw] sm:text-[10vw] md:text-[8vw] lg:text-[5vw] font-bold leading-[0.8] tracking-tight opacity-0"
                 >
                   Build Fast,<br />Learn Faster
                 </h1>
@@ -142,7 +142,7 @@ const Hero = () => {
               
               {/* Supporting text - more refined like BCV's subtitle */}
               <div className="max-w-[90%] sm:max-w-[80%] md:max-w-[70%] lg:max-w-[70%]">
-                <div className="text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl font-light tracking-tight leading-[1.2]">
+                <div className="text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-3xl font-light tracking-tight leading-[1.2]">
                   <MaskText 
                     phrases={['The Space for Designers, Makers, and Hackers to Build at NYU. No matter where you start, we will help you build your dreams one line at a time.']} 
                     customDelay={0.75} 
