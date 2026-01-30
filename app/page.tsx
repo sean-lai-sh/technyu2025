@@ -9,8 +9,8 @@ export default function Home() {
   return (
     <div className="w-full h-fit bg-black min-h-screen">
       <Hero />
+      <About />
       <History />
-      {/* <About /> */}
       <Values />
       <ProgramSection />
     </div>
