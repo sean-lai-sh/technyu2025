@@ -10,11 +10,11 @@ const About = () => {
         <Square className='h-6 w-6' />
         About Us
       </h1>
-      <div className='min-h-[50vh]lg:container w-full px-10 lg:px-[3.4rem] xl:px-[6.6rem] '>
+      <div className='min-h-[50vh]lg:container w-full px-10 lg:px-[3.4rem] xl:px-[12svw] '>
         <TwoColumnSection {...aboutSectionContent[0]} />
         <TwoColumnSection {...aboutSectionContent[1]} />
         <TwoColumnSection {...aboutSectionContent[2]} />
-        <TwoColumnSection {...aboutSectionContent[3]} />
+        <TwoColumnSection {...aboutSectionContent[3]} last={true} />
       </div>
     </section>
   )
