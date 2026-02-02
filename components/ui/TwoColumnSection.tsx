@@ -28,8 +28,8 @@ const TwoColumnSection = ({ title, description, image, flip, last }: TwoColumnSe
     const tl = gsap.timeline({
       scrollTrigger: {
         trigger: containerRef.current,
-        start: 'top 75%',    // starts when 25% into viewport
-        end: 'top 35%',      // ends when container top reaches 35% from viewport top
+        start: 'top 85%',    // starts when 25% into viewport
+        end: 'top 37.5%',      // ends when container top reaches 35% from viewport top
         scrub: true,
       }
     })
@@ -72,7 +72,7 @@ const TwoColumnSection = ({ title, description, image, flip, last }: TwoColumnSe
       {/* Top border */}
       <span ref={topBorderRef} className='hidden lg:block absolute top-0 left-0 w-full h-[1px] z-10 bg-white scale-x-0' />
       {/* Side border: left when flip, right when not */}
-      <span ref={sideBorderRef} className={`hidden lg:block absolute top-0 w-[1px] h-full z-10 bg-white scale-y-0 ${flip ? 'left-0' : 'right-0'}`} />
+      <span ref={sideBorderRef} className={`hidden lg:block absolute top-0 w-[1px] h-full z-10 bg-white scale-y-0 ${flip ? 'left-0' : 'right-[-1px]'}`} />
       {/* Bottom border */}
       {last && <span ref={bottomBorderRef} className='hidden lg:block absolute bottom-0 left-0 w-full h-[1px] z-10 bg-white scale-x-0' />}
       <div className={`py-5 lg:p-[4rem] xl:p-[6rem] ${flip ? 'lg:order-2 lg:border-l border-white/20' : 'lg:border-r border-white/20'}`}>
