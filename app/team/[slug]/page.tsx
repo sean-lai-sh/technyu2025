@@ -2,8 +2,8 @@ import React from 'react'
 import { notFound } from 'next/navigation'
 import Image from 'next/image'
 import Link from 'next/link'
-import { getEboardBio } from '@/lib/sanity/queries'
-import { EboardBio } from '@/lib/types'
+import { getProfile } from '@/lib/sanity/queries'
+import { ProfileBio } from '@/lib/types'
 import { Metadata } from 'next'
 import { client } from '@/lib/sanity/client'
 import { Separator } from '@radix-ui/react-dropdown-menu'
@@ -16,42 +16,45 @@ interface PageProps {
   }>
 }
 
-// Generate static params for all e-board bios at build time
+// Revalidate every hour (3600 seconds) - adjust as needed
+export const revalidate = 3600
+
+// Generate static params for all profiles at build time
 export async function generateStaticParams() {
-  const bios = await client.fetch<{ slug: string }[]>(
-    `*[_type == "eboardBio"]{ "slug": slug }`
+  const profiles = await client.fetch<{ slug: string }[]>(
+    `*[_type == "profile" && defined(slug.current)]{ "slug": slug.current }`
   )
-  
-  return bios.map((bio) => ({
-    slug: bio.slug,
+
+  return profiles.map((profile) => ({
+    slug: profile.slug,
   }))
 }
 
 // Generate metadata for SEO
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const { slug } = await params
-  const bio = await getEboardBio(slug)
+  const bio = await getProfile(slug)
 
   if (!bio) {
     return {
-      title: 'E-Board Member Not Found',
+      title: 'Team Member Not Found',
     }
   }
 
   return {
     title: `${bio.name} | Tech@NYU Team`,
-    description: bio.shortDescription || `Meet ${bio.name}, a member of the Tech@NYU e-board.`,
+    description: bio.shortDescription || `Meet ${bio.name}, a member of the Tech@NYU team.`,
     openGraph: {
       title: `${bio.name} | Tech@NYU Team`,
-      description: bio.shortDescription || `Meet ${bio.name}, a member of the Tech@NYU e-board.`,
+      description: bio.shortDescription || `Meet ${bio.name}, a member of the Tech@NYU team.`,
       images: bio.profileImage.url ? [bio.profileImage.url] : [],
     },
   }
 }
 
-export default async function EboardBioPage({ params }: PageProps) {
+export default async function ProfilePage({ params }: PageProps) {
   const { slug } = await params
-  const bio: EboardBio | null = await getEboardBio(slug)
+  const bio: ProfileBio | null = await getProfile(slug)
 
   if (!bio) {
     notFound()

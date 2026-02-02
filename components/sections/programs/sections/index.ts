@@ -1,0 +1,7 @@
+export { default as SectionRenderer } from './SectionRenderer'
+export { default as TextSectionComponent } from './TextSection'
+export { default as StickyScrollSectionComponent } from './StickyScrollSection'
+export { default as RolesSectionComponent } from './RolesSection'
+export { default as FaqSectionComponent } from './FaqSection'
+export { default as LogoSliderSectionComponent } from './LogoSliderSection'
+export { default as CtaSectionComponent } from './CtaSection'

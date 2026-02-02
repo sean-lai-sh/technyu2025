@@ -49,7 +49,7 @@ const FAQSection = () => {
             What will weekly meetings look like?
           </AccordionTrigger>
           <AccordionContent className='px-6 pb-4 text-white/80'>
-            One weekly meeting includes a workshop followed by work time, while the other is dedicated purely to project development. Leads and tutors will be present to answer questions and offer advice. We’ll also share updates about opportunities within Tech@NYU each week.
+            One weekly meeting includes a workshop followed by work time, while the other is dedicated purely to project development. Leads and PMs will be present to answer questions and offer advice. We’ll also share updates about opportunities within Tech@NYU each week.
           </AccordionContent>
         </AccordionItem>
 
@@ -64,10 +64,10 @@ const FAQSection = () => {
 
         <AccordionItem value="item-7" className='bg-black border border-white/10 rounded-xl mb-4'>
           <AccordionTrigger className='w-full px-6 py-4 text-left text-white text-lg font-medium hover:bg-white/5 rounded-t-xl flex justify-between items-center'>
-            How are tutors selected?
+            How are PMs selected?
           </AccordionTrigger>
           <AccordionContent className='px-6 pb-4 text-white/80'>
-            Tutors are selected based on their experience and willingness to mentor others. If you have relevant skills and a passion for helping peers, we encourage you to apply!
+            PMs are selected based on their experience and willingness to mentor others. If you have relevant skills and a passion for helping peers, we encourage you to apply!
           </AccordionContent>
         </AccordionItem>
 

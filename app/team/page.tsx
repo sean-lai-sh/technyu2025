@@ -2,8 +2,7 @@ import TeamGrid from '@/components/sections/team/team_grid'
 import { getTeamMembers } from '@/lib/sanity/queries'
 import React from 'react'
 
-// Revalidate every hour (3600 seconds) - adjust as needed
-export const revalidate = 3600
+export const revalidate = 3600;
 
 const Page = async () => {
   // Fetch team members on the server

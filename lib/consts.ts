@@ -31,7 +31,6 @@ export const programsLinks: ProgramCardProps[] = [
     {
         name: "Dev Team",
         url: "/programs/dev-team",
-        appOpen: false,
         svgicon: "/program-logos/dev-team.svg",
         tagline: "Build, Ship, Repeat",
         description_large: "Build in a small cohort from 0 -> 1, learning from users, and creating public proof of work as we embark on the startup lifecycle. Experience what top engineering teams have to do to acquire and maintain users in a semester long sprint.",
@@ -41,7 +40,6 @@ export const programsLinks: ProgramCardProps[] = [
     {
         name: "Tech Treks",
         url: "/programs/tech-treks",
-        appOpen: false,
         svgicon: "/program-logos/tech-treks.svg",
         tagline: "The original beginner program",
         description_small: "Explore the tech industry with us! Meet professionals, visit companies, and build your resume",
@@ -51,7 +49,6 @@ export const programsLinks: ProgramCardProps[] = [
     {
         name: "Startup Week",
         url: "/programs/startup-week",
-        appOpen: false,
         svgicon: "/program-logos/startup-week.svg",
         tagline: "Launch your startup journey",
         description_small: "Build your network in nyc with VCs, founders, and operators all while hosting events",
@@ -61,7 +58,6 @@ export const programsLinks: ProgramCardProps[] = [
     {
         name: "Mentorship",
         url: "/programs/mentorship",
-        appOpen: false,
         svgicon: "/program-logos/mentorship.svg",
         tagline: "Guidance from those who came before you",
         description_large: "Connect with experienced mentors who can provide valuable insights, advice, and support as you navigate your career in tech. We'll match a mentor on your goals, on your own time. Leverage our network to succeed in this market",
@@ -117,21 +113,21 @@ export const techTreksMemberData = {
       "Learn from hands-on workshops",
       "Build software projects for your portfolio"
     ],
-    buttonText: "Apply as Member",
+    buttonText: "Apply",
     color: "green" as const
 };
 
-export const techTreksTutorData = {
-    title: "Tutor", 
-    description: "Share your expertise while continuing to learn",
+export const techTreksPMData = {
+    title: "Product Manager", 
+    description: "Lead a team of three in creating a semester long project - Applications open Feb. 9th!",
     benefits: [
-      "Help members build their projects on Tuesdays",
-      "Optional additional office hours",
+      "Help members build their projects",
+      "Gain experience in managing full-stack projects",
       "Get all the perks that regular members get", 
       "Build mentorship and leadership skills",
       "Expand your network within the tech community"
     ],
-    buttonText: "Apply as Tutor",
+    buttonText: "Apply as PM",
     color: "green" as const
 };
 
@@ -200,7 +196,7 @@ export const startupWeekRoles = [
             "Work with industry-standard design tools",
             "Create content that reaches thousands of students"
         ],
-        buttonText: "Apply for Design & Marketing",
+        buttonText: "Apply",
         color: "purple" as const
     },
     {
@@ -212,7 +208,7 @@ export const startupWeekRoles = [
             "Learn event planning at scale",
             "Gain experience in team coordination"
         ],
-        buttonText: "Apply for Operations",
+        buttonText: "Apply",
         color: "blue" as const
     },
     {
@@ -224,7 +220,7 @@ export const startupWeekRoles = [
             "Learn partnership and sponsorship strategies",
             "Develop communication and negotiation skills"
         ],
-        buttonText: "Apply for Outreach/Growth",
+        buttonText: "Apply",
         color: "green" as const
     },
     {
@@ -236,7 +232,7 @@ export const startupWeekRoles = [
             "Contribute to open-source projects",
             "Build tools used by hundreds of participants"
         ],
-        buttonText: "Apply for Engineering",
+        buttonText: "Apply",
         color: "orange" as const
     }
 ];
@@ -332,57 +328,18 @@ export const startupWeekCompanies = [
 // Dev Team roles
 export const devTeamRoles = [
     {
-        title: "Designer",
-        description: "Create user-centered designs, conduct user research, and craft beautiful interfaces that users love",
+        title: "Developer",
+        description: "Build an AI-native coding TUI for spec-driven development using modern terminal interfaces and agentic patterns",
         benefits: [
-            "Work on real products with actual users",
-            "Learn the full design process from research to handoff",
-            "Collaborate closely with engineers and PMs",
-            "Build a portfolio with shipped designs",
-            "Master Figma, user research, and design systems"
+            "Ship a cutting-edge development tool used by real developers",
+            "Explore agentic coding and AI-native workflows",
+            "Master CLI/TUI development and terminal interfaces",
+            "Work with autonomous coding agents and spec-driven paradigms",
+            "Collaborate with industry professionals and fellow students"
         ],
-        buttonText: "Apply as Designer",
-        color: "purple" as const
-    },
-    {
-        title: "Frontend Developer",
-        description: "Build responsive, interactive user interfaces using modern web technologies and frameworks",
-        benefits: [
-            "Ship code that thousands of users interact with",
-            "Learn React, TypeScript, and modern frontend tools",
-            "Work with real design systems and APIs",
-            "Master responsive design and web performance",
-            "Collaborate in an agile development environment"
-        ],
-        buttonText: "Apply as Frontend Dev",
+        buttonText: "Apply",
         color: "blue" as const
     },
-    {
-        title: "Backend Developer", 
-        description: "Design and build scalable server-side systems, APIs, and databases that power the application",
-        benefits: [
-            "Build production-grade APIs and microservices",
-            "Learn database design and optimization",
-            "Work with cloud platforms and DevOps tools",
-            "Handle real user data and scale challenges",
-            "Master backend frameworks and system architecture"
-        ],
-        buttonText: "Apply as Backend Dev",
-        color: "green" as const
-    },
-    {
-        title: "Applied ML Developer",
-        description: "Integrate machine learning models into production applications and build intelligent features",
-        benefits: [
-            "Deploy ML models in real production environments", 
-            "Learn MLOps, model monitoring, and A/B testing",
-            "Work with large datasets and feature engineering",
-            "Build AI-powered features users actually use",
-            "Master ML frameworks, vector databases, and model serving"
-        ],
-        buttonText: "Apply as ML Dev",
-        color: "orange" as const
-    }
 ];
 
 // Mentorship FAQ data

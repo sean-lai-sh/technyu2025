@@ -4,9 +4,11 @@ import './style.css'
 import { ProgramCardProps } from '@/lib/types'
 import Image from 'next/image'
 import ProgramBar from './program-bar'
+import { getApplicationLink } from '@/lib/application-links'
 
 const ProgramCard = ({ProgramDetail, variant}: {ProgramDetail: ProgramCardProps, variant: string}) => {
   const { name, url, svgicon, tagline, description_large, description_small, desktopImage} = ProgramDetail;
+  const { status } = getApplicationLink(name);
 
   // State for description based on screen size
   const [description, setDescription] = useState(description_small);
@@ -47,7 +49,7 @@ const ProgramCard = ({ProgramDetail, variant}: {ProgramDetail: ProgramCardProps,
         </div>
         <div className='flex sm:flex-col justify-between p-6 sm:p-10 lg:px-2 w-full sm:w-[30%] sm:items-end items-start'>
           {/* ProgramBar: color and text can be customized as needed */}
-            <ProgramBar color="red" text="Apps Closed" />
+            <ProgramBar color={status ? "green" : "red"} text={status ? "Apps Open" : "Apps Closed"} />
 
             <a href={url} className='bg-gray-700/40 hover:bg-gray-400/30 text-white hover:scale-105 duration-300 transition-all ease-in-out w-24 h-16 flex justify-center items-center '>
             <p className=''>MORE</p>
@@ -68,4 +70,3 @@ const ProgramCard = ({ProgramDetail, variant}: {ProgramDetail: ProgramCardProps,
 }
 
 export default ProgramCard
-

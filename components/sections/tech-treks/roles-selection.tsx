@@ -1,12 +1,12 @@
 import React from 'react'
 import RoleCard from '@/components/ui/role-card'
-import { techTreksMemberData, techTreksTutorData } from '@/lib/consts'
+import { techTreksMemberData, techTreksPMData } from '@/lib/consts'
+import { getRoleApplicationLink } from '@/lib/application-links'
 
-interface RolesSelectionProps {
-  applicationsOpen?: boolean
-}
+const RolesSelection = () => {
+  const memberLink = getRoleApplicationLink('Tech Treks', techTreksMemberData.title)
+  const pmLink = getRoleApplicationLink('Tech Treks', techTreksPMData.title)
 
-const RolesSelection = ({ applicationsOpen = false }: RolesSelectionProps) => {
   return (
     <section id='roles'>
       <div className='mt-16 mb-8'>
@@ -17,14 +17,16 @@ const RolesSelection = ({ applicationsOpen = false }: RolesSelectionProps) => {
         <div className='grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12'>
           <RoleCard
             {...techTreksMemberData}
-            applicationsOpen={applicationsOpen}
+            applicationsOpen={memberLink.status}
+            applicationLink={memberLink.link}
             onApply={() => console.log('Member application clicked')}
           />
           
           <RoleCard
-            {...techTreksTutorData}
-            applicationsOpen={applicationsOpen}
-            onApply={() => console.log('Tutor application clicked')}
+            {...techTreksPMData}
+            applicationsOpen={pmLink.status}
+            applicationLink={pmLink.link}
+            onApply={() => console.log('PM application clicked')}
           />
         </div>
       </div>

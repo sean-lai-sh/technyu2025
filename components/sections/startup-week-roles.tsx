@@ -2,6 +2,7 @@
 import React from 'react'
 import RoleCard from '@/components/ui/role-card'
 import { startupWeekRoles } from '@/lib/consts'
+import { getRoleApplicationLink } from '@/lib/application-links'
 
 const StartupWeekRoles = () => {
   return (
@@ -20,14 +21,18 @@ const StartupWeekRoles = () => {
         Join our organizing committee and help make Startup Week happen! Choose from one of these roles and apply through a single application:
       </p>
       <div className='grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8'>
-        {startupWeekRoles.map((role, index) => (
-          <RoleCard
-            key={index}
-            {...role}
-            applicationsOpen={false}
-            onApply={() => console.log(`${role.title} application clicked`)}
-          />
-        ))}
+        {startupWeekRoles.map((role, index) => {
+          const roleLink = getRoleApplicationLink('Startup Week', role.title)
+          return (
+            <RoleCard
+              key={index}
+              {...role}
+              applicationsOpen={roleLink.status}
+              applicationLink={roleLink.link}
+              onApply={() => console.log(`${role.title} application clicked`)}
+            />
+          )
+        })}
       </div>
     </section>
   )

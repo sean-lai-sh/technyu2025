@@ -1,0 +1,55 @@
+{
+  "Dev Team": {
+    "status": true,
+    "link": "https://docs.google.com/forms/d/e/1FAIpQLSco6rN52XWXSGx93tDN1zUB_yFe5qW9ZQRtapVxFxaTKL2siQ/viewform",
+    "roles": {
+      "Developer": {
+        "link": "https://docs.google.com/forms/d/e/1FAIpQLSco6rN52XWXSGx93tDN1zUB_yFe5qW9ZQRtapVxFxaTKL2siQ/viewform"
+      },
+      "Frontend Developer": {
+        "link": "https://docs.google.com/forms/d/e/1FAIpQLSco6rN52XWXSGx93tDN1zUB_yFe5qW9ZQRtapVxFxaTKL2siQ/viewform"
+      },
+      "Backend Developer": {
+        "link": "https://docs.google.com/forms/d/e/1FAIpQLSco6rN52XWXSGx93tDN1zUB_yFe5qW9ZQRtapVxFxaTKL2siQ/viewform"
+      },
+      "Applied ML Developer": {
+        "link": "https://docs.google.com/forms/d/e/1FAIpQLSco6rN52XWXSGx93tDN1zUB_yFe5qW9ZQRtapVxFxaTKL2siQ/viewform"
+      }
+    }
+  },
+  "Tech Treks": {
+    "status": true,
+    "link": "",
+    "roles": {
+      "Member": {
+        "link": "https://docs.google.com/forms/d/1IsoLoziDKVJHVoO6vfU8VZaqkaHGUaZ5s9N27RiWJbA/viewform"
+      },
+      "Product Manager": {
+        "link": "",
+        "realLink": "https://docs.google.com/forms/d/1iJ3AqogpITEDv-sipRnanu_S5o2ed9WqfZbz9bLJduY/viewform"
+      }
+    }
+  },
+  "Startup Week": {
+    "status": false,
+    "link": "",
+    "roles": {
+      "Design & Marketing": {
+        "link": ""
+      },
+      "Operations": {
+        "link": ""
+      },
+      "Outreach/Growth": {
+        "link": ""
+      },
+      "Engineering": {
+        "link": ""
+      }
+    }
+  },
+  "Mentorship": {
+    "status": true,
+    "link": "https://docs.google.com/forms/d/e/1FAIpQLSc5iY3lVz2hTHCdBopDl1ogsGzd6dW7Pv_5d_N4740TaSOPCw/viewform"
+  }
+}

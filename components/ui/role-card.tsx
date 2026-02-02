@@ -1,5 +1,6 @@
 'use client'
 import React from 'react'
+import Link from 'next/link';
 import { ApplicationStatus } from './ApplicationStatus';
 
 export interface RoleCardProps {
@@ -9,6 +10,7 @@ export interface RoleCardProps {
   buttonText: string;
   color: "green" | "red" | "blue" | "purple" | "orange";
   applicationsOpen: boolean;
+  applicationLink?: string;
   onApply?: () => void;
 }
 
@@ -19,38 +21,29 @@ const RoleCard: React.FC<RoleCardProps> = ({
   buttonText,
   color,
   applicationsOpen,
+  applicationLink,
   onApply
 }) => {
   const colorMap = {
     red: {
       accent: "bg-red-500",
-      dot: "bg-red-500",
-      buttonOpen: "bg-red-600 hover:bg-red-700",
-      buttonClosed: "bg-gray-600 cursor-not-allowed"
+      dot: "bg-red-500"
     },
     green: {
       accent: "bg-green-700/90",
-      dot: "bg-green-100 shadow-[0_0_12px_4px_rgba(34,197,94,0.7)]", 
-      buttonOpen: "bg-green-600 hover:bg-green-700",
-      buttonClosed: "bg-gray-600 cursor-not-allowed"
+      dot: "bg-green-100 shadow-[0_0_12px_4px_rgba(34,197,94,0.7)]"
     },
     blue: {
       accent: "bg-blue-500",
-      dot: "bg-blue-100 shadow-[0_0_12px_4px_rgba(59,130,246,0.7)]",
-      buttonOpen: "bg-blue-600 hover:bg-blue-700",
-      buttonClosed: "bg-gray-600 cursor-not-allowed"
+      dot: "bg-blue-100 shadow-[0_0_12px_4px_rgba(59,130,246,0.7)]"
     },
     purple: {
       accent: "bg-purple-500",
-      dot: "bg-purple-100 shadow-[0_0_12px_4px_rgba(147,51,234,0.7)]",
-      buttonOpen: "bg-purple-600 hover:bg-purple-700",
-      buttonClosed: "bg-gray-600 cursor-not-allowed"
+      dot: "bg-purple-100 shadow-[0_0_12px_4px_rgba(147,51,234,0.7)]"
     },
     orange: {
       accent: "bg-orange-500",
-      dot: "bg-orange-100 shadow-[0_0_12px_4px_rgba(249,115,22,0.7)]",
-      buttonOpen: "bg-orange-600 hover:bg-orange-700",
-      buttonClosed: "bg-gray-600 cursor-not-allowed"
+      dot: "bg-orange-100 shadow-[0_0_12px_4px_rgba(249,115,22,0.7)]"
     }
   };
 
@@ -59,6 +52,8 @@ const RoleCard: React.FC<RoleCardProps> = ({
       onApply();
     }
   };
+
+  const hasLink = Boolean(applicationLink);
 
   return (
     <div className='font-satoshi p-6 outline-2' style={{ boxShadow: 'inset 0px 0px 100px rgba(179, 0, 255, 0.4)' }}>
@@ -84,15 +79,23 @@ const RoleCard: React.FC<RoleCardProps> = ({
       
       <div className='mt-4'>
         {applicationsOpen ? (
-          <button 
-            className={`${colorMap[color].buttonOpen} text-white px-6 py-3 rounded-lg font-semibold transition-colors`}
-            onClick={handleClick}
-          >
-            {buttonText}
-          </button>
-        ) : (
-          <></>
-        )}
+          hasLink ? (
+            <Link 
+              className='inline-block rounded-md border border-white bg-transparent px-6 py-3 font-semibold text-white transition-colors duration-[600ms] ease-in-out hover:bg-white hover:text-black'
+              href={applicationLink as string}
+              onClick={handleClick}
+            >
+              {buttonText}
+            </Link>
+          ) : (
+            <button
+              className='rounded-md border border-white bg-transparent px-6 py-3 font-semibold text-white transition-colors duration-[600ms] ease-in-out hover:bg-white hover:text-black'
+              onClick={handleClick}
+            >
+              {buttonText}
+            </button>
+          )
+        ) : null}
       </div>
     </div>
   );
