@@ -144,7 +144,7 @@ const Hero = () => {
               <div className="max-w-[90%] sm:max-w-[80%] md:max-w-[70%] lg:max-w-[70%]">
                 <div className="text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-3xl font-light tracking-tight leading-[1.2]">
                   <MaskText 
-                    phrases={['The Space for Designers, Makers, and Hackers to Build at NYU. No matter where you start, we will help you build your dreams one line at a time.']} 
+                    phrases={['The Space for Creatives, Makers, and Hackers to Build at NYU. No matter where you start, we will help you build your dreams one line at a time.']} 
                     customDelay={0.75} 
                     duration={1.25}
                   />
