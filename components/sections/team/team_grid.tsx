@@ -29,7 +29,8 @@ const TeamGrid = ({ initialTeamMembers }: TeamGridProps) => {
 
     gsap.to(filterRef.current, {
       y: isNavbarVisible ? 0 : -140, // Move up when navbar hides
-      duration: 0.7,
+      duration: isNavbarVisible ? 0.7 : 0.75,
+      delay: isNavbarVisible ? 0 : 0.2,
       ease: 'power1.inOut' // GSAP equivalent of CSS easeInOut
     })
   }, [isNavbarVisible])
