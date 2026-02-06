@@ -78,11 +78,9 @@ export default function RolesSectionComponent({ section, programApply }: RolesSe
       >
         {section.roles.map((role) => {
           // Determine application status for this role
-          // Role-specific link overrides program-level settings
+          // role.isOpen takes priority - if explicitly false, role is closed
+          // Otherwise, role-specific link or program-level settings determine status
           const roleApplicationLink = role.applicationLink || programApply?.link
-          const isOpen = role.applicationLink
-            ? true // If role has its own link, consider it open
-            : programApply?.status || false
 
           return (
             <RoleCard
@@ -92,7 +90,7 @@ export default function RolesSectionComponent({ section, programApply }: RolesSe
               benefits={role.benefits}
               buttonText={role.buttonText}
               color={role.color}
-              applicationsOpen={isOpen}
+              applicationsOpen={role.isOpen ? true : false}
               applicationLink={roleApplicationLink}
             />
           )

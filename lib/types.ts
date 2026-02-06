@@ -95,6 +95,7 @@ export type ContactLink = {
 export type SanityRole = {
   _key: string;
   title: string;
+  isOpen?: boolean;
   description: string;
   benefits: string[];
   buttonText: string;

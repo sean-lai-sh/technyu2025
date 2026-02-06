@@ -128,6 +128,7 @@ const programBySlugQuery = defineQuery(/* groq */ `
         roles[]{
           _key,
           title,
+          isOpen,
           description,
           benefits,
           buttonText,

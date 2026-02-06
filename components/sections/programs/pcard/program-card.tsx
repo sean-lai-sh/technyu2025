@@ -29,7 +29,7 @@ const ProgramCard = ({ProgramDetail, variant}: {ProgramDetail: ProgramCardProps,
   }, [description_large, description_small]);
   return (
     <div className={`rectangle ${variant ? variant : ''} flex justify-between h-fit`}>
-      <div className='w-full lg:w-[50%] flex justify-between flex-col sm:flex-row'>
+      <div className='w-full lg:w-[50%] flex justify-between flex-col sm:flex-row '>
         <div className='flex flex-col w-full sm:w-[80%] sm:p-10 lg:pr-0 p-8 py-0'>
           <div className={`h-24 w-24 sm:h-48 sm:w-48 xl:h-56 xl:w-56 flex items-center justify-center relative mt-20 sm:mt-16 shadow-none ${ProgramDetail.svgicon === "/program-logos/mentorship.svg" ? "-ml-5 sm:-ml-10" : "-ml-1 sm:-ml-5"}`}>
             <Image 

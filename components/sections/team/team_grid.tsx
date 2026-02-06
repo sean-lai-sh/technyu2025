@@ -1,11 +1,12 @@
 'use client'
 
-import React, { useState, useMemo, useRef } from 'react'
+import { useState, useMemo, useRef, useEffect } from 'react'
 import ProfileCard from './profile_card'
 import { TeamMember } from '@/lib/types'
 import TeamFiltersDesktop from './team_filters_desktop'
 import TeamFiltersMobile from './team_filters_mobile'
 import { gsap } from 'gsap'
+import { useNavigation } from '@/contexts/navigation-context'
 
 interface TeamGridProps {
   initialTeamMembers: TeamMember[]
@@ -16,6 +17,23 @@ const TeamGrid = ({ initialTeamMembers }: TeamGridProps) => {
   const [activeFilter, setActiveFilter] = useState("All")
   const [displayedFilter, setDisplayedFilter] = useState("All")
   const gridRef = useRef<HTMLDivElement>(null)
+  const filterRef = useRef<HTMLDivElement>(null)
+
+  // Access shared navigation state (synced with Navbar)
+  const { isNavbarVisible } = useNavigation()
+
+  // Sync filter section animation with navbar visibility
+  // Matches navbar: duration 0.7s, easeInOut
+  useEffect(() => {
+    if (!filterRef.current) return
+
+    gsap.to(filterRef.current, {
+      y: isNavbarVisible ? 0 : -140, // Move up when navbar hides
+      duration: isNavbarVisible ? 0.7 : 0.75,
+      delay: isNavbarVisible ? 0 : 0.2,
+      ease: 'power1.inOut' // GSAP equivalent of CSS easeInOut
+    })
+  }, [isNavbarVisible])
 
   // Extract unique categories from team members
   const categories = useMemo(() => {
@@ -81,8 +99,11 @@ const TeamGrid = ({ initialTeamMembers }: TeamGridProps) => {
 
   return (
     <div className='w-[100svw] h-fit flex flex-col items-center justify-center pb-[20svh]'>
-      {/* Sticky Filter Section */}
-      <div className='sticky top-0 z-20 w-[100svw] flex justify-center border-b-2 border-white bg-black pt-24 md:pt-40'>
+      {/* Sticky Filter Section - synced with navbar show/hide */}
+      <div
+        ref={filterRef}
+        className='sticky top-0 z-20 w-[100svw] flex justify-center border-b-2 border-white bg-black pt-24 md:pt-40'
+      >
         {/* Desktop Filter Section */}
         <TeamFiltersDesktop
           categories={categories}
