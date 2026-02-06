@@ -7,8 +7,10 @@ import ProgramBar from './program-bar'
 import { getApplicationLink } from '@/lib/application-links'
 
 const ProgramCard = ({ProgramDetail, variant}: {ProgramDetail: ProgramCardProps, variant: string}) => {
-  const { name, url, svgicon, tagline, description_large, description_small, desktopImage} = ProgramDetail;
-  const { status } = getApplicationLink(name);
+  const { name, url, svgicon, tagline, description_large, description_small, desktopImage, applicationStatus} = ProgramDetail;
+  // Use application status from CMS if available, fallback to application-links.ts
+  const { status: fallbackStatus } = getApplicationLink(name);
+  const status = applicationStatus !== undefined ? applicationStatus : fallbackStatus;
 
   // State for description based on screen size
   const [description, setDescription] = useState(description_small);
