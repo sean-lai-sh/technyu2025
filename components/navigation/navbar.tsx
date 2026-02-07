@@ -1,5 +1,5 @@
 'use client'
-import React, { useState, useEffect } from 'react'
+import { useState, useEffect } from 'react'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 // When the time comes to build the program pages
@@ -9,35 +9,47 @@ import { AnimatePresence, motion } from 'framer-motion';
 import styles from './style.module.css';
 import NavbarMobile from './navbar-mobile'
 import Logo from '@/components/assets/logo.svg'
+import { useNavigationSafe } from '@/contexts/navigation-context'
 
 const Navbar = () => {
   const pathname = usePathname()
   const isRootRoute = pathname === '/'
   const [isActive, setIsActive] = useState(false);
-  const [isVisible, setIsVisible] = useState(true);
+
+  // Try to use shared navigation context (available on pages with NavigationProvider)
+  const navContext = useNavigationSafe()
+
+  // Local fallback state for when context is not available
+  const [localIsVisible, setLocalIsVisible] = useState(true);
   const [lastScrollY, setLastScrollY] = useState(0);
 
+  // Use context value if available, otherwise use local state
+  const isVisible = navContext?.isNavbarVisible ?? localIsVisible
+
+  // Only run local scroll detection when context is not available
   useEffect(() => {
+    if (navContext) return // Context handles scroll detection
+
     let scrollTimeout: NodeJS.Timeout;
 
     const handleScroll = () => {
       clearTimeout(scrollTimeout);
-      
+
       scrollTimeout = setTimeout(() => {
         const currentScrollY = window.scrollY;
         const scrollDifference = Math.abs(currentScrollY - lastScrollY);
-        
+
         // Only trigger if scroll difference is significant (more than 5px)
         if (scrollDifference < 5) return;
-        
+
         // Show navbar when scrolling up, hide when scrolling down
         if (currentScrollY < lastScrollY) {
-          setIsVisible(true);
+          setLocalIsVisible(true);
         } else if (currentScrollY > lastScrollY && currentScrollY > 50) {
           // Only hide after scrolling down past 100px
-          setIsVisible(false);
+          setLocalIsVisible(false);
         }
-        
+
         setLastScrollY(currentScrollY);
       }, 50); // 50ms debounce
     };
@@ -48,7 +60,7 @@ const Navbar = () => {
       window.removeEventListener('scroll', handleScroll);
       clearTimeout(scrollTimeout);
     };
-  }, [lastScrollY]);
+  }, [navContext, lastScrollY]);
 
   return (
     <motion.div 

@@ -6,6 +6,7 @@ export type ProgramCardProps = {
   description_small: string;
   description_large: string;
   desktopImage: string;
+  applicationStatus?: boolean; // Application status from CMS
 };
 
 export type TeamMember = {
@@ -102,6 +103,7 @@ export type ContactLink = {
 export type SanityRole = {
   _key: string;
   title: string;
+  isOpen?: boolean;
   description: string;
   benefits: string[];
   buttonText: string;

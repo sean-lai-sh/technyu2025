@@ -1,4 +1,3 @@
-'use client';
 import ProgramSection from "@/components/sections/programs/program_section";
 import Hero from "@/components/sections/hero";
 import Values from "@/components/sections/values";

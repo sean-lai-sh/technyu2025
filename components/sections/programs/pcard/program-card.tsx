@@ -7,8 +7,10 @@ import ProgramBar from './program-bar'
 import { getApplicationLink } from '@/lib/application-links'
 
 const ProgramCard = ({ProgramDetail, variant}: {ProgramDetail: ProgramCardProps, variant: string}) => {
-  const { name, url, svgicon, tagline, description_large, description_small, desktopImage} = ProgramDetail;
-  const { status } = getApplicationLink(name);
+  const { name, url, svgicon, tagline, description_large, description_small, desktopImage, applicationStatus} = ProgramDetail;
+  // Use application status from CMS if available, fallback to application-links.ts
+  const { status: fallbackStatus } = getApplicationLink(name);
+  const status = applicationStatus !== undefined ? applicationStatus : fallbackStatus;
 
   // State for description based on screen size
   const [description, setDescription] = useState(description_small);
@@ -29,7 +31,7 @@ const ProgramCard = ({ProgramDetail, variant}: {ProgramDetail: ProgramCardProps,
   }, [description_large, description_small]);
   return (
     <div className={`rectangle ${variant ? variant : ''} flex justify-between h-fit`}>
-      <div className='w-full lg:w-[50%] flex justify-between flex-col sm:flex-row'>
+      <div className='w-full lg:w-[50%] flex justify-between flex-col sm:flex-row '>
         <div className='flex flex-col w-full sm:w-[80%] sm:p-10 lg:pr-0 p-8 py-0'>
           <div className={`h-24 w-24 sm:h-48 sm:w-48 xl:h-56 xl:w-56 flex items-center justify-center relative mt-20 sm:mt-16 shadow-none ${ProgramDetail.svgicon === "/program-logos/mentorship.svg" ? "-ml-5 sm:-ml-10" : "-ml-1 sm:-ml-5"}`}>
             <Image 
