@@ -3,10 +3,14 @@ import "./globals.css";
 import Navbar from "@/components/navigation/navbar";
 import { satoshi } from "@/lib/fonts";
 import Footer from "@/components/sections/footer";
+import { SITE_DESCRIPTION, SITE_NAME } from "@/lib/seo";
 
 export const metadata: Metadata = {
-  title: "Tech@NYU",
-  description: "The place for hackers, builders, and designers to create @ NYU",
+  title: {
+    default: SITE_NAME,
+    template: `%s | ${SITE_NAME}`,
+  },
+  description: SITE_DESCRIPTION,
   icons: {
     icon: "/favicon.ico",
     shortcut: "/favicon.ico",

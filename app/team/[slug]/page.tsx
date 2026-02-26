@@ -3,8 +3,9 @@ import { notFound } from 'next/navigation'
 import Image from 'next/image'
 import Link from 'next/link'
 import { getProfile } from '@/lib/sanity/queries'
+import { SITE_DESCRIPTION, SITE_NAME } from '@/lib/seo'
 import { ProfileBio } from '@/lib/types'
-import { Metadata } from 'next'
+import type { Metadata } from 'next'
 import { client } from '@/lib/sanity/client'
 import { Separator } from '@radix-ui/react-dropdown-menu'
 import { TimelineNav } from '@/components/eboard_bio/timeline-nav'
@@ -38,15 +39,18 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   if (!bio) {
     return {
       title: 'Team Member Not Found',
+      description: SITE_DESCRIPTION,
     }
   }
 
+  const profileDescription = bio.shortDescription || SITE_DESCRIPTION
+
   return {
-    title: `${bio.name} | Tech@NYU Team`,
-    description: bio.shortDescription || `Meet ${bio.name}, a member of the Tech@NYU team.`,
+    title: bio.name,
+    description: profileDescription,
     openGraph: {
-      title: `${bio.name} | Tech@NYU Team`,
-      description: bio.shortDescription || `Meet ${bio.name}, a member of the Tech@NYU team.`,
+      title: `${bio.name} | ${SITE_NAME}`,
+      description: profileDescription,
       images: bio.profileImage.url ? [bio.profileImage.url] : [],
     },
   }

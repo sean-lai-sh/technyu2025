@@ -1,7 +1,6 @@
 'use client'
 import React, { useRef, useEffect } from 'react'
 import Image from 'next/image'
-import { MaskText } from '../inlinemask/inline-mask';
 import { MaskSVG } from '../inlinemask/inline-image-mask';
 import { gsap } from 'gsap';
 import { SplitText } from 'gsap/SplitText';
@@ -19,17 +18,19 @@ const Hero = () => {
   const videoRef = useRef<HTMLVideoElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
   const headlineRef = useRef<HTMLHeadingElement>(null);
+  const supportingTextRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const headline = headlineRef.current;
-    
+    const supportingText = supportingTextRef.current;
+
     if (!headline) return;
 
     // Split text into lines
     const split = new SplitText(headline, { type: 'lines' });
-    
+
     // Wrap each line for animation
-    gsap.set(split.lines, { 
+    gsap.set(split.lines, {
       yPercent: 100,
       opacity: 0
     });
@@ -48,60 +49,36 @@ const Hero = () => {
       ease: "customEase"
     });
 
+    // Animate supporting text lines
+    if (supportingText) {
+      const lineSplit = new SplitText(supportingText, { type: 'words' });
+
+      gsap.set(lineSplit.words, {
+        opacity: 0,
+        yPercent: 100
+      });
+
+      gsap.set(supportingText, { opacity: 1 });
+
+      gsap.to(lineSplit.words, {
+        opacity: 1,
+        yPercent: 0,
+        duration: 1.25,
+        stagger: 0,
+        delay: 1.20,
+        ease: "customEase"
+      });
+
+      return () => {
+        split.revert();
+        lineSplit.revert();
+      };
+    }
+
     return () => {
       split.revert();
     };
   }, []);
-
-  // useEffect(() => {
-  //   const video = videoRef.current;
-  //   const container = containerRef.current;
-    
-  //   if (!video || !container) return;
-
-  //   let hasAnimated = false;
-
-  //   const handleTimeUpdate = () => {
-  //     // Trigger animation when 3 seconds remain
-  //     const timeRemaining = video.duration - video.currentTime;
-      
-  //     if (timeRemaining <= 22 && !hasAnimated) {
-  //       hasAnimated = true;
-        
-  //       // Calculate responsive scale based on viewport width to match navbar proportions
-  //       // Navbar: w-[90svw] md:w-[85svw] lg:w-[95svw]
-  //       // Use actual svw units to account for scrollbar presence
-  //       const viewportWidth = window.innerWidth;
-  //       let targetWidth = '90svw'; // default
-  //       let targetY = '10vh';
-  //       if (viewportWidth >= 1024) {
-  //         targetWidth = '90svw'; // lg breakpoint
-  //         targetY = '20vh';
-  //       } else if (viewportWidth >= 768) {
-  //         targetWidth = '85svw'; // md breakpoint
-  //         targetY = '12vh';
-  //       }
-        
-  //       // Create GSAP timeline for smooth, synchronized animation
-  //       const tl = gsap.timeline({
-  //         defaults: { duration: 1.8, ease: 'power2.inOut' }
-  //       });
-
-  //       tl.to(container, {
-  //         width: targetWidth,
-  //         y: targetY,
-  //         boxShadow: "0 0 0 2px rgba(255, 255, 255, 0.3), 0 20px 40px -15px rgba(255, 255, 255, 0.15), 0 10px 20px -8px rgba(255, 255, 255, 0.1)",
-  //         borderRadius: "24px",
-  //       });
-  //     }
-  //   };
-
-  //   video.addEventListener('timeupdate', handleTimeUpdate);
-
-  //   return () => {
-  //     video.removeEventListener('timeupdate', handleTimeUpdate);
-  //   };
-  // }, []);
 
   return (
     <section className="relative w-[100svw] h-[100svh] overflow-visible aspect-video flex items-center justify-center bg-black">
@@ -128,27 +105,26 @@ const Hero = () => {
         
         {/* Bottom aligned content with padding */}
         <div className="relative z-1 flex flex-col items-start justify-end w-full h-full text-white p-5 md:p-10 lg:py-12 lg:px-[5%]">
-          <div className="w-full max-w-[1600px] flex flex-col lg:flex-row lg:justify-between lg:items-end gap-8 lg:gap-12">
+          <div className="w-full max-w-[1600px] flex flex-col lg:flex-row lg:justify-between lg:items-end gap-8 lg:gap-12 pb-20">
             {/* Left side: Logo + Text */}
-            <div className="flex flex-col">
+            <div className="flex flex-col lg:w-[60svw]">
               {/* Large bold headline similar to BCV */}
               <div className="mb-4 md:mb-6 lg:mb-8 overflow-hidden">
-                <h1 
+                <h1
                   ref={headlineRef}
-                  className="text-[12vw] sm:text-[10vw] md:text-[8vw] lg:text-[5vw] font-bold leading-[0.8] tracking-tight opacity-0"
-                >
+                  className="text-[12vw] sm:text-[10vw] md:text-[8vw] lg:text-[5vw] font-bold leading-[0.8] tracking-tight opacity-0"                >
                   Build Fast,<br />Learn Faster
                 </h1>
               </div>
-              
+
               {/* Supporting text - more refined like BCV's subtitle */}
-              <div className="max-w-[90%] sm:max-w-[80%] md:max-w-[70%] lg:max-w-[70%]">
-                <div className="text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-3xl font-light tracking-tight leading-[1.2]">
-                  <MaskText 
-                    phrases={['The Space for Creatives, Makers, and Hackers to Build at NYU. No matter where you start, we will help you build your dreams one line at a time.']} 
-                    customDelay={0.75} 
-                    duration={1.25}
-                  />
+              <div className="w-[90%] sm:w-[80%] md:w-[70%] lg:w-[70%] overflow-hidden">
+                <div
+                  ref={supportingTextRef}
+                  className="text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-2xl font-light tracking-tight leading-[1.2] opacity-0 w-full"
+                >
+                  The Space for Creatives, Makers, and Hackers to Build at NYU.{' '} <br className='hidden lg:block' />
+                  No matter where you start, we will help you build your dreams one line at a time.
                 </div>
               </div>
             </div>
@@ -157,7 +133,7 @@ const Hero = () => {
             <motion.div
               initial={{ opacity: 0, y: 40 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 1.25, delay: 0.75, ease: [0.65, 0, 0.35, 1] }}
+              transition={{ duration: 2, delay: 1.50, ease: [0.65, 0, 0.35, 1] }}
               className="lg:flex-shrink-0"
             >
               <a
@@ -171,6 +147,9 @@ const Hero = () => {
               </a>
             </motion.div>
           </div>
+        </div>
+        <div className='absolute bottom-0 left-0 w-screen h-20 bg-amber-200 z-50'>
+        
         </div>
       </div>
     </section>
