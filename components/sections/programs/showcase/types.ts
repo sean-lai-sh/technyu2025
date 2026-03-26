@@ -32,3 +32,10 @@ export type ProgramImageAsset = {
   src: string
   alt: string
 }
+
+export type ProgramPillar = {
+  id: string
+  title: string
+  description: string
+  outcome: string
+}

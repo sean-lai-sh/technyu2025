@@ -1,24 +1,19 @@
 {
-  "version": "2.8",
+  "version": "2.9",
   "children": [
     {
       "type": "frame",
       "id": "m006c",
+      "x": -1681,
+      "y": -93,
       "name": "TechNYU Website Route Mirror (Current Source State)",
-      "x": 0,
-      "y": 0,
+      "clip": true,
       "width": 2860,
       "height": 7800,
       "fill": "#040404",
-      "clip": true,
       "layout": "vertical",
       "gap": 24,
-      "padding": [
-        24,
-        24,
-        24,
-        24
-      ],
+      "padding": 24,
       "children": [
         {
           "type": "frame",
@@ -135,13 +130,12 @@
                   "height": 72,
                   "fill": "#000000",
                   "cornerRadius": 14,
-                  "layout": "horizontal",
-                  "justifyContent": "space_between",
-                  "alignItems": "center",
                   "padding": [
                     0,
                     16
                   ],
+                  "justifyContent": "space_between",
+                  "alignItems": "center",
                   "children": [
                     {
                       "type": "text",
@@ -198,6 +192,7 @@
                   "type": "frame",
                   "id": "m0005",
                   "name": "HomeHero",
+                  "clip": true,
                   "width": "fill_container",
                   "height": 260,
                   "fill": "#101010",
@@ -205,7 +200,6 @@
                   "layout": "vertical",
                   "gap": 10,
                   "padding": 14,
-                  "clip": true,
                   "children": [
                     {
                       "type": "frame",
@@ -221,9 +215,8 @@
                           "name": "HomeHeroDot",
                           "width": 8,
                           "height": 8,
-                          "cornerRadius": 99,
                           "fill": "#4DFF94",
-                          "children": []
+                          "cornerRadius": 99
                         },
                         {
                           "type": "text",
@@ -242,13 +235,13 @@
                       "id": "m0004",
                       "name": "HomeHeroDetail",
                       "fill": "#BEBEBE",
-                      "content": "• Full-screen video background (`hero_vp9.webm`) with dark overlay\n• Masked logo animation + tagline text in lower-left content zone\n• Navbar appears as fixed rounded outlined shell over hero",
-                      "fontFamily": "Inter",
-                      "fontSize": 13,
-                      "fontWeight": "normal",
                       "textGrowth": "fixed-width",
                       "width": "fill_container",
-                      "lineHeight": 1.45
+                      "content": "• Full-screen video background (`hero_vp9.webm`) with dark overlay\n• Masked logo animation + tagline text in lower-left content zone\n• Navbar appears as fixed rounded outlined shell over hero",
+                      "lineHeight": 1.45,
+                      "fontFamily": "Inter",
+                      "fontSize": 13,
+                      "fontWeight": "normal"
                     }
                   ]
                 },
@@ -256,6 +249,7 @@
                   "type": "frame",
                   "id": "m000a",
                   "name": "HomeAbout",
+                  "clip": true,
                   "width": "fill_container",
                   "height": 240,
                   "fill": "#101010",
@@ -263,7 +257,6 @@
                   "layout": "vertical",
                   "gap": 10,
                   "padding": 14,
-                  "clip": true,
                   "children": [
                     {
                       "type": "frame",
@@ -279,9 +272,8 @@
                           "name": "HomeAboutDot",
                           "width": 8,
                           "height": 8,
-                          "cornerRadius": 99,
                           "fill": "#B300FF",
-                          "children": []
+                          "cornerRadius": 99
                         },
                         {
                           "type": "text",
@@ -300,13 +292,13 @@
                       "id": "m0009",
                       "name": "HomeAboutDetail",
                       "fill": "#BEBEBE",
-                      "content": "• Heading: About Us\n• Four animated TwoColumnSection rows (alternating split layout)\n• Narrative themes: software, backgrounds, scale/speed, community",
-                      "fontFamily": "Inter",
-                      "fontSize": 13,
-                      "fontWeight": "normal",
                       "textGrowth": "fixed-width",
                       "width": "fill_container",
-                      "lineHeight": 1.45
+                      "content": "• Heading: About Us\n• Four animated TwoColumnSection rows (alternating split layout)\n• Narrative themes: software, backgrounds, scale/speed, community",
+                      "lineHeight": 1.45,
+                      "fontFamily": "Inter",
+                      "fontSize": 13,
+                      "fontWeight": "normal"
                     }
                   ]
                 },
@@ -314,6 +306,7 @@
                   "type": "frame",
                   "id": "m000f",
                   "name": "HomeHistory",
+                  "clip": true,
                   "width": "fill_container",
                   "height": 220,
                   "fill": "#101010",
@@ -321,7 +314,6 @@
                   "layout": "vertical",
                   "gap": 10,
                   "padding": 14,
-                  "clip": true,
                   "children": [
                     {
                       "type": "frame",
@@ -337,9 +329,8 @@
                           "name": "HomeHistoryDot",
                           "width": 8,
                           "height": 8,
-                          "cornerRadius": 99,
                           "fill": "#4DFF94",
-                          "children": []
+                          "cornerRadius": 99
                         },
                         {
                           "type": "text",
@@ -358,13 +349,13 @@
                       "id": "m000e",
                       "name": "HomeHistoryDetail",
                       "fill": "#BEBEBE",
-                      "content": "• Headline: Building Together Since 2009\n• Partner slider row with YC, Sequoia, Stripe, Anthropic, etc.\n• Large body copy in high-contrast dark theme",
-                      "fontFamily": "Inter",
-                      "fontSize": 13,
-                      "fontWeight": "normal",
                       "textGrowth": "fixed-width",
                       "width": "fill_container",
-                      "lineHeight": 1.45
+                      "content": "• Headline: Building Together Since 2009\n• Partner slider row with YC, Sequoia, Stripe, Anthropic, etc.\n• Large body copy in high-contrast dark theme",
+                      "lineHeight": 1.45,
+                      "fontFamily": "Inter",
+                      "fontSize": 13,
+                      "fontWeight": "normal"
                     }
                   ]
                 },
@@ -372,6 +363,7 @@
                   "type": "frame",
                   "id": "m000k",
                   "name": "HomeValues",
+                  "clip": true,
                   "width": "fill_container",
                   "height": 310,
                   "fill": "#101010",
@@ -379,7 +371,6 @@
                   "layout": "vertical",
                   "gap": 10,
                   "padding": 14,
-                  "clip": true,
                   "children": [
                     {
                       "type": "frame",
@@ -395,9 +386,8 @@
                           "name": "HomeValuesDot",
                           "width": 8,
                           "height": 8,
-                          "cornerRadius": 99,
                           "fill": "#B300FF",
-                          "children": []
+                          "cornerRadius": 99
                         },
                         {
                           "type": "text",
@@ -416,13 +406,13 @@
                       "id": "m000j",
                       "name": "HomeValuesDetail",
                       "fill": "#BEBEBE",
-                      "content": "• Grid-line background overlay across section\n• Three sticky cards: Community, Learning, Creativity\n• Alternating green/purple inset glow card treatment",
-                      "fontFamily": "Inter",
-                      "fontSize": 13,
-                      "fontWeight": "normal",
                       "textGrowth": "fixed-width",
                       "width": "fill_container",
-                      "lineHeight": 1.45
+                      "content": "• Grid-line background overlay across section\n• Three sticky cards: Community, Learning, Creativity\n• Alternating green/purple inset glow card treatment",
+                      "lineHeight": 1.45,
+                      "fontFamily": "Inter",
+                      "fontSize": 13,
+                      "fontWeight": "normal"
                     }
                   ]
                 },
@@ -430,6 +420,7 @@
                   "type": "frame",
                   "id": "m000p",
                   "name": "HomePrograms",
+                  "clip": true,
                   "width": "fill_container",
                   "height": 330,
                   "fill": "#101010",
@@ -437,7 +428,6 @@
                   "layout": "vertical",
                   "gap": 10,
                   "padding": 14,
-                  "clip": true,
                   "children": [
                     {
                       "type": "frame",
@@ -453,9 +443,8 @@
                           "name": "HomeProgramsDot",
                           "width": 8,
                           "height": 8,
-                          "cornerRadius": 99,
                           "fill": "#4DFF94",
-                          "children": []
+                          "cornerRadius": 99
                         },
                         {
                           "type": "text",
@@ -474,13 +463,13 @@
                       "id": "m000o",
                       "name": "HomeProgramsDetail",
                       "fill": "#BEBEBE",
-                      "content": "• Heading: Our Programs\n• Four CMS-fed ProgramCards (Dev Team, Tech Treks, Startup Week, Mentorship)\n• Each card: logo, tagline, description, app status pill, MORE CTA, desktop image",
-                      "fontFamily": "Inter",
-                      "fontSize": 13,
-                      "fontWeight": "normal",
                       "textGrowth": "fixed-width",
                       "width": "fill_container",
-                      "lineHeight": 1.45
+                      "content": "• Heading: Our Programs\n• Four CMS-fed ProgramCards (Dev Team, Tech Treks, Startup Week, Mentorship)\n• Each card: logo, tagline, description, app status pill, MORE CTA, desktop image",
+                      "lineHeight": 1.45,
+                      "fontFamily": "Inter",
+                      "fontSize": 13,
+                      "fontWeight": "normal"
                     }
                   ]
                 },
@@ -526,13 +515,13 @@
                   "id": "m003j",
                   "name": "RouteNote-/",
                   "fill": "#7F7F7F",
-                  "content": "Mirrors current source composition order: Hero -> About -> History -> Values -> Programs.",
-                  "fontFamily": "Inter",
-                  "fontSize": 12,
-                  "fontWeight": "normal",
                   "textGrowth": "fixed-width",
                   "width": "fill_container",
-                  "lineHeight": 1.4
+                  "content": "Mirrors current source composition order: Hero -> About -> History -> Values -> Programs.",
+                  "lineHeight": 1.4,
+                  "fontFamily": "Inter",
+                  "fontSize": 12,
+                  "fontWeight": "normal"
                 }
               ]
             },
@@ -575,13 +564,12 @@
                   "height": 72,
                   "fill": "#000000",
                   "cornerRadius": 14,
-                  "layout": "horizontal",
-                  "justifyContent": "space_between",
-                  "alignItems": "center",
                   "padding": [
                     0,
                     16
                   ],
+                  "justifyContent": "space_between",
+                  "alignItems": "center",
                   "children": [
                     {
                       "type": "text",
@@ -638,6 +626,7 @@
                   "type": "frame",
                   "id": "m000u",
                   "name": "TeamFilter",
+                  "clip": true,
                   "width": "fill_container",
                   "height": 220,
                   "fill": "#101010",
@@ -645,7 +634,6 @@
                   "layout": "vertical",
                   "gap": 10,
                   "padding": 14,
-                  "clip": true,
                   "children": [
                     {
                       "type": "frame",
@@ -661,9 +649,8 @@
                           "name": "TeamFilterDot",
                           "width": 8,
                           "height": 8,
-                          "cornerRadius": 99,
                           "fill": "#4DFF94",
-                          "children": []
+                          "cornerRadius": 99
                         },
                         {
                           "type": "text",
@@ -682,13 +669,13 @@
                       "id": "m000t",
                       "name": "TeamFilterDetail",
                       "fill": "#BEBEBE",
-                      "content": "• Top sticky filter/search area synced with navbar visibility\n• Desktop tabs + mobile dropdown filter + search input\n• Categories from team member data (All + role categories)",
-                      "fontFamily": "Inter",
-                      "fontSize": 13,
-                      "fontWeight": "normal",
                       "textGrowth": "fixed-width",
                       "width": "fill_container",
-                      "lineHeight": 1.45
+                      "content": "• Top sticky filter/search area synced with navbar visibility\n• Desktop tabs + mobile dropdown filter + search input\n• Categories from team member data (All + role categories)",
+                      "lineHeight": 1.45,
+                      "fontFamily": "Inter",
+                      "fontSize": 13,
+                      "fontWeight": "normal"
                     }
                   ]
                 },
@@ -696,6 +683,7 @@
                   "type": "frame",
                   "id": "m000z",
                   "name": "TeamGrid",
+                  "clip": true,
                   "width": "fill_container",
                   "height": 560,
                   "fill": "#101010",
@@ -703,7 +691,6 @@
                   "layout": "vertical",
                   "gap": 10,
                   "padding": 14,
-                  "clip": true,
                   "children": [
                     {
                       "type": "frame",
@@ -719,9 +706,8 @@
                           "name": "TeamGridDot",
                           "width": 8,
                           "height": 8,
-                          "cornerRadius": 99,
                           "fill": "#B300FF",
-                          "children": []
+                          "cornerRadius": 99
                         },
                         {
                           "type": "text",
@@ -740,13 +726,13 @@
                       "id": "m000y",
                       "name": "TeamGridDetail",
                       "fill": "#BEBEBE",
-                      "content": "• Responsive profile card grid (1/2/3 columns)\n• Card hover: green gradient glow + image scale/fade interactions\n• Each card links to `/team/[slug]` detail page",
-                      "fontFamily": "Inter",
-                      "fontSize": 13,
-                      "fontWeight": "normal",
                       "textGrowth": "fixed-width",
                       "width": "fill_container",
-                      "lineHeight": 1.45
+                      "content": "• Responsive profile card grid (1/2/3 columns)\n• Card hover: green gradient glow + image scale/fade interactions\n• Each card links to `/team/[slug]` detail page",
+                      "lineHeight": 1.45,
+                      "fontFamily": "Inter",
+                      "fontSize": 13,
+                      "fontWeight": "normal"
                     }
                   ]
                 },
@@ -792,13 +778,13 @@
                   "id": "m003w",
                   "name": "RouteNote-/team",
                   "fill": "#7F7F7F",
-                  "content": "Includes sticky filtering/search rail and animated profile card grid.",
-                  "fontFamily": "Inter",
-                  "fontSize": 12,
-                  "fontWeight": "normal",
                   "textGrowth": "fixed-width",
                   "width": "fill_container",
-                  "lineHeight": 1.4
+                  "content": "Includes sticky filtering/search rail and animated profile card grid.",
+                  "lineHeight": 1.4,
+                  "fontFamily": "Inter",
+                  "fontSize": 12,
+                  "fontWeight": "normal"
                 }
               ]
             }
@@ -850,13 +836,12 @@
                   "height": 72,
                   "fill": "#000000",
                   "cornerRadius": 14,
-                  "layout": "horizontal",
-                  "justifyContent": "space_between",
-                  "alignItems": "center",
                   "padding": [
                     0,
                     16
                   ],
+                  "justifyContent": "space_between",
+                  "alignItems": "center",
                   "children": [
                     {
                       "type": "text",
@@ -913,6 +898,7 @@
                   "type": "frame",
                   "id": "m0014",
                   "name": "BioHero",
+                  "clip": true,
                   "width": "fill_container",
                   "height": 300,
                   "fill": "#101010",
@@ -920,7 +906,6 @@
                   "layout": "vertical",
                   "gap": 10,
                   "padding": 14,
-                  "clip": true,
                   "children": [
                     {
                       "type": "frame",
@@ -936,9 +921,8 @@
                           "name": "BioHeroDot",
                           "width": 8,
                           "height": 8,
-                          "cornerRadius": 99,
                           "fill": "#4DFF94",
-                          "children": []
+                          "cornerRadius": 99
                         },
                         {
                           "type": "text",
@@ -957,13 +941,13 @@
                       "id": "m0013",
                       "name": "BioHeroDetail",
                       "fill": "#BEBEBE",
-                      "content": "• Left column: badges, name, short description\n• Right column: portrait image in 4:5 container\n• Spacing adapts across mobile and desktop",
-                      "fontFamily": "Inter",
-                      "fontSize": 13,
-                      "fontWeight": "normal",
                       "textGrowth": "fixed-width",
                       "width": "fill_container",
-                      "lineHeight": 1.45
+                      "content": "• Left column: badges, name, short description\n• Right column: portrait image in 4:5 container\n• Spacing adapts across mobile and desktop",
+                      "lineHeight": 1.45,
+                      "fontFamily": "Inter",
+                      "fontSize": 13,
+                      "fontWeight": "normal"
                     }
                   ]
                 },
@@ -971,6 +955,7 @@
                   "type": "frame",
                   "id": "m0019",
                   "name": "BioTopBar",
+                  "clip": true,
                   "width": "fill_container",
                   "height": 120,
                   "fill": "#101010",
@@ -978,7 +963,6 @@
                   "layout": "vertical",
                   "gap": 10,
                   "padding": 14,
-                  "clip": true,
                   "children": [
                     {
                       "type": "frame",
@@ -994,9 +978,8 @@
                           "name": "BioTopBarDot",
                           "width": 8,
                           "height": 8,
-                          "cornerRadius": 99,
                           "fill": "#B300FF",
-                          "children": []
+                          "cornerRadius": 99
                         },
                         {
                           "type": "text",
@@ -1015,13 +998,13 @@
                       "id": "m0018",
                       "name": "BioTopBarDetail",
                       "fill": "#BEBEBE",
-                      "content": "• Top strip with LinkedIn link and separator line\n• Anchors to timeline content below",
-                      "fontFamily": "Inter",
-                      "fontSize": 13,
-                      "fontWeight": "normal",
                       "textGrowth": "fixed-width",
                       "width": "fill_container",
-                      "lineHeight": 1.45
+                      "content": "• Top strip with LinkedIn link and separator line\n• Anchors to timeline content below",
+                      "lineHeight": 1.45,
+                      "fontFamily": "Inter",
+                      "fontSize": 13,
+                      "fontWeight": "normal"
                     }
                   ]
                 },
@@ -1029,6 +1012,7 @@
                   "type": "frame",
                   "id": "m001e",
                   "name": "BioBody",
+                  "clip": true,
                   "width": "fill_container",
                   "height": 560,
                   "fill": "#101010",
@@ -1036,7 +1020,6 @@
                   "layout": "vertical",
                   "gap": 10,
                   "padding": 14,
-                  "clip": true,
                   "children": [
                     {
                       "type": "frame",
@@ -1052,9 +1035,8 @@
                           "name": "BioBodyDot",
                           "width": 8,
                           "height": 8,
-                          "cornerRadius": 99,
                           "fill": "#4DFF94",
-                          "children": []
+                          "cornerRadius": 99
                         },
                         {
                           "type": "text",
@@ -1073,13 +1055,13 @@
                       "id": "m001d",
                       "name": "BioBodyDetail",
                       "fill": "#BEBEBE",
-                      "content": "• Desktop: left sticky timeline nav + right content column\n• Background timeline section from `bio.timeline`\n• About Q&A blocks with optional media (`ResponsiveMedia`)",
-                      "fontFamily": "Inter",
-                      "fontSize": 13,
-                      "fontWeight": "normal",
                       "textGrowth": "fixed-width",
                       "width": "fill_container",
-                      "lineHeight": 1.45
+                      "content": "• Desktop: left sticky timeline nav + right content column\n• Background timeline section from `bio.timeline`\n• About Q&A blocks with optional media (`ResponsiveMedia`)",
+                      "lineHeight": 1.45,
+                      "fontFamily": "Inter",
+                      "fontSize": 13,
+                      "fontWeight": "normal"
                     }
                   ]
                 },
@@ -1125,13 +1107,13 @@
                   "id": "m004a",
                   "name": "RouteNote-/team/[slug]",
                   "fill": "#7F7F7F",
-                  "content": "Detail template is data-driven per person but layout skeleton is fixed.",
-                  "fontFamily": "Inter",
-                  "fontSize": 12,
-                  "fontWeight": "normal",
                   "textGrowth": "fixed-width",
                   "width": "fill_container",
-                  "lineHeight": 1.4
+                  "content": "Detail template is data-driven per person but layout skeleton is fixed.",
+                  "lineHeight": 1.4,
+                  "fontFamily": "Inter",
+                  "fontSize": 12,
+                  "fontWeight": "normal"
                 }
               ]
             },
@@ -1174,13 +1156,12 @@
                   "height": 72,
                   "fill": "#000000",
                   "cornerRadius": 14,
-                  "layout": "horizontal",
-                  "justifyContent": "space_between",
-                  "alignItems": "center",
                   "padding": [
                     0,
                     16
                   ],
+                  "justifyContent": "space_between",
+                  "alignItems": "center",
                   "children": [
                     {
                       "type": "text",
@@ -1237,6 +1218,7 @@
                   "type": "frame",
                   "id": "m001j",
                   "name": "DevHero",
+                  "clip": true,
                   "width": "fill_container",
                   "height": 320,
                   "fill": "#101010",
@@ -1244,7 +1226,6 @@
                   "layout": "vertical",
                   "gap": 10,
                   "padding": 14,
-                  "clip": true,
                   "children": [
                     {
                       "type": "frame",
@@ -1260,9 +1241,8 @@
                           "name": "DevHeroDot",
                           "width": 8,
                           "height": 8,
-                          "cornerRadius": 99,
                           "fill": "#B300FF",
-                          "children": []
+                          "cornerRadius": 99
                         },
                         {
                           "type": "text",
@@ -1281,13 +1261,13 @@
                       "id": "m001i",
                       "name": "DevHeroDetail",
                       "fill": "#BEBEBE",
-                      "content": "• Custom editorial hero (large display type + apply CTA)\n• Wireframe graphic on right, narrative text on left\n• Distinct from shared dynamic program template",
-                      "fontFamily": "Inter",
-                      "fontSize": 13,
-                      "fontWeight": "normal",
                       "textGrowth": "fixed-width",
                       "width": "fill_container",
-                      "lineHeight": 1.45
+                      "content": "• Custom editorial hero (large display type + apply CTA)\n• Wireframe graphic on right, narrative text on left\n• Distinct from shared dynamic program template",
+                      "lineHeight": 1.45,
+                      "fontFamily": "Inter",
+                      "fontSize": 13,
+                      "fontWeight": "normal"
                     }
                   ]
                 },
@@ -1295,6 +1275,7 @@
                   "type": "frame",
                   "id": "m001o",
                   "name": "DevApproach",
+                  "clip": true,
                   "width": "fill_container",
                   "height": 520,
                   "fill": "#101010",
@@ -1302,7 +1283,6 @@
                   "layout": "vertical",
                   "gap": 10,
                   "padding": 14,
-                  "clip": true,
                   "children": [
                     {
                       "type": "frame",
@@ -1318,9 +1298,8 @@
                           "name": "DevApproachDot",
                           "width": 8,
                           "height": 8,
-                          "cornerRadius": 99,
                           "fill": "#4DFF94",
-                          "children": []
+                          "cornerRadius": 99
                         },
                         {
                           "type": "text",
@@ -1339,13 +1318,13 @@
                       "id": "m001n",
                       "name": "DevApproachDetail",
                       "fill": "#BEBEBE",
-                      "content": "• Glowing 3-card approach strip\n• Alumni testimonial carousel with tab controls\n• Vertical build tabs + sticky wireframe panel",
-                      "fontFamily": "Inter",
-                      "fontSize": 13,
-                      "fontWeight": "normal",
                       "textGrowth": "fixed-width",
                       "width": "fill_container",
-                      "lineHeight": 1.45
+                      "content": "• Glowing 3-card approach strip\n• Alumni testimonial carousel with tab controls\n• Vertical build tabs + sticky wireframe panel",
+                      "lineHeight": 1.45,
+                      "fontFamily": "Inter",
+                      "fontSize": 13,
+                      "fontWeight": "normal"
                     }
                   ]
                 },
@@ -1353,6 +1332,7 @@
                   "type": "frame",
                   "id": "m001t",
                   "name": "DevTracksRoles",
+                  "clip": true,
                   "width": "fill_container",
                   "height": 420,
                   "fill": "#101010",
@@ -1360,7 +1340,6 @@
                   "layout": "vertical",
                   "gap": 10,
                   "padding": 14,
-                  "clip": true,
                   "children": [
                     {
                       "type": "frame",
@@ -1376,9 +1355,8 @@
                           "name": "DevTracksRolesDot",
                           "width": 8,
                           "height": 8,
-                          "cornerRadius": 99,
                           "fill": "#B300FF",
-                          "children": []
+                          "cornerRadius": 99
                         },
                         {
                           "type": "text",
@@ -1397,13 +1375,13 @@
                       "id": "m001s",
                       "name": "DevTracksRolesDetail",
                       "fill": "#BEBEBE",
-                      "content": "• Semester timeline selector (Onboarding -> Demo Day)\n• Role cards rendered from Sanity roles section data\n• Final conversion CTA state (open/closed applications)",
-                      "fontFamily": "Inter",
-                      "fontSize": 13,
-                      "fontWeight": "normal",
                       "textGrowth": "fixed-width",
                       "width": "fill_container",
-                      "lineHeight": 1.45
+                      "content": "• Semester timeline selector (Onboarding -> Demo Day)\n• Role cards rendered from Sanity roles section data\n• Final conversion CTA state (open/closed applications)",
+                      "lineHeight": 1.45,
+                      "fontFamily": "Inter",
+                      "fontSize": 13,
+                      "fontWeight": "normal"
                     }
                   ]
                 },
@@ -1449,13 +1427,13 @@
                   "id": "m004n",
                   "name": "RouteNote-/programs/dev-team",
                   "fill": "#7F7F7F",
-                  "content": "This is the bespoke exception page with custom visual language.",
-                  "fontFamily": "Inter",
-                  "fontSize": 12,
-                  "fontWeight": "normal",
                   "textGrowth": "fixed-width",
                   "width": "fill_container",
-                  "lineHeight": 1.4
+                  "content": "This is the bespoke exception page with custom visual language.",
+                  "lineHeight": 1.4,
+                  "fontFamily": "Inter",
+                  "fontSize": 12,
+                  "fontWeight": "normal"
                 }
               ]
             }
@@ -1507,13 +1485,12 @@
                   "height": 72,
                   "fill": "#000000",
                   "cornerRadius": 14,
-                  "layout": "horizontal",
-                  "justifyContent": "space_between",
-                  "alignItems": "center",
                   "padding": [
                     0,
                     16
                   ],
+                  "justifyContent": "space_between",
+                  "alignItems": "center",
                   "children": [
                     {
                       "type": "text",
@@ -1570,6 +1547,7 @@
                   "type": "frame",
                   "id": "m002s",
                   "name": "TTHero",
+                  "clip": true,
                   "width": "fill_container",
                   "height": 260,
                   "fill": "#101010",
@@ -1577,7 +1555,6 @@
                   "layout": "vertical",
                   "gap": 10,
                   "padding": 14,
-                  "clip": true,
                   "children": [
                     {
                       "type": "frame",
@@ -1593,9 +1570,8 @@
                           "name": "TTHeroDot",
                           "width": 8,
                           "height": 8,
-                          "cornerRadius": 99,
                           "fill": "#4DFF94",
-                          "children": []
+                          "cornerRadius": 99
                         },
                         {
                           "type": "text",
@@ -1614,13 +1590,13 @@
                       "id": "m002r",
                       "name": "TTHeroDetail",
                       "fill": "#BEBEBE",
-                      "content": "• Title + rich-text body + logo image + Apply status component\n• Data source: `getProgramBySlug(slug)`",
-                      "fontFamily": "Inter",
-                      "fontSize": 13,
-                      "fontWeight": "normal",
                       "textGrowth": "fixed-width",
                       "width": "fill_container",
-                      "lineHeight": 1.45
+                      "content": "• Title + rich-text body + logo image + Apply status component\n• Data source: `getProgramBySlug(slug)`",
+                      "lineHeight": 1.45,
+                      "fontFamily": "Inter",
+                      "fontSize": 13,
+                      "fontWeight": "normal"
                     }
                   ]
                 },
@@ -1628,6 +1604,7 @@
                   "type": "frame",
                   "id": "m002x",
                   "name": "TTRenderer",
+                  "clip": true,
                   "width": "fill_container",
                   "height": 620,
                   "fill": "#101010",
@@ -1635,7 +1612,6 @@
                   "layout": "vertical",
                   "gap": 10,
                   "padding": 14,
-                  "clip": true,
                   "children": [
                     {
                       "type": "frame",
@@ -1651,9 +1627,8 @@
                           "name": "TTRendererDot",
                           "width": 8,
                           "height": 8,
-                          "cornerRadius": 99,
                           "fill": "#B300FF",
-                          "children": []
+                          "cornerRadius": 99
                         },
                         {
                           "type": "text",
@@ -1672,13 +1647,13 @@
                       "id": "m002w",
                       "name": "TTRendererDetail",
                       "fill": "#BEBEBE",
-                      "content": "• Renders section stream by `_type` from Sanity\n• Supported types: textSection, stickyScrollSection, rolesSection, faqSection, logoSliderSection, ctaSection\n• Exact order and count depend on live CMS document",
-                      "fontFamily": "Inter",
-                      "fontSize": 13,
-                      "fontWeight": "normal",
                       "textGrowth": "fixed-width",
                       "width": "fill_container",
-                      "lineHeight": 1.45
+                      "content": "• Renders section stream by `_type` from Sanity\n• Supported types: textSection, stickyScrollSection, rolesSection, faqSection, logoSliderSection, ctaSection\n• Exact order and count depend on live CMS document",
+                      "lineHeight": 1.45,
+                      "fontFamily": "Inter",
+                      "fontSize": 13,
+                      "fontWeight": "normal"
                     }
                   ]
                 },
@@ -1686,6 +1661,7 @@
                   "type": "frame",
                   "id": "m0032",
                   "name": "TTTypical",
+                  "clip": true,
                   "width": "fill_container",
                   "height": 260,
                   "fill": "#101010",
@@ -1693,7 +1669,6 @@
                   "layout": "vertical",
                   "gap": 10,
                   "padding": 14,
-                  "clip": true,
                   "children": [
                     {
                       "type": "frame",
@@ -1709,9 +1684,8 @@
                           "name": "TTTypicalDot",
                           "width": 8,
                           "height": 8,
-                          "cornerRadius": 99,
                           "fill": "#4DFF94",
-                          "children": []
+                          "cornerRadius": 99
                         },
                         {
                           "type": "text",
@@ -1730,13 +1704,13 @@
                       "id": "m0031",
                       "name": "TTTypicalDetail",
                       "fill": "#BEBEBE",
-                      "content": "• Commonly includes role-selection cards and FAQ\n• Apply status can vary by role via CMS role configuration",
-                      "fontFamily": "Inter",
-                      "fontSize": 13,
-                      "fontWeight": "normal",
                       "textGrowth": "fixed-width",
                       "width": "fill_container",
-                      "lineHeight": 1.45
+                      "content": "• Commonly includes role-selection cards and FAQ\n• Apply status can vary by role via CMS role configuration",
+                      "lineHeight": 1.45,
+                      "fontFamily": "Inter",
+                      "fontSize": 13,
+                      "fontWeight": "normal"
                     }
                   ]
                 },
@@ -1782,13 +1756,13 @@
                   "id": "m0051",
                   "name": "RouteNote-/programs/tech-treks",
                   "fill": "#7F7F7F",
-                  "content": "Built by shared dynamic renderer; exact content order is CMS-driven.",
-                  "fontFamily": "Inter",
-                  "fontSize": 12,
-                  "fontWeight": "normal",
                   "textGrowth": "fixed-width",
                   "width": "fill_container",
-                  "lineHeight": 1.4
+                  "content": "Built by shared dynamic renderer; exact content order is CMS-driven.",
+                  "lineHeight": 1.4,
+                  "fontFamily": "Inter",
+                  "fontSize": 12,
+                  "fontWeight": "normal"
                 }
               ]
             },
@@ -1831,13 +1805,12 @@
                   "height": 72,
                   "fill": "#000000",
                   "cornerRadius": 14,
-                  "layout": "horizontal",
-                  "justifyContent": "space_between",
-                  "alignItems": "center",
                   "padding": [
                     0,
                     16
                   ],
+                  "justifyContent": "space_between",
+                  "alignItems": "center",
                   "children": [
                     {
                       "type": "text",
@@ -1894,6 +1867,7 @@
                   "type": "frame",
                   "id": "m001y",
                   "name": "SWHero",
+                  "clip": true,
                   "width": "fill_container",
                   "height": 260,
                   "fill": "#101010",
@@ -1901,7 +1875,6 @@
                   "layout": "vertical",
                   "gap": 10,
                   "padding": 14,
-                  "clip": true,
                   "children": [
                     {
                       "type": "frame",
@@ -1917,9 +1890,8 @@
                           "name": "SWHeroDot",
                           "width": 8,
                           "height": 8,
-                          "cornerRadius": 99,
                           "fill": "#4DFF94",
-                          "children": []
+                          "cornerRadius": 99
                         },
                         {
                           "type": "text",
@@ -1938,13 +1910,13 @@
                       "id": "m001x",
                       "name": "SWHeroDetail",
                       "fill": "#BEBEBE",
-                      "content": "• Title + rich-text body + logo image + Apply status component\n• Data source: `getProgramBySlug(slug)`",
-                      "fontFamily": "Inter",
-                      "fontSize": 13,
-                      "fontWeight": "normal",
                       "textGrowth": "fixed-width",
                       "width": "fill_container",
-                      "lineHeight": 1.45
+                      "content": "• Title + rich-text body + logo image + Apply status component\n• Data source: `getProgramBySlug(slug)`",
+                      "lineHeight": 1.45,
+                      "fontFamily": "Inter",
+                      "fontSize": 13,
+                      "fontWeight": "normal"
                     }
                   ]
                 },
@@ -1952,6 +1924,7 @@
                   "type": "frame",
                   "id": "m0023",
                   "name": "SWRenderer",
+                  "clip": true,
                   "width": "fill_container",
                   "height": 620,
                   "fill": "#101010",
@@ -1959,7 +1932,6 @@
                   "layout": "vertical",
                   "gap": 10,
                   "padding": 14,
-                  "clip": true,
                   "children": [
                     {
                       "type": "frame",
@@ -1975,9 +1947,8 @@
                           "name": "SWRendererDot",
                           "width": 8,
                           "height": 8,
-                          "cornerRadius": 99,
                           "fill": "#B300FF",
-                          "children": []
+                          "cornerRadius": 99
                         },
                         {
                           "type": "text",
@@ -1996,13 +1967,13 @@
                       "id": "m0022",
                       "name": "SWRendererDetail",
                       "fill": "#BEBEBE",
-                      "content": "• Renders section stream by `_type` from Sanity\n• Supported types: textSection, stickyScrollSection, rolesSection, faqSection, logoSliderSection, ctaSection\n• Exact order and count depend on live CMS document",
-                      "fontFamily": "Inter",
-                      "fontSize": 13,
-                      "fontWeight": "normal",
                       "textGrowth": "fixed-width",
                       "width": "fill_container",
-                      "lineHeight": 1.45
+                      "content": "• Renders section stream by `_type` from Sanity\n• Supported types: textSection, stickyScrollSection, rolesSection, faqSection, logoSliderSection, ctaSection\n• Exact order and count depend on live CMS document",
+                      "lineHeight": 1.45,
+                      "fontFamily": "Inter",
+                      "fontSize": 13,
+                      "fontWeight": "normal"
                     }
                   ]
                 },
@@ -2010,6 +1981,7 @@
                   "type": "frame",
                   "id": "m0028",
                   "name": "SWTypical",
+                  "clip": true,
                   "width": "fill_container",
                   "height": 260,
                   "fill": "#101010",
@@ -2017,7 +1989,6 @@
                   "layout": "vertical",
                   "gap": 10,
                   "padding": 14,
-                  "clip": true,
                   "children": [
                     {
                       "type": "frame",
@@ -2033,9 +2004,8 @@
                           "name": "SWTypicalDot",
                           "width": 8,
                           "height": 8,
-                          "cornerRadius": 99,
                           "fill": "#4DFF94",
-                          "children": []
+                          "cornerRadius": 99
                         },
                         {
                           "type": "text",
@@ -2054,13 +2024,13 @@
                       "id": "m0027",
                       "name": "SWTypicalDetail",
                       "fill": "#BEBEBE",
-                      "content": "• Commonly includes partner logos + week structure sticky-scroll + role cards\n• All blocks still delivered by CMS section entries",
-                      "fontFamily": "Inter",
-                      "fontSize": 13,
-                      "fontWeight": "normal",
                       "textGrowth": "fixed-width",
                       "width": "fill_container",
-                      "lineHeight": 1.45
+                      "content": "• Commonly includes partner logos + week structure sticky-scroll + role cards\n• All blocks still delivered by CMS section entries",
+                      "lineHeight": 1.45,
+                      "fontFamily": "Inter",
+                      "fontSize": 13,
+                      "fontWeight": "normal"
                     }
                   ]
                 },
@@ -2106,13 +2076,13 @@
                   "id": "m005e",
                   "name": "RouteNote-/programs/startup-week",
                   "fill": "#7F7F7F",
-                  "content": "Built by shared dynamic renderer; exact content order is CMS-driven.",
-                  "fontFamily": "Inter",
-                  "fontSize": 12,
-                  "fontWeight": "normal",
                   "textGrowth": "fixed-width",
                   "width": "fill_container",
-                  "lineHeight": 1.4
+                  "content": "Built by shared dynamic renderer; exact content order is CMS-driven.",
+                  "lineHeight": 1.4,
+                  "fontFamily": "Inter",
+                  "fontSize": 12,
+                  "fontWeight": "normal"
                 }
               ]
             }
@@ -2164,13 +2134,12 @@
                   "height": 72,
                   "fill": "#000000",
                   "cornerRadius": 14,
-                  "layout": "horizontal",
-                  "justifyContent": "space_between",
-                  "alignItems": "center",
                   "padding": [
                     0,
                     16
                   ],
+                  "justifyContent": "space_between",
+                  "alignItems": "center",
                   "children": [
                     {
                       "type": "text",
@@ -2227,6 +2196,7 @@
                   "type": "frame",
                   "id": "m002d",
                   "name": "MSHero",
+                  "clip": true,
                   "width": "fill_container",
                   "height": 260,
                   "fill": "#101010",
@@ -2234,7 +2204,6 @@
                   "layout": "vertical",
                   "gap": 10,
                   "padding": 14,
-                  "clip": true,
                   "children": [
                     {
                       "type": "frame",
@@ -2250,9 +2219,8 @@
                           "name": "MSHeroDot",
                           "width": 8,
                           "height": 8,
-                          "cornerRadius": 99,
                           "fill": "#4DFF94",
-                          "children": []
+                          "cornerRadius": 99
                         },
                         {
                           "type": "text",
@@ -2271,13 +2239,13 @@
                       "id": "m002c",
                       "name": "MSHeroDetail",
                       "fill": "#BEBEBE",
-                      "content": "• Title + rich-text body + logo image + Apply status component\n• Data source: `getProgramBySlug(slug)`",
-                      "fontFamily": "Inter",
-                      "fontSize": 13,
-                      "fontWeight": "normal",
                       "textGrowth": "fixed-width",
                       "width": "fill_container",
-                      "lineHeight": 1.45
+                      "content": "• Title + rich-text body + logo image + Apply status component\n• Data source: `getProgramBySlug(slug)`",
+                      "lineHeight": 1.45,
+                      "fontFamily": "Inter",
+                      "fontSize": 13,
+                      "fontWeight": "normal"
                     }
                   ]
                 },
@@ -2285,6 +2253,7 @@
                   "type": "frame",
                   "id": "m002i",
                   "name": "MSRenderer",
+                  "clip": true,
                   "width": "fill_container",
                   "height": 620,
                   "fill": "#101010",
@@ -2292,7 +2261,6 @@
                   "layout": "vertical",
                   "gap": 10,
                   "padding": 14,
-                  "clip": true,
                   "children": [
                     {
                       "type": "frame",
@@ -2308,9 +2276,8 @@
                           "name": "MSRendererDot",
                           "width": 8,
                           "height": 8,
-                          "cornerRadius": 99,
                           "fill": "#B300FF",
-                          "children": []
+                          "cornerRadius": 99
                         },
                         {
                           "type": "text",
@@ -2329,13 +2296,13 @@
                       "id": "m002h",
                       "name": "MSRendererDetail",
                       "fill": "#BEBEBE",
-                      "content": "• Renders section stream by `_type` from Sanity\n• Supported types: textSection, stickyScrollSection, rolesSection, faqSection, logoSliderSection, ctaSection\n• Exact order and count depend on live CMS document",
-                      "fontFamily": "Inter",
-                      "fontSize": 13,
-                      "fontWeight": "normal",
                       "textGrowth": "fixed-width",
                       "width": "fill_container",
-                      "lineHeight": 1.45
+                      "content": "• Renders section stream by `_type` from Sanity\n• Supported types: textSection, stickyScrollSection, rolesSection, faqSection, logoSliderSection, ctaSection\n• Exact order and count depend on live CMS document",
+                      "lineHeight": 1.45,
+                      "fontFamily": "Inter",
+                      "fontSize": 13,
+                      "fontWeight": "normal"
                     }
                   ]
                 },
@@ -2343,6 +2310,7 @@
                   "type": "frame",
                   "id": "m002n",
                   "name": "MSTypical",
+                  "clip": true,
                   "width": "fill_container",
                   "height": 280,
                   "fill": "#101010",
@@ -2350,7 +2318,6 @@
                   "layout": "vertical",
                   "gap": 10,
                   "padding": 14,
-                  "clip": true,
                   "children": [
                     {
                       "type": "frame",
@@ -2366,9 +2333,8 @@
                           "name": "MSTypicalDot",
                           "width": 8,
                           "height": 8,
-                          "cornerRadius": 99,
                           "fill": "#4DFF94",
-                          "children": []
+                          "cornerRadius": 99
                         },
                         {
                           "type": "text",
@@ -2387,13 +2353,13 @@
                       "id": "m002m",
                       "name": "MSTypicalDetail",
                       "fill": "#BEBEBE",
-                      "content": "• Commonly includes mentorship process steps + apply CTA + FAQ\n• FAQ block uses accordion section component",
-                      "fontFamily": "Inter",
-                      "fontSize": 13,
-                      "fontWeight": "normal",
                       "textGrowth": "fixed-width",
                       "width": "fill_container",
-                      "lineHeight": 1.45
+                      "content": "• Commonly includes mentorship process steps + apply CTA + FAQ\n• FAQ block uses accordion section component",
+                      "lineHeight": 1.45,
+                      "fontFamily": "Inter",
+                      "fontSize": 13,
+                      "fontWeight": "normal"
                     }
                   ]
                 },
@@ -2439,13 +2405,13 @@
                   "id": "m005s",
                   "name": "RouteNote-/programs/mentorship",
                   "fill": "#7F7F7F",
-                  "content": "Built by shared dynamic renderer; exact content order is CMS-driven.",
-                  "fontFamily": "Inter",
-                  "fontSize": 12,
-                  "fontWeight": "normal",
                   "textGrowth": "fixed-width",
                   "width": "fill_container",
-                  "lineHeight": 1.4
+                  "content": "Built by shared dynamic renderer; exact content order is CMS-driven.",
+                  "lineHeight": 1.4,
+                  "fontFamily": "Inter",
+                  "fontSize": 12,
+                  "fontWeight": "normal"
                 }
               ]
             },
@@ -2488,13 +2454,12 @@
                   "height": 72,
                   "fill": "#000000",
                   "cornerRadius": 14,
-                  "layout": "horizontal",
-                  "justifyContent": "space_between",
-                  "alignItems": "center",
                   "padding": [
                     0,
                     16
                   ],
+                  "justifyContent": "space_between",
+                  "alignItems": "center",
                   "children": [
                     {
                       "type": "text",
@@ -2551,6 +2516,7 @@
                   "type": "frame",
                   "id": "m0037",
                   "name": "NFStack",
+                  "clip": true,
                   "width": "fill_container",
                   "height": 460,
                   "fill": "#101010",
@@ -2558,7 +2524,6 @@
                   "layout": "vertical",
                   "gap": 10,
                   "padding": 14,
-                  "clip": true,
                   "children": [
                     {
                       "type": "frame",
@@ -2574,9 +2539,8 @@
                           "name": "NFStackDot",
                           "width": 8,
                           "height": 8,
-                          "cornerRadius": 99,
                           "fill": "#FF4B2B",
-                          "children": []
+                          "cornerRadius": 99
                         },
                         {
                           "type": "text",
@@ -2595,13 +2559,13 @@
                       "id": "m0036",
                       "name": "NFStackDetail",
                       "fill": "#BEBEBE",
-                      "content": "• Three absolute-positioned 404 cards with red/orange glow outlines\n• Values-card visual language reused for error state\n• Cards overlap diagonally to create layered depth",
-                      "fontFamily": "Inter",
-                      "fontSize": 13,
-                      "fontWeight": "normal",
                       "textGrowth": "fixed-width",
                       "width": "fill_container",
-                      "lineHeight": 1.45
+                      "content": "• Three absolute-positioned 404 cards with red/orange glow outlines\n• Values-card visual language reused for error state\n• Cards overlap diagonally to create layered depth",
+                      "lineHeight": 1.45,
+                      "fontFamily": "Inter",
+                      "fontSize": 13,
+                      "fontWeight": "normal"
                     }
                   ]
                 },
@@ -2647,15 +2611,526 @@
                   "id": "m0065",
                   "name": "RouteNote-/not-found",
                   "fill": "#7F7F7F",
-                  "content": "Global shell still wraps this route with same navbar/footer framing.",
-                  "fontFamily": "Inter",
-                  "fontSize": 12,
-                  "fontWeight": "normal",
                   "textGrowth": "fixed-width",
                   "width": "fill_container",
-                  "lineHeight": 1.4
+                  "content": "Global shell still wraps this route with same navbar/footer framing.",
+                  "lineHeight": 1.4,
+                  "fontFamily": "Inter",
+                  "fontSize": 12,
+                  "fontWeight": "normal"
                 }
               ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "frame",
+      "id": "X1Yjy",
+      "x": -1681,
+      "y": 7827,
+      "name": "Footer Redesign Preview",
+      "width": 1400,
+      "fill": "#191919",
+      "cornerRadius": 18,
+      "stroke": {
+        "thickness": 1,
+        "fill": "#2A2A2A"
+      },
+      "layout": "vertical",
+      "gap": 18,
+      "padding": [
+        24,
+        30
+      ],
+      "children": [
+        {
+          "type": "frame",
+          "id": "4FoTZ",
+          "name": "top",
+          "width": "fill_container",
+          "gap": 84,
+          "justifyContent": "space_between",
+          "children": [
+            {
+              "type": "frame",
+              "id": "K4avi",
+              "name": "brand",
+              "layout": "vertical",
+              "gap": 10,
+              "children": [
+                {
+                  "type": "text",
+                  "id": "W6fPN",
+                  "name": "eyebrow",
+                  "fill": "#EDEDED",
+                  "content": "Tech@NYU",
+                  "fontFamily": "Inter",
+                  "fontSize": 26,
+                  "fontWeight": "700"
+                },
+                {
+                  "type": "text",
+                  "id": "4lOin",
+                  "name": "tag",
+                  "fill": "#BFBFBF",
+                  "content": "Build Fast, Learn Faster.",
+                  "fontFamily": "Inter",
+                  "fontSize": 14,
+                  "fontWeight": "500"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "2Ctt4",
+              "name": "cols2",
+              "gap": 56,
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "rU6yt",
+                  "name": "aboutCol",
+                  "layout": "vertical",
+                  "gap": 6,
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "l58V4",
+                      "name": "aboutTitle2",
+                      "fill": "#EDEDED",
+                      "content": "About",
+                      "fontFamily": "Inter",
+                      "fontSize": 13,
+                      "fontWeight": "600",
+                      "letterSpacing": 0.2
+                    },
+                    {
+                      "type": "text",
+                      "id": "GXdQ2",
+                      "name": "aboutLinks",
+                      "fill": "#CFCFCF",
+                      "content": "Team\nMission",
+                      "lineHeight": 1.55,
+                      "fontFamily": "Inter",
+                      "fontSize": 13,
+                      "fontWeight": "normal"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "ivWmC",
+                  "name": "programCol2",
+                  "layout": "vertical",
+                  "gap": 6,
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "eSDXt",
+                      "name": "programTitle2",
+                      "fill": "#EDEDED",
+                      "content": "Programs",
+                      "fontFamily": "Inter",
+                      "fontSize": 13,
+                      "fontWeight": "600",
+                      "letterSpacing": 0.2
+                    },
+                    {
+                      "type": "text",
+                      "id": "4N6Yc",
+                      "name": "programLinks2",
+                      "fill": "#CFCFCF",
+                      "content": "Dev Team\nTech Treks\nStartup Week\nMentorship",
+                      "lineHeight": 1.55,
+                      "fontFamily": "Inter",
+                      "fontSize": 13,
+                      "fontWeight": "normal"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "w99sF",
+                  "name": "contactCol2",
+                  "layout": "vertical",
+                  "gap": 6,
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "qiOcV",
+                      "name": "contactTitle2",
+                      "fill": "#EDEDED",
+                      "content": "Contact",
+                      "fontFamily": "Inter",
+                      "fontSize": 13,
+                      "fontWeight": "600",
+                      "letterSpacing": 0.2
+                    },
+                    {
+                      "type": "text",
+                      "id": "bbzPp",
+                      "name": "contactLinks2",
+                      "fill": "#CFCFCF",
+                      "content": "hello@techatnyu.org\nInstagram\nDiscord\nLinkedIn",
+                      "lineHeight": 1.55,
+                      "fontFamily": "Inter",
+                      "fontSize": 13,
+                      "fontWeight": "normal"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "z05SQ",
+          "name": "bottom",
+          "width": "fill_container",
+          "layout": "vertical",
+          "gap": 3,
+          "padding": [
+            8,
+            0,
+            0,
+            0
+          ],
+          "children": [
+            {
+              "type": "text",
+              "id": "CXn4v",
+              "name": "quick",
+              "fill": "#A4A4A4",
+              "content": "© 2026 Tech@NYU. All rights reserved.",
+              "fontFamily": "Inter",
+              "fontSize": 12,
+              "fontWeight": "normal"
+            },
+            {
+              "type": "text",
+              "id": "gjwDs",
+              "name": "copy",
+              "fill": "#7E7E7E",
+              "content": "Made by Jennifer Huang and Sean Lai 2026.",
+              "fontFamily": "Inter",
+              "fontSize": 12,
+              "fontWeight": "normal"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "frame",
+      "id": "VZbjA",
+      "x": -141,
+      "y": 7827,
+      "name": "Footer Upgrade Preview",
+      "width": 1450,
+      "fill": "#171717",
+      "cornerRadius": 18,
+      "stroke": {
+        "thickness": 1,
+        "fill": "#2A2A2A"
+      },
+      "layout": "vertical",
+      "gap": 20,
+      "padding": [
+        26,
+        30
+      ],
+      "children": [
+        {
+          "type": "frame",
+          "id": "EhLDG",
+          "name": "main",
+          "width": "fill_container",
+          "gap": 90,
+          "justifyContent": "space_between",
+          "children": [
+            {
+              "type": "frame",
+              "id": "3IrEM",
+              "name": "left",
+              "layout": "vertical",
+              "gap": 14,
+              "children": [
+                {
+                  "type": "text",
+                  "id": "XAVjc",
+                  "name": "brand",
+                  "fill": "#EDEDED",
+                  "content": "Tech@NYU",
+                  "fontFamily": "Inter",
+                  "fontSize": 34,
+                  "fontWeight": "700"
+                },
+                {
+                  "type": "text",
+                  "id": "gGz1d",
+                  "name": "tagline",
+                  "fill": "#BEBEBE",
+                  "content": "Build Fast, Learn Faster.",
+                  "fontFamily": "Inter",
+                  "fontSize": 15,
+                  "fontWeight": "500"
+                },
+                {
+                  "type": "frame",
+                  "id": "Oblxx",
+                  "name": "miniGraphic",
+                  "width": 62,
+                  "height": 42,
+                  "fill": "#1C1C1C",
+                  "cornerRadius": 9,
+                  "stroke": {
+                    "thickness": 1,
+                    "fill": "#303030"
+                  },
+                  "layout": "none",
+                  "children": [
+                    {
+                      "type": "line",
+                      "id": "3Rssy",
+                      "x": 11,
+                      "y": 30,
+                      "name": "segA",
+                      "width": 21,
+                      "height": -8,
+                      "stroke": {
+                        "thickness": 1,
+                        "cap": "round",
+                        "fill": "#6F6F6F"
+                      }
+                    },
+                    {
+                      "type": "line",
+                      "id": "03cc5",
+                      "x": 31,
+                      "y": 22,
+                      "name": "segB",
+                      "width": 19,
+                      "height": -10,
+                      "stroke": {
+                        "thickness": 1,
+                        "cap": "round",
+                        "fill": "#6F6F6F"
+                      }
+                    },
+                    {
+                      "type": "ellipse",
+                      "id": "pbwum",
+                      "x": 9,
+                      "y": 28,
+                      "name": "dotA",
+                      "fill": "#8B8B8B",
+                      "width": 6,
+                      "height": 6
+                    },
+                    {
+                      "type": "ellipse",
+                      "id": "Y7EyA",
+                      "x": 28,
+                      "y": 20,
+                      "name": "dotB",
+                      "fill": "#D0D0D0",
+                      "width": 6,
+                      "height": 6
+                    },
+                    {
+                      "type": "ellipse",
+                      "id": "qumPx",
+                      "x": 46,
+                      "y": 10,
+                      "name": "dotC",
+                      "fill": "#8B8B8B",
+                      "width": 6,
+                      "height": 6
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "8nLue",
+                  "name": "meta",
+                  "gap": 16,
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "pLSNY",
+                      "name": "since",
+                      "fill": "#8F8F8F",
+                      "content": "Since 2009",
+                      "fontFamily": "Inter",
+                      "fontSize": 12,
+                      "fontWeight": "600",
+                      "letterSpacing": 0.5
+                    },
+                    {
+                      "type": "text",
+                      "id": "xvRlN",
+                      "name": "mail",
+                      "fill": "#A9A9A9",
+                      "content": "hello@techatnyu.org",
+                      "fontFamily": "Inter",
+                      "fontSize": 12,
+                      "fontWeight": "500"
+                    }
+                  ]
+                },
+                {
+                  "type": "text",
+                  "id": "Be5CK",
+                  "name": "join",
+                  "fill": "#BFBFBF",
+                  "content": "Join Discord",
+                  "fontFamily": "Inter",
+                  "fontSize": 12,
+                  "fontWeight": "600"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "QnXKM",
+              "name": "right",
+              "gap": 58,
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "Jzu1G",
+                  "name": "colA",
+                  "layout": "vertical",
+                  "gap": 7,
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "2eCya",
+                      "name": "titleA",
+                      "fill": "#EAEAEA",
+                      "content": "About",
+                      "fontFamily": "Inter",
+                      "fontSize": 13,
+                      "fontWeight": "600"
+                    },
+                    {
+                      "type": "text",
+                      "id": "mLfw4",
+                      "name": "linksA",
+                      "fill": "#CFCFCF",
+                      "content": "Team\nMission",
+                      "lineHeight": 1.55,
+                      "fontFamily": "Inter",
+                      "fontSize": 13,
+                      "fontWeight": "normal"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "9d5ma",
+                  "name": "colB",
+                  "layout": "vertical",
+                  "gap": 7,
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "P8pcn",
+                      "name": "titleB",
+                      "fill": "#EAEAEA",
+                      "content": "Programs",
+                      "fontFamily": "Inter",
+                      "fontSize": 13,
+                      "fontWeight": "600"
+                    },
+                    {
+                      "type": "text",
+                      "id": "eGPOq",
+                      "name": "linksB",
+                      "fill": "#CFCFCF",
+                      "content": "Dev Team\nTech Treks\nStartup Week\nMentorship",
+                      "lineHeight": 1.55,
+                      "fontFamily": "Inter",
+                      "fontSize": 13,
+                      "fontWeight": "normal"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "LNcyz",
+                  "name": "colC",
+                  "layout": "vertical",
+                  "gap": 7,
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "PnfFf",
+                      "name": "titleC",
+                      "fill": "#EAEAEA",
+                      "content": "Contact",
+                      "fontFamily": "Inter",
+                      "fontSize": 13,
+                      "fontWeight": "600"
+                    },
+                    {
+                      "type": "text",
+                      "id": "jo3kT",
+                      "name": "linksC",
+                      "fill": "#CFCFCF",
+                      "content": "Email\nInstagram\nDiscord\nLinkedIn",
+                      "lineHeight": 1.55,
+                      "fontFamily": "Inter",
+                      "fontSize": 13,
+                      "fontWeight": "normal"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "ZFkj6",
+          "name": "divider",
+          "width": "fill_container",
+          "height": 1,
+          "fill": "#2A2A2A"
+        },
+        {
+          "type": "frame",
+          "id": "kRS9i",
+          "name": "bottom",
+          "width": "fill_container",
+          "justifyContent": "space_between",
+          "alignItems": "center",
+          "children": [
+            {
+              "type": "text",
+              "id": "qFKEE",
+              "name": "quick",
+              "fill": "#A8A8A8",
+              "content": "About  •  Programs  •  Contact",
+              "fontFamily": "Inter",
+              "fontSize": 12,
+              "fontWeight": "normal"
+            },
+            {
+              "type": "text",
+              "id": "azQIq",
+              "name": "legal",
+              "fill": "#7D7D7D",
+              "content": "© 2026 Tech@NYU. All rights reserved.\nMade by Jennifer Huang and Sean Lai 2026.",
+              "lineHeight": 1.45,
+              "textAlign": "right",
+              "fontFamily": "Inter",
+              "fontSize": 11,
+              "fontWeight": "normal"
             }
           ]
         }

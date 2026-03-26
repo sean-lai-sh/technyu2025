@@ -33,7 +33,7 @@ export default function ProgramTracksSection({
         {heading}
       </p>
       <h2
-        className="font-[family-name:var(--font-darker-grotesque)] font-medium text-[#EDEDED] mb-14"
+        className="font-[family-name:var(--font-darker-grotesque)] font-medium leading-[0.92] text-[#EDEDED] mb-14"
         style={{ fontSize: 'clamp(40px, 6vw, 68px)', letterSpacing: '-1.2px' }}
       >
         {titleLines.map((line, index) => (
