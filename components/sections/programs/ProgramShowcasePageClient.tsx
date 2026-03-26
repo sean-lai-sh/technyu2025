@@ -1,55 +1,38 @@
 'use client'
 
-import React, { useState, useRef, useCallback, useEffect } from 'react'
+import React, { useState, useEffect } from 'react'
 import Link from 'next/link'
-import { SanityProgram, RolesSection } from '@/lib/types'
+import Image from 'next/image'
+import { SanityProgram, RolesSection, CtaSection, PortableTextBlock } from '@/lib/types'
+import ProgramHeroSection from './showcase/ProgramHeroSection'
+import ProgramAboutSection from './showcase/ProgramAboutSection'
+import ProgramAlumniSection from './showcase/ProgramAlumniSection'
+import ProgramTracksSection from './showcase/ProgramTracksSection'
+import { Testimonial, ApproachCard, BuildTab, ProgramTrack, ProgramImageAsset } from './showcase/types'
 
 type ProgramVariant = 'dev-team' | 'mentorship' | 'tech-treks'
 
-interface DevTeamPageProps {
+interface ProgramShowcasePageProps {
   program?: SanityProgram | null
   variant?: ProgramVariant
 }
 
-type Testimonial = {
-  id: string
-  company: string
-  quote: string
-  name: string
-  title: string
-  cohort: string
-}
-
-type ApproachCard = {
-  id: string
-  title: string
-  body: string
-  glow: string
-  accentColor: string
-}
-
-type BuildTab = {
-  id: string
-  title: string
-  description: string
-}
-
-type ProgramTrack = {
-  id: string
-  label: string
-  title: string
-  body: string
-}
+type ProgramSectionKey = 'hero' | 'approach' | 'alumni' | 'build' | 'tracks' | 'roles' | 'final'
 
 type VariantContent = {
+  sections: ProgramSectionKey[]
+  heroVisual: 'wireframe' | 'image'
+  heroImageFallback?: string
   heroTitle: string
   heroDescription: string
   applyStatusFallback: string
   approachTitle: string
   approachCards: ApproachCard[]
+  approachImages?: ProgramImageAsset[]
   testimonials: Testimonial[]
   buildTitle: string
   buildTabs: BuildTab[]
+  buildImages?: ProgramImageAsset[]
   trackHeading: string
   tracksTitle: string
   programTracks: ProgramTrack[]
@@ -59,9 +42,6 @@ type VariantContent = {
   finalBody: string
   finalClosedHint: string
 }
-
-const TESTIMONIAL_AUTOPLAY_MS = 7000
-const TESTIMONIAL_PROGRESS_TICK_MS = 70
 
 // ── Static Data ────────────────────────────────────────────────────────────
 
@@ -400,6 +380,8 @@ const techTreksTracks: ProgramTrack[] = [
 
 const VARIANT_CONTENT: Record<ProgramVariant, VariantContent> = {
   'dev-team': {
+    sections: ['hero', 'approach', 'alumni', 'build', 'tracks', 'roles', 'final'],
+    heroVisual: 'wireframe',
     heroTitle: 'DEV\nTEAM',
     heroDescription:
       'Build in a small cohort from 0 → 1. Learn what it takes to get and maintain users, ship production code, and grow as an engineer alongside the best builders at NYU.',
@@ -419,15 +401,29 @@ const VARIANT_CONTENT: Record<ProgramVariant, VariantContent> = {
     finalClosedHint: 'Check back next semester',
   },
   mentorship: {
+    sections: ['hero', 'approach', 'alumni', 'build', 'tracks', 'final'],
+    heroVisual: 'image',
+    heroImageFallback: '/program-logos/mentorship-desktop.jpg',
     heroTitle: 'MENTOR\nSHIP',
     heroDescription:
       'Get paired with mentors who have already navigated recruiting, internships, and career pivots. Build a concrete plan and execute it with consistent support.',
     applyStatusFallback: 'Matching opens each semester',
     approachTitle: 'Guidance With Structure',
     approachCards: mentorshipApproachCards,
+    approachImages: [
+      { src: '/event-pics/mentorship1.jpg', alt: 'Mentorship cohort discussion' },
+      { src: '/event-pics/mentorship2.jpg', alt: 'Mentor and mentee session' },
+      { src: '/event-pics/mentorship3.jpg', alt: 'Mentorship workshop group' },
+    ],
     testimonials: mentorshipTestimonials,
     buildTitle: "What You'll\nBuild",
     buildTabs: mentorshipBuildTabs,
+    buildImages: [
+      { src: '/event-pics/mentorship4.jpg', alt: 'Mentorship planning session' },
+      { src: '/event-pics/mentorship2.jpg', alt: 'Career guidance conversation' },
+      { src: '/event-pics/mentorship3.jpg', alt: 'Interview prep discussion' },
+      { src: '/event-pics/mentorship1.jpg', alt: 'Mentorship networking group' },
+    ],
     trackHeading: 'Program Flow',
     tracksTitle: 'The Mentorship\nArc',
     programTracks: mentorshipTracks,
@@ -438,15 +434,29 @@ const VARIANT_CONTENT: Record<ProgramVariant, VariantContent> = {
     finalClosedHint: 'Applications reopen next cycle',
   },
   'tech-treks': {
+    sections: ['hero', 'approach', 'alumni', 'build', 'tracks', 'roles', 'final'],
+    heroVisual: 'image',
+    heroImageFallback: '/program-logos/tech-treks-desktop.jpg',
     heroTitle: 'TECH\nTREKS',
     heroDescription:
       'Explore the tech industry with a cohort built for beginners and early builders. Meet professionals, visit companies, and ship portfolio-ready work.',
     applyStatusFallback: 'Cohorts launch each semester',
     approachTitle: 'Explore, Build, Belong',
     approachCards: techTreksApproachCards,
+    approachImages: [
+      { src: '/event-pics/img2.jpg', alt: 'Tech Treks company visit' },
+      { src: '/event-pics/workshop.jpg', alt: 'Tech Treks workshop' },
+      { src: '/event-pics/img3.jpg', alt: 'Tech Treks cohort project time' },
+    ],
     testimonials: techTreksTestimonials,
     buildTitle: "What You'll\nExperience",
     buildTabs: techTreksBuildTabs,
+    buildImages: [
+      { src: '/event-pics/img10.jpg', alt: 'Tech Treks members at event' },
+      { src: '/event-pics/eboard_pic.jpg', alt: 'Tech Treks leadership team' },
+      { src: '/event-pics/eboardpic1.jpg', alt: 'Tech Treks cohort collaboration' },
+      { src: '/event-pics/keynote.jpg', alt: 'Tech Treks keynote session' },
+    ],
     trackHeading: 'Semester Structure',
     tracksTitle: 'From Curiosity\nTo Confidence',
     programTracks: techTreksTracks,
@@ -723,18 +733,41 @@ function TabWireframe({ tabId }: { tabId: string }) {
   )
 }
 
+function toHeroTitle(value?: string): string {
+  if (!value) return ''
+  const words = value.trim().toUpperCase().split(/\s+/)
+  if (words.length <= 1) return words[0] || ''
+  if (words.length === 2) return `${words[0]}\n${words[1]}`
+  const midpoint = Math.ceil(words.length / 2)
+  return `${words.slice(0, midpoint).join(' ')}\n${words.slice(midpoint).join(' ')}`
+}
+
+function portableTextToPlainText(blocks?: PortableTextBlock[]): string {
+  if (!blocks?.length) return ''
+  return blocks
+    .flatMap((block) => block.children?.map((child) => child.text) ?? [])
+    .join(' ')
+    .replace(/\s+/g, ' ')
+    .trim()
+}
+
 // ── Main Component ─────────────────────────────────────────────────────────
 
-export default function DevTeamPageClient({ program, variant = 'dev-team' }: DevTeamPageProps) {
+export default function ProgramShowcasePageClient({ program, variant = 'dev-team' }: ProgramShowcasePageProps) {
   const {
+    sections,
+    heroVisual,
+    heroImageFallback,
     heroTitle,
     heroDescription,
     applyStatusFallback,
     approachTitle,
     approachCards: variantApproachCards,
+    approachImages,
     testimonials: variantTestimonials,
     buildTitle,
     buildTabs: variantBuildTabs,
+    buildImages,
     trackHeading,
     tracksTitle,
     programTracks: variantTracks,
@@ -750,15 +783,52 @@ export default function DevTeamPageClient({ program, variant = 'dev-team' }: Dev
   const [activeBuildTab, setActiveBuildTab] = useState(0)
   const [activeTrack, setActiveTrack] = useState(0)
 
-  const testimonialCount = variantTestimonials.length
-  const activeTestimonialData = variantTestimonials[activeTestimonial] ?? variantTestimonials[0]
-  const activeBuildTabData = variantBuildTabs[activeBuildTab] ?? variantBuildTabs[0]
-  const activeTrackData = variantTracks[activeTrack] ?? variantTracks[0]
-
   const touchStartX = useRef(0)
   const rolesSection = program?.sections?.find(
     (s) => s._type === 'rolesSection'
   ) as RolesSection | undefined
+  const ctaSection = program?.sections?.find(
+    (s) => s._type === 'ctaSection'
+  ) as CtaSection | undefined
+
+  const resolvedHeroTitle = toHeroTitle(program?.name) || heroTitle
+  const resolvedHeroDescription = program?.descriptionLarge || program?.tagline || heroDescription
+  const resolvedHeroImage = program?.hero?.heroImageUrl || program?.desktopImageUrl || heroImageFallback
+  const resolvedApproachTitle = program?.tagline || approachTitle
+  const resolvedFinalBody = portableTextToPlainText(ctaSection?.body) || program?.descriptionSmall || finalBody
+
+  const showHero = sections.includes('hero')
+  const showApproach = sections.includes('approach')
+  const showAlumni = sections.includes('alumni')
+  const showBuild = sections.includes('build')
+  const showTracks = sections.includes('tracks')
+  const showRoles = sections.includes('roles') && Boolean(rolesSection)
+  const showFinal = sections.includes('final')
+
+  const heroTitleLines = resolvedHeroTitle.split('\n')
+  const buildTitleLines = buildTitle.split('\n')
+  const tracksTitleLines = tracksTitle.split('\n')
+  const testimonialCount = variantTestimonials.length
+  const activeTestimonialData = variantTestimonials[activeTestimonial] ?? variantTestimonials[0] ?? {
+    id: 'fallback',
+    company: '',
+    quote: '',
+    name: '',
+    title: '',
+    cohort: '',
+  }
+  const activeBuildTabData = variantBuildTabs[activeBuildTab] ?? variantBuildTabs[0] ?? {
+    id: 'cli',
+    title: '',
+    description: '',
+  }
+  const activeBuildImage = buildImages?.[activeBuildTab] ?? buildImages?.[0]
+  const activeTrackData = variantTracks[activeTrack] ?? variantTracks[0] ?? {
+    id: 'fallback',
+    label: '',
+    title: '',
+    body: '',
+  }
 
   useEffect(() => {
     setActiveTestimonial(0)
@@ -792,6 +862,11 @@ export default function DevTeamPageClient({ program, variant = 'dev-team' }: Dev
   }, [])
 
   const cycleTestimonial = useCallback((direction: 'next' | 'prev') => {
+    if (testimonialCount <= 1) {
+      setActiveTestimonial(0)
+      setTestimonialProgress(0)
+      return
+    }
     setActiveTestimonial((current) => {
       if (direction === 'next') return (current + 1) % testimonialCount
       return (current - 1 + testimonialCount) % testimonialCount
@@ -818,6 +893,7 @@ export default function DevTeamPageClient({ program, variant = 'dev-team' }: Dev
     <div className="bg-[#0A0A0A] text-[#EDEDED] overflow-x-hidden">
 
       {/* ── SECTION 1: SPLIT HERO ─────────────────────────────────────────── */}
+      {showHero && (
       <section className="min-h-[92svh] flex items-center px-[5vw] lg:px-[8vw] pt-[18svh] pb-[10svh]">
         <div className="w-full grid grid-cols-1 md:grid-cols-2 gap-12 lg:gap-20 items-center">
           {/* Left */}
@@ -830,15 +906,15 @@ export default function DevTeamPageClient({ program, variant = 'dev-team' }: Dev
               className="font-[family-name:var(--font-darker-grotesque)] font-extrabold leading-[0.88] text-[#EDEDED] mb-8"
               style={{ fontSize: 'clamp(72px, 11vw, 130px)', letterSpacing: '-2px' }}
             >
-              {heroTitle.split('\n').map((line, index) => (
+              {heroTitleLines.map((line, index) => (
                 <React.Fragment key={line}>
                   {line}
-                  {index < heroTitle.split('\n').length - 1 && <br />}
+                  {index < heroTitleLines.length - 1 && <br />}
                 </React.Fragment>
               ))}
             </h1>
             <p className="font-[family-name:var(--font-inter)] text-[17px] md:text-[19px] text-[#EDEDED] opacity-75 leading-relaxed max-w-[520px] mb-10">
-              {heroDescription}
+              {resolvedHeroDescription}
             </p>
             <div className="flex flex-wrap items-center gap-4">
               {program?.apply?.status ? (
@@ -858,20 +934,35 @@ export default function DevTeamPageClient({ program, variant = 'dev-team' }: Dev
               </span>
             </div>
           </div>
-          {/* Right — Wireframe */}
+          {/* Right — Program Visual */}
           <div className="flex items-center justify-center relative">
             <div
               className="absolute inset-0 rounded-full pointer-events-none"
               style={{ background: 'radial-gradient(circle at center, rgba(179,0,255,0.07) 0%, transparent 70%)' }}
             />
-            <div className="w-full max-w-[480px] aspect-square">
-              <HeroWireframe />
+            <div className="w-full max-w-[480px] aspect-square border border-[#EDEDED]/15 overflow-hidden bg-black">
+              {heroVisual === 'image' && resolvedHeroImage ? (
+                <div className="relative w-full h-full">
+                  <Image
+                    src={resolvedHeroImage}
+                    alt={`${program?.name || 'Program'} hero`}
+                    fill
+                    className="object-cover opacity-85"
+                    sizes="(max-width: 768px) 100vw, 480px"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/45 via-black/10 to-black/10" />
+                </div>
+              ) : (
+                <HeroWireframe />
+              )}
             </div>
           </div>
         </div>
       </section>
+      )}
 
       {/* ── SECTION 2: OUR APPROACH — 3 Glowing Cards ────────────────────── */}
+      {showApproach && (
       <section className="px-[5vw] lg:px-[8vw] py-[10svh] border-t border-[#EDEDED]/8">
         <p className="font-[family-name:var(--font-inter)] text-[13px] font-semibold tracking-[0.15em] uppercase opacity-55 mb-4">
           Our Approach
@@ -880,7 +971,7 @@ export default function DevTeamPageClient({ program, variant = 'dev-team' }: Dev
           className="font-[family-name:var(--font-darker-grotesque)] font-medium text-[#EDEDED] mb-16"
           style={{ fontSize: 'clamp(40px, 6vw, 68px)', letterSpacing: '-1.2px' }}
         >
-          {approachTitle}
+          {resolvedApproachTitle}
         </h2>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {variantApproachCards.map((card, i) => (
@@ -889,11 +980,24 @@ export default function DevTeamPageClient({ program, variant = 'dev-team' }: Dev
               className="p-8 border border-[#EDEDED] bg-black flex flex-col gap-6"
               style={{ boxShadow: `inset 0px 0px 150px ${card.glow}` }}
             >
-              <div className="w-full aspect-[4/3]">
-                {i === 0 && <CircuitWireframe />}
-                {i === 1 && <RocketWireframe />}
-                {i === 2 && <NetworkGrowthWireframe />}
-              </div>
+              {approachImages?.[i] ? (
+                <div className="relative w-full aspect-[4/3] border border-[#EDEDED]/12 overflow-hidden bg-black">
+                  <Image
+                    src={approachImages[i].src}
+                    alt={approachImages[i].alt}
+                    fill
+                    className="object-cover opacity-85"
+                    sizes="(max-width: 768px) 100vw, 33vw"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/55 via-black/10 to-black/5" />
+                </div>
+              ) : (
+                <div className="w-full aspect-[4/3]">
+                  {i === 0 && <CircuitWireframe />}
+                  {i === 1 && <RocketWireframe />}
+                  {i === 2 && <NetworkGrowthWireframe />}
+                </div>
+              )}
               <div>
                 <h3
                   className="font-[family-name:var(--font-darker-grotesque)] font-medium text-[#EDEDED] mb-3 whitespace-pre-line leading-tight"
@@ -909,8 +1013,10 @@ export default function DevTeamPageClient({ program, variant = 'dev-team' }: Dev
           ))}
         </div>
       </section>
+      )}
 
       {/* ── SECTION 3: ALUMNI — Testimonial Carousel ──────────────────────── */}
+      {showAlumni && (
       <section className="px-[5vw] lg:px-[8vw] py-[10svh] border-t border-[#EDEDED]/8">
         <div className="flex items-center gap-3 mb-12">
           <span className="inline-block w-3 h-3 bg-[#B300FF]" aria-hidden="true" />
@@ -990,22 +1096,29 @@ export default function DevTeamPageClient({ program, variant = 'dev-team' }: Dev
           ))}
         </div>
       </section>
+      )}
 
       {/* ── SECTION 4: WHAT YOU'LL BUILD — Vertical Tabs ─────────────────── */}
+      {showBuild && (
       <section className="px-[5vw] lg:px-[8vw] py-[10svh] border-t border-[#EDEDED]/8">
         <p className="font-[family-name:var(--font-inter)] text-[13px] font-semibold tracking-[0.15em] uppercase opacity-55 mb-4">
-          What You&apos;ll Build
+          What You'll Build
         </p>
         <h2
           className="font-[family-name:var(--font-darker-grotesque)] font-medium text-[#EDEDED] mb-16"
           style={{ fontSize: 'clamp(40px, 6vw, 68px)', letterSpacing: '-1.2px' }}
         >
-          Choose Your<br />Stack
+          {buildTitleLines.map((line, index) => (
+            <React.Fragment key={line}>
+              {line}
+              {index < buildTitleLines.length - 1 && <br />}
+            </React.Fragment>
+          ))}
         </h2>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-12 lg:gap-20 items-start">
           {/* Left: tabs */}
           <div className="flex flex-col gap-1">
-            {buildTabs.map((tab, i) => (
+            {variantBuildTabs.map((tab, i) => (
               <button
                 key={tab.id}
                 onClick={() => setActiveBuildTab(i)}
@@ -1030,33 +1143,61 @@ export default function DevTeamPageClient({ program, variant = 'dev-team' }: Dev
               </button>
             ))}
           </div>
-          {/* Right: wireframe */}
+          {/* Right: topical visual */}
           <div className="md:sticky md:top-[18svh] flex items-center justify-center">
             <div className="relative w-full max-w-[440px] aspect-square">
               <div
                 className="absolute inset-0 pointer-events-none"
                 style={{ background: 'radial-gradient(circle at center, rgba(77,255,148,0.05) 0%, transparent 70%)' }}
               />
-              <TabWireframe tabId={buildTabs[activeBuildTab].id} />
+              {activeBuildImage ? (
+                <div className="relative w-full h-full border border-[#EDEDED]/15 overflow-hidden bg-black">
+                  <Image
+                    src={activeBuildImage.src}
+                    alt={activeBuildImage.alt}
+                    fill
+                    className="object-cover opacity-86"
+                    sizes="(max-width: 768px) 100vw, 440px"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/55 via-black/15 to-black/5" />
+                  <div className="absolute left-4 right-4 bottom-4 border border-[#EDEDED]/20 bg-black/45 backdrop-blur-sm px-4 py-3">
+                    <p className="font-[family-name:var(--font-inter)] text-[11px] tracking-[0.12em] uppercase text-[#EDEDED]/60 mb-1">
+                      Current Focus
+                    </p>
+                    <p className="font-[family-name:var(--font-darker-grotesque)] text-[24px] leading-none text-[#EDEDED] whitespace-pre-line">
+                      {activeBuildTabData.title}
+                    </p>
+                  </div>
+                </div>
+              ) : (
+                <TabWireframe tabId={activeBuildTabData.id} />
+              )}
             </div>
           </div>
         </div>
       </section>
+      )}
 
       {/* ── SECTION 5: PROGRAM TRACKS — Horizontal Timeline ──────────────── */}
+      {showTracks && (
       <section className="px-[5vw] lg:px-[8vw] py-[10svh] border-t border-[#EDEDED]/8">
         <p className="font-[family-name:var(--font-inter)] text-[13px] font-semibold tracking-[0.15em] uppercase opacity-55 mb-4">
-          Programmatic Support
+          {trackHeading}
         </p>
         <h2
           className="font-[family-name:var(--font-darker-grotesque)] font-medium text-[#EDEDED] mb-14"
           style={{ fontSize: 'clamp(40px, 6vw, 68px)', letterSpacing: '-1.2px' }}
         >
-          The Semester<br />Arc
+          {tracksTitleLines.map((line, index) => (
+            <React.Fragment key={line}>
+              {line}
+              {index < tracksTitleLines.length - 1 && <br />}
+            </React.Fragment>
+          ))}
         </h2>
         <div className="overflow-x-auto pb-4 -mx-[5vw] px-[5vw]">
           <div className="flex items-center gap-0 min-w-max relative mb-14">
-            {programTracks.map((track, i) => (
+            {variantTracks.map((track, i) => (
               <React.Fragment key={track.id}>
                 <button
                   onClick={() => setActiveTrack(i)}
@@ -1069,7 +1210,7 @@ export default function DevTeamPageClient({ program, variant = 'dev-team' }: Dev
                 >
                   {track.label}
                 </button>
-                {i < programTracks.length - 1 && (
+                {i < variantTracks.length - 1 && (
                   <div className="w-8 h-px bg-[#EDEDED]/28 flex-shrink-0" />
                 )}
               </React.Fragment>
@@ -1081,16 +1222,17 @@ export default function DevTeamPageClient({ program, variant = 'dev-team' }: Dev
             className="font-[family-name:var(--font-darker-grotesque)] font-medium text-[#EDEDED] mb-4"
             style={{ fontSize: 'clamp(26px, 3vw, 42px)', letterSpacing: '-0.8px' }}
           >
-            {programTracks[activeTrack].title}
+            {activeTrackData.title}
           </h3>
           <p className="font-[family-name:var(--font-inter)] text-[17px] leading-relaxed text-[#EDEDED] opacity-72">
-            {programTracks[activeTrack].body}
+            {activeTrackData.body}
           </p>
         </div>
       </section>
+      )}
 
       {/* ── SECTION 6: OPEN ROLES (from Sanity) ──────────────────────────── */}
-      {rolesSection && (
+      {showRoles && rolesSection && (
         <section className="px-[5vw] lg:px-[8vw] py-[10svh] border-t border-[#EDEDED]/8">
           <p className="font-[family-name:var(--font-inter)] text-[13px] font-semibold tracking-[0.15em] uppercase opacity-55 mb-4">
             Open Roles
@@ -1196,21 +1338,22 @@ export default function DevTeamPageClient({ program, variant = 'dev-team' }: Dev
       )}
 
       {/* ── SECTION 7: FINAL CTA ──────────────────────────────────────────── */}
+      {showFinal && (
       <section className="px-[5vw] lg:px-[8vw] py-[14svh] border-t border-[#EDEDED]/8">
         <div className="max-w-[700px]">
           <p className="font-[family-name:var(--font-inter)] text-[13px] font-semibold tracking-[0.15em] uppercase opacity-55 mb-6 flex items-center gap-3">
             <span className="inline-block w-2 h-2 bg-[#B300FF]" aria-hidden="true" />
-            Ready to Build?
+            {finalKicker}
           </p>
           <h2
             className="font-[family-name:var(--font-darker-grotesque)] font-extrabold text-[#EDEDED] mb-8 leading-none"
             style={{ fontSize: 'clamp(52px, 8vw, 100px)', letterSpacing: '-2px' }}
           >
-            Ship something<br />
-            <span style={{ color: '#4DFF94' }}>real.</span>
+            {finalTitle}<br />
+            <span style={{ color: '#4DFF94' }}>{finalAccent}</span>
           </h2>
           <p className="font-[family-name:var(--font-inter)] text-[17px] text-[#EDEDED] opacity-68 leading-relaxed mb-10 max-w-[480px]">
-            Applications open each semester. Cohorts are small by design — every member ships.
+            {resolvedFinalBody}
           </p>
           {program?.apply?.status ? (
             <Link
@@ -1225,12 +1368,13 @@ export default function DevTeamPageClient({ program, variant = 'dev-team' }: Dev
                 Applications Closed
               </span>
               <span className="font-[family-name:var(--font-inter)] text-[13px] text-[#EDEDED]/35">
-                Check back next semester
+                {finalClosedHint}
               </span>
             </div>
           )}
         </div>
       </section>
+      )}
 
     </div>
   )
