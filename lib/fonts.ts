@@ -1,4 +1,4 @@
-import { Inter } from 'next/font/google';
+import { Inter, Darker_Grotesque } from 'next/font/google';
 import localFont from 'next/font/local';
 
 // Define Satoshi as a local font
@@ -49,9 +49,15 @@ export const satoshi = localFont({
   variable: '--font-satoshi',
 });
 
-// Optionally keep Inter as a fallback or secondary font
 export const inter = Inter({
   subsets: ['latin'],
   display: 'swap',
   variable: '--font-inter',
+});
+
+export const darkerGrotesque = Darker_Grotesque({
+  subsets: ['latin'],
+  display: 'swap',
+  variable: '--font-darker-grotesque',
+  weight: ['400', '500', '600', '700', '800', '900'],
 });
