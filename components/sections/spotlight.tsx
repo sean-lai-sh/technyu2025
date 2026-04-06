@@ -1,11 +1,23 @@
 import Image from 'next/image'
 import Link from 'next/link'
 import { spotlightContent, type SpotlightItem } from '@/lib/homepage/spotlight'
+import { Separator } from '@/components/ui/separator'
 
-const transitionClass =
-  'transition-[transform,border-color,box-shadow] duration-200 ease-[cubic-bezier(0.23,1,0.32,1)] hover:-translate-y-1'
+function SpotlightMetaLine({ item }: { item: SpotlightItem }) {
+  return (
+    <div className="mt-4 flex flex-wrap items-center gap-3 text-[0.72rem] font-medium uppercase tracking-[0.18em] text-white/48">
+      <span>{item.eyebrow}</span>
+      {item.date ? (
+        <>
+          <span className="h-1 w-1 bg-white/28" />
+          <span>{item.date}</span>
+        </>
+      ) : null}
+    </div>
+  )
+}
 
-function SpotlightEntry({
+function SecondarySpotlightEntry({
   item,
   className,
   titleClassName,
@@ -15,23 +27,64 @@ function SpotlightEntry({
   titleClassName?: string
 }) {
   const content = (
-    <div
-      className={`group relative overflow-hidden border border-white/12 bg-[#050505] ${transitionClass} ${className ?? ''}`}
-    >
-      <Image
-        src={item.image}
-        alt={item.title}
-        fill
-        className="object-cover transition-transform duration-300 ease-[cubic-bezier(0.23,1,0.32,1)] group-hover:scale-[1.025]"
-        sizes="(max-width: 1024px) 100vw, 33vw"
-      />
-      <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(0,0,0,0.02)_0%,rgba(0,0,0,0.18)_38%,rgba(0,0,0,0.76)_100%)]" />
-      <div className="absolute inset-x-0 bottom-0 border-t border-white/10 bg-black/45 p-5 backdrop-blur-[2px] md:p-6">
-        <h3
-          className={`max-w-[12ch] font-[family-name:var(--font-darker-grotesque)] text-[2.5rem] font-bold leading-[0.9] tracking-[-0.03em] text-white ${titleClassName ?? ''}`}
-        >
-          {item.title}
-        </h3>
+    <div className={`h-full bg-[#050505] ${className ?? ''}`}>
+      <div className="grid h-full grid-cols-[minmax(0,1fr)_120px] items-start gap-4 bg-[#040404] sm:grid-cols-[minmax(0,1fr)_140px] md:grid-cols-[minmax(0,1fr)_150px]">
+        <div>
+          <h3
+            className={`max-w-[9ch] self-start font-[family-name:var(--font-darker-grotesque)] text-[1.9rem] font-bold leading-[0.9] tracking-[-0.035em] text-white ${titleClassName ?? ''}`}
+          >
+            {item.title}
+          </h3>
+          <SpotlightMetaLine item={item} />
+        </div>
+        <div className="relative aspect-square">
+          <Image
+            src={item.image}
+            alt={item.title}
+            fill
+            className="object-cover"
+            sizes="(max-width: 768px) 120px, 150px"
+          />
+          <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(0,0,0,0.03)_0%,rgba(0,0,0,0.12)_100%)]" />
+        </div>
+      </div>
+    </div>
+  )
+
+  if (item.linkMode === 'internal' || item.linkMode === 'markdown') {
+    return <Link href={item.url}>{content}</Link>
+  }
+
+  return (
+    <a href={item.url} target="_blank" rel="noopener noreferrer">
+      {content}
+    </a>
+  )
+}
+
+function FeaturedSpotlightEntry({ item }: { item: SpotlightItem }) {
+  const content = (
+    <div className="bg-[#050505]">
+      <div className="grid lg:grid-cols-[minmax(0,1fr)_520px]">
+        <div className="relative z-10 flex items-end bg-[linear-gradient(180deg,#090909_0%,#040404_100%)] p-6 md:p-8 lg:p-10">
+          <div>
+            <h3 className="max-w-[8.5ch] font-[family-name:var(--font-darker-grotesque)] text-[3.6rem] font-bold leading-[0.84] tracking-[-0.045em] text-white sm:text-[4.5rem] lg:text-[5.3rem]">
+              {item.title}
+            </h3>
+            <SpotlightMetaLine item={item} />
+          </div>
+        </div>
+
+        <div className="relative aspect-square">
+          <Image
+            src={item.image}
+            alt={item.title}
+            fill
+            className="object-cover"
+            sizes="(max-width: 1024px) 100vw, 520px"
+          />
+          <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(0,0,0,0.12)_0%,rgba(0,0,0,0.01)_24%,rgba(0,0,0,0.28)_100%)]" />
+        </div>
       </div>
     </div>
   )
@@ -54,28 +107,45 @@ export default function Spotlight() {
     <section className="w-full px-5 py-18 md:px-10 lg:px-[5vw] lg:py-24">
       <div className="mx-auto flex w-full max-w-[1600px] flex-col gap-8">
         <div className="flex items-center gap-3 text-white">
-          <span className="h-3 w-3 rounded-[4px] bg-[#4D8DFF]" />
+          <span className="h-3 w-3 bg-[#4D8DFF]" />
           <span className="text-xs font-semibold uppercase tracking-[0.35em] text-white/78">
             Spotlight
           </span>
         </div>
 
-        <div className="grid gap-5 lg:grid-cols-[minmax(0,1.28fr)_minmax(0,0.72fr)]">
-          <SpotlightEntry
-            item={featuredItem}
-            className="min-h-[420px] rounded-[1.35rem] shadow-[0_28px_90px_rgba(0,0,0,0.34)] md:min-h-[520px]"
-            titleClassName="text-[3.35rem] sm:text-[4.2rem] lg:text-[5.1rem]"
-          />
+        <div className="border-t border-white/16 pt-5">
+          <FeaturedSpotlightEntry item={featuredItem} />
 
-          <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-1">
-            {items.map((item) => (
-              <SpotlightEntry
-                key={item.title}
-                item={item}
-                className="min-h-[260px] rounded-[1.15rem] shadow-[0_22px_70px_rgba(0,0,0,0.28)]"
-                titleClassName="max-w-[13ch] text-[2.15rem] md:text-[2.45rem]"
+          <Separator className="my-4 bg-white/55" />
+
+          <div className="flex w-full flex-col gap-6 md:flex-row md:items-stretch md:gap-0">
+            <div className="md:min-w-0 md:flex-1">
+              <SecondarySpotlightEntry
+                item={items[0]}
+                className="min-h-[220px]"
+                titleClassName="max-w-[9ch] text-[1.9rem] md:text-[2.05rem]"
               />
-            ))}
+            </div>
+
+            <Separator orientation="vertical" className="ml-12 mr-3 hidden h-full min-h-[150px] w-[2px] md:block bg-white/70" />
+
+            <div className="md:min-w-0 md:flex-1">
+              <SecondarySpotlightEntry
+                item={items[1]}
+                className="min-h-[220px]"
+                titleClassName="max-w-[9ch] text-[1.9rem] md:text-[2.05rem]"
+              />
+            </div>
+
+            <Separator orientation="vertical" className="ml-12 mr-3 hidden h-full min-h-[150px] w-[2px] md:block bg-white/70" />
+
+            <div className="md:min-w-0 md:flex-1">
+              <SecondarySpotlightEntry
+                item={items[2]}
+                className="min-h-[220px]"
+                titleClassName="max-w-[9ch] text-[1.9rem] md:text-[2.05rem]"
+              />
+            </div>
           </div>
         </div>
       </div>

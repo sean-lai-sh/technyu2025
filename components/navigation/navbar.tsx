@@ -5,18 +5,19 @@ import { usePathname } from 'next/navigation'
 // When the time comes to build the program pages
 import NavigationDropdown from './navigation_dropdown'
 import { programs } from '@/lib/consts'
-import { AnimatePresence, motion, useReducedMotion } from 'framer-motion';
-import { motionTokens } from '@/lib/motion'
+import { AnimatePresence, motion } from 'framer-motion';
 import styles from './style.module.css';
 import NavbarMobile from './navbar-mobile'
 import Logo from '@/components/assets/logo.svg'
 import { useNavigationSafe } from '@/contexts/navigation-context'
 
+const brandEase = [0.65, 0, 0.35, 1] as [number, number, number, number]
+const drawerEase = [0.76, 0, 0.24, 1] as [number, number, number, number]
+
 const Navbar = () => {
   const pathname = usePathname()
   const isRootRoute = pathname === '/'
   const [isActive, setIsActive] = useState(false);
-  const shouldReduceMotion = useReducedMotion()
 
   // Try to use shared navigation context (available on pages with NavigationProvider)
   const navContext = useNavigationSafe()
@@ -74,13 +75,13 @@ const Navbar = () => {
       }}
       transition={{ 
         opacity: {
-          duration: shouldReduceMotion ? 0.14 : motionTokens.enterDurationMs / 1000,
-          delay: shouldReduceMotion ? 0 : 0.2,
-          ease: motionTokens.brandEnterEase,
+          duration: isRootRoute ? 1.5 : 0.8,
+          delay: isRootRoute ? 0.75 : 0,
+          ease: brandEase,
         },
         translateY: {
-          duration: shouldReduceMotion ? 0.14 : motionTokens.exitDurationMs / 1000,
-          ease: motionTokens.brandExitEase,
+          duration: 0.8,
+          ease: drawerEase,
         }
       }}
       
@@ -88,7 +89,7 @@ const Navbar = () => {
         <div className='flex w-full justify-center relative font-bold'>
             <div className='outline outline-white rounded-xl lg:rounded-3xl w-[90svw] md:w-[85svw] lg:w-[95svw] h-16 md:min-h-24 p-5 px-3 md:px-10 text-lg bg-black mt-2 md:mt-10 z-[100]'>
                 <div className='w-full h-full flex justify-between items-center'>
-                    <Link href="/">
+                        <Link href="/">
                         <Logo className='object-contain w-[120px] h-[30px] md:w-[200px] md:h-[50px] mt-1' aria-label="tech@nyu logo" />
                     </Link>
                     <div className='gap-5 md:gap-10 text-xl lg:text-2xl hidden md:flex text-center'>
@@ -100,8 +101,8 @@ const Navbar = () => {
                     </div>
                     <div className='md:hidden flex items-center justify-center gap-2 text-white text-sm' onClick={() => setIsActive(!isActive)}>
                         <div className={`${styles.label} cursor-pointer`}>
-                            <motion.p variants={menuLabelOpacity(Boolean(shouldReduceMotion))} animate={!isActive ? "open" : "closed"}>Menu</motion.p>
-                            <motion.p variants={menuLabelOpacity(Boolean(shouldReduceMotion))} animate={isActive ? "open" : "closed"}>Close</motion.p>
+                            <motion.p variants={menuLabelOpacity} animate={!isActive ? "open" : "closed"}>Menu</motion.p>
+                            <motion.p variants={menuLabelOpacity} animate={isActive ? "open" : "closed"}>Close</motion.p>
                         </div>
                         <div className={`${styles.burger} ${isActive ? styles.burgerActive : ''}`}/>
                     </div>
@@ -112,12 +113,12 @@ const Navbar = () => {
             {isActive && (
                 <>
                     <motion.div
-                        initial={shouldReduceMotion ? { opacity: 0 } : { y: "-100%", opacity: 0 }}
-                        animate={shouldReduceMotion ? { opacity: 1 } : { y: 0, opacity: 1 }}
-                        exit={shouldReduceMotion ? { opacity: 0 } : { y: "-100%", opacity: 0 }}
+                        initial={{ y: "-100%", opacity: 0 }}
+                        animate={{ y: 0, opacity: 1 }}
+                        exit={{ y: "-100%", opacity: 0 }}
                         transition={{
-                          duration: shouldReduceMotion ? 0.14 : motionTokens.exitDurationMs / 1000,
-                          ease: motionTokens.brandExitEase,
+                          duration: 0.8,
+                          ease: drawerEase,
                         }}
                         className="fixed md:hidden inset-0 z-[0] backdrop-blur-lg bg-black/30"
                     />
@@ -129,7 +130,7 @@ const Navbar = () => {
   )
 }
 
-const menuLabelOpacity = (reduceMotion: boolean) => ({
+const menuLabelOpacity = {
   initial: {
     opacity: 0
   },
@@ -137,18 +138,16 @@ const menuLabelOpacity = (reduceMotion: boolean) => ({
   open: {
     opacity: 1,
     transition: {
-      duration: reduceMotion ? 0.12 : motionTokens.hoverInDurationMs / 1000,
-      ease: motionTokens.brandEnterEase,
+      duration: 0.5
     }
   },
 
   closed: {
     opacity: 0,
     transition: {
-      duration: reduceMotion ? 0.1 : motionTokens.hoverOutDurationMs / 1000,
-      ease: motionTokens.brandExitEase,
+      duration: 0.5
     }
   }
-})
+}
 
 export default Navbar

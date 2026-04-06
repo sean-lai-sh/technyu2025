@@ -1,23 +1,16 @@
-import { Variants } from 'framer-motion'
-import { motionTokens } from '@/lib/motion'
+const drawerEase = [0.76, 0, 0.24, 1] as [number, number, number, number]
+const transition = {duration: 1, ease: drawerEase}
 
-export const getHeightVariants = (reduceMotion: boolean): Variants => {
-  const duration = reduceMotion ? 0.14 : motionTokens.enterDurationMs / 1000
-
-  return {
+export const height = {
     initial: {
       height: 0
     },
     enter: {
-      height: 'auto',
-      transition: { duration, ease: motionTokens.brandEnterEase }
+      height: "auto",
+      transition
     },
     exit: {
       height: 0,
-      transition: {
-        duration: reduceMotion ? 0.12 : motionTokens.exitDurationMs / 1000,
-        ease: motionTokens.brandExitEase,
-      }
+      transition
     }
-  }
 }
