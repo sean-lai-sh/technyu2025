@@ -1,6 +1,10 @@
 import Image from 'next/image'
 import Link from 'next/link'
-import { spotlightContent, type SpotlightItem } from '@/lib/homepage/spotlight'
+import {
+  getSharedSpotlightContent,
+  type SpotlightContent,
+  type SpotlightItem,
+} from '@/lib/homepage/spotlight'
 import { Separator } from '@/components/ui/separator'
 
 function SpotlightMetaLine({ item }: { item: SpotlightItem }) {
@@ -100,8 +104,8 @@ function FeaturedSpotlightEntry({ item }: { item: SpotlightItem }) {
   )
 }
 
-export default function Spotlight() {
-  const { featuredItem, items } = spotlightContent
+export function SpotlightSection({ content }: { content: SpotlightContent }) {
+  const { featuredItem, items } = content
 
   return (
     <section className="w-full px-5 py-18 md:px-10 lg:px-[5vw] lg:py-24">
@@ -151,4 +155,10 @@ export default function Spotlight() {
       </div>
     </section>
   )
+}
+
+export default async function Spotlight() {
+  const content = await getSharedSpotlightContent()
+
+  return <SpotlightSection content={content} />
 }

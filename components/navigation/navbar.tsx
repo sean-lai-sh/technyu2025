@@ -94,6 +94,7 @@ const Navbar = () => {
                     </Link>
                     <div className='gap-5 md:gap-10 text-xl lg:text-2xl hidden md:flex text-center'>
                         <Link href="/team" className='text-white hover:underline '>Team</Link>
+                        <Link href="/press" className='text-white hover:underline'>Press</Link>
                         {/* <Link href="/about" className='text-white hover:underline'>About</Link> */}
                         <NavigationDropdown name="Programs" items={programs.map(prog => ({ name: prog.name, href: prog.href }))} />
                         {/* For future patch */}

@@ -94,6 +94,79 @@ export type PortableTextBlock = {
   style?: string;
 };
 
+export type PressLayout = 'immersiveReveal' | 'splitHero' | 'editorialRail';
+
+export type PressPortableTextSpan = {
+  _key: string;
+  _type: 'span';
+  text: string;
+  marks?: string[];
+};
+
+export type PressPortableTextLinkMark = {
+  _key: string;
+  _type: 'link';
+  href: string;
+};
+
+export type PressPortableTextHighlightMark = {
+  _key: string;
+  _type: 'highlight';
+  color?: 'green' | 'blue';
+};
+
+export type PressPortableTextMarkDef =
+  | PressPortableTextLinkMark
+  | PressPortableTextHighlightMark;
+
+export type PressPortableTextTextBlock = {
+  _key: string;
+  _type: 'block';
+  style?: string;
+  children: PressPortableTextSpan[];
+  markDefs?: PressPortableTextMarkDef[];
+};
+
+export type PressPortableTextImageBlock = {
+  _key: string;
+  _type: 'image';
+  imageUrl: string;
+  alt?: string;
+  caption?: string;
+};
+
+export type PressPortableText = Array<
+  PressPortableTextTextBlock | PressPortableTextImageBlock
+>;
+
+export type PressPostPreview = {
+  _id: string;
+  title: string;
+  slug: string;
+  publishedAt: string;
+  category: string;
+  layout: PressLayout;
+  excerpt: string;
+  eyebrow?: string;
+  seoTitle?: string;
+  seoDescription?: string;
+  sourceName?: string;
+  sourceUrl?: string;
+  coverImage: {
+    url?: string | null;
+    alt?: string;
+  };
+};
+
+export type PressPost = PressPostPreview & {
+  body: PressPortableText;
+};
+
+export type PressSpotlight = {
+  featuredPost: PressPostPreview;
+  secondaryPosts: [PressPostPreview, PressPostPreview, PressPostPreview];
+};
+
 export type ContactLink = {
   _key?: string;
   label: string;

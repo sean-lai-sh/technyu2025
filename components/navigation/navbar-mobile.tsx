@@ -15,6 +15,10 @@ const NavbarMobile = ({ setIsActive }: NavbarMobileProps) => {
             title: "Team",
             href: "/team",
         },
+        {
+            title: "Press",
+            href: "/press",
+        },
         // {
         //     title: "About Us",
         //     href: "/about",
