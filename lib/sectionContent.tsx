@@ -1,13 +1,13 @@
 import { SectionContent } from "./types"
 
 export const aboutSectionContent: SectionContent[] = [{
-    title: "We do software",
+    title: "We build together",
     description: (
         <>
-            <p>From AI, to Infra, to Fullstack, we've done it and built the technical know how.</p>
+            <p>Tech@NYU is a club because the value is in the people, the rhythm, and the repetition of building together.</p>
             <br/>
             <p>
-                No matter the problem, if it needs code or design, we want you here.
+                We are not just a collection of events or applications. We create a place where students can find their lane, get better at it, and stay involved.
             </p>
             <br/>
             <br/>
@@ -17,15 +17,15 @@ export const aboutSectionContent: SectionContent[] = [{
     flip: false
 },
 {
-    title: "We develop all backgrounds",
+    title: "We welcome all backgrounds",
     description: (
         <>
             <p>
-                We mentored and assisted students at all stages and backgrounds - from beginners to technical wizards - many of whom now work at leading AI companies and FAANG
+                We welcome beginners, experienced builders, and everyone in between. The club works because different starting points can still move through the same community.
             </p> 
             <br/>
             <p>
-                If you're willing to learn, we're here to help you grow and reach your goals.
+                If you're willing to learn, there is a place for you here.
             </p>
             <br/>
         </>
@@ -34,15 +34,15 @@ export const aboutSectionContent: SectionContent[] = [{
     flip: true
 },
 {
-    title:"We understand scale & speed",
+    title:"We understand momentum",
     description: (
         <>
         <p>
-            Having worked on systems of all sizes, we help you learn how to build fast with scale in mind from day 0.
+            The point is not only to attend. It is to move from curiosity into momentum, with clear programs and a community that keeps you accountable.
         </p>
         <br/>
         <p>
-            Our community has collectively contributed to software powering millions to the bleeding edge of AI agents & infra.
+            That is what makes Tech@NYU feel like a club instead of a one-off experience.
         </p>
         <br/>
         </>
@@ -55,7 +55,7 @@ export const aboutSectionContent: SectionContent[] = [{
     description: (
         <>
             <p>
-                Amidst starting or working at top companies, we always find time to chill, relax, and have fun together.
+                The club only works if it is worth coming back to. We keep it social, active, and low-friction so people actually stay engaged.
             </p>
         </>
     ),

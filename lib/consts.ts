@@ -88,17 +88,17 @@ export const valuesData: ValueCardProps[] = [
     {
         name: "Community",
         svgicon: "/value-logos/community.svg",
-        description: "Meet other tech-enthusiasts, builders, and curious minds."
+        description: "You are surrounded by people who share opportunities, build together, and make the room worth coming back to."
     },
     {
         name: "Learning", 
         svgicon: "/value-logos/learning.svg",
-        description: "Pick up new skills or brush up your code."
+        description: "The culture rewards growth, sharper questions, and steady reps rather than pretending you already know everything."
     },
     {
         name: "Creativity", 
         svgicon: "/value-logos/creativity.svg",
-        description: "Ideate and innovate your ideas through design and creative computing."
+        description: "There is room for taste, experimentation, and original ideas, not just technical competence for its own sake."
     }
 ]
 

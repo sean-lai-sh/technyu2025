@@ -1,11 +1,8 @@
 'use client'
 import React, { useRef, useEffect } from 'react'
-import Image from 'next/image'
-import { MaskSVG } from '../inlinemask/inline-image-mask';
 import { gsap } from 'gsap';
 import { SplitText } from 'gsap/SplitText';
 import CustomEase from 'gsap/CustomEase';
-import Logo from '@/components/assets/logo.svg'
 import { motion } from 'framer-motion';
 import { ArrowRightIcon } from 'lucide-react';
 
@@ -112,8 +109,8 @@ const Hero = () => {
               <div className="mb-4 md:mb-6 lg:mb-8 overflow-hidden">
                 <h1
                   ref={headlineRef}
-                  className="text-[12vw] sm:text-[10vw] md:text-[8vw] lg:text-[5vw] font-bold leading-[0.8] tracking-tight opacity-0"                >
-                  Build Fast,<br />Learn Faster
+                  className="text-[12vw] sm:text-[10vw] md:text-[8vw] lg:text-[5vw] font-bold leading-[1.1] tracking-tight opacity-0"                >
+                  Find your path,<br />then build it
                 </h1>
               </div>
 
@@ -121,10 +118,11 @@ const Hero = () => {
               <div className="w-[90%] sm:w-[80%] md:w-[70%] lg:w-[70%] overflow-hidden">
                 <div
                   ref={supportingTextRef}
-                  className="text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-2xl font-light tracking-tight leading-[1.2] opacity-0 w-full"
+                className="text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-2xl font-light tracking-tight leading-[1.2] opacity-0 w-full"
                 >
-                  The Space for Creatives, Makers, and Hackers to Build at NYU.{' '} <br className='hidden lg:block' />
-                  No matter where you start, we will help you build your dreams one line at a time.
+                  Tech@NYU is where students find their role, sharpen it, and turn it into real work.{' '}
+                  <br className='hidden lg:block' />
+                  Explore the programs, see where you fit, and take the next step with us.
                 </div>
               </div>
             </div>
@@ -137,19 +135,14 @@ const Hero = () => {
               className="lg:flex-shrink-0"
             >
               <a
-                href="https://discord.gg/4dZWP9MXNc"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-3 px-8 py-4 text-base md:text-lg font-medium text-white border border-white/30 rounded-none hover:bg-white hover:text-black transition-all duration-300 ease-in group"
+                href="#programs"
+                className="group inline-flex items-center gap-3 border border-white/30 px-8 py-4 text-base font-medium text-white transition-[transform,background-color,color,border-color] duration-200 ease-[cubic-bezier(0.23,1,0.32,1)] hover:-translate-y-0.5 hover:border-white hover:bg-white hover:text-black active:scale-[0.97] md:text-lg"
               >
-                <span>Join the Club</span>
-                <ArrowRightIcon/>
+                <span>View Programs</span>
+                <ArrowRightIcon className="transition-transform duration-200 ease-[cubic-bezier(0.23,1,0.32,1)] group-hover:translate-x-1" />
               </a>
             </motion.div>
           </div>
-        </div>
-        <div className='absolute bottom-0 left-0 w-screen h-20 bg-amber-200 z-50'>
-        
         </div>
       </div>
     </section>

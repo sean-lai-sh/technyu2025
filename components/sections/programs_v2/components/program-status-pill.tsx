@@ -1,0 +1,25 @@
+import React from 'react'
+
+type ProgramStatusPillProps = {
+  isOpen: boolean
+}
+
+export default function ProgramStatusPill({ isOpen }: ProgramStatusPillProps) {
+  return (
+    <span
+      className={`inline-flex items-center gap-2 rounded-full border px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.16em] ${
+        isOpen
+          ? 'border-[#4DFF94]/30 bg-[#4DFF94]/10 text-[#BFFFD5]'
+          : 'border-white/10 bg-white/[0.03] text-white/45'
+      }`}
+    >
+      <span
+        className={`h-2 w-2 rounded-full ${
+          isOpen ? 'bg-[#4DFF94]' : 'bg-white/25'
+        }`}
+      />
+      {isOpen ? 'Applications open' : 'Applications closed'}
+    </span>
+  )
+}
+
