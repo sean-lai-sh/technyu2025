@@ -5,6 +5,12 @@
     /* Force dark mode colors */
     --background: #0a0a0a;
     --foreground: #ededed;
+    --motion-brand-enter: cubic-bezier(0.22, 1, 0.36, 1);
+    --motion-brand-exit: cubic-bezier(0.55, 0, 0.2, 1);
+    --motion-enter-duration: 560ms;
+    --motion-exit-duration: 460ms;
+    --motion-hover-in-duration: 220ms;
+    --motion-hover-out-duration: 180ms;
 
     /* shadcn/ui system colors for dark mode */
     --card: 240 10% 3.9%;
@@ -31,6 +37,12 @@
     /* Same as root to ensure consistency */
     --background: #0a0a0a;
     --foreground: #ededed;
+    --motion-brand-enter: cubic-bezier(0.22, 1, 0.36, 1);
+    --motion-brand-exit: cubic-bezier(0.55, 0, 0.2, 1);
+    --motion-enter-duration: 560ms;
+    --motion-exit-duration: 460ms;
+    --motion-hover-in-duration: 220ms;
+    --motion-hover-out-duration: 180ms;
 
     /* shadcn/ui system colors for dark mode */
     --card: 240 10% 3.9%;

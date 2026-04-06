@@ -5,7 +5,8 @@ import { usePathname } from 'next/navigation'
 // When the time comes to build the program pages
 import NavigationDropdown from './navigation_dropdown'
 import { programs } from '@/lib/consts'
-import { AnimatePresence, motion } from 'framer-motion';
+import { AnimatePresence, motion, useReducedMotion } from 'framer-motion';
+import { motionTokens } from '@/lib/motion'
 import styles from './style.module.css';
 import NavbarMobile from './navbar-mobile'
 import Logo from '@/components/assets/logo.svg'
@@ -15,6 +16,7 @@ const Navbar = () => {
   const pathname = usePathname()
   const isRootRoute = pathname === '/'
   const [isActive, setIsActive] = useState(false);
+  const shouldReduceMotion = useReducedMotion()
 
   // Try to use shared navigation context (available on pages with NavigationProvider)
   const navContext = useNavigationSafe()
@@ -71,8 +73,15 @@ const Navbar = () => {
         translateY: isVisible ? 0 : -200
       }}
       transition={{ 
-        opacity: { duration: 1.5, delay: 0.75, ease:[0.65, 0, 0.35, 1] },
-        translateY: { duration: 0.7, ease: 'easeInOut' }
+        opacity: {
+          duration: shouldReduceMotion ? 0.14 : motionTokens.enterDurationMs / 1000,
+          delay: shouldReduceMotion ? 0 : 0.2,
+          ease: motionTokens.brandEnterEase,
+        },
+        translateY: {
+          duration: shouldReduceMotion ? 0.14 : motionTokens.exitDurationMs / 1000,
+          ease: motionTokens.brandExitEase,
+        }
       }}
       
     >
@@ -91,8 +100,8 @@ const Navbar = () => {
                     </div>
                     <div className='md:hidden flex items-center justify-center gap-2 text-white text-sm' onClick={() => setIsActive(!isActive)}>
                         <div className={`${styles.label} cursor-pointer`}>
-                            <motion.p variants={opacity} animate={!isActive ? "open" : "closed"}>Menu</motion.p>
-                            <motion.p variants={opacity} animate={isActive ? "open" : "closed"}>Close</motion.p>
+                            <motion.p variants={menuLabelOpacity(Boolean(shouldReduceMotion))} animate={!isActive ? "open" : "closed"}>Menu</motion.p>
+                            <motion.p variants={menuLabelOpacity(Boolean(shouldReduceMotion))} animate={isActive ? "open" : "closed"}>Close</motion.p>
                         </div>
                         <div className={`${styles.burger} ${isActive ? styles.burgerActive : ''}`}/>
                     </div>
@@ -103,10 +112,13 @@ const Navbar = () => {
             {isActive && (
                 <>
                     <motion.div
-                        initial={{ y: "-100%", opacity: 0 }}
-                        animate={{ y: 0, opacity: 1 }}
-                        exit={{ y: "-100%", opacity: 0 }}
-                        transition={{ duration: 0.8, ease: [0.76, 0, 0.24, 1] }}
+                        initial={shouldReduceMotion ? { opacity: 0 } : { y: "-100%", opacity: 0 }}
+                        animate={shouldReduceMotion ? { opacity: 1 } : { y: 0, opacity: 1 }}
+                        exit={shouldReduceMotion ? { opacity: 0 } : { y: "-100%", opacity: 0 }}
+                        transition={{
+                          duration: shouldReduceMotion ? 0.14 : motionTokens.exitDurationMs / 1000,
+                          ease: motionTokens.brandExitEase,
+                        }}
                         className="fixed md:hidden inset-0 z-[0] backdrop-blur-lg bg-black/30"
                     />
                     <NavbarMobile setIsActive={setIsActive}/>
@@ -117,20 +129,26 @@ const Navbar = () => {
   )
 }
 
-const opacity = {
-    initial: {
-        opacity: 0
-    },
+const menuLabelOpacity = (reduceMotion: boolean) => ({
+  initial: {
+    opacity: 0
+  },
 
-    open: {
-        opacity: 1,
-        transition: {duration: 0.5}
-    },
-
-    closed: {
-        opacity: 0,
-        transition: {duration: 0.5}
+  open: {
+    opacity: 1,
+    transition: {
+      duration: reduceMotion ? 0.12 : motionTokens.hoverInDurationMs / 1000,
+      ease: motionTokens.brandEnterEase,
     }
-}
+  },
+
+  closed: {
+    opacity: 0,
+    transition: {
+      duration: reduceMotion ? 0.1 : motionTokens.hoverOutDurationMs / 1000,
+      ease: motionTokens.brandExitEase,
+    }
+  }
+})
 
 export default Navbar

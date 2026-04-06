@@ -1,7 +1,8 @@
 'use client'
 
-import React, { useCallback, useEffect, useRef, useState } from 'react'
-import { AnimatePresence, motion, Variants } from 'framer-motion'
+import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react'
+import { AnimatePresence, motion, useReducedMotion, Variants } from 'framer-motion'
+import { motionTokens } from '@/lib/motion'
 import { Testimonial } from './types'
 
 type ProgramAlumniSectionProps = {
@@ -11,31 +12,43 @@ type ProgramAlumniSectionProps = {
 const AUTOPLAY_MS = 7000
 const PROGRESS_TICK_MS = 50
 
-const testimonialMotionVariants: Variants = {
+const createTestimonialMotionVariants = (reduceMotion: boolean): Variants => ({
   enter: (direction: 1 | -1) => ({
     opacity: 0,
-    x: direction > 0 ? 20 : -20,
-    filter: 'blur(8px)',
+    x: reduceMotion ? 0 : direction > 0 ? 20 : -20,
+    filter: reduceMotion ? 'blur(0px)' : 'blur(8px)',
   }),
   center: {
     opacity: 1,
     x: 0,
     filter: 'blur(0px)',
-    transition: { duration: 0.5, ease: [0.22, 1, 0.36, 1] },
+    transition: {
+      duration: reduceMotion ? 0.16 : motionTokens.enterDurationMs / 1000,
+      ease: motionTokens.brandEnterEase,
+    },
   },
   exit: (direction: 1 | -1) => ({
     opacity: 0,
-    x: direction > 0 ? -14 : 14,
-    filter: 'blur(6px)',
-    transition: { duration: 0.28, ease: [0.4, 0, 1, 1] },
+    x: reduceMotion ? 0 : direction > 0 ? -14 : 14,
+    filter: reduceMotion ? 'blur(0px)' : 'blur(6px)',
+    transition: {
+      duration: reduceMotion ? 0.12 : motionTokens.exitDurationMs / 1000,
+      ease: motionTokens.brandExitEase,
+    },
   }),
-}
+})
 
 export default function ProgramAlumniSection({ testimonials }: ProgramAlumniSectionProps) {
+  const shouldReduceMotion = useReducedMotion()
   const [activeTestimonial, setActiveTestimonial] = useState(0)
   const [testimonialProgress, setTestimonialProgress] = useState(0)
+  const [recentlyCompletedTestimonial, setRecentlyCompletedTestimonial] = useState<number | null>(null)
   const [transitionDirection, setTransitionDirection] = useState<1 | -1>(1)
   const touchStartX = useRef(0)
+  const testimonialMotionVariants = useMemo(
+    () => createTestimonialMotionVariants(Boolean(shouldReduceMotion)),
+    [shouldReduceMotion],
+  )
 
   const testimonialCount = testimonials.length
   const activeTestimonialData = testimonials[activeTestimonial] ?? testimonials[0] ?? {
@@ -50,7 +63,17 @@ export default function ProgramAlumniSection({ testimonials }: ProgramAlumniSect
   useEffect(() => {
     setActiveTestimonial(0)
     setTestimonialProgress(0)
+    setRecentlyCompletedTestimonial(null)
   }, [testimonialCount])
+
+  useEffect(() => {
+    if (recentlyCompletedTestimonial === null) return
+    const drainDelay = shouldReduceMotion ? 0 : motionTokens.progressDrainDelayMs
+    const clearTimer = window.setTimeout(() => {
+      setRecentlyCompletedTestimonial(null)
+    }, drainDelay)
+    return () => clearTimeout(clearTimer)
+  }, [recentlyCompletedTestimonial, shouldReduceMotion])
 
   useEffect(() => {
     if (testimonialCount <= 1) {
@@ -59,6 +82,17 @@ export default function ProgramAlumniSection({ testimonials }: ProgramAlumniSect
     }
 
     setTestimonialProgress(0)
+    if (shouldReduceMotion) {
+      setTestimonialProgress(100)
+      const advanceTimeout = window.setTimeout(() => {
+        setTransitionDirection(1)
+        setTestimonialProgress(100)
+        setActiveTestimonial((current) => (current + 1) % testimonialCount)
+        setRecentlyCompletedTestimonial(activeTestimonial)
+      }, AUTOPLAY_MS)
+      return () => window.clearTimeout(advanceTimeout)
+    }
+
     const startedAt = window.performance.now()
 
     const progressInterval = window.setInterval(() => {
@@ -69,22 +103,24 @@ export default function ProgramAlumniSection({ testimonials }: ProgramAlumniSect
 
     const advanceTimeout = window.setTimeout(() => {
       setTransitionDirection(1)
-      setActiveTestimonial((current) => (current + 1) % testimonialCount)
       setTestimonialProgress(0)
+      setActiveTestimonial((current) => (current + 1) % testimonialCount)
+      setRecentlyCompletedTestimonial(activeTestimonial)
     }, AUTOPLAY_MS)
 
     return () => {
       window.clearInterval(progressInterval)
       window.clearTimeout(advanceTimeout)
     }
-  }, [activeTestimonial, testimonialCount])
+  }, [activeTestimonial, shouldReduceMotion, testimonialCount])
 
   const selectTestimonial = useCallback((index: number) => {
     if (index === activeTestimonial) return
     const isForward = index > activeTestimonial || (activeTestimonial === testimonialCount - 1 && index === 0)
     setTransitionDirection(isForward ? 1 : -1)
-    setActiveTestimonial(index)
+    setRecentlyCompletedTestimonial(activeTestimonial)
     setTestimonialProgress(0)
+    setActiveTestimonial(index)
   }, [activeTestimonial, testimonialCount])
 
   const cycleTestimonial = useCallback((direction: 'next' | 'prev') => {
@@ -95,12 +131,13 @@ export default function ProgramAlumniSection({ testimonials }: ProgramAlumniSect
     }
 
     setTransitionDirection(direction === 'next' ? 1 : -1)
+    setRecentlyCompletedTestimonial(activeTestimonial)
+    setTestimonialProgress(0)
     setActiveTestimonial((current) => {
       if (direction === 'next') return (current + 1) % testimonialCount
       return (current - 1 + testimonialCount) % testimonialCount
     })
-    setTestimonialProgress(0)
-  }, [testimonialCount])
+  }, [activeTestimonial, testimonialCount])
 
   const handleTouchStart = useCallback((e: React.TouchEvent) => {
     touchStartX.current = e.touches[0].clientX
@@ -127,17 +164,38 @@ export default function ProgramAlumniSection({ testimonials }: ProgramAlumniSect
           <button
             key={t.id}
             onClick={() => selectTestimonial(i)}
-            className={`relative font-[family-name:var(--font-inter)] text-[14px] font-medium pb-4 border-b-2 whitespace-nowrap transition-all duration-300 ${
+            className={`relative font-[family-name:var(--font-inter)] text-[14px] font-medium pb-5 whitespace-nowrap transition-all duration-300 ${
               activeTestimonial === i
-                ? 'text-[#EDEDED] border-[#4DFF94]'
-                : 'text-[#EDEDED]/38 border-transparent hover:text-[#EDEDED]/65'
+                ? 'text-[#EDEDED]'
+                : 'text-[#EDEDED]/38 hover:text-[#EDEDED]/65'
             }`}
+            style={{
+              transitionDuration: `${motionTokens.hoverInDurationMs}ms`,
+              transitionTimingFunction: motionTokens.brandEnterEaseCss,
+            }}
           >
             {t.company}
-            <span className="pointer-events-none absolute left-0 right-0 -bottom-[2px] h-[2px] bg-[#EDEDED]/12 overflow-hidden">
+            <span className="pointer-events-none absolute left-0 right-0 bottom-[1px] h-[3px] rounded-full bg-[#EDEDED]/12 overflow-hidden">
+              <motion.span
+                initial={false}
+                className="absolute inset-y-0 left-0 right-0 bg-[#4DFF94]/90"
+                style={{ transformOrigin: 'right center' }}
+                animate={{ scaleX: recentlyCompletedTestimonial === i && activeTestimonial !== i ? 1 : 0 }}
+                transition={{
+                  duration: shouldReduceMotion
+                    ? 0.08
+                    : recentlyCompletedTestimonial === i && activeTestimonial !== i
+                    ? 0
+                    : motionTokens.progressDrainDurationMs / 1000,
+                  ease: motionTokens.brandExitEase,
+                }}
+              />
               <span
-                className="block h-full bg-[#4DFF94] transition-[width] duration-75 ease-linear"
-                style={{ width: activeTestimonial === i ? `${testimonialProgress}%` : '0%' }}
+                className="absolute inset-y-0 left-0 block h-full bg-[#4DFF94] transition-[width] ease-linear"
+                style={{
+                  width: `${i === activeTestimonial ? testimonialProgress : 0}%`,
+                  transitionDuration: shouldReduceMotion ? '0ms' : `${PROGRESS_TICK_MS + 25}ms`,
+                }}
               />
             </span>
           </button>
@@ -189,28 +247,6 @@ export default function ProgramAlumniSection({ testimonials }: ProgramAlumniSect
           >
             <span aria-hidden="true" className="text-base leading-none">›</span>
           </button>
-        </div>
-      </div>
-
-      <div className="mt-10">
-        
-        <div className="flex gap-2">
-          {testimonials.map((_, i) => {
-            const progressWidth = i < activeTestimonial ? 100 : i === activeTestimonial ? testimonialProgress : 0
-            return (
-              <button
-                key={i}
-                onClick={() => selectTestimonial(i)}
-                className="relative h-1.5 flex-1 min-w-[42px] rounded-full bg-[#EDEDED]/14 overflow-hidden"
-                aria-label={`Testimonial ${i + 1}`}
-              >
-                <span
-                  className="absolute inset-y-0 left-0 bg-[#4DFF94] transition-[width] duration-75 ease-linear"
-                  style={{ width: `${progressWidth}%` }}
-                />
-              </button>
-            )
-          })}
         </div>
       </div>
     </section>

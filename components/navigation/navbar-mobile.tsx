@@ -1,8 +1,8 @@
-import { motion } from 'motion/react';
+import { motion, useReducedMotion } from 'framer-motion';
 import React, { useState } from 'react'
 import styles from './navigation.module.css'
 import Body from './mobile-body/nav_body';
-import { height } from './mobileanim';
+import { getHeightVariants } from './mobileanim';
 import { satoshi } from '@/lib/fonts';
 
 type NavbarMobileProps = {
@@ -10,6 +10,8 @@ type NavbarMobileProps = {
 }
 
 const NavbarMobile = ({ setIsActive }: NavbarMobileProps) => {
+    const shouldReduceMotion = useReducedMotion()
+    const heightVariants = getHeightVariants(Boolean(shouldReduceMotion))
     const links = [
         {
             title: "Team",
@@ -44,10 +46,16 @@ const NavbarMobile = ({ setIsActive }: NavbarMobileProps) => {
 
     const [selectedLink, setSelectedLink] = useState({isActive: false, index: 0});
     return (
-        <motion.div variants={height} initial="initial" animate="enter" exit="exit" className={`${satoshi.variable} overflow-hidden w-full md:hidden flex justify-center`}>
+        <motion.div variants={heightVariants} initial="initial" animate="enter" exit="exit" className={`${satoshi.variable} overflow-hidden w-full md:hidden flex justify-center`}>
             <div className={styles.wrapper}>
                 <div className={styles.container}>
-                    <Body links={links} selectedLink={selectedLink} setSelectedLink={setSelectedLink} setIsActive={setIsActive}/>
+                    <Body
+                      links={links}
+                      selectedLink={selectedLink}
+                      setSelectedLink={setSelectedLink}
+                      setIsActive={setIsActive}
+                      reducedMotion={Boolean(shouldReduceMotion)}
+                    />
                     {/* <Footer /> */}
                 </div>
             </div>

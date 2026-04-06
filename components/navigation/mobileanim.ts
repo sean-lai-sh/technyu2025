@@ -1,16 +1,23 @@
+import { Variants } from 'framer-motion'
+import { motionTokens } from '@/lib/motion'
 
-const transition = {duration: 1, ease: [0.76, 0, 0.24, 1]}
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-export const height: any = {
+export const getHeightVariants = (reduceMotion: boolean): Variants => {
+  const duration = reduceMotion ? 0.14 : motionTokens.enterDurationMs / 1000
+
+  return {
     initial: {
       height: 0
     },
     enter: {
-      height: "auto",
-      transition
+      height: 'auto',
+      transition: { duration, ease: motionTokens.brandEnterEase }
     },
     exit: {
       height: 0,
-      transition
+      transition: {
+        duration: reduceMotion ? 0.12 : motionTokens.exitDurationMs / 1000,
+        ease: motionTokens.brandExitEase,
+      }
     }
+  }
 }

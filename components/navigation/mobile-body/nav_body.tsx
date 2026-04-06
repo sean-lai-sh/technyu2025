@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { motion } from "framer-motion";
 import styles from "./style.module.css";
-import { translate, blur } from "./anim";
+import { getTranslateVariants, getBlurVariants } from "./anim";
 type LinkType = {
     title: string;
     href: string;
@@ -17,9 +17,13 @@ type BodyProps = {
     selectedLink: SelectedLinkType;
     setSelectedLink: (link: SelectedLinkType) => void;
     setIsActive: (active: boolean) => void;
+    reducedMotion: boolean;
 };
 
-export default function Body({ links, selectedLink, setSelectedLink, setIsActive }: BodyProps) {
+export default function Body({ links, selectedLink, setSelectedLink, setIsActive, reducedMotion }: BodyProps) {
+    const translate = getTranslateVariants(reducedMotion)
+    const blur = getBlurVariants(reducedMotion)
+
     const getChars = (word: string) => {
         const chars = word.split("").map((char, i) => (
             <motion.span

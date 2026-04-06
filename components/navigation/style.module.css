@@ -27,7 +27,9 @@
     background-color: white;
     position: relative;
     display: block;
-    transition: all 1s cubic-bezier(0.76, 0, 0.24, 1);
+    transition-property: all;
+    transition-duration: var(--motion-exit-duration);
+    transition-timing-function: var(--motion-brand-exit);
 }
 
 .burger::after{
