@@ -14,11 +14,11 @@ export default function ImmersiveRevealArticle({ post }: { post: PressPost }) {
     offset: ['start end', 'start start'],
   })
 
-  const mediaY = useTransform(scrollYProgress, [0, 1], ['0%', '-7%'])
-  const overlayOpacity = useTransform(scrollYProgress, [0, 0.55, 1], [0.18, 0.58, 1])
-  const heroOpacity = useTransform(scrollYProgress, [0, 0.68, 1], [1, 0.62, 0])
-  const heroY = useTransform(scrollYProgress, [0, 1], ['0%', '-10%'])
-  const slabY = useTransform(scrollYProgress, [0, 1], ['72px', '0px'])
+  const mediaY = useTransform(scrollYProgress, [0, 0.62, 1], ['0%', '-14%', '-22%'])
+  const overlayOpacity = useTransform(scrollYProgress, [0, 0.58, 0.88, 1], [0.16, 0.3, 0.82, 1])
+  const heroOpacity = useTransform(scrollYProgress, [0, 0.62, 0.9, 1], [1, 1, 0.18, 0])
+  const heroY = useTransform(scrollYProgress, [0, 0.68, 1], ['0%', '-2%', '-12%'])
+  const slabY = useTransform(scrollYProgress, [0, 1], ['56px', '0px'])
   const slabOpacity = useTransform(scrollYProgress, [0, 0.4], [0.72, 1])
 
   const mediaStyle = shouldReduceMotion ? undefined : { y: mediaY }
@@ -28,7 +28,7 @@ export default function ImmersiveRevealArticle({ post }: { post: PressPost }) {
 
   return (
     <article className="min-h-screen bg-[#050505] text-white">
-      <section className="relative h-[168svh]">
+      <section className="relative h-[120svh]">
         <div className="sticky top-0 h-[100svh] overflow-hidden border-b border-white/8 bg-[#030303]">
           <motion.div style={mediaStyle} className="absolute inset-0 scale-[1.08]">
             {post.coverImage.url ? (
@@ -48,10 +48,9 @@ export default function ImmersiveRevealArticle({ post }: { post: PressPost }) {
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(133,92,248,0.2),transparent_34%),linear-gradient(180deg,rgba(0,0,0,0.18)_0%,rgba(0,0,0,0.5)_100%)]" />
           <motion.div style={overlayStyle} className="absolute inset-0 bg-black" />
 
-          <div className="relative flex h-full items-end px-5 pb-[16svh] md:px-10 lg:px-[4vw] lg:pb-[18svh]">
+          <div className="relative flex h-full items-end px-5 pb-[28svh] md:px-10 lg:px-[4vw] lg:pb-[30svh]">
             <motion.div style={heroStyle} className="w-full">
-              <div className="max-w-[88rem]">
-                <PressArticleMeta post={post} />
+              <div className="max-w-[88rem]"> 
                 <h1 className="max-w-[12ch] pt-6 font-[family-name:var(--font-darker-grotesque)] text-[3.8rem] font-bold leading-[0.82] tracking-[-0.055em] text-white sm:text-[5.4rem] lg:text-[7.3rem] xl:text-[8.4rem]">
                   {post.title}
                 </h1>
@@ -60,10 +59,10 @@ export default function ImmersiveRevealArticle({ post }: { post: PressPost }) {
           </div>
         </div>
 
-        <div className="pointer-events-none absolute inset-x-0 bottom-0 h-[34svh] bg-[linear-gradient(180deg,rgba(0,0,0,0)_0%,rgba(0,0,0,0.5)_34%,#050505_100%)]" />
+        <div className="pointer-events-none absolute inset-x-0 bottom-0 h-[38svh] bg-[linear-gradient(180deg,rgba(0,0,0,0)_0%,rgba(0,0,0,0.46)_32%,#050505_100%)]" />
       </section>
 
-      <section className="relative z-10 -mt-[30svh] px-5 pb-24 md:px-10 lg:px-[4vw] lg:pb-28">
+      <section className="relative z-10 -mt-[44svh] px-5 pb-24 md:px-10 lg:px-[4vw] lg:pb-28">
         <motion.div
           ref={slabRef}
           style={slabStyle}

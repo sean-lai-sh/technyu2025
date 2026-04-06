@@ -91,20 +91,20 @@ export default async function ProgramSectionV2() {
             </p>
 
             <div className="mt-8 flex flex-wrap gap-3">
-              <span className="rounded-full border border-white/10 bg-white/[0.03] px-4 py-2 text-[11px] font-semibold uppercase tracking-[0.18em] text-white/55">
+              <span className="border border-white/10 bg-white/[0.03] px-4 py-2 text-[11px] font-semibold uppercase tracking-[0.18em] text-white/55">
                 Four-stage progression
               </span>
-              <span className="rounded-full border border-white/10 bg-white/[0.03] px-4 py-2 text-[11px] font-semibold uppercase tracking-[0.18em] text-white/55">
+              <span className="border border-white/10 bg-white/[0.03] px-4 py-2 text-[11px] font-semibold uppercase tracking-[0.18em] text-white/55">
                 Clear program fit
               </span>
-              <span className="rounded-full border border-white/10 bg-white/[0.03] px-4 py-2 text-[11px] font-semibold uppercase tracking-[0.18em] text-white/55">
+              <span className="border border-white/10 bg-white/[0.03] px-4 py-2 text-[11px] font-semibold uppercase tracking-[0.18em] text-white/55">
                 Applications by cohort
               </span>
             </div>
           </div>
 
           <div>
-            <div className="rounded-[30px] border border-white/10 bg-white/[0.02] p-4 sm:p-5">
+            <div className="border border-white/10 bg-white/[0.02] p-4 sm:p-5">
               <p className="mb-4 text-[11px] font-semibold uppercase tracking-[0.22em] text-white/40">
                 The map
               </p>
@@ -139,4 +139,3 @@ export default async function ProgramSectionV2() {
     </section>
   )
 }
-

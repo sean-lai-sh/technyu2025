@@ -8,18 +8,18 @@ type ProgramJourneyRailProps = {
 export default function ProgramJourneyRail({ stages }: ProgramJourneyRailProps) {
   return (
     <div className="relative">
-      <div className="absolute left-[17px] top-4 bottom-4 w-px bg-white/10" />
+      <div className="absolute left-[15px] top-4 bottom-4 w-px bg-white/10" />
       <div className="space-y-3">
         {stages.map((stage, index) => (
           <article
             key={stage.name}
-            className="relative rounded-[24px] border border-white/10 bg-white/[0.03] px-4 py-4 pl-11 backdrop-blur-[1px]"
+            className="relative border border-white/10 bg-white/[0.03] px-4 py-4 pl-11 backdrop-blur-[1px]"
             style={{
               boxShadow: `inset 0 0 0 1px ${stage.accentSoft}`,
             }}
           >
             <span
-              className="absolute left-4 top-5 h-2.5 w-2.5 rounded-full"
+              className="absolute left-3.5 top-4.5 h-5 w-5 border border-black/40"
               style={{
                 background: stage.accent,
                 boxShadow: `0 0 18px ${stage.accentSoft}`,
@@ -33,7 +33,7 @@ export default function ProgramJourneyRail({ stages }: ProgramJourneyRailProps) 
               <h3 className="font-[family-name:var(--font-darker-grotesque)] text-2xl leading-none text-white">
                 {stage.label}
               </h3>
-              <span className="rounded-full border border-white/10 px-2.5 py-1 text-[10px] font-medium uppercase tracking-[0.15em] text-white/45">
+              <span className="border border-white/10 px-2.5 py-1 text-[10px] font-medium uppercase tracking-[0.15em] text-white/45">
                 {stage.name}
               </span>
             </div>
@@ -46,4 +46,3 @@ export default function ProgramJourneyRail({ stages }: ProgramJourneyRailProps) 
     </div>
   )
 }
-

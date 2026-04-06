@@ -13,82 +13,62 @@ export default function ProgramPanel({ program, index }: ProgramPanelProps) {
   const isReversed = index % 2 === 1
   const panelSideClass = isReversed ? 'lg:order-2' : 'lg:order-1'
   const mediaSideClass = isReversed ? 'lg:order-1' : 'lg:order-2'
+  const accentInset = `${program.stage.accent}66`
 
   return (
     <article
-      className="group relative overflow-hidden rounded-[28px] border border-white/10 bg-[#090909]"
-      style={{ boxShadow: `inset 0 0 0 1px ${program.stage.accentSoft}` }}
+      className="group relative overflow-hidden border border-white/10 bg-[#090909]"
+      style={{
+        borderColor: program.stage.accentSoft,
+        boxShadow: `inset 0 0 0 1px rgba(255,255,255,0.04), inset 0 0 18px rgba(255,255,255,0.03), inset 0 0 64px 6px ${accentInset}`,
+      }}
     >
       <div
         className="pointer-events-none absolute inset-0"
         style={{
           background: `radial-gradient(circle at ${
-            isReversed ? '78% 18%' : '22% 18%'
-          }, ${program.stage.accentSoft} 0%, transparent 58%)`,
+            isReversed ? '82% 18%' : '18% 18%'
+          }, ${program.stage.accent}22 0%, ${program.stage.accentSoft} 18%, transparent 30%), linear-gradient(135deg, transparent 0%, transparent 64%, ${program.stage.accentSoft} 100%)`,
         }}
       />
+      <div className="pointer-events-none absolute inset-x-5 top-0 h-px bg-white/10" />
+      <div className="pointer-events-none absolute inset-y-5 right-0 w-px bg-white/10" />
       <div className="relative grid lg:grid-cols-[minmax(0,1.05fr)_minmax(320px,0.95fr)]">
         <div className={`p-6 sm:p-8 lg:p-10 ${panelSideClass}`}>
           <div className="flex flex-wrap items-center gap-3">
-            <span className="rounded-full border border-white/10 bg-white/[0.03] px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.18em] text-white/55">
+            <span className="border border-white/10 bg-white/[0.03] px-3 py-1.5 text-[11px] font-semibold uppercase tracking-[0.18em] text-white/55">
               Stage 0{index + 1}
             </span>
             <ProgramStatusPill isOpen={program.isApplicationOpen} />
           </div>
 
-          <div className="mt-6 flex items-start gap-4">
-            <div className="relative h-14 w-14 shrink-0 overflow-hidden rounded-[18px] border border-white/10 bg-white/[0.04]">
-              {program.svgIconUrl ? (
+          <div className="mt-6 min-w-0">
+            {program.svgIconUrl ? (
+              <div className="relative mb-6 h-20 w-full max-w-[320px] sm:h-24 sm:max-w-[360px]">
                 <Image
                   src={program.svgIconUrl}
-                  alt={`${program.name} icon`}
+                  alt={`${program.name} logo`}
                   fill
-                  className="object-contain p-2.5"
-                  sizes="56px"
+                  className="object-contain object-left"
+                  sizes="(max-width: 640px) 320px, 360px"
                 />
-              ) : (
-                <div className="flex h-full w-full items-center justify-center text-lg font-semibold text-white/75">
-                  {program.name.slice(0, 1)}
-                </div>
-              )}
-            </div>
-
-            <div className="min-w-0">
-              <p className="text-[11px] font-semibold uppercase tracking-[0.22em] text-white/35">
-                {program.stage.position}
-              </p>
-              <h3 className="mt-2 font-[family-name:var(--font-darker-grotesque)] text-5xl leading-[0.88] tracking-[-0.03em] text-white sm:text-6xl">
-                {program.name}
-              </h3>
-              <p className="mt-3 max-w-2xl text-lg leading-relaxed text-white/72">
-                {program.body}
-              </p>
-            </div>
-          </div>
-
-          <div className="mt-8 grid gap-3 md:grid-cols-2">
-            <div className="rounded-[22px] border border-white/10 bg-white/[0.03] p-4">
-              <p className="text-[10px] font-semibold uppercase tracking-[0.2em] text-white/38">
-                For
-              </p>
-              <p className="mt-2 text-sm leading-relaxed text-white/70">
-                {program.stage.audience}
-              </p>
-            </div>
-            <div className="rounded-[22px] border border-white/10 bg-white/[0.03] p-4">
-              <p className="text-[10px] font-semibold uppercase tracking-[0.2em] text-white/38">
-                You leave with
-              </p>
-              <p className="mt-2 text-sm leading-relaxed text-white/70">
-                {program.stage.outcome}
-              </p>
-            </div>
+              </div>
+            ) : null}
+            <p className="text-[11px] font-semibold uppercase tracking-[0.22em] text-white/35">
+              {program.stage.position}
+            </p>
+            <h3 className="mt-2 font-[family-name:var(--font-darker-grotesque)] text-5xl leading-[0.88] tracking-[-0.03em] text-white sm:text-6xl">
+              {program.name}
+            </h3>
+            <p className="mt-3 max-w-2xl text-lg leading-relaxed text-white/72">
+              {program.body}
+            </p>
           </div>
 
           <div className="mt-8 flex flex-wrap items-center gap-4">
             <Link
               href={`/programs/${program.slug}`}
-              className="inline-flex items-center justify-center rounded-full border border-white/20 bg-white text-black px-5 py-3 text-sm font-semibold transition-all duration-300 ease-out hover:-translate-y-0.5 hover:bg-white/90 active:translate-y-0 active:scale-[0.98]"
+              className="inline-flex items-center justify-center border border-white/20 bg-white px-5 py-3 text-sm font-semibold text-black transition-all duration-300 ease-out hover:-translate-y-0.5 hover:bg-white/90 active:translate-y-0 active:scale-[0.98]"
             >
               Learn more
             </Link>
@@ -97,7 +77,7 @@ export default function ProgramPanel({ program, index }: ProgramPanelProps) {
                 href={program.applicationHref}
                 target="_blank"
                 rel="noreferrer"
-                className="inline-flex items-center justify-center rounded-full border border-white/10 bg-white/[0.03] px-5 py-3 text-sm font-semibold text-white/75 transition-all duration-300 ease-out hover:border-white/20 hover:bg-white/[0.06] hover:text-white active:scale-[0.98]"
+                className="inline-flex items-center justify-center border border-white/10 bg-white/[0.03] px-5 py-3 text-sm font-semibold text-white/75 transition-all duration-300 ease-out hover:border-white/20 hover:bg-white/[0.06] hover:text-white active:scale-[0.98]"
               >
                 Apply now
               </a>
@@ -131,8 +111,8 @@ export default function ProgramPanel({ program, index }: ProgramPanelProps) {
               }}
             >
               <div
-                className="rounded-[32px] border border-white/10 bg-black/40 px-8 py-10 text-center"
-                style={{ boxShadow: `0 0 80px ${program.stage.accentSoft}` }}
+                className="border border-white/10 bg-black/40 px-8 py-10 text-center"
+                style={{ borderColor: program.stage.accentSoft }}
               >
                 <p className="text-[11px] font-semibold uppercase tracking-[0.24em] text-white/45">
                   {program.stage.label}

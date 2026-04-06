@@ -8,8 +8,8 @@ const FALLBACK_STAGE: ProgramStageMeta = {
   audience: 'Students who want a clear first step into Tech@NYU.',
   outcome: 'A better sense of where you fit and what comes next.',
   position: 'Discover the lane that makes sense for you.',
-  accent: '#4DFF94',
-  accentSoft: 'rgba(77, 255, 148, 0.16)',
+  accent: '#B300FF',
+  accentSoft: 'rgba(179, 0, 255, 0.16)',
 }
 
 export const PROGRAM_STAGE_ORDER: ProgramStageName[] = [
@@ -31,8 +31,8 @@ export const PROGRAM_STAGE_MAP: Record<ProgramStageName, ProgramStageMeta> = {
     outcome:
       'A clearer sense of direction and a first step into a more specific path.',
     position: 'A beginner-friendly entry into the club.',
-    accent: '#4DFF94',
-    accentSoft: 'rgba(77, 255, 148, 0.16)',
+    accent: '#B300FF',
+    accentSoft: 'rgba(179, 0, 255, 0.16)',
   },
   Mentorship: {
     name: 'Mentorship',
@@ -73,8 +73,8 @@ export const PROGRAM_STAGE_MAP: Record<ProgramStageName, ProgramStageMeta> = {
     outcome:
       'Stronger relationships, broader exposure, and a real stake in the community.',
     position: 'The give-back loop for the club.',
-    accent: '#F59E0B',
-    accentSoft: 'rgba(245, 158, 11, 0.16)',
+    accent: '#4DFF94',
+    accentSoft: 'rgba(77, 255, 148, 0.16)',
   },
 }
 
@@ -84,4 +84,3 @@ export const getProgramStageMeta = (name: string): ProgramStageMeta => {
 
 export const getOrderedProgramStages = () =>
   PROGRAM_STAGE_ORDER.map((name) => PROGRAM_STAGE_MAP[name])
-
