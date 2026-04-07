@@ -152,9 +152,7 @@ export default async function ProfilePage({ params }: PageProps) {
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 pt-8 lg:pt-10">
             {/* Left Sidebar - Timeline Navigation */}
             <div className="hidden lg:block lg:col-span-3">
-              <div className="sticky top-0">
-                <TimelineNav />
-              </div>
+              <TimelineNav />
             </div>
                   
             {/* Main Content */}
