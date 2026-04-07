@@ -60,7 +60,7 @@ export function TimelineNav() {
       style={{
         position: 'sticky',
         top: stickyOffset,
-        transition: 'top 560ms cubic-bezier(0.76, 0, 0.24, 1)',
+        transition: 'top 650ms cubic-bezier(0.76, 0, 0.24, 1)',
       }}
     >
       {/* Vertical line extends into the LinkedIn header strip above the content rail */}

@@ -7,15 +7,15 @@ import { PressArticleMeta, PressArticleSlab } from './press-article-slab'
 function SplitHero({ post }: { post: PressPost }) {
   return (
     <section className="px-5 pt-[9svh] md:px-10 lg:px-[5vw] lg:pt-[14svh]">
-      <div className="mx-auto grid max-w-[1600px] gap-6 lg:grid-cols-[0.95fr_1.05fr] lg:gap-8">
-        <div className="flex min-h-[34rem] flex-col justify-end border border-white/10 bg-[linear-gradient(180deg,#0b0b0b_0%,#050505_100%)] p-6 md:p-8 lg:p-10">
+      <div className="mx-auto grid max-w-[1600px] gap-6 lg:grid-cols-[0.82fr_1.18fr] lg:gap-8">
+        <div className="flex min-h-[30rem] flex-col justify-end border border-white/10 bg-[linear-gradient(180deg,#0b0b0b_0%,#050505_100%)] p-6 md:p-8 lg:p-8">
           <PressArticleMeta post={post} />
-          <h1 className="pt-6 font-[family-name:var(--font-darker-grotesque)] text-[3.5rem] font-bold leading-[0.86] tracking-[-0.05em] text-white sm:text-[4.5rem] lg:text-[6.2rem]">
+          <h1 className="max-w-[10.5ch] pt-5 font-[family-name:var(--font-darker-grotesque)] text-[3.2rem] font-bold leading-[0.88] tracking-[-0.05em] text-white sm:text-[4.1rem] lg:text-[5.2rem]">
             {post.title}
           </h1>
         </div>
 
-        <div className="relative min-h-[34rem] overflow-hidden border border-white/10">
+        <div className="relative min-h-[30rem] overflow-hidden border border-white/10">
           {post.coverImage.url ? (
             <Image
               src={post.coverImage.url}

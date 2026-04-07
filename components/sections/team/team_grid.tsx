@@ -17,22 +17,9 @@ const TeamGrid = ({ initialTeamMembers }: TeamGridProps) => {
   const [activeFilter, setActiveFilter] = useState("All")
   const [displayedFilter, setDisplayedFilter] = useState("All")
   const gridRef = useRef<HTMLDivElement>(null)
-  const filterRef = useRef<HTMLDivElement>(null)
 
   // Access shared navigation state (synced with Navbar)
-  const { isNavbarVisible } = useNavigation()
-
-  // Preserve the existing page spacing and only sync the sticky filter rail.
-  useEffect(() => {
-    if (!filterRef.current) return
-
-    gsap.to(filterRef.current, {
-      y: isNavbarVisible ? 0 : -140,
-      duration: isNavbarVisible ? 0.7 : 0.75,
-      delay: isNavbarVisible ? 0 : 0.2,
-      ease: 'power1.inOut',
-    })
-  }, [isNavbarVisible])
+  const { isNavbarVisible, headerHeight } = useNavigation()
 
   // Extract unique categories from team members
   const categories = useMemo(() => {
@@ -100,8 +87,11 @@ const TeamGrid = ({ initialTeamMembers }: TeamGridProps) => {
     <div className='w-[100svw] h-fit flex flex-col items-center justify-center pb-[20svh]'>
       {/* Sticky Filter Section - synced with navbar show/hide */}
       <div
-        ref={filterRef}
-        className='sticky top-0 z-20 w-[100svw] flex justify-center border-b-2 border-white bg-black pt-24 md:pt-40'
+        className='sticky z-20 w-[100svw] flex justify-center border-b-2 border-white bg-black/95 backdrop-blur-sm'
+        style={{
+          top: isNavbarVisible ? headerHeight : 0,
+          transition: 'top 650ms cubic-bezier(0.76, 0, 0.24, 1)',
+        }}
       >
         {/* Desktop Filter Section */}
         <TeamFiltersDesktop

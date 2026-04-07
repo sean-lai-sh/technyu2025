@@ -30,7 +30,6 @@ const navUnderlineClassName =
 const Navbar = () => {
   const pathname = usePathname()
   const [isActive, setIsActive] = useState(false)
-  const [viewportHeight, setViewportHeight] = useState(0)
   const headerRef = useRef<HTMLDivElement>(null)
   const {
     headerHeight,
@@ -41,9 +40,7 @@ const Navbar = () => {
   } = useNavigation()
 
   const isHomeOverlay = headerMode === 'home-overlay'
-  const isPastHero = isHomeOverlay
-    && viewportHeight > 0
-    && lastScrollY >= Math.max(viewportHeight - headerHeight, 0)
+  const isAtHeroTop = isHomeOverlay && lastScrollY <= 2
   const hiddenOffset = -(headerHeight || 92)
 
   const mobilePrimaryLinks = useMemo(() => (
@@ -86,11 +83,8 @@ const Navbar = () => {
       if (window.innerWidth >= 768) {
         setIsActive(false)
       }
-
-      setViewportHeight(window.innerHeight)
     }
 
-    handleResize()
     window.addEventListener('resize', handleResize)
 
     return () => {
@@ -146,7 +140,7 @@ const Navbar = () => {
           ref={headerRef}
           className={cn(
             'relative w-full border-b border-white/12 transition-colors duration-500',
-            !isHomeOverlay || isPastHero || isActive ? 'bg-black' : 'bg-transparent'
+            !isHomeOverlay || !isAtHeroTop || isActive ? 'bg-black' : 'bg-transparent'
           )}
         >
           <div className="absolute inset-x-0 top-0 h-px bg-[linear-gradient(90deg,rgba(109,94,252,0),rgba(109,94,252,0.92),rgba(126,247,165,0.65),rgba(126,247,165,0))]" />
@@ -160,14 +154,14 @@ const Navbar = () => {
                 />
               </Link>
 
-              <div className="hidden xl:flex flex-col justify-center">
+              {/* <div className="hidden xl:flex flex-col justify-center">
                 <span className="font-[family-name:var(--font-inter)] text-[0.62rem] font-semibold uppercase tracking-[0.32em] text-white/35">
                   New York University
                 </span>
                 <span className="font-[family-name:var(--font-darker-grotesque)] text-[1rem] font-semibold uppercase tracking-[0.18em] text-white/72">
                   Student-led technical system
                 </span>
-              </div>
+              </div> */}
             </div>
 
             <div className="hidden h-full items-center gap-6 md:flex lg:gap-8">

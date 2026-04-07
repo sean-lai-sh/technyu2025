@@ -63,47 +63,41 @@ export const NavigationProvider = ({ children }: NavigationProviderProps) => {
   }, [pathname])
 
   useEffect(() => {
-    let scrollTimeout: NodeJS.Timeout
+    const handleScroll = () => {
+      const currentScrollY = window.scrollY
+      const previousScrollY = lastScrollYRef.current
 
-    const debouncedScroll = () => {
-      clearTimeout(scrollTimeout)
-      scrollTimeout = setTimeout(() => {
-        const currentScrollY = window.scrollY
-        const previousScrollY = lastScrollYRef.current
-
-        if (currentScrollY <= 8) {
-          setScrollDirection('up')
-          setIsNavbarVisible(true)
-          lastScrollYRef.current = currentScrollY
-          setLastScrollY(currentScrollY)
-          return
-        }
-
-        const scrollDifference = Math.abs(currentScrollY - previousScrollY)
-        if (scrollDifference < 5) {
-          return
-        }
-
-        const hideThreshold = Math.max(64, Math.round(headerHeightRef.current * 0.75))
-
-        if (currentScrollY > previousScrollY && currentScrollY > hideThreshold) {
-          setScrollDirection('down')
-          setIsNavbarVisible(false)
-        } else if (currentScrollY < previousScrollY) {
-          setScrollDirection('up')
-          setIsNavbarVisible(true)
-        }
-
+      if (currentScrollY <= 8) {
+        setScrollDirection('up')
+        setIsNavbarVisible(true)
         lastScrollYRef.current = currentScrollY
         setLastScrollY(currentScrollY)
-      }, 40)
+        return
+      }
+
+      const scrollDifference = Math.abs(currentScrollY - previousScrollY)
+      if (scrollDifference < 5) {
+        return
+      }
+
+      const hideThreshold = Math.max(64, Math.round(headerHeightRef.current * 0.75))
+
+      if (currentScrollY > previousScrollY && currentScrollY > hideThreshold) {
+        setScrollDirection('down')
+        setIsNavbarVisible(false)
+      } else if (currentScrollY < previousScrollY) {
+        setScrollDirection('up')
+        setIsNavbarVisible(true)
+      }
+
+      lastScrollYRef.current = currentScrollY
+      setLastScrollY(currentScrollY)
     }
 
-    window.addEventListener('scroll', debouncedScroll, { passive: true })
+    window.addEventListener('scroll', handleScroll, { passive: true })
 
     return () => {
-      window.removeEventListener('scroll', debouncedScroll)
-      clearTimeout(scrollTimeout)
+      window.removeEventListener('scroll', handleScroll)
     }
   }, [pathname])
 
