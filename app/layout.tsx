@@ -4,6 +4,7 @@ import Navbar from "@/components/navigation/navbar";
 import { satoshi, inter, darkerGrotesque } from "@/lib/fonts";
 import Footer from "@/components/sections/footer";
 import { SITE_DESCRIPTION, SITE_NAME } from "@/lib/seo";
+import { NavigationProvider } from "@/contexts/navigation-context";
 
 export const metadata: Metadata = {
   title: {
@@ -28,11 +29,13 @@ export default function RootLayout({
       <body
         className={`${satoshi.variable} ${inter.variable} ${darkerGrotesque.variable} w-[100svw] overflow-x-clip antialiased bg-[#000000] dark:bg-[#000000] scheme-only-dark`}
       >
+        <NavigationProvider>
           <Navbar />
           <main>
-          {children}
+            {children}
           </main>
           <Footer />
+        </NavigationProvider>
       </body>
     </html>
   );

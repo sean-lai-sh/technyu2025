@@ -22,16 +22,15 @@ const TeamGrid = ({ initialTeamMembers }: TeamGridProps) => {
   // Access shared navigation state (synced with Navbar)
   const { isNavbarVisible } = useNavigation()
 
-  // Sync filter section animation with navbar visibility
-  // Matches navbar: duration 0.7s, easeInOut
+  // Preserve the existing page spacing and only sync the sticky filter rail.
   useEffect(() => {
     if (!filterRef.current) return
 
     gsap.to(filterRef.current, {
-      y: isNavbarVisible ? 0 : -140, // Move up when navbar hides
+      y: isNavbarVisible ? 0 : -140,
       duration: isNavbarVisible ? 0.7 : 0.75,
       delay: isNavbarVisible ? 0 : 0.2,
-      ease: 'power1.inOut' // GSAP equivalent of CSS easeInOut
+      ease: 'power1.inOut',
     })
   }, [isNavbarVisible])
 

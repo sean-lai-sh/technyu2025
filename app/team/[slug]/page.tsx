@@ -131,25 +131,25 @@ export default async function ProfilePage({ params }: PageProps) {
       {/* Content Section with Timeline Navigation */}
       <div className="container mx-auto px-6">
         <div className="max-w-7xl mx-auto">
-          <div className='w-screen absolute left-0 min-h-[15svh] bg-[#0a0a0a] z-5 flex justify-between flex-col'>
-            <div className="py-4 pt-12 xl:pt-16 w-full px-[5svw]">
-                <div className="flex gap-6">
-                  {bio.linkedinUrl && (
-                    <Link
-                      href={bio.linkedinUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-white hover:text-green-400 transition-colors uppercase text-sm tracking-wide font-medium"
-                    >
-                      LinkedIn
-                    </Link>
-                  )}
-                 
-                </div>
-              </div> 
+          <div className="relative left-1/2 w-screen -translate-x-1/2 bg-[#0a0a0a]">
+            <div className="mx-auto flex min-h-[96px] max-w-7xl items-end px-[5svw] py-6 xl:min-h-[112px] xl:py-8">
+              <div className="flex gap-6">
+                {bio.linkedinUrl && (
+                  <Link
+                    href={bio.linkedinUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-white hover:text-green-400 transition-colors uppercase text-sm tracking-wide font-medium"
+                  >
+                    LinkedIn
+                  </Link>
+                )}
+              </div>
+            </div>
             <Separator className='w-full h-[2px] bg-white/40'/>
           </div>
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 ">
+
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 pt-8 lg:pt-10">
             {/* Left Sidebar - Timeline Navigation */}
             <div className="hidden lg:block lg:col-span-3">
               <div className="sticky top-0">
@@ -158,7 +158,7 @@ export default async function ProfilePage({ params }: PageProps) {
             </div>
                   
             {/* Main Content */}
-            <div className="lg:col-span-9 space-y-24 pt-[19.5svh] mb-20">
+            <div className="lg:col-span-9 space-y-24 pb-20">
               {/* Background Section with Timeline */}
               <section id="background" className="">
                 <h2 
