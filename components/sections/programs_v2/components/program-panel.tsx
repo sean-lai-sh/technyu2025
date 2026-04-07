@@ -19,7 +19,6 @@ export default function ProgramPanel({ program, index }: ProgramPanelProps) {
     <article
       className="group relative overflow-hidden border border-white/10 bg-[#090909]"
       style={{
-        borderColor: program.stage.accentSoft,
         boxShadow: `inset 0 0 0 1px rgba(255,255,255,0.04), inset 0 0 18px rgba(255,255,255,0.03), inset 0 0 64px 6px ${accentInset}`,
       }}
     >
@@ -89,49 +88,48 @@ export default function ProgramPanel({ program, index }: ProgramPanelProps) {
         </div>
 
         <div
-          className={`relative min-h-[320px] overflow-hidden border-t border-white/10 lg:min-h-[100%] lg:border-l lg:border-t-0 ${mediaSideClass}`}
+          className={`flex min-h-[320px] border-t border-white/10 p-4 sm:p-5 lg:min-h-[100%] lg:border-l lg:border-t-0 lg:p-6 ${mediaSideClass}`}
         >
-          {program.desktopImageUrl ? (
-            <>
-              <Image
-                src={program.desktopImageUrl}
-                alt={`${program.name} visual`}
-                fill
-                className="object-cover transition-transform duration-700 ease-out group-hover:scale-[1.03]"
-                sizes="(max-width: 1024px) 100vw, 40vw"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/78 via-black/18 to-black/10" />
-            </>
-          ) : (
-            <div
-              className="flex h-full min-h-[320px] items-center justify-center"
-              style={{
-                background:
-                  'linear-gradient(135deg, rgba(255,255,255,0.04) 0%, rgba(255,255,255,0.01) 45%, rgba(0,0,0,0.4) 100%)',
-              }}
-            >
+          <div className="relative min-h-[288px] flex-1 overflow-hidden border border-white/10 bg-[#050505]">
+            {program.desktopImageUrl ? (
+              <>
+                <Image
+                  src={program.desktopImageUrl}
+                  alt={`${program.name} visual`}
+                  fill
+                  className="object-cover transition-transform duration-700 ease-out group-hover:scale-[1.03]"
+                  sizes="(max-width: 1024px) calc(100vw - 3rem), 40vw"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/84 via-black/24 to-black/12" />
+              </>
+            ) : (
               <div
-                className="border border-white/10 bg-black/40 px-8 py-10 text-center"
-                style={{ borderColor: program.stage.accentSoft }}
+                className="flex h-full min-h-[288px] items-center justify-center"
+                style={{
+                  background:
+                    'linear-gradient(135deg, rgba(255,255,255,0.04) 0%, rgba(255,255,255,0.01) 45%, rgba(0,0,0,0.4) 100%)',
+                }}
               >
-                <p className="text-[11px] font-semibold uppercase tracking-[0.24em] text-white/45">
-                  {program.stage.label}
+                <div className="border border-white/10 bg-black/40 px-8 py-10 text-center">
+                  <p className="text-[11px] font-semibold uppercase tracking-[0.24em] text-white/45">
+                    {program.stage.label}
+                  </p>
+                  <p className="mt-4 max-w-[14ch] font-[family-name:var(--font-darker-grotesque)] text-5xl leading-[0.9] text-white">
+                    {program.name}
+                  </p>
+                </div>
+              </div>
+            )}
+
+            <div className="absolute inset-x-0 bottom-0 p-5 sm:p-6">
+              <div className="max-w-[28ch]">
+                <p className="text-[10px] font-semibold uppercase tracking-[0.22em] text-white/45">
+                  Stage focus
                 </p>
-                <p className="mt-4 max-w-[14ch] font-[family-name:var(--font-darker-grotesque)] text-5xl leading-[0.9] text-white">
-                  {program.name}
+                <p className="mt-2 text-base leading-relaxed text-white/80">
+                  {program.stage.summary}
                 </p>
               </div>
-            </div>
-          )}
-
-          <div className="absolute inset-x-0 bottom-0 p-6 sm:p-8">
-            <div className="max-w-[28ch]">
-              <p className="text-[10px] font-semibold uppercase tracking-[0.22em] text-white/45">
-                Stage focus
-              </p>
-              <p className="mt-2 text-base leading-relaxed text-white/80">
-                {program.stage.summary}
-              </p>
             </div>
           </div>
         </div>
