@@ -126,7 +126,7 @@ function resolveImageUrl(post: PressSpotlightPost | null | undefined, fallback: 
 
 function resolveSpotlightUrl(post: PressSpotlightPost | null | undefined, fallback: string) {
   const slug = resolveString(post?.slug)
-  if (slug) return `/press/${slug}`
+  if (slug) return `/blog/${slug}`
 
   return (
     resolveString(post?.sourceUrl) ??

@@ -114,7 +114,7 @@ function PressImageBlock({ block }: { block: PressPortableTextImageBlock }) {
       <div className="relative aspect-[16/9] w-full">
         <Image
           src={block.imageUrl}
-          alt={block.alt || block.caption || 'Press image'}
+          alt={block.alt || block.caption || 'Blog image'}
           fill
           className="object-cover"
           sizes="(max-width: 1024px) 100vw, 920px"

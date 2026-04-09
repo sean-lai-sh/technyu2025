@@ -1173,15 +1173,10 @@ export default function ProgramShowcasePageClient({ program, variant = 'dev-team
                 {buildEyebrow}
               </p>
               <h2
-                className="font-[family-name:var(--font-darker-grotesque)] font-medium leading-[0.92] text-[#EDEDED]"
-                style={{ fontSize: 'clamp(40px, 6vw, 68px)', letterSpacing: '-1.2px' }}
+                className="font-[family-name:var(--font-darker-grotesque)] font-medium leading-[0.92] text-[#EDEDED] w-full whitespace-nowrap"
+                style={{ fontSize: 'clamp(40px, 7.5vw, 120px)', letterSpacing: '-1.2px' }}
               >
-                {buildTitleLines.map((line, index) => (
-                  <React.Fragment key={line}>
-                    {line}
-                    {index < buildTitleLines.length - 1 && <br />}
-                  </React.Fragment>
-                ))}
+                {buildTitleLines.join(' ')}
               </h2>
 
               <div className="mt-12 lg:h-[80svh] lg:max-h-[80svh]">
@@ -1309,15 +1304,10 @@ export default function ProgramShowcasePageClient({ program, variant = 'dev-team
               {buildEyebrow}
             </p>
             <h2
-              className="font-[family-name:var(--font-darker-grotesque)] font-medium leading-[0.92] text-[#EDEDED] mb-16"
-              style={{ fontSize: 'clamp(40px, 6vw, 68px)', letterSpacing: '-1.2px' }}
+              className="font-[family-name:var(--font-darker-grotesque)] font-medium leading-[0.92] text-[#EDEDED] mb-16 w-full whitespace-nowrap"
+              style={{ fontSize: 'clamp(40px, 7.5vw, 120px)', letterSpacing: '-1.2px' }}
             >
-              {buildTitleLines.map((line, index) => (
-                <React.Fragment key={line}>
-                  {line}
-                  {index < buildTitleLines.length - 1 && <br />}
-                </React.Fragment>
-              ))}
+              {buildTitleLines.join(' ')}
             </h2>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-12 lg:gap-20 items-start">
               <div className="flex flex-col gap-1">

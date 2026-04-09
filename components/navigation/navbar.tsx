@@ -16,7 +16,7 @@ const drawerEase = [0.76, 0, 0.24, 1] as [number, number, number, number]
 
 const primaryLinks = [
   { name: 'Team', href: '/team' },
-  { name: 'Press', href: '/press' },
+  { name: 'Blog', href: '/blog' },
 ]
 
 const programLinks = programs.map((program) => ({

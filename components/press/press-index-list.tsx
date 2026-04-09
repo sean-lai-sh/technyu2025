@@ -38,7 +38,7 @@ export default function PressIndexList({ posts }: { posts: PressPostPreview[] })
             posts.map((post) => (
               <Link
                 key={post._id}
-                href={`/press/${post.slug}`}
+                href={`/blog/${post.slug}`}
                 className="group relative grid gap-5 overflow-hidden px-5 py-5 transition-[background-color,border-color,box-shadow,transform] duration-300 hover:bg-[linear-gradient(90deg,rgba(77,255,148,0.06)_0%,rgba(77,255,148,0.015)_30%,rgba(255,255,255,0.02)_100%)] hover:shadow-[inset_0_0_0_1px_rgba(77,255,148,0.18),0_0_0_1px_rgba(77,255,148,0.08)] md:grid-cols-[168px_112px_minmax(0,1fr)] md:items-center md:px-6 md:py-6 lg:grid-cols-[172px_128px_minmax(0,1fr)] lg:gap-6"
               >
                 <span className="pointer-events-none absolute inset-y-0 left-0 w-px bg-[linear-gradient(180deg,rgba(77,255,148,0)_0%,rgba(77,255,148,0.86)_20%,rgba(77,255,148,0.62)_78%,rgba(77,255,148,0)_100%)] opacity-45 transition-opacity duration-300 group-hover:opacity-100" />
@@ -89,7 +89,7 @@ export default function PressIndexList({ posts }: { posts: PressPostPreview[] })
             ))
           ) : (
             <div className="px-5 py-10 text-sm leading-6 text-white/52 md:px-6">
-              No press posts have been published yet.
+              No blog posts have been published yet.
             </div>
           )}
         </div>

@@ -25,8 +25,8 @@ export const about = [
         href: "/team"
     },
     {
-        name: "Press",
-        href: "/press"
+        name: "Blog",
+        href: "/blog"
     },
     {
         name: "Mission",
