@@ -98,13 +98,14 @@ const outcomeCompanies = [
     alt: 'Box',
     width: 40,
     height: 22,
+    offsetY: -4,
   },
   {
     src: '/company-logos/carta.svg',
     alt: 'Carta',
     width: 99,
     height: 43,
-    maxVisualWidth: 168,
+    maxVisualWidth: 132,
   },
   {
     src: '/company-logos/check.svg',
@@ -133,9 +134,9 @@ const outcomeCompanies = [
   {
     src: '/company-logos/tandem-health.svg',
     alt: 'Tandem Health',
-    width: 948,
-    height: 191,
-    maxVisualWidth: 256,
+    width: 95,
+    height: 20,
+    maxVisualWidth: 168,
   },
   {
     src: '/company-logos/nozomio.svg',

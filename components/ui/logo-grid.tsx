@@ -29,7 +29,7 @@ function getContainedDimensions(
   maxVisualWidth: number,
   maxVisualHeight: number,
 ) {
-  const scale = Math.min(maxVisualWidth / width, maxVisualHeight / height, 1)
+  const scale = Math.min(maxVisualWidth / width, maxVisualHeight / height)
 
   return {
     width: Math.max(1, Math.round(width * scale)),
