@@ -109,8 +109,11 @@ const outcomeCompanies = [
   {
     src: '/company-logos/check.svg',
     alt: 'Check',
-    width: 71,
-    height: 17,
+    width: 142,
+    height: 34,
+    marker: '*',
+    markerOffsetX: 70,
+    markerOffsetY: -18,
   },
   {
     src: '/company-logos/apollo-global.svg',
@@ -123,6 +126,9 @@ const outcomeCompanies = [
     alt: 'The Browser Company',
     width: 1023,
     height: 515,
+    marker: '*',
+    markerOffsetX: 42,
+    markerOffsetY: -26,
   },
   {
     src: '/company-logos/tandem-health.svg',
@@ -159,7 +165,11 @@ const History = () => {
         <h2 className="text-center font-[family-name:var(--font-satoshi)] text-[0.82rem] font-medium uppercase tracking-[0.3em] text-white/72 sm:text-[0.92rem]">
           Where We&apos;ve Gone
         </h2>
-        <LogoGrid logos={outcomeCompanies} className="mt-8 max-w-[1440px] md:mt-10" />
+        <LogoGrid
+          logos={outcomeCompanies}
+          className="mt-8 max-w-[1440px] md:mt-10"
+          footnote="* Founded by Tech@NYU E-Board alumni"
+        />
       </div>
     </section>
   )
