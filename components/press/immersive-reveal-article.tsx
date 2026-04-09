@@ -48,10 +48,10 @@ export default function ImmersiveRevealArticle({ post }: { post: PressPost }) {
           <motion.div style={overlayStyle} className="absolute inset-0 bg-black" />
           <div className="pointer-events-none absolute inset-x-0 bottom-0 h-[44svh] bg-[linear-gradient(180deg,rgba(0,0,0,0)_0%,rgba(0,0,0,0.46)_34%,#050505_100%)]" />
 
-          <div className="relative flex h-full items-end px-5 pb-[26svh] md:px-10 lg:px-[4vw] lg:pb-[28svh]">
+          <div className="relative flex h-full items-end px-5 pb-[24svh] md:px-10 lg:px-[6vw] lg:pb-[25svh] xl:px-[7vw]">
             <motion.div style={heroStyle} className="w-full origin-bottom-left">
-              <div className="max-w-[88rem]">
-                <h1 className="max-w-[12ch] pt-6 font-[family-name:var(--font-darker-grotesque)] text-[3.8rem] font-bold leading-[0.82] tracking-[-0.055em] text-white sm:text-[5.4rem] lg:text-[7.3rem] xl:text-[8.4rem]">
+              <div className="max-w-[74rem]">
+                <h1 className="max-w-[10.5ch] pt-6 font-[family-name:var(--font-darker-grotesque)] text-[3.8rem] font-bold leading-[0.84] tracking-[-0.05em] text-white sm:text-[5.1rem] lg:text-[6.2rem] xl:text-[7rem]">
                   {post.title}
                 </h1>
               </div>
@@ -59,11 +59,11 @@ export default function ImmersiveRevealArticle({ post }: { post: PressPost }) {
           </div>
         </div>
 
-        <div className="relative z-20 -mt-[28svh] px-5 pb-[18svh] md:px-10 lg:px-[4vw] lg:pb-[24svh]">
+        <div className="relative z-20 -mt-[24svh] px-5 pb-[18svh] md:px-10 lg:px-[6vw] lg:pb-[22svh] xl:px-[7vw]">
           <motion.div style={slabStyle} className="will-change-transform">
             <PressArticleSlab
               post={post}
-              className="bg-[linear-gradient(180deg,#0d0d12_0%,#07070a_100%)] shadow-[0_30px_90px_rgba(0,0,0,0.72),0_0_0_1px_rgba(255,255,255,0.04),0_0_140px_rgba(111,76,255,0.16)]"
+              className="bg-[linear-gradient(180deg,#0d0d12_0%,#07070a_100%)] shadow-[0_24px_72px_rgba(0,0,0,0.66),0_0_0_1px_rgba(255,255,255,0.04),0_0_110px_rgba(111,76,255,0.14)]"
             />
           </motion.div>
         </div>

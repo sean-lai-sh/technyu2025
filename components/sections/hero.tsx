@@ -110,7 +110,7 @@ const Hero = () => {
                 <h1
                   ref={headlineRef}
                   className="text-[12vw] sm:text-[10vw] md:text-[8vw] lg:text-[5vw] font-bold leading-[1.1] tracking-tight opacity-0"                >
-                  Find your path,<br />then build it
+                  Build Fast,<br />Learn Faster
                 </h1>
               </div>
 
@@ -120,9 +120,8 @@ const Hero = () => {
                   ref={supportingTextRef}
                 className="text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-2xl font-light tracking-tight leading-[1.2] opacity-0 w-full"
                 >
-                  Tech@NYU is where students find their role, sharpen it, and turn it into real work.{' '}
-                  <br className='hidden lg:block' />
-                  Explore the programs, see where you fit, and take the next step with us.
+                  The Space for Creatives, Makers, and Hackers to Build at NYU.{' '} <br className='hidden lg:block' />
+                  No matter where you start, we will help you build your dreams one line at a time.
                 </div>
               </div>
             </div>

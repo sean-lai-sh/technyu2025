@@ -40,16 +40,16 @@ export function PressArticleSlab({
   return (
     <div
       className={cn(
-        'relative mx-auto max-w-[1500px] overflow-hidden border border-white/10 bg-[linear-gradient(180deg,rgba(13,13,18,0.96)_0%,rgba(7,7,10,0.985)_100%)] shadow-[0_30px_90px_rgba(0,0,0,0.6),0_0_0_1px_rgba(255,255,255,0.04),0_0_140px_rgba(111,76,255,0.16)]',
+        'relative mx-auto max-w-[1360px] overflow-hidden border border-white/10 bg-[linear-gradient(180deg,rgba(13,13,18,0.96)_0%,rgba(7,7,10,0.985)_100%)] shadow-[0_22px_64px_rgba(0,0,0,0.54),0_0_0_1px_rgba(255,255,255,0.04),0_0_100px_rgba(111,76,255,0.14)]',
         className,
       )}
     >
       <div className="pointer-events-none absolute inset-x-[8%] top-0 h-px bg-[linear-gradient(90deg,rgba(255,255,255,0)_0%,rgba(170,138,255,0.85)_50%,rgba(255,255,255,0)_100%)]" />
-      <div className="pointer-events-none absolute -top-24 right-[-10%] h-56 w-56 rounded-full bg-[#7b5cff]/18 blur-[110px]" />
-      <div className="pointer-events-none absolute bottom-[-18%] left-[-5%] h-72 w-72 rounded-full bg-[#5b3dff]/10 blur-[130px]" />
+      <div className="pointer-events-none absolute -top-20 right-[-8%] h-48 w-48 rounded-full bg-[#7b5cff]/16 blur-[96px]" />
+      <div className="pointer-events-none absolute bottom-[-16%] left-[-3%] h-64 w-64 rounded-full bg-[#5b3dff]/9 blur-[118px]" />
 
-      <div className="relative grid gap-10 px-6 py-7 md:px-10 md:py-10 lg:grid-cols-[220px_minmax(0,1fr)] lg:gap-12 lg:px-12 lg:py-12">
-        <aside className="flex flex-col gap-8 border-b border-white/8 pb-8 lg:border-b-0 lg:border-r lg:border-white/8 lg:pb-0 lg:pr-10">
+      <div className="relative grid gap-10 px-6 py-7 md:px-10 md:py-10 lg:grid-cols-[200px_minmax(0,1fr)] lg:gap-10 lg:px-12 lg:py-11 xl:px-14 xl:py-12">
+        <aside className="flex flex-col gap-8 border-b border-white/8 pb-8 lg:border-b-0 lg:border-r lg:border-white/8 lg:pb-0 lg:pr-9 xl:pr-10">
           <div className="space-y-3">
             <span className="text-[0.72rem] font-semibold uppercase tracking-[0.34em] text-white/48">
               Article
@@ -94,17 +94,17 @@ export function PressArticleSlab({
           ) : null}
         </aside>
 
-        <div className="space-y-10 lg:space-y-12">
-          <div className="space-y-6">
+        <div className="space-y-10 lg:space-y-11">
+          <div className="space-y-5 lg:space-y-6">
             <PressArticleMeta post={post} />
-            <p className="max-w-[19ch] text-[2rem] leading-[1.04] tracking-[-0.045em] text-white/94 sm:text-[2.6rem] lg:text-[3.5rem]">
+            <p className="max-w-[18ch] text-[1.95rem] leading-[1.05] tracking-[-0.04em] text-white/92 sm:text-[2.45rem] lg:text-[3rem] xl:text-[3.2rem]">
               {post.excerpt}
             </p>
           </div>
 
           <div className="h-px w-full bg-[linear-gradient(90deg,rgba(255,255,255,0.16)_0%,rgba(255,255,255,0.04)_45%,rgba(255,255,255,0)_100%)]" />
 
-          <div className="max-w-[72ch] space-y-8">
+          <div className="max-w-[68ch] space-y-8">
             <PressPortableTextRenderer value={post.body} />
           </div>
 

@@ -40,7 +40,7 @@ function getContainedDimensions(
 export default function LogoGrid({ logos, className = '', footnote }: LogoGridProps) {
   return (
     <div className={className}>
-      <div className="mx-auto grid grid-cols-2 justify-items-center gap-x-8 gap-y-4 sm:grid-cols-3 lg:grid-cols-4 lg:gap-x-12">
+      <div className="mx-auto grid grid-cols-2 justify-items-center gap-x-8 gap-y-4 sm:grid-cols-3 lg:grid-cols-3 lg:gap-x-10 lg:gap-y-6 xl:grid-cols-4 xl:gap-x-12">
         {logos.map((logo) => {
           const baseWidth = logo.width || 120
           const baseHeight = logo.height || 60
@@ -58,14 +58,14 @@ export default function LogoGrid({ logos, className = '', footnote }: LogoGridPr
           )
 
           return (
-            <div key={`${logo.src}-${logo.alt}`} className="relative flex h-[92px] w-full items-center justify-center">
-              <div className="flex h-12 w-full items-center justify-center">
+            <div key={`${logo.src}-${logo.alt}`} className="relative flex h-[92px] w-full items-center justify-center lg:h-[108px] xl:h-[92px]">
+              <div className="flex h-12 w-full items-center justify-center lg:h-14 xl:h-12">
                 <Image
                   src={logo.src}
                   alt={logo.alt}
                   width={fittedDimensions.width}
                   height={fittedDimensions.height}
-                  className="block h-auto w-auto object-contain"
+                  className="block h-auto max-w-full object-contain"
                   style={{
                     maxWidth: `${maxVisualWidth}px`,
                     maxHeight: `${maxVisualHeight}px`,
