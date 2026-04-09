@@ -5,6 +5,10 @@ type LogoGridItem = {
   alt: string
   width?: number
   height?: number
+  maxVisualWidth?: number
+  maxVisualHeight?: number
+  offsetX?: number
+  offsetY?: number
 }
 
 interface LogoGridProps {
@@ -12,11 +16,16 @@ interface LogoGridProps {
   className?: string
 }
 
-const MAX_VISUAL_WIDTH = 136
-const MAX_VISUAL_HEIGHT = 48
+const DEFAULT_MAX_VISUAL_WIDTH = 136
+const DEFAULT_MAX_VISUAL_HEIGHT = 48
 
-function getContainedDimensions(width: number, height: number) {
-  const scale = Math.min(MAX_VISUAL_WIDTH / width, MAX_VISUAL_HEIGHT / height, 1)
+function getContainedDimensions(
+  width: number,
+  height: number,
+  maxVisualWidth: number,
+  maxVisualHeight: number,
+) {
+  const scale = Math.min(maxVisualWidth / width, maxVisualHeight / height, 1)
 
   return {
     width: Math.max(1, Math.round(width * scale)),
@@ -32,7 +41,16 @@ export default function LogoGrid({ logos, className = '' }: LogoGridProps) {
       {logos.map((logo) => {
         const baseWidth = logo.width || 120
         const baseHeight = logo.height || 60
-        const fittedDimensions = getContainedDimensions(baseWidth, baseHeight)
+        const maxVisualWidth = logo.maxVisualWidth || DEFAULT_MAX_VISUAL_WIDTH
+        const maxVisualHeight = logo.maxVisualHeight || DEFAULT_MAX_VISUAL_HEIGHT
+        const offsetX = logo.offsetX || 0
+        const offsetY = logo.offsetY || 0
+        const fittedDimensions = getContainedDimensions(
+          baseWidth,
+          baseHeight,
+          maxVisualWidth,
+          maxVisualHeight,
+        )
 
         return (
           <div key={`${logo.src}-${logo.alt}`} className="flex h-[92px] w-full items-center justify-center">
@@ -42,7 +60,12 @@ export default function LogoGrid({ logos, className = '' }: LogoGridProps) {
                 alt={logo.alt}
                 width={fittedDimensions.width}
                 height={fittedDimensions.height}
-                className="h-auto w-auto max-h-12 max-w-[136px] object-contain"
+                className="block h-auto w-auto object-contain"
+                style={{
+                  maxWidth: `${maxVisualWidth}px`,
+                  maxHeight: `${maxVisualHeight}px`,
+                  transform: `translate(${offsetX}px, ${offsetY}px)`,
+                }}
                 unoptimized
               />
             </div>
