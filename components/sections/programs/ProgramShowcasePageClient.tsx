@@ -942,6 +942,89 @@ function portableTextToPlainText(blocks?: PortableTextBlock[]): string {
     .trim()
 }
 
+const FAILED_DECRYPT_CHARS = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789<>?#$%/=+*'.split('')
+
+function seededRandom(seed: number) {
+  let state = seed >>> 0
+  return () => {
+    state = (1664525 * state + 1013904223) >>> 0
+    return state / 4294967296
+  }
+}
+
+function buildFailedDecryptText(label: string, frame: number) {
+  const cycle = frame % 18
+
+  if (cycle >= 14) return label
+
+  const random = seededRandom((cycle + 1) * 92821 + label.length * 73)
+  const sweepPosition = cycle * 0.78 - 2
+  const baseVolatility = cycle < 5 ? 0.86 : cycle < 10 ? 0.58 : 0.28
+
+  return label
+    .split('')
+    .map((char, index) => {
+      if (char === ' ' || char === '[' || char === ']') return char
+
+      const distanceFromSweep = Math.abs(index - sweepPosition)
+      const sweepBoost = distanceFromSweep < 1.2 ? 0.72 : distanceFromSweep < 2.8 ? 0.24 : 0
+      const shouldScramble = random() < Math.min(0.94, baseVolatility + sweepBoost)
+
+      if (!shouldScramble) return char
+
+      return FAILED_DECRYPT_CHARS[Math.floor(random() * FAILED_DECRYPT_CHARS.length)] ?? char
+    })
+    .join('')
+}
+
+function getFailedDecryptStatus(frame: number) {
+  const cycle = frame % 18
+
+  if (cycle < 5) return 'probing cipher...'
+  if (cycle < 10) return 'breaking encryption...'
+  if (cycle < 14) return 'key mismatch detected'
+  return 'redaction maintained'
+}
+
+function RedactedDecryptLabel({ label, engaged }: { label: string; engaged: boolean }) {
+  const [frame, setFrame] = useState(0)
+
+  useEffect(() => {
+    if (!engaged) {
+      setFrame(0)
+      return
+    }
+
+    const interval = window.setInterval(() => {
+      setFrame((current) => (current + 1) % 18)
+    }, 76)
+
+    return () => window.clearInterval(interval)
+  }, [engaged])
+
+  const displayLabel = engaged ? buildFailedDecryptText(label, frame) : label
+  const statusText = engaged ? getFailedDecryptStatus(frame) : 'identity intentionally withheld'
+
+  return (
+    <>
+      <span
+        className="block"
+        style={engaged ? { textShadow: '0 0 18px rgba(179,0,255,0.16), 0 0 8px rgba(77,255,148,0.14)' } : undefined}
+      >
+        {displayLabel}
+      </span>
+      <span
+        aria-hidden="true"
+        className={`mt-2 block h-[0.95rem] overflow-hidden font-mono text-[10px] font-semibold uppercase tracking-[0.24em] transition-colors duration-300 ${
+          engaged ? 'text-[#92f7b5]' : 'text-[#EDEDED]/34'
+        }`}
+      >
+        {statusText}
+      </span>
+    </>
+  )
+}
+
 // ── Main Component ─────────────────────────────────────────────────────────
 
 export default function ProgramShowcasePageClient({ program, variant = 'dev-team' }: ProgramShowcasePageProps) {
@@ -974,6 +1057,7 @@ export default function ProgramShowcasePageClient({ program, variant = 'dev-team
   } = VARIANT_CONTENT[variant]
 
   const [activeBuildTab, setActiveBuildTab] = useState(0)
+  const [hoveredBuildTab, setHoveredBuildTab] = useState<number | null>(null)
 
   const rolesSection = program?.sections?.find(
     (s) => s._type === 'rolesSection'
@@ -1011,6 +1095,7 @@ export default function ProgramShowcasePageClient({ program, variant = 'dev-team
 
   useEffect(() => {
     setActiveBuildTab(0)
+    setHoveredBuildTab(null)
   }, [variant])
 
   const isStartupPortfolio = variant === 'dev-team'
@@ -1078,88 +1163,119 @@ export default function ProgramShowcasePageClient({ program, variant = 'dev-team
                 ))}
               </h2>
 
-              <div className="mt-12 grid grid-cols-1 items-start gap-10 lg:h-[80svh] lg:max-h-[80svh] lg:grid-cols-[minmax(310px,380px)_minmax(0,1fr)] lg:items-stretch lg:gap-12">
-                <div className="flex flex-col gap-3 lg:h-full lg:justify-center lg:overflow-hidden">
-                  {variantBuildTabs.map((tab, i) => (
-                    <div
-                      key={tab.id}
-                      className={`overflow-hidden border transition-all duration-300 ${
-                        activeBuildTab === i
-                          ? 'border-[#4DFF94]/50 bg-[#0b120d]'
-                          : 'border-[#EDEDED]/10 bg-black/20'
-                      }`}
-                      style={activeBuildTab === i ? { boxShadow: '0 0 20px rgba(77,255,148,0.06)' } : undefined}
-                    >
-                      <button
-                        onClick={() => setActiveBuildTab(i)}
-                        className={`block w-full px-5 py-4 text-left transition-all duration-300 ${
-                          activeBuildTab === i
-                            ? 'text-[#EDEDED]'
-                            : 'text-[#EDEDED]/56 hover:text-[#EDEDED]/82'
-                        }`}
-                      >
-                        <div className="mb-2 flex items-center justify-between gap-3">
-                          <span className="font-[family-name:var(--font-inter)] text-[10px] uppercase tracking-[0.18em] text-[#EDEDED]/35">
-                            {tab.serial ? `Startup ${tab.serial}` : 'Startup'}
-                          </span>
-                          {tab.badge && (
-                            <span
-                              className={`rounded-none border px-2.5 py-1 font-[family-name:var(--font-inter)] text-[10px] font-semibold uppercase tracking-[0.16em] ${
-                                buildBadgeToneClasses[tab.badgeTone ?? 'neutral']
+              <div className="mt-12 lg:h-[80svh] lg:max-h-[80svh]">
+                <div className="relative grid h-full grid-cols-1 overflow-hidden border border-[#EDEDED]/14 bg-[linear-gradient(180deg,#090909_0%,#050505_100%)] lg:grid-cols-[minmax(460px,0.95fr)_minmax(0,1fr)] xl:grid-cols-[minmax(520px,1.02fr)_minmax(0,0.98fr)]">
+                  <div
+                    className="pointer-events-none absolute inset-0 opacity-[0.12]"
+                    style={{
+                      backgroundImage:
+                        'linear-gradient(rgba(237,237,237,0.08) 1px, transparent 1px), linear-gradient(90deg, rgba(237,237,237,0.08) 1px, transparent 1px)',
+                      backgroundSize: '24px 24px',
+                    }}
+                  />
+
+                  <div className="relative border-b border-[#EDEDED]/10 lg:border-b-0 lg:border-r lg:border-r-[#EDEDED]/10">
+                    <div className="flex h-full flex-col overflow-hidden">
+                      {variantBuildTabs.map((tab, i) => {
+                        const isRedactedTab = tab.badgeTone === 'redacted' || tab.id.startsWith('redacted-')
+                        const isDecryptHovering = isRedactedTab && hoveredBuildTab === i
+
+                        return (
+                          <div
+                            key={tab.id}
+                            className={`group relative overflow-hidden border-b border-[#EDEDED]/10 transition-all duration-300 last:border-b-0 ${
+                              activeBuildTab === i ? 'bg-[#0b120d]' : 'bg-transparent'
+                            }`}
+                            onMouseEnter={isRedactedTab ? () => setHoveredBuildTab(i) : undefined}
+                            onMouseLeave={isRedactedTab ? () => setHoveredBuildTab((current) => (current === i ? null : current)) : undefined}
+                            style={activeBuildTab === i ? { boxShadow: 'inset 0 0 0 1px rgba(77,255,148,0.28)' } : undefined}
+                          >
+                            {isRedactedTab && (
+                              <>
+                                <div
+                                  className="pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-300 group-hover:opacity-100 group-focus-within:opacity-100"
+                                  style={{
+                                    background:
+                                      'linear-gradient(115deg, rgba(179,0,255,0.09) 0%, rgba(8,8,8,0) 48%, rgba(77,255,148,0.06) 100%)',
+                                  }}
+                                />
+                                <div
+                                  className="pointer-events-none absolute inset-y-0 left-[-28%] w-[28%] opacity-0 transition-[transform,opacity] duration-700 ease-out group-hover:translate-x-[460%] group-hover:opacity-100 group-focus-within:translate-x-[460%] group-focus-within:opacity-100"
+                                  style={{
+                                    background: 'linear-gradient(90deg, transparent 0%, rgba(77,255,148,0.22) 50%, transparent 100%)',
+                                    filter: 'blur(10px)',
+                                  }}
+                                />
+                              </>
+                            )}
+                            <button
+                              onClick={() => setActiveBuildTab(i)}
+                              onFocus={isRedactedTab ? () => setHoveredBuildTab(i) : undefined}
+                              onBlur={isRedactedTab ? () => setHoveredBuildTab((current) => (current === i ? null : current)) : undefined}
+                              className={`relative z-10 block w-full px-5 py-4 text-left transition-all duration-300 ${
+                                activeBuildTab === i
+                                  ? 'text-[#EDEDED]'
+                                  : 'text-[#EDEDED]/56 hover:text-[#EDEDED]/82'
                               }`}
                             >
-                              {tab.badge}
-                            </span>
-                          )}
-                        </div>
-                        <h3
-                          className="font-[family-name:var(--font-darker-grotesque)] text-[clamp(28px,3vw,38px)] leading-[0.9]"
-                          style={{ letterSpacing: '-0.7px' }}
-                        >
-                          {tab.title}
-                        </h3>
-                      </button>
+                              <div className="mb-2 flex items-center justify-between gap-3">
+                                <span className="font-[family-name:var(--font-inter)] text-[10px] uppercase tracking-[0.18em] text-[#EDEDED]/35">
+                                  {tab.serial ? `Startup ${tab.serial}` : 'Startup'}
+                                </span>
+                                {tab.badge && (
+                                  <span
+                                    className={`rounded-none border px-2.5 py-1 font-[family-name:var(--font-inter)] text-[10px] font-semibold uppercase tracking-[0.16em] ${
+                                      buildBadgeToneClasses[tab.badgeTone ?? 'neutral']
+                                    }`}
+                                  >
+                                    {tab.badge}
+                                  </span>
+                                )}
+                              </div>
+                              <h3
+                                aria-label={isRedactedTab ? tab.title : undefined}
+                                className="font-[family-name:var(--font-darker-grotesque)] text-[clamp(28px,3vw,38px)] leading-[0.9]"
+                                style={{ letterSpacing: '-0.7px' }}
+                              >
+                                {isRedactedTab ? (
+                                  <RedactedDecryptLabel label={tab.title} engaged={isDecryptHovering} />
+                                ) : (
+                                  tab.title
+                                )}
+                              </h3>
+                            </button>
 
-                      <div
-                        className={`grid transition-all duration-300 ${
-                          activeBuildTab === i ? 'grid-rows-[1fr] opacity-100' : 'grid-rows-[0fr] opacity-0'
-                        }`}
-                      >
-                        <div className="overflow-hidden">
-                          <div className="max-h-[8.75rem] overflow-hidden border-t border-[#EDEDED]/10 px-5 pb-4 pt-4">
-                            <p className="font-[family-name:var(--font-inter)] text-[13px] leading-relaxed text-[#EDEDED]/72">
-                              {tab.companySummary ?? tab.description}
-                            </p>
-                            {tab.cohortWork && (
-                              <p className="mt-3 font-[family-name:var(--font-inter)] text-[13px] leading-relaxed text-[#EDEDED]/48">
-                                {tab.cohortWork}
-                              </p>
-                            )}
+                            <div
+                              className={`grid transition-all duration-300 ${
+                                activeBuildTab === i ? 'grid-rows-[1fr] opacity-100' : 'grid-rows-[0fr] opacity-0'
+                              }`}
+                            >
+                              <div className="overflow-hidden">
+                                <div className="max-h-[8.25rem] overflow-hidden border-t border-[#EDEDED]/10 px-5 pb-4 pt-4">
+                                  <p className="font-[family-name:var(--font-inter)] text-[13px] leading-relaxed text-[#EDEDED]/72">
+                                    {tab.companySummary ?? tab.description}
+                                  </p>
+                                  {tab.cohortWork && (
+                                    <p className="mt-3 font-[family-name:var(--font-inter)] text-[13px] leading-relaxed text-[#EDEDED]/48">
+                                      {tab.cohortWork}
+                                    </p>
+                                  )}
+                                </div>
+                              </div>
+                            </div>
                           </div>
-                        </div>
-                      </div>
+                        )
+                      })}
                     </div>
-                  ))}
-                </div>
+                  </div>
 
-                <div className="flex items-stretch justify-center lg:h-full lg:justify-end">
-                  <div className="relative w-full max-w-[780px] lg:h-full">
+                  <div className="relative flex min-h-[360px] items-center justify-center p-3 md:p-4 lg:min-h-0 lg:p-3">
                     <div
-                      className="absolute inset-0 blur-3xl"
+                      className="pointer-events-none absolute inset-0 blur-3xl"
                       style={{ background: 'radial-gradient(circle at center, rgba(77,255,148,0.06) 0%, transparent 66%)' }}
                     />
-                    <div className="relative h-full overflow-hidden border border-[#EDEDED]/14 bg-[linear-gradient(180deg,#090909_0%,#050505_100%)] px-4 py-4 md:px-6 md:py-6">
-                      <div
-                        className="pointer-events-none absolute inset-0 opacity-[0.12]"
-                        style={{
-                          backgroundImage:
-                            'linear-gradient(rgba(237,237,237,0.08) 1px, transparent 1px), linear-gradient(90deg, rgba(237,237,237,0.08) 1px, transparent 1px)',
-                          backgroundSize: '24px 24px',
-                        }}
-                      />
-                      <div className="relative h-full min-h-0">
-                        <StartupPortfolioGraphic startupId={activeBuildTabData.id} />
-                      </div>
+                    <div className="relative h-full w-full min-h-[320px] lg:min-h-0">
+                      <StartupPortfolioGraphic startupId={activeBuildTabData.id} />
                     </div>
                   </div>
                 </div>

@@ -28,6 +28,27 @@ const TONE_STYLES = {
   },
 } as const
 
+function normalizeAscii(source: string) {
+  const rawLines = source.split('\n')
+  const nonEmptyLines = rawLines.filter((line) => /\S/.test(line))
+
+  if (nonEmptyLines.length === 0) return source.trim()
+
+  let minStart = Number.POSITIVE_INFINITY
+  let maxEnd = 0
+
+  nonEmptyLines.forEach((line) => {
+    const start = line.search(/\S/)
+    const end = line.length - 1 - [...line].reverse().findIndex((char) => /\S/.test(char))
+    minStart = Math.min(minStart, start)
+    maxEnd = Math.max(maxEnd, end)
+  })
+
+  return nonEmptyLines
+    .map((line) => line.slice(minStart, maxEnd + 1))
+    .join('\n')
+}
+
 function lcg(seed: number) {
   let state = seed >>> 0
   return () => {
@@ -77,6 +98,7 @@ export default function AsciiSignalLogo({
 }: AsciiSignalLogoProps) {
   const [frame, setFrame] = useState(0)
   const toneStyle = TONE_STYLES[tone]
+  const normalizedArt = useMemo(() => normalizeAscii(art), [art])
 
   useEffect(() => {
     const interval = window.setInterval(() => {
@@ -86,7 +108,7 @@ export default function AsciiSignalLogo({
     return () => window.clearInterval(interval)
   }, [])
 
-  const displayArt = useMemo(() => createCorruptedAscii(art, frame), [art, frame])
+  const displayArt = useMemo(() => createCorruptedAscii(normalizedArt, frame), [normalizedArt, frame])
   const staticOpacity = frame % 11 === 0 ? 0.18 : frame % 5 === 0 ? 0.1 : 0.045
   const jitterX = frame % 7 === 0 ? 1 : frame % 13 === 0 ? -1 : 0
 
@@ -116,16 +138,16 @@ export default function AsciiSignalLogo({
         }}
       />
       <div
-        className="absolute inset-[3.5%] flex items-center justify-center overflow-hidden"
+        className="absolute inset-[1.75%] flex items-center justify-center overflow-hidden"
         style={{
           transform: `translate3d(${jitterX}px, 0, 0)`,
         }}
       >
         <pre
-          className="select-none whitespace-pre font-mono font-semibold leading-[0.82] tracking-[-0.03em]"
+          className="select-none whitespace-pre font-mono font-semibold leading-[0.8] tracking-[-0.03em]"
           style={{
             color: toneStyle.text,
-            fontSize: 'clamp(3px, 0.46vw, 5.35px)',
+            fontSize: 'clamp(3.6px, 0.56vw, 6.2px)',
             textShadow: `0 0 12px ${toneStyle.glow}`,
           }}
         >
