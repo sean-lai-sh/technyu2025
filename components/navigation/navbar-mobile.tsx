@@ -15,6 +15,7 @@ type NavbarMobileProps = {
 }
 
 const sheetEase = [0.76, 0, 0.24, 1] as [number, number, number, number]
+const hueEase = [0.16, 1, 0.3, 1] as [number, number, number, number]
 
 const NavbarMobile = ({
   headerHeight,
@@ -29,7 +30,7 @@ const NavbarMobile = ({
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
-      transition={{ duration: 0.25 }}
+      transition={{ duration: 0.48 }}
       className="fixed inset-x-0 z-[95] md:hidden"
       style={{
         top: headerHeight,
@@ -37,16 +38,56 @@ const NavbarMobile = ({
       }}
     >
       <motion.div
-        initial={{ y: '-4%', opacity: 0 }}
-        animate={{ y: 0, opacity: 1 }}
-        exit={{ y: '-3%', opacity: 0 }}
-        transition={{ duration: 0.6, ease: sheetEase }}
-        className="flex h-full flex-col border-b border-white/12 bg-[#040404]"
+        initial={{
+          y: -34,
+          opacity: 0.72,
+          clipPath: 'inset(0 0 100% 0)',
+          scaleY: 0.985,
+        }}
+        animate={{
+          y: 0,
+          opacity: 1,
+          clipPath: 'inset(0 0 0% 0)',
+          scaleY: 1,
+        }}
+        exit={{
+          y: -34,
+          opacity: 0,
+          clipPath: 'inset(0 0 100% 0)',
+          scaleY: 0.985,
+        }}
+        transition={{
+          y: { duration: 0.78, ease: sheetEase },
+          opacity: { duration: 0.34, delay: 0.08 },
+          clipPath: { duration: 0.82, ease: sheetEase },
+          scaleY: { duration: 0.78, ease: sheetEase },
+        }}
+        style={{ transformOrigin: 'top center' }}
+        className="flex h-full flex-col overflow-hidden border-b border-white/12 bg-[#040404]"
       >
-        <div className="h-px w-full bg-[linear-gradient(90deg,rgba(109,94,252,0),rgba(109,94,252,0.9),rgba(126,247,165,0.6),rgba(126,247,165,0))]" />
+        <div className="relative h-[3px] overflow-hidden">
+          <motion.div
+            initial={{ scaleX: 0.015, opacity: 0 }}
+            animate={{ scaleX: 1, opacity: 1 }}
+            exit={{ scaleX: 0.08, opacity: 0 }}
+            transition={{
+              duration: 3,
+              ease: [0.19, 1, 0.22, 1],
+              delay: 0.12,
+            }}
+            style={{ transformOrigin: 'center center' }}
+            className="absolute inset-0 bg-[linear-gradient(90deg,rgba(109,94,252,0),rgba(109,94,252,0.95),rgba(126,247,165,0.72),rgba(126,247,165,0))]"
+          />
+        </div>
 
         <div className="flex-1 overflow-y-auto">
-          <nav className="flex min-h-full flex-col justify-between px-4 pb-3 pt-3">
+          <motion.nav
+            initial={{ y: -16, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            exit={{ y: -16, opacity: 0 }}
+            transition={{ duration: 0.62, ease: sheetEase, delay: 0.12 }}
+            className="flex min-h-full flex-col justify-between px-4 pb-3 pt-3"
+          >
             <div className="space-y-1">
               {primaryLinks.map((link) => (
                 <Link
@@ -82,7 +123,7 @@ const NavbarMobile = ({
                 ))}
               </div>
             </div>
-          </nav>
+          </motion.nav>
         </div>
 
         <div className="flex items-center justify-between gap-4 border-t border-white/10 px-4 py-3">
