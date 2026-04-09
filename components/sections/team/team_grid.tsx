@@ -87,7 +87,7 @@ const TeamGrid = ({ initialTeamMembers }: TeamGridProps) => {
     <div className='w-[100svw] h-fit flex flex-col items-center justify-center pb-[20svh]'>
       {/* Sticky Filter Section - synced with navbar show/hide */}
       <div
-        className='sticky z-20 w-[100svw] flex justify-center border-b-2 border-white bg-black/95 backdrop-blur-sm'
+        className='sticky z-20 w-[100svw] flex justify-center border-b-2 pt-5 border-t-2 border-t-black border-white bg-black/95 backdrop-blur-sm'
         style={{
           top: isNavbarVisible ? headerHeight : 0,
           transition: 'top 650ms cubic-bezier(0.76, 0, 0.24, 1)',
@@ -115,7 +115,7 @@ const TeamGrid = ({ initialTeamMembers }: TeamGridProps) => {
       {/* Team Grid */}
       <div 
         ref={gridRef}
-        className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10 xl:gap-10 w-[80%] sm:w-[90%] lg:w-[90%] xl:w-fit px-[2svw] sm:px-[2svw] lg:px-[4svw] pt-6 lg:pt-20'
+        className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10 xl:gap-10 w-[80%] sm:w-[90%] lg:w-[90%] xl:w-fit px-[2svw] sm:px-[2svw] lg:px-[4svw] pt-6 lg:pt-40'
       >
         {filteredTeam.length > 0 ? (
           filteredTeam.map((member: TeamMember, index: number) => (

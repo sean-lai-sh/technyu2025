@@ -45,46 +45,37 @@ const NavbarMobile = ({
       >
         <div className="h-px w-full bg-[linear-gradient(90deg,rgba(109,94,252,0),rgba(109,94,252,0.9),rgba(126,247,165,0.6),rgba(126,247,165,0))]" />
 
-        <div className="border-b border-white/10 px-4 py-4">
-          <p className="font-[family-name:var(--font-inter)] text-[0.68rem] font-semibold uppercase tracking-[0.32em] text-white/45">
-            Navigation
-          </p>
-          <p className="mt-2 font-[family-name:var(--font-darker-grotesque)] text-[1.1rem] uppercase tracking-[0.14em] text-white/72">
-            Student-led technical system
-          </p>
-        </div>
-
         <div className="flex-1 overflow-y-auto">
-          <nav className="flex min-h-full flex-col justify-between px-4 pb-5 pt-4">
-            <div className="space-y-2">
+          <nav className="flex min-h-full flex-col justify-between px-4 pb-3 pt-3">
+            <div className="space-y-1">
               {primaryLinks.map((link) => (
                 <Link
                   key={link.href}
                   href={link.href}
                   onClick={closeSheet}
-                  className="group flex items-center justify-between border-b border-white/10 py-4 text-white transition-colors duration-300 hover:text-[#7ef7a5]"
+                  className="group flex items-center justify-between border-b border-white/10 py-3 text-white transition-colors duration-300 hover:text-[#7ef7a5]"
                 >
-                  <span className="font-[family-name:var(--font-darker-grotesque)] text-[2.25rem] font-semibold uppercase leading-none tracking-[0.06em]">
+                  <span className="font-[family-name:var(--font-darker-grotesque)] text-[2rem] font-semibold uppercase leading-none tracking-[0.055em] sm:text-[2.15rem]">
                     {link.title}
                   </span>
-                  <ArrowUpRight className="h-5 w-5 transition-transform duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
+                  <ArrowUpRight className="h-[18px] w-[18px] transition-transform duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
                 </Link>
               ))}
             </div>
 
-            <div className="mt-10 border border-white/10 bg-white/[0.02]">
-              <div className="border-b border-white/10 px-4 py-3">
+            <div className="mt-6 border border-white/10 bg-white/[0.02]">
+              <div className="border-b border-white/10 px-4 py-2.5">
                 <p className="font-[family-name:var(--font-inter)] text-[0.65rem] font-semibold uppercase tracking-[0.32em] text-white/38">
                   Programs
                 </p>
               </div>
-              <div className="grid grid-cols-1 gap-px bg-white/10 md:grid-cols-2">
+              <div className="grid grid-cols-2 gap-px bg-white/10 sm:grid-cols-1">
                 {programLinks.map((link) => (
                   <Link
                     key={link.href}
                     href={link.href}
                     onClick={closeSheet}
-                    className="bg-[#040404] px-4 py-4 font-[family-name:var(--font-darker-grotesque)] text-[1.35rem] uppercase tracking-[0.08em] text-white/82 transition-colors duration-300 hover:text-[#6d5efc]"
+                    className="bg-[#040404] px-3 py-3 font-[family-name:var(--font-darker-grotesque)] text-[1.05rem] uppercase tracking-[0.065em] text-white/82 transition-colors duration-300 hover:text-[#6d5efc] sm:px-4 sm:py-3.5 sm:text-[1.2rem]"
                   >
                     {link.title}
                   </Link>
@@ -94,16 +85,16 @@ const NavbarMobile = ({
           </nav>
         </div>
 
-        <div className="flex items-center justify-between gap-4 border-t border-white/10 px-4 py-4">
+        <div className="flex items-center justify-between gap-4 border-t border-white/10 px-4 py-3">
           <Link
             href="mailto:hello@techatnyu.org"
             onClick={closeSheet}
-            className="font-[family-name:var(--font-inter)] text-[0.75rem] uppercase tracking-[0.2em] text-white/55 transition-colors duration-300 hover:text-white"
+            className="font-[family-name:var(--font-inter)] text-[0.68rem] uppercase tracking-[0.18em] text-white/55 transition-colors duration-300 hover:text-white"
           >
             hello@techatnyu.org
           </Link>
-          <span className="font-[family-name:var(--font-inter)] text-[0.68rem] uppercase tracking-[0.24em] text-white/28">
-            NYC / EST. 2013
+          <span className="font-[family-name:var(--font-inter)] text-[0.62rem] uppercase tracking-[0.2em] text-white/28">
+            NYC / EST. 2009
           </span>
         </div>
       </motion.div>
