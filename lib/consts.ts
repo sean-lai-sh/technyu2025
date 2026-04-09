@@ -17,8 +17,16 @@ export const contacts: [string, string][] = [
 
 export const about = [
     {
+        name: "Home",
+        href: "/"
+    },
+    {
         name: "Team",
         href: "/team"
+    },
+    {
+        name: "Press",
+        href: "/press"
     },
     {
         name: "Mission",

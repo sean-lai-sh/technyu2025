@@ -18,7 +18,7 @@ const Footer = () => {
           <div className="grid grid-cols-1 gap-10 lg:grid-cols-[minmax(0,1fr)_minmax(24rem,0.92fr)] lg:items-start lg:gap-0">
             <div className="relative min-h-0">
               <div className="absolute inset-x-0 top-0 h-px bg-[linear-gradient(90deg,rgba(255,255,255,0.18),rgba(255,255,255,0))] lg:hidden" />
-              <div className="relative h-12 w-40 md:h-20 md:w-60">
+              <div className="relative h-14 w-48 md:h-24 md:w-72">
                 <Image src="/logo.svg" alt="Technyu Logo" fill style={{ objectFit: 'contain' }} priority />
               </div>
             </div>
@@ -26,7 +26,7 @@ const Footer = () => {
               <div className="grid grid-cols-2 gap-x-8 gap-y-8 sm:grid-cols-3 lg:gap-x-10">
                 {linkGroups.map((group) => (
                   <div key={group.title} className="min-w-0 space-y-3">
-                    <h3 className="text-[11px] font-semibold uppercase tracking-[0.28em] text-white/54">{group.title}</h3>
+                    <h3 className="text-[12px] font-semibold uppercase tracking-[0.28em] text-white/54 sm:text-[13px]">{group.title}</h3>
                     <div className="flex flex-col gap-2.5">
                       {group.items.map((item) => (
                         <FooterAnchor key={item.name} name={item.name} href={item.href} />
@@ -38,7 +38,7 @@ const Footer = () => {
             </div>
           </div>
           <div className="relative flex min-h-[34svh] items-end lg:min-h-0">
-            <FooterSignalField className="pointer-events-none h-[44svh] w-full max-w-[44rem] opacity-[0.74] sm:h-[48svh] sm:max-w-[48rem] lg:h-[38vh] lg:max-w-[36rem]" />
+            <FooterSignalField className="pointer-events-none h-[64svh] w-full max-w-[68rem] opacity-[0.74] sm:h-[68svh] sm:max-w-[72rem] lg:h-[58vh] lg:max-w-[58rem]" />
           </div>
           <div className="pt-8 lg:ml-auto lg:w-[39%]">
             <div className="space-y-3 border-t border-white/10 pt-4 font-[family-name:var(--font-satoshi)] text-xs text-white/48 sm:text-[13px]">
@@ -61,7 +61,7 @@ const FooterAnchor: React.FC<FooterAnchorProps> = ({ name, href, ...rest }) => {
   return (
     <a
       href={href ? href : '#'}
-      className="font-[family-name:var(--font-satoshi)] text-sm text-white/72 transition-colors duration-200 hover:text-white sm:text-[15px]"
+      className="font-[family-name:var(--font-satoshi)] text-[15px] text-white/72 transition-colors duration-200 hover:text-white sm:text-[17px]"
       {...rest}
     >
       {name}

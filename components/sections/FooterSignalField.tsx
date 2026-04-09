@@ -94,8 +94,19 @@ function normalizeAscii(source: string) {
     .join('\n')
 }
 
-function buildReferenceField(source: string) {
-  return normalizeAscii(source)
+function padField(source: string, cols: number, rows: number) {
+  const lines = source.split('\n')
+  const maxLen = lines.reduce((max, l) => Math.max(max, l.length), 0)
+  const colPad = ' '.repeat(cols)
+  const blankRow = ' '.repeat(cols * 2 + maxLen)
+  const paddedLines = lines.map((line) => colPad + line.padEnd(maxLen) + colPad)
+  const topRows = Array(rows).fill(blankRow)
+  const bottomRows = Array(rows).fill(blankRow)
+  return [...topRows, ...paddedLines, ...bottomRows].join('\n')
+}
+
+function buildReferenceField(source: string, cols = 12, rows = 6) {
+  const mapped = normalizeAscii(source)
     .split('\n')
     .map((line) =>
       line
@@ -111,6 +122,7 @@ function buildReferenceField(source: string) {
         .join('')
     )
     .join('\n')
+  return cols === 0 && rows === 0 ? mapped : padField(mapped, cols, rows)
 }
 
 function createCorruptedField(source: string, frame: number, reducedMotion: boolean) {
@@ -128,13 +140,18 @@ function createCorruptedField(source: string, frame: number, reducedMotion: bool
         .map((char, charIndex) => {
           const xRatio = charIndex / width
           const decayZone = Math.max(0, (xRatio - 0.56) / 0.2)
+          const leftDecayZone = Math.max(0, (0.14 - xRatio) / 0.14)
 
           if (char === ' ') {
             if (decayZone > 0.3 && random() < 0.02 * decayZone) return '.'
+            if (leftDecayZone > 0.3 && random() < 0.015 * leftDecayZone) return '.'
             return ' '
           }
 
           if (decayZone > 0 && random() < decayZone * 0.12) {
+            return random() < 0.7 ? ' ' : '.'
+          }
+          if (leftDecayZone > 0 && random() < leftDecayZone * 0.09) {
             return random() < 0.7 ? ' ' : '.'
           }
 
@@ -163,8 +180,20 @@ function createCorruptedField(source: string, frame: number, reducedMotion: bool
 export default function FooterSignalField({ className = '' }: FooterSignalFieldProps) {
   const [frame, setFrame] = useState(0)
   const [reducedMotion, setReducedMotion] = useState(false)
+  const [isMobile, setIsMobile] = useState(false)
 
-  const baseField = useMemo(() => buildReferenceField(RAW_REFERENCE_ART), [])
+  useEffect(() => {
+    const mq = window.matchMedia('(max-width: 639px)')
+    const sync = () => setIsMobile(mq.matches)
+    sync()
+    mq.addEventListener('change', sync)
+    return () => mq.removeEventListener('change', sync)
+  }, [])
+
+  const baseField = useMemo(
+    () => buildReferenceField(RAW_REFERENCE_ART, isMobile ? 0 : 12, isMobile ? 0 : 6),
+    [isMobile],
+  )
 
   useEffect(() => {
     const mediaQuery = window.matchMedia('(prefers-reduced-motion: reduce)')
@@ -206,9 +235,9 @@ export default function FooterSignalField({ className = '' }: FooterSignalFieldP
         }}
       />
       <div className="pointer-events-none absolute inset-y-0 right-0 w-[20%] bg-[linear-gradient(90deg,rgba(2,2,2,0),rgba(2,2,2,0.16)_48%,rgba(2,2,2,0.58)_100%)]" />
-      <div className="absolute inset-0 overflow-hidden">
+      <div className="absolute inset-[10px] overflow-hidden">
         <pre
-          className="footer-signal-animate absolute bottom-0 left-0 select-none whitespace-pre font-mono font-semibold leading-[0.78] tracking-[-0.04em] text-[clamp(6px,1.18vw,10px)] sm:text-[clamp(7px,1vw,11px)] lg:text-[clamp(8px,0.72vw,11px)]"
+          className="footer-signal-animate absolute bottom-0 left-0 select-none whitespace-pre font-mono font-semibold leading-[0.78] tracking-[-0.04em] text-[clamp(9px,1.8vw,14px)] sm:text-[clamp(11px,1.5vw,16px)] lg:text-[clamp(12px,1.1vw,16px)]"
           style={{
             color: '#d8d8d8',
             textShadow: '0 0 8px rgba(77,255,148,0.07)',
@@ -217,7 +246,7 @@ export default function FooterSignalField({ className = '' }: FooterSignalFieldP
           {displayField}
         </pre>
         <pre
-          className="footer-signal-animate absolute bottom-0 left-0 select-none whitespace-pre font-mono font-semibold leading-[0.78] tracking-[-0.04em] text-[clamp(6px,1.18vw,10px)] sm:text-[clamp(7px,1vw,11px)] lg:text-[clamp(8px,0.72vw,11px)] opacity-[0.09] blur-[0.2px]"
+          className="footer-signal-animate absolute bottom-0 left-0 select-none whitespace-pre font-mono font-semibold leading-[0.78] tracking-[-0.04em] text-[clamp(9px,1.8vw,14px)] sm:text-[clamp(11px,1.5vw,16px)] lg:text-[clamp(12px,1.1vw,16px)] opacity-[0.09] blur-[0.2px]"
           style={{
             color: '#4dff94',
             transform: 'translate3d(1px, 0, 0)',
