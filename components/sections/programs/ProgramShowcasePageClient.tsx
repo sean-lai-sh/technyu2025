@@ -9,6 +9,7 @@ import ProgramAboutSection from './showcase/ProgramAboutSection'
 import ProgramPillarsSection from './showcase/ProgramPillarsSection'
 import ProgramAlumniSection from './showcase/ProgramAlumniSection'
 import ProgramTracksSection from './showcase/ProgramTracksSection'
+import AsciiSignalLogo from './showcase/AsciiSignalLogo'
 import { Testimonial, ApproachCard, BuildTab, ProgramTrack, ProgramImageAsset, ProgramPillar } from './showcase/types'
 
 type ProgramVariant = 'dev-team' | 'mentorship' | 'tech-treks'
@@ -34,6 +35,7 @@ type VariantContent = {
   pillarsTitle?: string
   pillars?: ProgramPillar[]
   testimonials: Testimonial[]
+  buildEyebrow: string
   buildTitle: string
   buildTabs: BuildTab[]
   buildImages?: ProgramImageAsset[]
@@ -46,6 +48,48 @@ type VariantContent = {
   finalBody: string
   finalClosedHint: string
 }
+
+const INTERFACE_ASCII_ART = String.raw`                                                                        %%%%%%                                                                        
+                                                                      %%%%%%%%%%                                                                      
+                                                                   %%%%%%%%%%%%%%%%                                                                   
+                                                                %%%%%%%%%%%%%%%%%%%%%%                                                                
+                                                              %%%%%%%%%%%%%%%%%%%%%%%%%%                                                              
+                                                           %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%                                                           
+                                                        %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%                                                        
+                                                     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%                                                     
+                                                   %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%                                                   
+                                                %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%                                                
+                                             %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%                                             
+                                           %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%                                           
+                                        %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%                                        
+                                       %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%                                       
+                                   %%    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%    %%                                   
+                                %%%%%%%%    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%    %%%%%%%%                                
+                             %%%%%%%%%%%%%%    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%    %%%%%%%%%%%%%%                             
+                          %%%%%%%%%%%%%%%%%%%    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%    %%%%%%%%%%%%%%%%%%%                          
+                        %%%%%%%%%%%%%%%%%%%%%%%%    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%    %%%%%%%%%%%%%%%%%%%%%%%%                        
+                     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%                     
+                  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%                  
+                %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%                
+             %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%    %%%%%%%%%%%%%%%%%%%%%%%%    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%             
+          %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%     %%%%%%%%%%%%%%%%%%     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%          
+        %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%    %%%%%%%%%%%%%%    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%        
+     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%    %%%%%%%%    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%     
+  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%    %%    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%      %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+ %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%        %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+   %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%              %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%   
+      %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%                  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%      
+         %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%                        %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%         
+            %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%                              %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%            
+              %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%                                    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%              
+                 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%                                        %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%                 
+                    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%                                              %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%                    
+                      %%%%%%%%%%%%%%%%%%%%%%%%%%%                                                    %%%%%%%%%%%%%%%%%%%%%%%%%%%                      
+                         %%%%%%%%%%%%%%%%%%%%%%                                                        %%%%%%%%%%%%%%%%%%%%%%                         
+                            %%%%%%%%%%%%%%%%                                                              %%%%%%%%%%%%%%%%                            
+                               %%%%%%%%%%                                                                    %%%%%%%%%%                               
+                                 %%%%%                                                                          %%%%%                                 `
 
 // ── Static Data ────────────────────────────────────────────────────────────
 
@@ -100,30 +144,54 @@ const approachCards = [
   },
 ]
 
-const buildTabs = [
+const buildTabs: BuildTab[] = [
   {
-    id: 'cli',
-    title: 'AI-Native\nCLI Tools',
+    id: 'the-interface',
+    serial: '01',
+    title: 'TheInterface',
+    badge: 'YC Company',
+    badgeTone: 'public',
     description:
-      'Build terminal-first developer tools that integrate with modern AI workflows. Think agentic coding assistants, spec-driven TUIs, and autonomous scaffolding engines that developers actually want to use.',
+      'One public company in the portfolio. TheInterface is the named case study on the page: a YC-backed startup that signals the caliber of what can come out of Dev Team.',
+    companySummary: 'A YC-backed startup in the portfolio focused on interface-driven product experiences.',
+    cohortWork: 'Cohort teams could work on growth surfaces, shipping UI systems, or early user-facing experiments.',
+    facts: ['Public-facing name', 'YC-backed company', 'Used as the visible anchor'],
   },
   {
-    id: 'web',
-    title: 'Full-Stack\nApplications',
+    id: 'redacted-02',
+    serial: '02',
+    title: '[REDACTED]',
+    badge: 'Redacted',
+    badgeTone: 'redacted',
     description:
-      'Go from Figma to deployment in a single cohort. Build web applications with modern frameworks, serverless backends, and real database architectures — with users from day one.',
+      'Stealth for now. This entry keeps the portfolio honest about active work without forcing teams to reveal product direction before they want to.',
+    companySummary: 'A stealth startup still in private build mode, intentionally withheld from the public site.',
+    cohortWork: 'Cohort teams could help prototype the v1 product, internal tooling, or launch-ready engineering systems.',
+    facts: ['Identity intentionally withheld', 'Still in active build mode', 'Reveal comes after launch timing is clear'],
   },
   {
-    id: 'ml',
-    title: 'Applied ML\nProducts',
+    id: 'redacted-03',
+    serial: '03',
+    title: '[REDACTED]',
+    badge: 'Redacted',
+    badgeTone: 'redacted',
     description:
-      'Turn models into products. We bridge the gap between ML research and shipped features — building inference APIs, fine-tuning pipelines, and user-facing AI experiences.',
+      'Another company held in redacted state by design. The point is to show that multiple startups are coming through the pipeline even when not every team is ready to be named publicly.',
+    companySummary: 'A second stealth company used to show the active breadth of the Dev Team portfolio.',
+    cohortWork: 'Cohort teams could own infrastructure, product polish, or early feature delivery before public reveal.',
+    facts: ['Stealth presentation layer', 'Protected while iterating', 'Still reads as real portfolio output'],
   },
   {
-    id: 'oss',
-    title: 'Open Source\nContributions',
+    id: 'redacted-04',
+    serial: '04',
+    title: '[REDACTED]',
+    badge: 'Redacted',
+    badgeTone: 'redacted',
     description:
-      'Build your public portfolio by contributing to high-impact open source projects. Get your commits merged, your name on releases, and your GitHub permanently green.',
+      'A final hidden slot rounds out the roster. It gives Dev Team a distinct startup-portfolio feel instead of framing the cohort around a single shared stack.',
+    companySummary: 'A final unreleased company entry that rounds out the startup roster without breaking confidentiality.',
+    cohortWork: 'Cohort teams could support launch preparation, technical cleanup, or fast iteration on core workflows.',
+    facts: ['Deliberately unrevealed', 'Portfolio slot stays live', 'Supports the stealth-to-public arc'],
   },
 ]
 
@@ -417,7 +485,8 @@ const VARIANT_CONTENT: Record<ProgramVariant, VariantContent> = {
     approachTitle: 'Build, Ship, Repeat',
     approachCards,
     testimonials,
-    buildTitle: "Choose Your\nStack",
+    buildEyebrow: 'Startup Portfolio',
+    buildTitle: "Introducing Your\nStartups",
     buildTabs,
     trackHeading: 'Programmatic Support',
     tracksTitle: 'The Semester\nArc',
@@ -444,6 +513,7 @@ const VARIANT_CONTENT: Record<ProgramVariant, VariantContent> = {
       { src: '/event-pics/mentorship3.jpg', alt: 'Mentorship workshop group' },
     ],
     testimonials: mentorshipTestimonials,
+    buildEyebrow: "What You'll Build",
     buildTitle: "What You'll\nBuild",
     buildTabs: mentorshipBuildTabs,
     buildImages: [
@@ -480,6 +550,7 @@ const VARIANT_CONTENT: Record<ProgramVariant, VariantContent> = {
     pillarsTitle: 'How Tech Treks Works',
     pillars: techTreksPillars,
     testimonials: techTreksTestimonials,
+    buildEyebrow: "What You'll Build",
     buildTitle: "What You'll\nExperience",
     buildTabs: techTreksBuildTabs,
     buildImages: [
@@ -660,6 +731,28 @@ function NetworkGrowthWireframe() {
 }
 
 function TabWireframe({ tabId }: { tabId: string }) {
+  if (tabId === 'the-interface' || tabId.startsWith('redacted-')) return (
+    <svg viewBox="0 0 360 280" fill="none" className="w-full h-full" aria-hidden="true">
+      <rect x="24" y="24" width="312" height="232" rx="12" stroke="#EDEDED" strokeWidth="1.1" opacity="0.45" />
+      <rect x="42" y="44" width="112" height="18" rx="9" fill={tabId === 'the-interface' ? '#4DFF94' : '#B300FF'} fillOpacity={tabId === 'the-interface' ? '0.14' : '0.11'} />
+      <rect x="42" y="84" width="132" height="10" rx="5" fill="#EDEDED" fillOpacity="0.82" />
+      <rect x="42" y="104" width="186" height="6" rx="3" fill="#EDEDED" fillOpacity="0.22" />
+      <rect x="42" y="118" width="160" height="6" rx="3" fill="#EDEDED" fillOpacity="0.16" />
+      <rect x="42" y="132" width="144" height="6" rx="3" fill="#EDEDED" fillOpacity="0.16" />
+      <rect x="42" y="168" width="276" height="1" fill="#EDEDED" fillOpacity="0.12" />
+      <rect x="42" y="188" width="84" height="12" rx="6" fill="#EDEDED" fillOpacity="0.1" />
+      <rect x="138" y="188" width="84" height="12" rx="6" fill="#EDEDED" fillOpacity="0.1" />
+      <rect x="234" y="188" width="84" height="12" rx="6" fill="#EDEDED" fillOpacity="0.1" />
+      <path d="M250 78 L296 78 L296 122" stroke="#EDEDED" strokeWidth="1" opacity="0.25" strokeDasharray="4 4" />
+      <circle cx="296" cy="122" r="10" stroke={tabId === 'the-interface' ? '#4DFF94' : '#B300FF'} strokeWidth="1.5" fill="none" />
+      <circle cx="296" cy="122" r="4" fill={tabId === 'the-interface' ? '#4DFF94' : '#B300FF'} opacity="0.9">
+        <animate attributeName="opacity" values="0.35;1;0.35" dur="2s" repeatCount="indefinite" />
+      </circle>
+      <circle cx="296" cy="122" r="18" fill={tabId === 'the-interface' ? '#4DFF94' : '#B300FF'} opacity="0.06">
+        <animate attributeName="r" values="14;24;14" dur="2.6s" repeatCount="indefinite" />
+      </circle>
+    </svg>
+  )
   if (tabId === 'cli') return (
     <svg viewBox="0 0 360 280" fill="none" className="w-full h-full" aria-hidden="true">
       <rect x="20" y="20" width="320" height="240" rx="8" stroke="#EDEDED" strokeWidth="1.2" opacity="0.65" />
@@ -764,6 +857,73 @@ function TabWireframe({ tabId }: { tabId: string }) {
   )
 }
 
+function StartupPortfolioGraphic({ startupId }: { startupId: string }) {
+  if (startupId === 'the-interface') {
+    return (
+      <AsciiSignalLogo art={INTERFACE_ASCII_ART} tone="green" />
+    )
+  }
+
+  if (startupId === 'redacted-02') {
+    return (
+      <svg viewBox="0 0 520 360" fill="none" className="h-full w-full" aria-hidden="true">
+        <rect x="42" y="40" width="436" height="280" rx="16" stroke="#EDEDED" strokeWidth="1.4" opacity="0.55" />
+        <rect x="64" y="72" width="180" height="18" rx="9" fill="#EDEDED" fillOpacity="0.12" />
+        <rect x="64" y="106" width="256" height="12" rx="6" fill="#EDEDED" fillOpacity="0.08" />
+        <rect x="64" y="132" width="220" height="12" rx="6" fill="#EDEDED" fillOpacity="0.08" />
+        <rect x="64" y="176" width="392" height="104" rx="12" fill="#B300FF" fillOpacity="0.04" stroke="#B300FF" strokeWidth="1.2" opacity="0.45" />
+        <path d="M84 260 L172 176" stroke="#EDEDED" strokeWidth="16" opacity="0.06" />
+        <path d="M146 280 L272 154" stroke="#EDEDED" strokeWidth="16" opacity="0.06" />
+        <path d="M248 280 L374 154" stroke="#EDEDED" strokeWidth="16" opacity="0.06" />
+        <path d="M352 280 L436 196" stroke="#EDEDED" strokeWidth="16" opacity="0.06" />
+        <rect x="150" y="204" width="220" height="46" rx="10" fill="#080808" fillOpacity="0.8" stroke="#EDEDED" strokeWidth="1" opacity="0.5" />
+        <text x="260" y="233" textAnchor="middle" fill="#E6C7FF" fontSize="18" fontFamily="Arial, sans-serif" letterSpacing="6">
+          REDACTED
+        </text>
+      </svg>
+    )
+  }
+
+  if (startupId === 'redacted-03') {
+    return (
+      <svg viewBox="0 0 520 360" fill="none" className="h-full w-full" aria-hidden="true">
+        <g opacity="0.14" stroke="#EDEDED" strokeWidth="0.8">
+          {[90, 170, 250, 330, 410].map((x) => <line key={x} x1={x} y1="52" x2={x} y2="306" />)}
+          {[88, 146, 204, 262].map((y) => <line key={y} x1="52" y1={y} x2="468" y2={y} />)}
+        </g>
+        <circle cx="118" cy="108" r="18" stroke="#EDEDED" strokeWidth="1.2" opacity="0.7" />
+        <circle cx="224" cy="170" r="18" stroke="#B300FF" strokeWidth="1.4" opacity="0.65" />
+        <circle cx="326" cy="118" r="18" stroke="#EDEDED" strokeWidth="1.2" opacity="0.7" />
+        <circle cx="406" cy="230" r="18" stroke="#B300FF" strokeWidth="1.4" opacity="0.65" />
+        <line x1="136" y1="116" x2="206" y2="162" stroke="#EDEDED" strokeWidth="1" opacity="0.22" />
+        <line x1="242" y1="162" x2="308" y2="126" stroke="#B300FF" strokeWidth="1.1" opacity="0.32" />
+        <line x1="340" y1="130" x2="392" y2="216" stroke="#EDEDED" strokeWidth="1" opacity="0.22" />
+        <rect x="104" y="236" width="312" height="46" rx="10" fill="#080808" fillOpacity="0.86" stroke="#EDEDED" strokeWidth="1.1" opacity="0.46" />
+        <rect x="132" y="252" width="74" height="12" rx="6" fill="#EDEDED" fillOpacity="0.08" />
+        <rect x="222" y="252" width="74" height="12" rx="6" fill="#EDEDED" fillOpacity="0.08" />
+        <rect x="312" y="252" width="74" height="12" rx="6" fill="#EDEDED" fillOpacity="0.08" />
+        <text x="260" y="96" textAnchor="middle" fill="#E6C7FF" fontSize="13" fontFamily="Arial, sans-serif" letterSpacing="4.5" opacity="0.8">
+          STEALTH NETWORK
+        </text>
+      </svg>
+    )
+  }
+
+  return (
+    <svg viewBox="0 0 520 360" fill="none" className="h-full w-full" aria-hidden="true">
+      <rect x="54" y="54" width="412" height="252" rx="16" stroke="#EDEDED" strokeWidth="1.4" opacity="0.52" />
+      <rect x="86" y="92" width="348" height="24" rx="12" fill="#EDEDED" fillOpacity="0.05" stroke="#EDEDED" strokeWidth="1" opacity="0.28" />
+      <rect x="86" y="140" width="150" height="118" rx="12" fill="#B300FF" fillOpacity="0.04" stroke="#EDEDED" strokeWidth="1" opacity="0.32" />
+      <rect x="256" y="140" width="178" height="48" rx="10" fill="#EDEDED" fillOpacity="0.04" stroke="#EDEDED" strokeWidth="1" opacity="0.28" />
+      <rect x="256" y="204" width="178" height="54" rx="10" fill="#B300FF" fillOpacity="0.04" stroke="#B300FF" strokeWidth="1.1" opacity="0.38" />
+      <rect x="108" y="286" width="304" height="10" rx="5" fill="#EDEDED" fillOpacity="0.06" />
+      <text x="260" y="182" textAnchor="middle" fill="#E6C7FF" fontSize="17" fontFamily="Arial, sans-serif" letterSpacing="5">
+        UNRELEASED
+      </text>
+    </svg>
+  )
+}
+
 function toHeroTitle(value?: string): string {
   if (!value) return ''
   const words = value.trim().toUpperCase().split(/\s+/)
@@ -799,6 +959,7 @@ export default function ProgramShowcasePageClient({ program, variant = 'dev-team
     pillarsTitle,
     pillars,
     testimonials: variantTestimonials,
+    buildEyebrow,
     buildTitle,
     buildTabs: variantBuildTabs,
     buildImages,
@@ -843,12 +1004,21 @@ export default function ProgramShowcasePageClient({ program, variant = 'dev-team
     id: 'cli',
     title: '',
     description: '',
+    companySummary: '',
+    cohortWork: '',
   }
   const activeBuildImage = buildImages?.[activeBuildTab] ?? buildImages?.[0]
 
   useEffect(() => {
     setActiveBuildTab(0)
   }, [variant])
+
+  const isStartupPortfolio = variant === 'dev-team'
+  const buildBadgeToneClasses = {
+    public: 'border-[#4DFF94]/40 bg-[#4DFF94]/10 text-[#4DFF94]',
+    redacted: 'border-[#B300FF]/35 bg-[#B300FF]/10 text-[#E6C7FF]',
+    neutral: 'border-[#EDEDED]/15 bg-[#EDEDED]/5 text-[#EDEDED]/70',
+  } as const
 
   return (
     <div className="bg-[#0A0A0A] text-[#EDEDED] overflow-x-hidden">
@@ -890,82 +1060,204 @@ export default function ProgramShowcasePageClient({ program, variant = 'dev-team
 
       {/* ── SECTION 4: WHAT YOU'LL BUILD — Vertical Tabs ─────────────────── */}
       {showBuild && (
-      <section className="px-[5vw] lg:px-[8vw] py-[10svh] border-t border-[#EDEDED]/8">
-        <p className="font-[family-name:var(--font-inter)] text-[13px] font-semibold tracking-[0.15em] uppercase opacity-55 mb-4">
-          What You'll Build
-        </p>
-        <h2
-          className="font-[family-name:var(--font-darker-grotesque)] font-medium leading-[0.92] text-[#EDEDED] mb-16"
-          style={{ fontSize: 'clamp(40px, 6vw, 68px)', letterSpacing: '-1.2px' }}
-        >
-          {buildTitleLines.map((line, index) => (
-            <React.Fragment key={line}>
-              {line}
-              {index < buildTitleLines.length - 1 && <br />}
-            </React.Fragment>
-          ))}
-        </h2>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-12 lg:gap-20 items-start">
-          {/* Left: tabs */}
-          <div className="flex flex-col gap-1">
-            {variantBuildTabs.map((tab, i) => (
-              <button
-                key={tab.id}
-                onClick={() => setActiveBuildTab(i)}
-                className={`text-left p-6 border transition-all duration-300 ${
-                  activeBuildTab === i
-                    ? 'border-dashed border-[#4DFF94] text-[#4DFF94]'
-                    : 'border-transparent text-[#EDEDED]/50 hover:text-[#EDEDED]/75 hover:border-[#EDEDED]/15'
-                }`}
-                style={activeBuildTab === i ? { boxShadow: '0 0 24px rgba(77,255,148,0.07)' } : undefined}
+        isStartupPortfolio ? (
+          <section className="border-t border-[#EDEDED]/8 px-[5vw] py-[8svh] lg:px-[8vw]">
+            <div className="mx-auto flex w-full max-w-[1440px] flex-col justify-center">
+              <p className="mb-4 font-[family-name:var(--font-inter)] text-[13px] font-semibold uppercase tracking-[0.15em] opacity-55">
+                {buildEyebrow}
+              </p>
+              <h2
+                className="font-[family-name:var(--font-darker-grotesque)] font-medium leading-[0.92] text-[#EDEDED]"
+                style={{ fontSize: 'clamp(40px, 6vw, 68px)', letterSpacing: '-1.2px' }}
               >
-                <h3
-                  className="font-[family-name:var(--font-darker-grotesque)] font-medium whitespace-pre-line leading-tight"
-                  style={{ fontSize: 'clamp(24px, 2.8vw, 36px)', letterSpacing: '-0.5px' }}
-                >
-                  {tab.title}
-                </h3>
-                {activeBuildTab === i && (
-                  <p className="font-[family-name:var(--font-inter)] text-[15px] mt-3 text-[#EDEDED]/68 leading-relaxed">
-                    {tab.description}
-                  </p>
-                )}
-              </button>
-            ))}
-          </div>
-          {/* Right: topical visual */}
-          <div className="md:sticky md:top-[18svh] flex items-center justify-center">
-            <div className="relative w-full max-w-[440px] aspect-square">
-              <div
-                className="absolute inset-0 pointer-events-none"
-                style={{ background: 'radial-gradient(circle at center, rgba(77,255,148,0.05) 0%, transparent 70%)' }}
-              />
-              {activeBuildImage ? (
-                <div className="relative w-full h-full border border-[#EDEDED]/15 overflow-hidden bg-black">
-                  <Image
-                    src={activeBuildImage.src}
-                    alt={activeBuildImage.alt}
-                    fill
-                    className="object-cover opacity-86"
-                    sizes="(max-width: 768px) 100vw, 440px"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/55 via-black/15 to-black/5" />
-                  <div className="absolute left-4 right-4 bottom-4 border border-[#EDEDED]/20 bg-black/45 backdrop-blur-sm px-4 py-3">
-                    <p className="font-[family-name:var(--font-inter)] text-[11px] tracking-[0.12em] uppercase text-[#EDEDED]/60 mb-1">
-                      Current Focus
-                    </p>
-                    <p className="font-[family-name:var(--font-darker-grotesque)] text-[24px] leading-none text-[#EDEDED] whitespace-pre-line">
-                      {activeBuildTabData.title}
-                    </p>
+                {buildTitleLines.map((line, index) => (
+                  <React.Fragment key={line}>
+                    {line}
+                    {index < buildTitleLines.length - 1 && <br />}
+                  </React.Fragment>
+                ))}
+              </h2>
+
+              <div className="mt-12 grid grid-cols-1 items-start gap-10 lg:h-[80svh] lg:max-h-[80svh] lg:grid-cols-[minmax(310px,380px)_minmax(0,1fr)] lg:items-stretch lg:gap-12">
+                <div className="flex flex-col gap-3 lg:h-full lg:justify-center lg:overflow-hidden">
+                  {variantBuildTabs.map((tab, i) => (
+                    <div
+                      key={tab.id}
+                      className={`overflow-hidden border transition-all duration-300 ${
+                        activeBuildTab === i
+                          ? 'border-[#4DFF94]/50 bg-[#0b120d]'
+                          : 'border-[#EDEDED]/10 bg-black/20'
+                      }`}
+                      style={activeBuildTab === i ? { boxShadow: '0 0 20px rgba(77,255,148,0.06)' } : undefined}
+                    >
+                      <button
+                        onClick={() => setActiveBuildTab(i)}
+                        className={`block w-full px-5 py-4 text-left transition-all duration-300 ${
+                          activeBuildTab === i
+                            ? 'text-[#EDEDED]'
+                            : 'text-[#EDEDED]/56 hover:text-[#EDEDED]/82'
+                        }`}
+                      >
+                        <div className="mb-2 flex items-center justify-between gap-3">
+                          <span className="font-[family-name:var(--font-inter)] text-[10px] uppercase tracking-[0.18em] text-[#EDEDED]/35">
+                            {tab.serial ? `Startup ${tab.serial}` : 'Startup'}
+                          </span>
+                          {tab.badge && (
+                            <span
+                              className={`rounded-none border px-2.5 py-1 font-[family-name:var(--font-inter)] text-[10px] font-semibold uppercase tracking-[0.16em] ${
+                                buildBadgeToneClasses[tab.badgeTone ?? 'neutral']
+                              }`}
+                            >
+                              {tab.badge}
+                            </span>
+                          )}
+                        </div>
+                        <h3
+                          className="font-[family-name:var(--font-darker-grotesque)] text-[clamp(28px,3vw,38px)] leading-[0.9]"
+                          style={{ letterSpacing: '-0.7px' }}
+                        >
+                          {tab.title}
+                        </h3>
+                      </button>
+
+                      <div
+                        className={`grid transition-all duration-300 ${
+                          activeBuildTab === i ? 'grid-rows-[1fr] opacity-100' : 'grid-rows-[0fr] opacity-0'
+                        }`}
+                      >
+                        <div className="overflow-hidden">
+                          <div className="max-h-[8.75rem] overflow-hidden border-t border-[#EDEDED]/10 px-5 pb-4 pt-4">
+                            <p className="font-[family-name:var(--font-inter)] text-[13px] leading-relaxed text-[#EDEDED]/72">
+                              {tab.companySummary ?? tab.description}
+                            </p>
+                            {tab.cohortWork && (
+                              <p className="mt-3 font-[family-name:var(--font-inter)] text-[13px] leading-relaxed text-[#EDEDED]/48">
+                                {tab.cohortWork}
+                              </p>
+                            )}
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+
+                <div className="flex items-stretch justify-center lg:h-full lg:justify-end">
+                  <div className="relative w-full max-w-[780px] lg:h-full">
+                    <div
+                      className="absolute inset-0 blur-3xl"
+                      style={{ background: 'radial-gradient(circle at center, rgba(77,255,148,0.06) 0%, transparent 66%)' }}
+                    />
+                    <div className="relative h-full overflow-hidden border border-[#EDEDED]/14 bg-[linear-gradient(180deg,#090909_0%,#050505_100%)] px-4 py-4 md:px-6 md:py-6">
+                      <div
+                        className="pointer-events-none absolute inset-0 opacity-[0.12]"
+                        style={{
+                          backgroundImage:
+                            'linear-gradient(rgba(237,237,237,0.08) 1px, transparent 1px), linear-gradient(90deg, rgba(237,237,237,0.08) 1px, transparent 1px)',
+                          backgroundSize: '24px 24px',
+                        }}
+                      />
+                      <div className="relative h-full min-h-0">
+                        <StartupPortfolioGraphic startupId={activeBuildTabData.id} />
+                      </div>
+                    </div>
                   </div>
                 </div>
-              ) : (
-                <TabWireframe tabId={activeBuildTabData.id} />
-              )}
+              </div>
             </div>
-          </div>
-        </div>
-      </section>
+          </section>
+        ) : (
+          <section className="px-[5vw] lg:px-[8vw] py-[10svh] border-t border-[#EDEDED]/8">
+            <p className="font-[family-name:var(--font-inter)] text-[13px] font-semibold tracking-[0.15em] uppercase opacity-55 mb-4">
+              {buildEyebrow}
+            </p>
+            <h2
+              className="font-[family-name:var(--font-darker-grotesque)] font-medium leading-[0.92] text-[#EDEDED] mb-16"
+              style={{ fontSize: 'clamp(40px, 6vw, 68px)', letterSpacing: '-1.2px' }}
+            >
+              {buildTitleLines.map((line, index) => (
+                <React.Fragment key={line}>
+                  {line}
+                  {index < buildTitleLines.length - 1 && <br />}
+                </React.Fragment>
+              ))}
+            </h2>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-12 lg:gap-20 items-start">
+              <div className="flex flex-col gap-1">
+                {variantBuildTabs.map((tab, i) => (
+                  <button
+                    key={tab.id}
+                    onClick={() => setActiveBuildTab(i)}
+                    className={`text-left p-6 border transition-all duration-300 ${
+                      activeBuildTab === i
+                        ? 'border-dashed border-[#4DFF94] text-[#4DFF94]'
+                        : 'border-transparent text-[#EDEDED]/50 hover:text-[#EDEDED]/75 hover:border-[#EDEDED]/15'
+                    }`}
+                    style={activeBuildTab === i ? { boxShadow: '0 0 24px rgba(77,255,148,0.07)' } : undefined}
+                  >
+                    {(tab.serial || tab.badge) && (
+                      <div className="mb-3 flex items-center justify-between gap-3">
+                        <span className="font-[family-name:var(--font-inter)] text-[11px] tracking-[0.18em] uppercase text-[#EDEDED]/38">
+                          {tab.serial ? `Startup ${tab.serial}` : 'Feature'}
+                        </span>
+                        {tab.badge && (
+                          <span
+                            className={`rounded-full border px-2.5 py-1 font-[family-name:var(--font-inter)] text-[10px] font-semibold uppercase tracking-[0.16em] ${
+                              buildBadgeToneClasses[tab.badgeTone ?? 'neutral']
+                            }`}
+                          >
+                            {tab.badge}
+                          </span>
+                        )}
+                      </div>
+                    )}
+                    <h3
+                      className="font-[family-name:var(--font-darker-grotesque)] font-medium whitespace-pre-line leading-tight"
+                      style={{ fontSize: 'clamp(24px, 2.8vw, 36px)', letterSpacing: '-0.5px' }}
+                    >
+                      {tab.title}
+                    </h3>
+                    {activeBuildTab === i && (
+                      <p className="font-[family-name:var(--font-inter)] text-[15px] mt-3 text-[#EDEDED]/68 leading-relaxed">
+                        {tab.description}
+                      </p>
+                    )}
+                  </button>
+                ))}
+              </div>
+              <div className="md:sticky md:top-[18svh] flex items-center justify-center">
+                <div className="relative w-full max-w-[440px] aspect-square">
+                  <div
+                    className="absolute inset-0 pointer-events-none"
+                    style={{ background: 'radial-gradient(circle at center, rgba(77,255,148,0.05) 0%, transparent 70%)' }}
+                  />
+                  {activeBuildImage ? (
+                    <div className="relative w-full h-full border border-[#EDEDED]/15 overflow-hidden bg-black">
+                      <Image
+                        src={activeBuildImage.src}
+                        alt={activeBuildImage.alt}
+                        fill
+                        className="object-cover opacity-86"
+                        sizes="(max-width: 768px) 100vw, 440px"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/55 via-black/15 to-black/5" />
+                      <div className="absolute left-4 right-4 bottom-4 border border-[#EDEDED]/20 bg-black/45 backdrop-blur-sm px-4 py-3">
+                        <p className="font-[family-name:var(--font-inter)] text-[11px] tracking-[0.12em] uppercase text-[#EDEDED]/60 mb-1">
+                          Current Focus
+                        </p>
+                        <p className="font-[family-name:var(--font-darker-grotesque)] text-[24px] leading-none text-[#EDEDED] whitespace-pre-line">
+                          {activeBuildTabData.title}
+                        </p>
+                      </div>
+                    </div>
+                  ) : (
+                    <TabWireframe tabId={activeBuildTabData.id} />
+                  )}
+                </div>
+              </div>
+            </div>
+          </section>
+        )
       )}
 
       {showTracks && (

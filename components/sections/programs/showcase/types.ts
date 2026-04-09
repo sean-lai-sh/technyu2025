@@ -19,6 +19,12 @@ export type BuildTab = {
   id: string
   title: string
   description: string
+  companySummary?: string
+  cohortWork?: string
+  badge?: string
+  badgeTone?: 'public' | 'redacted' | 'neutral'
+  serial?: string
+  facts?: string[]
 }
 
 export type ProgramTrack = {
