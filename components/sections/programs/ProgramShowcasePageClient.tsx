@@ -953,7 +953,7 @@ function seededRandom(seed: number) {
 }
 
 function buildFailedDecryptText(label: string, frame: number) {
-  const cycle = frame % 18
+  const cycle = Math.min(frame, 17)
 
   if (cycle >= 14) return label
 
@@ -978,12 +978,17 @@ function buildFailedDecryptText(label: string, frame: number) {
 }
 
 function getFailedDecryptStatus(frame: number) {
-  const cycle = frame % 18
+  const cycle = Math.min(frame, 17)
 
   if (cycle < 5) return 'probing cipher...'
   if (cycle < 10) return 'breaking encryption...'
   if (cycle < 14) return 'key mismatch detected'
   return 'redaction maintained'
+}
+
+function getFailedDecryptTone(frame: number) {
+  const cycle = Math.min(frame, 17)
+  return cycle >= 14 ? 'failure' : 'active'
 }
 
 function RedactedDecryptLabel({ label, engaged }: { label: string; engaged: boolean }) {
@@ -996,7 +1001,14 @@ function RedactedDecryptLabel({ label, engaged }: { label: string; engaged: bool
     }
 
     const interval = window.setInterval(() => {
-      setFrame((current) => (current + 1) % 18)
+      setFrame((current) => {
+        if (current >= 17) {
+          window.clearInterval(interval)
+          return current
+        }
+
+        return current + 1
+      })
     }, 76)
 
     return () => window.clearInterval(interval)
@@ -1004,19 +1016,28 @@ function RedactedDecryptLabel({ label, engaged }: { label: string; engaged: bool
 
   const displayLabel = engaged ? buildFailedDecryptText(label, frame) : label
   const statusText = engaged ? getFailedDecryptStatus(frame) : 'identity intentionally withheld'
+  const tone = engaged ? getFailedDecryptTone(frame) : 'idle'
 
   return (
     <>
       <span
-        className="block"
-        style={engaged ? { textShadow: '0 0 18px rgba(179,0,255,0.16), 0 0 8px rgba(77,255,148,0.14)' } : undefined}
+        className={`block transition-colors duration-200 ${
+          tone === 'failure' ? 'text-[#FF6B6B]' : ''
+        }`}
+        style={
+          engaged
+            ? tone === 'failure'
+              ? { textShadow: '0 0 18px rgba(255,107,107,0.2), 0 0 8px rgba(179,0,255,0.12)' }
+              : { textShadow: '0 0 18px rgba(179,0,255,0.16), 0 0 8px rgba(77,255,148,0.14)' }
+            : undefined
+        }
       >
         {displayLabel}
       </span>
       <span
         aria-hidden="true"
         className={`mt-2 block h-[0.95rem] overflow-hidden font-mono text-[10px] font-semibold uppercase tracking-[0.24em] transition-colors duration-300 ${
-          engaged ? 'text-[#92f7b5]' : 'text-[#EDEDED]/34'
+          tone === 'failure' ? 'text-[#FF6B6B]' : engaged ? 'text-[#92f7b5]' : 'text-[#EDEDED]/34'
         }`}
       >
         {statusText}
