@@ -86,3 +86,24 @@ body {
   color: var(--foreground);
   font-family: var(--font-satoshi), system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
 }
+
+@keyframes footerSignalGlow {
+  0%,
+  100% {
+    opacity: 0.82;
+  }
+
+  50% {
+    opacity: 1;
+  }
+}
+
+.footer-signal-animate {
+  animation: footerSignalGlow 9s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .footer-signal-animate {
+    animation: none !important;
+  }
+}
