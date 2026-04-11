@@ -123,21 +123,21 @@ const testimonials = [
 const approachCards = [
   {
     id: 'build',
-    title: 'Build in\nPublic',
+    title: 'Build in Public',
     body: 'Ship real software to real users from week one. Every sprint ends with a deployment. No toy projects — only production code that solves actual problems.',
     glow: 'rgba(179, 0, 255, 0.4)',
     accentColor: '#B300FF',
   },
   {
     id: 'ship',
-    title: 'Ship to Real\nUsers',
+    title: 'Ship to Real Users',
     body: "Your code isn't real until someone uses it. We obsess over user metrics, retention, and feedback loops — the same frameworks used at top tech companies.",
     glow: 'rgba(77, 255, 148, 0.4)',
     accentColor: '#4DFF94',
   },
   {
     id: 'grow',
-    title: 'Grow as\nEngineers',
+    title: 'Grow as Engineers',
     body: 'Weekly code reviews, industry mentor sessions, and pair programming build engineering intuition that no course can replicate.',
     glow: 'rgba(179, 0, 255, 0.4)',
     accentColor: '#B300FF',
@@ -149,6 +149,7 @@ const buildTabs: BuildTab[] = [
     id: 'the-interface',
     serial: '01',
     title: 'TheInterface',
+    link: 'https://theinterface.com',
     badge: 'YC Company',
     badgeTone: 'public',
     description:
@@ -486,10 +487,10 @@ const VARIANT_CONTENT: Record<ProgramVariant, VariantContent> = {
     approachCards,
     testimonials,
     buildEyebrow: 'Startup Portfolio',
-    buildTitle: "Introducing Your\nStartups",
+    buildTitle: 'Introducing Your Startups',
     buildTabs,
     trackHeading: 'Programmatic Support',
-    tracksTitle: 'The Semester\nArc',
+    tracksTitle: 'The Semester Arc',
     programTracks,
     finalKicker: 'Ready to Build?',
     finalTitle: 'Ship something',
@@ -1079,6 +1080,12 @@ export default function ProgramShowcasePageClient({ program, variant = 'dev-team
 
   const [activeBuildTab, setActiveBuildTab] = useState(0)
   const [hoveredBuildTab, setHoveredBuildTab] = useState<number | null>(null)
+  const handleBuildTabKeyDown = (event: React.KeyboardEvent<HTMLDivElement>, index: number) => {
+    if (event.key === 'Enter' || event.key === ' ') {
+      event.preventDefault()
+      setActiveBuildTab(index)
+    }
+  }
 
   const rolesSection = program?.sections?.find(
     (s) => s._type === 'rolesSection'
@@ -1229,11 +1236,15 @@ export default function ProgramShowcasePageClient({ program, variant = 'dev-team
                                 />
                               </>
                             )}
-                            <button
+                            <div
+                              role="button"
+                              tabIndex={0}
+                              aria-pressed={activeBuildTab === i}
                               onClick={() => setActiveBuildTab(i)}
+                              onKeyDown={(event) => handleBuildTabKeyDown(event, i)}
                               onFocus={isRedactedTab ? () => setHoveredBuildTab(i) : undefined}
                               onBlur={isRedactedTab ? () => setHoveredBuildTab((current) => (current === i ? null : current)) : undefined}
-                              className={`relative z-10 block w-full px-5 py-4 text-left transition-all duration-300 ${
+                              className={`relative z-10 block w-full cursor-pointer px-5 py-4 text-left transition-all duration-300 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-[-4px] focus-visible:outline-[#4DFF94] ${
                                 activeBuildTab === i
                                   ? 'text-[#EDEDED]'
                                   : 'text-[#EDEDED]/56 hover:text-[#EDEDED]/82'
@@ -1253,18 +1264,45 @@ export default function ProgramShowcasePageClient({ program, variant = 'dev-team
                                   </span>
                                 )}
                               </div>
-                              <h3
-                                aria-label={isRedactedTab ? tab.title : undefined}
-                                className="font-[family-name:var(--font-darker-grotesque)] text-[clamp(28px,3vw,38px)] leading-[0.9]"
-                                style={{ letterSpacing: '-0.7px' }}
-                              >
-                                {isRedactedTab ? (
-                                  <RedactedDecryptLabel label={tab.title} engaged={isDecryptHovering} />
+                              <div className="flex flex-wrap items-center gap-2 font-[family-name:var(--font-darker-grotesque)] text-[clamp(28px,3vw,38px)] leading-[0.9]" style={{ letterSpacing: '-0.7px' }}>
+                                {tab.link && !isRedactedTab ? (
+                                  <Link
+                                    href={tab.link}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    aria-label={`Visit ${tab.title} website (opens in new tab)`}
+                                    onClick={(event) => event.stopPropagation()}
+                                    onKeyDown={(event) => event.stopPropagation()}
+                                    className="group/startup-link inline-flex items-center gap-2 text-inherit focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#4DFF94]"
+                                  >
+                                    <span className="inline-flex items-center whitespace-nowrap pb-0.5 font-inherit border-b border-dotted border-[#4DFF94]/60 bg-gradient-to-r from-[#4DFF94] to-[#4DFF94] bg-no-repeat bg-[length:0%_1px] bg-[left_bottom_-1px] transition-[background-size] duration-300 ease-out group-hover/startup-link:bg-[length:100%_1px]">
+                                      {tab.title}
+                                    </span>
+                                    <svg
+                                      xmlns="http://www.w3.org/2000/svg"
+                                      viewBox="0 0 24 24"
+                                      fill="currentColor"
+                                      aria-hidden="true"
+                                      className="h-3.5 w-3.5 text-white transition-transform duration-300 group-hover/startup-link:-translate-y-0.5 group-hover/startup-link:translate-x-0.5"
+                                    >
+                                      <path
+                                        fillRule="evenodd"
+                                        d="M8.25 3.75H19.5a.75.75 0 0 1 .75.75v11.25a.75.75 0 0 1-1.5 0V6.31L5.03 20.03a.75.75 0 1 1-1.06-1.06L17.69 5.25H8.25a.75.75 0 0 1 0-1.5Z"
+                                        clipRule="evenodd"
+                                      />
+                                    </svg>
+                                  </Link>
                                 ) : (
-                                  tab.title
+                                  <span aria-label={isRedactedTab ? tab.title : undefined}>
+                                    {isRedactedTab ? (
+                                      <RedactedDecryptLabel label={tab.title} engaged={isDecryptHovering} />
+                                    ) : (
+                                      tab.title
+                                    )}
+                                  </span>
                                 )}
-                              </h3>
-                            </button>
+                              </div>
+                            </div>
 
                             <div
                               className={`grid transition-all duration-300 ${

@@ -19,6 +19,7 @@ export type BuildTab = {
   id: string
   title: string
   description: string
+  link?: string
   companySummary?: string
   cohortWork?: string
   badge?: string
