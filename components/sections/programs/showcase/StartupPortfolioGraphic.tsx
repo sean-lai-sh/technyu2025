@@ -8,7 +8,7 @@ type StartupPortfolioGraphicProps = {
 
 export default function StartupPortfolioGraphic({ startupId, asciiArt }: StartupPortfolioGraphicProps) {
   if ((startupId === 'the-interface' || startupId === 'nozomio-labs') && asciiArt?.trim()) {
-    return <AsciiSignalLogo art={asciiArt} tone="green" />
+    return <AsciiSignalLogo art={asciiArt} tone="green" scale={startupId === 'nozomio-labs' ? 1.25 : 1} />
   }
 
   if (startupId === 'redacted-03') {

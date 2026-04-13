@@ -6,6 +6,7 @@ type AsciiSignalLogoProps = {
   art: string
   className?: string
   tone?: 'green' | 'purple' | 'neutral'
+  scale?: number
 }
 
 const NOISE_CHARS = ['#', '@', '%', '&', '*', '+', '=', '?', '~', ':', ';', '/']
@@ -95,10 +96,19 @@ export default function AsciiSignalLogo({
   art,
   className = '',
   tone = 'green',
+  scale = 1,
 }: AsciiSignalLogoProps) {
   const [frame, setFrame] = useState(0)
   const toneStyle = TONE_STYLES[tone]
   const normalizedArt = useMemo(() => normalizeAscii(art), [art])
+  const artMetrics = useMemo(() => {
+    const lines = normalizedArt.split('\n')
+    const lineCount = lines.length
+    const maxChars = lines.reduce((widest, line) => Math.max(widest, line.length), 0)
+    const fitScale = Math.min(1.5, Math.max(0.9, Math.min(150 / Math.max(maxChars, 1), 41 / Math.max(lineCount, 1))))
+
+    return { fitScale }
+  }, [normalizedArt])
 
   useEffect(() => {
     const interval = window.setInterval(() => {
@@ -147,7 +157,7 @@ export default function AsciiSignalLogo({
           className="select-none whitespace-pre font-mono font-semibold leading-[0.8] tracking-[-0.03em]"
           style={{
             color: toneStyle.text,
-            fontSize: 'clamp(3.6px, 0.56vw, 6.2px)',
+            fontSize: `clamp(${(3.6 * artMetrics.fitScale * scale).toFixed(2)}px, ${(0.56 * artMetrics.fitScale * scale).toFixed(3)}vw, ${(6.2 * artMetrics.fitScale * scale).toFixed(2)}px)`,
             textShadow: `0 0 12px ${toneStyle.glow}`,
           }}
         >
