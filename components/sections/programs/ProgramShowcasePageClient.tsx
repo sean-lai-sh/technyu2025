@@ -6,6 +6,7 @@ import Image from 'next/image'
 import { SanityProgram, RolesSection, CtaSection, PortableTextBlock } from '@/lib/types'
 import ProgramHeroSection from './showcase/ProgramHeroSection'
 import ProgramAboutSection from './showcase/ProgramAboutSection'
+import MentorshipImmersiveIntro from './showcase/MentorshipImmersiveIntro'
 import ProgramPillarsSection from './showcase/ProgramPillarsSection'
 import ProgramAlumniSection from './showcase/ProgramAlumniSection'
 import ProgramTracksSection from './showcase/ProgramTracksSection'
@@ -91,6 +92,62 @@ const INTERFACE_ASCII_ART = String.raw`                                         
                                %%%%%%%%%%                                                                    %%%%%%%%%%                               
                                  %%%%%                                                                          %%%%%                                 `
 
+const NOZOMIO_ASCII_ART = String.raw`                                             ++++++++++++-           -++++++++++++++++++++++++++++++++++=
+                                             @@@@@@@@@@@@*         #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@=
+                                             @@@@@@@@@@@@*       #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@.
+                                             @@@@@@@@@@@@*     %@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@%
+                                             @@@@@@@@@@@@@%%%@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@%
+                                             @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@*
+                                             @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@-
+                                             @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@:
+                                             @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@%
+                                             @@@@@@@@@@@@@@@@@@@@@@@@@@@@***+++++++++++++++++++**%@@@@@@@@@@@@@@@@@@@@@@%
+                                             @@@@@@@@@@@@@@@@@@@@@@@@@#                           .@@@@@@@@@@@@@@@@@@@@@@@
+                                             @@@@@@@@@@@@@@@@@@@@@@@*                               -@@@@@@@@@@@@@@@@@@@@@
+                                             @@@@@@@@@@@@@@@@@@@@@+                                   +@@@@@@@@@@@@@@@@@@@
+                                             @@@@@@@@@@@@@@@@@@@-                                       #@@@@@@@@@@@@@@@@@
+                                             @@@@@@@@@@@@@@@@@-                                          @@@@@@@@@@@@@@@@@
+                                             @@@@@@@@@@@@@@@@@.                                          @@@@@@@@@@@@@@@@@
+                                             @@@@@@@@@@@@@@@@@.                                          @@@@@@@@@@@@@@@@@
+                                             @@@@@@@@@@@@@@@@@.                                          @@@@@@@@@@@@@@@@@
+                                             @@@@@@@@@@@@@@@@@.                                          @@@@@@@@@@@@@@@@@
+                                             @@@@@@@@@@@@@@@@@.                                          @@@@@@@@@@@@@@@@@
+                                             @@@@@@@@@@@@@@@@@.                                          @@@@@@@@@@@@@@@@@
+                                             @@@@@@@@@@@@@@@@@.                                          @@@@@@@@@@@@@@@@@
+                                             @@@@@@@@@@@@@@@@@.                                          @@@@@@@@@@@@@@@@@
+                                             @@@@@@@@@@@@@@@@@.                                          @@@@@@@@@@@@@@@@@
+                                             @@@@@@@@@@@@@@@@@.                                          @@@@@@@@@@@@@@@@@
+                                             @@@@@@@@@@@@@@@@@.                                          @@@@@@@@@@@@@@@@@
+                                             @@@@@@@@@@@@@@@@@.                                          @@@@@@@@@@@@@@@@@
+                                             @@@@@@@@@@@@@@@@@.                                          @@@@@@@@@@@@@@@@@
+                                             @@@@@@@@@@@@@@@@@.                                          @@@@@@@@@@@@@@@@@
+                                             @@@@@@@@@@@@@@@@@.                                          @@@@@@@@@@@@@@@@@
+                                             @@@@@@@@@@@@@@@@@.                                          @@@@@@@@@@@@@@@@@
+                                             @@@@@@@@@@@@@@@@@.                                          @@@@@@@@@@@@@@@@@
+                                             @@@@@@@@@@@@@@@@@.                                          @@@@@@@@@@@@@@@@@
+                                             @@@@@@@@@@@@@@@@@.                                          @@@@@@@@@@@@@@@@@
+                                             @@@@@@@@@@@@@@@@@.                                          @@@@@@@@@@@@@@@@@
+                                             @@@@@@@@@@@@@@@@@.                                          @@@@@@@@@@@@@@@@@
+                                             @@@@@@@@@@@@@@@@@.                                          @@@@@@@@@@@@@@@@@
+                                             @@@@@@@@@@@@@@@@@.                                          @@@@@@@@@@@@@@@@@
+                                             @@@@@@@@@@@@@@@@@.                                          @@@@@@@@@@@@@@@@@
+                                             @@@@@@@@@@@@@@@@@.                                          @@@@@@@@@@@@@@@@@
+                                             @@@@@@@@@@@@@@@@@.                                          @@@@@@@@@@@@@@@@@
+                                             @@@@@@@@@@@@@@@@@.                                          @@@@@@@@@@@@@@@@@
+                                             @@@@@@@@@@@@@@@@@.                                          @@@@@@@@@@@@@@@@@
+                                             @@@@@@@@@@@@@@@@@.                                          @@@@@@@@@@@@@@@@@                    *@@@@@@@@@@@@@@@@@@@@@
+                                             @@@@@@@@@@@@@@@@@.                                          @@@@@@@@@@@@@@@@@                    *@@@@@@@@@@@@@@@@@@@@@
+                                             @@@@@@@@@@@@@@@@@.                                          @@@@@@@@@@@@@@@@@                    *@@@@@@@@@@@@@@@@@@@@@
+                                             @@@@@@@@@@@@@@@@@.                                          @@@@@@@@@@@@@@@@@                    *@@@@@@@@@@@@@@@@@@@@@
+                                             @@@@@@@@@@@@@@@@@.                                          @@@@@@@@@@@@@@@@@                    *@@@@@@@@@@@@@@@@@@@@@
+                                             @@@@@@@@@@@@@@@@@.                                          @@@@@@@@@@@@@@@@@                    *@@@@@@@@@@@@@@@@@@@@@
+                                             @@@@@@@@@@@@@@@@@.                                          @@@@@@@@@@@@@@@@@                    *@@@@@@@@@@@@@@@@@@@@@
+                                             @@@@@@@@@@@@@@@@@.                                          @@@@@@@@@@@@@@@@@                    *@@@@@@@@@@@@@@@@@@@@@
+                                             @@@@@@@@@@@@@@@@@.                                          @@@@@@@@@@@@@@@@@                    *@@@@@@@@@@@@@@@@@@@@@
+                                             @@@@@@@@@@@@@@@@@.                                          @@@@@@@@@@@@@@@@@                    *@@@@@@@@@@@@@@@@@@@@@
+                                             @@@@@@@@@@@@@@@@@.                                          @@@@@@@@@@@@@@@@@                    *@@@@@@@@@@@@@@@@@@@@@
+                                             @@@@@@@@@@@@@@@@@.                                          @@@@@@@@@@@@@@@@@                    *@@@@@@@@@@@@@@@@@@@@@`
+
 // ── Static Data ────────────────────────────────────────────────────────────
 
 const testimonials = [
@@ -147,9 +204,9 @@ const approachCards = [
 const buildTabs: BuildTab[] = [
   {
     id: 'the-interface',
-    serial: '01',
+    serial: 'AI Simulation',
     title: 'TheInterface',
-    badge: 'YC Company',
+    badge: 'YC S25',
     badgeTone: 'public',
     description:
       'One public company in the portfolio. TheInterface is the named case study on the page: a YC-backed startup that signals the caliber of what can come out of Dev Team.',
@@ -158,16 +215,16 @@ const buildTabs: BuildTab[] = [
     facts: ['Public-facing name', 'YC-backed company', 'Used as the visible anchor'],
   },
   {
-    id: 'redacted-02',
-    serial: '02',
-    title: '[REDACTED]',
-    badge: 'Redacted',
-    badgeTone: 'redacted',
+    id: 'nozomio-labs',
+    serial: 'Context Management',
+    title: 'Nozomio Labs',
+    badge: 'YC S25',
+    badgeTone: 'public',
     description:
-      'Stealth for now. This entry keeps the portfolio honest about active work without forcing teams to reveal product direction before they want to.',
-    companySummary: 'A stealth startup still in private build mode, intentionally withheld from the public site.',
-    cohortWork: 'Cohort teams could help prototype the v1 product, internal tooling, or launch-ready engineering systems.',
-    facts: ['Identity intentionally withheld', 'Still in active build mode', 'Reveal comes after launch timing is clear'],
+      'A second public company in the portfolio. Nozomio Labs is a YC S25 startup building context agents, adding a frontier agent-systems angle to the Dev Team roster.',
+    companySummary: 'A YC S25 startup building context agents.',
+    cohortWork: 'Cohort teams could work on evals, agent UX, retrieval and context systems, or internal tooling that makes agent behavior legible and reliable.',
+    facts: ['Public-facing name', 'YC S25', 'Building context agents'],
   },
   {
     id: 'redacted-03',
@@ -257,25 +314,25 @@ const mentorshipTestimonials: Testimonial[] = [
 
 const mentorshipApproachCards: ApproachCard[] = [
   {
-    id: 'match',
-    title: 'Goal-First\nMatching',
-    body: 'Pairing is based on role goals, current skill level, and where you want to be by the end of semester. The match is intentional, not random.',
-    glow: 'rgba(179, 0, 255, 0.4)',
-    accentColor: '#B300FF',
+    id: 'craft',
+    title: 'Craft\nSharpening',
+    body: 'Every pairing is designed to pressure-test how you think, communicate, and execute. Mentors work with you on the details that make strong builders feel deliberate instead of reactive.',
+    glow: 'rgba(255, 104, 54, 0.34)',
+    accentColor: '#FF6836',
   },
   {
-    id: 'cadence',
-    title: 'Structured\nCadence',
-    body: 'Biweekly meetings with clear check-ins, milestones, and concrete next actions. You always know what to work on before the next session.',
-    glow: 'rgba(77, 255, 148, 0.4)',
+    id: 'enterprise',
+    title: 'Enterprise\nReadiness',
+    body: 'In partnership with Databricks, the program leans into the realities of production-facing work: stakeholder clarity, system quality, and the standards expected when products need to hold up beyond the classroom.',
+    glow: 'rgba(255, 176, 148, 0.3)',
+    accentColor: '#FFB194',
+  },
+  {
+    id: 'operators',
+    title: 'Operator\nAccess',
+    body: 'You leave each cycle with concrete next moves, better judgment, and context from people who have recently shipped, recruited, and navigated the same decisions you are facing now.',
+    glow: 'rgba(77, 255, 148, 0.34)',
     accentColor: '#4DFF94',
-  },
-  {
-    id: 'momentum',
-    title: 'Career\nMomentum',
-    body: 'Resume and portfolio reviews, interview preparation, and role-specific advice from mentors who recently navigated the exact process.',
-    glow: 'rgba(179, 0, 255, 0.4)',
-    accentColor: '#B300FF',
   },
 ]
 
@@ -501,11 +558,11 @@ const VARIANT_CONTENT: Record<ProgramVariant, VariantContent> = {
     sections: ['hero', 'approach', 'alumni', 'build', 'tracks', 'final'],
     heroVisual: 'image',
     heroImageFallback: '/program-logos/mentorship-desktop.jpg',
-    heroTitle: 'MENTOR\nSHIP',
+    heroTitle: 'MENTORSHIP\nx DATABRICKS',
     heroDescription:
-      'Get paired with mentors who have already navigated recruiting, internships, and career pivots. Build a concrete plan and execute it with consistent support.',
+      'A high-touch mentorship track built with Databricks to sharpen your craft, tighten your judgment, and prepare your work for enterprise-scale expectations.',
     applyStatusFallback: 'Matching opens each semester',
-    approachTitle: 'Guidance With Structure',
+    approachTitle: 'Our Bespoke program to hone your craft and get your enterprise ready in partnership with Databricks',
     approachCards: mentorshipApproachCards,
     approachImages: [
       { src: '/event-pics/mentorship1.jpg', alt: 'Mentorship cohort discussion' },
@@ -864,23 +921,9 @@ function StartupPortfolioGraphic({ startupId }: { startupId: string }) {
     )
   }
 
-  if (startupId === 'redacted-02') {
+  if (startupId === 'nozomio-labs') {
     return (
-      <svg viewBox="0 0 520 360" fill="none" className="h-full w-full" aria-hidden="true">
-        <rect x="42" y="40" width="436" height="280" rx="16" stroke="#EDEDED" strokeWidth="1.4" opacity="0.55" />
-        <rect x="64" y="72" width="180" height="18" rx="9" fill="#EDEDED" fillOpacity="0.12" />
-        <rect x="64" y="106" width="256" height="12" rx="6" fill="#EDEDED" fillOpacity="0.08" />
-        <rect x="64" y="132" width="220" height="12" rx="6" fill="#EDEDED" fillOpacity="0.08" />
-        <rect x="64" y="176" width="392" height="104" rx="12" fill="#B300FF" fillOpacity="0.04" stroke="#B300FF" strokeWidth="1.2" opacity="0.45" />
-        <path d="M84 260 L172 176" stroke="#EDEDED" strokeWidth="16" opacity="0.06" />
-        <path d="M146 280 L272 154" stroke="#EDEDED" strokeWidth="16" opacity="0.06" />
-        <path d="M248 280 L374 154" stroke="#EDEDED" strokeWidth="16" opacity="0.06" />
-        <path d="M352 280 L436 196" stroke="#EDEDED" strokeWidth="16" opacity="0.06" />
-        <rect x="150" y="204" width="220" height="46" rx="10" fill="#080808" fillOpacity="0.8" stroke="#EDEDED" strokeWidth="1" opacity="0.5" />
-        <text x="260" y="233" textAnchor="middle" fill="#E6C7FF" fontSize="18" fontFamily="Arial, sans-serif" letterSpacing="6">
-          REDACTED
-        </text>
-      </svg>
+      <AsciiSignalLogo art={NOZOMIO_ASCII_ART} tone="green" />
     )
   }
 
@@ -1088,13 +1131,26 @@ export default function ProgramShowcasePageClient({ program, variant = 'dev-team
   ) as CtaSection | undefined
 
   const resolvedHeroTitle = toHeroTitle(program?.name) || heroTitle
-  const resolvedHeroDescription = program?.descriptionLarge || program?.tagline || heroDescription
+  const resolvedHeroDescription = variant === 'mentorship'
+    ? heroDescription
+    : program?.descriptionLarge || program?.tagline || heroDescription
   const resolvedHeroImage = program?.hero?.heroImageUrl || program?.desktopImageUrl || heroImageFallback
-  const resolvedApproachTitle = program?.tagline || approachTitle
-  const resolvedFinalBody = portableTextToPlainText(ctaSection?.body) || program?.descriptionSmall || finalBody
+  const resolvedApproachTitle = variant === 'mentorship'
+    ? approachTitle
+    : program?.tagline || approachTitle
+  const isCompanyOutreachFinal = variant === 'dev-team'
+  const resolvedFinalKicker = isCompanyOutreachFinal ? 'For Companies' : finalKicker
+  const resolvedFinalTitle = isCompanyOutreachFinal ? 'Have something worth' : finalTitle
+  const resolvedFinalAccent = isCompanyOutreachFinal ? 'building together?' : finalAccent
+  const resolvedFinalBody = isCompanyOutreachFinal
+    ? 'If you are a startup, lab, or company looking for a fast-moving student team to prototype, ship, or pressure-test a real product idea, reach out. We are always open to strong partners and meaningful problems.'
+    : portableTextToPlainText(ctaSection?.body) || program?.descriptionSmall || finalBody
+  const finalContactHref = 'mailto:devteam@techatnyu.org'
+  const finalContactLabel = 'Reach Out'
 
   const showHero = sections.includes('hero')
   const showApproach = sections.includes('approach')
+  const useMentorshipImmersiveIntro = variant === 'mentorship' && showHero && showApproach
   const showPillars = sections.includes('pillars') && Boolean(pillars?.length)
   const showAlumni = sections.includes('alumni')
   const showBuild = sections.includes('build')
@@ -1129,7 +1185,17 @@ export default function ProgramShowcasePageClient({ program, variant = 'dev-team
   return (
     <div className="bg-[#0A0A0A] text-[#EDEDED] overflow-x-hidden">
 
-      {showHero && (
+      {useMentorshipImmersiveIntro ? (
+        <MentorshipImmersiveIntro
+          program={program}
+          heroDescription={resolvedHeroDescription}
+          heroImage={resolvedHeroImage}
+          tagline={resolvedApproachTitle}
+          cards={variantApproachCards}
+          images={approachImages}
+          applyStatusFallback={applyStatusFallback}
+        />
+      ) : showHero && (
         <ProgramHeroSection
           program={program}
           heroTitleLines={heroTitleLines}
@@ -1141,7 +1207,7 @@ export default function ProgramShowcasePageClient({ program, variant = 'dev-team
         />
       )}
 
-      {showApproach && (
+      {showApproach && !useMentorshipImmersiveIntro && (
         <ProgramAboutSection
           title={resolvedApproachTitle}
           cards={variantApproachCards}
@@ -1236,7 +1302,7 @@ export default function ProgramShowcasePageClient({ program, variant = 'dev-team
                             >
                               <div className="mb-2 flex items-center justify-between gap-3">
                                 <span className="font-[family-name:var(--font-inter)] text-[10px] uppercase tracking-[0.18em] text-[#EDEDED]/35">
-                                  {tab.serial ? `Startup ${tab.serial}` : 'Startup'}
+                                  {tab.serial ? tab.serial : 'Startup'}
                                 </span>
                                 {tab.badge && (
                                   <span
@@ -1507,19 +1573,31 @@ export default function ProgramShowcasePageClient({ program, variant = 'dev-team
         <div className="max-w-[700px]">
           <p className="font-[family-name:var(--font-inter)] text-[13px] font-semibold tracking-[0.15em] uppercase opacity-55 mb-6 flex items-center gap-3">
             <span className="inline-block w-2 h-2 bg-[#B300FF]" aria-hidden="true" />
-            {finalKicker}
+            {resolvedFinalKicker}
           </p>
           <h2
             className="font-[family-name:var(--font-darker-grotesque)] font-extrabold text-[#EDEDED] mb-8 leading-none"
             style={{ fontSize: 'clamp(52px, 8vw, 100px)', letterSpacing: '-2px' }}
           >
-            {finalTitle}<br />
-            <span style={{ color: '#4DFF94' }}>{finalAccent}</span>
+            {resolvedFinalTitle}<br />
+            <span style={{ color: '#4DFF94' }}>{resolvedFinalAccent}</span>
           </h2>
           <p className="font-[family-name:var(--font-inter)] text-[17px] text-[#EDEDED] opacity-68 leading-relaxed mb-10 max-w-[480px]">
             {resolvedFinalBody}
           </p>
-          {program?.apply?.status ? (
+          {isCompanyOutreachFinal ? (
+            <div className="flex items-center gap-6 flex-wrap">
+              <a
+                href={finalContactHref}
+                className="font-[family-name:var(--font-inter)] font-semibold text-[14px] inline-block px-10 py-5 border border-[#EDEDED] text-[#EDEDED] hover:bg-[#EDEDED] hover:text-black transition-all duration-500 tracking-widest uppercase"
+              >
+                {finalContactLabel} →
+              </a>
+              <span className="font-[family-name:var(--font-inter)] text-[13px] text-[#EDEDED]/50">
+                {finalContactHref.replace('mailto:', '')}
+              </span>
+            </div>
+          ) : program?.apply?.status ? (
             <Link
               href={program.apply.link || '#'}
               className="font-[family-name:var(--font-inter)] font-semibold text-[14px] inline-block px-10 py-5 border border-[#EDEDED] text-[#EDEDED] hover:bg-[#EDEDED] hover:text-black transition-all duration-500 tracking-widest uppercase"
