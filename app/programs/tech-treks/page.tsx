@@ -5,7 +5,7 @@ import { SITE_DESCRIPTION } from '@/lib/seo'
 
 export const dynamic = 'force-static'
 export const metadata: Metadata = {
-  title: 'Tech Treks',
+  title: 'Tech Treks by Tech@NYU',
   description: SITE_DESCRIPTION,
 }
 

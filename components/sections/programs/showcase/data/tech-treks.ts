@@ -3,28 +3,33 @@ import { ApproachCard, BuildTab, ProgramImageAsset, ProgramPillar, ProgramTrack,
 export const techTreksShowcaseContent = {
   heroTitle: 'TECH\nTREKS',
   heroDescription:
-    'Explore the tech industry with a cohort built for beginners and early builders. Meet professionals, visit companies, and ship portfolio-ready work.',
+    'Not sure where you fit in tech? Tech Treks is built for beginners — visit real companies, build with a team, and discover your role in the industry. No experience needed.',
   heroImageFallback: '/program-logos/tech-treks-desktop.jpg',
   applyStatusFallback: 'Cohorts launch each semester',
-  approachTitle: 'Explore, Build, Belong',
-  pillarsHeading: 'Core Program Components',
-  pillarsTitle: 'How Tech Treks Works',
-  buildEyebrow: "What You'll Build",
-  buildTitle: "What You'll\nExperience",
+  approachTitle: 'Your break\ninto tech.',
+  pillarsHeading: "What You'll Do",
+  pillarsTitle: 'Three things that\nchange everything.',
+  buildEyebrow: 'The Experience',
+  buildTitle: 'Four ways\nwe get you ready.',
   trackHeading: 'Semester Structure',
   tracksTitle: 'From Curiosity\nTo Confidence',
-  finalKicker: 'Ready to Explore?',
-  finalTitle: 'Start your path',
-  finalAccent: 'in tech.',
-  finalBody: 'Tech Treks helps you turn curiosity into momentum through real exposure, practical projects, and strong community support.',
-  finalClosedHint: 'Join the next incoming cohort',
+  companyGridEyebrow: "Companies We've Toured",
+  companyGridTitle: "Inside the rooms\nyou're aiming for.",
+  companyGridFootnote: 'Companies visited or partnered with across Tech Treks cohorts.',
+  finalKicker: 'No experience needed.',
+  finalTitle: 'Your first step',
+  finalAccent: 'into tech.',
+  finalBody:
+    "Tech Treks is designed for beginners. We'll train you, place you in a team, get you inside real companies, and help you figure out exactly where you belong.",
+  finalClosedHint: 'Applications open each semester — get notified',
 }
 
 export const techTreksTestimonials: Testimonial[] = [
   {
     id: 'omar',
     company: 'Amazon',
-    quote: '"Tech Treks made the industry feel tangible. Visiting teams in person and hearing their workflows gave me clarity on where I fit and what to build next."',
+    quote:
+      '"Tech Treks made the industry feel tangible. Visiting teams in person and hearing their workflows gave me clarity on where I fit and what to build next."',
     name: 'Omar Rahman',
     title: 'SDE Intern @ Amazon',
     cohort: 'Spring 2024',
@@ -32,7 +37,8 @@ export const techTreksTestimonials: Testimonial[] = [
   {
     id: 'lucy',
     company: 'Palantir',
-    quote: '"I joined with zero confidence and left with a portfolio project, mentors I still talk to, and a much clearer roadmap into tech."',
+    quote:
+      '"I joined with zero confidence and left with a portfolio project, mentors I still talk to, and a much clearer roadmap into tech."',
     name: 'Lucy Zhao',
     title: 'Forward Deployed Intern @ Palantir',
     cohort: 'Fall 2023',
@@ -40,7 +46,8 @@ export const techTreksTestimonials: Testimonial[] = [
   {
     id: 'isaac',
     company: 'TikTok',
-    quote: '"The PM track pushed me to lead a team and ship. Tech Treks gave me both product thinking and execution reps in one semester."',
+    quote:
+      '"The PM track pushed me to lead a team and ship. Tech Treks gave me both product thinking and execution reps in one semester."',
     name: 'Isaac Rivera',
     title: 'Product Intern @ TikTok',
     cohort: 'Spring 2024',
@@ -49,23 +56,23 @@ export const techTreksTestimonials: Testimonial[] = [
 
 export const techTreksApproachCards: ApproachCard[] = [
   {
-    id: 'exposure',
-    title: 'Industry\nExposure',
-    body: 'Visit companies, meet teams, and hear real career paths from engineers and PMs. You get firsthand context beyond social media advice.',
+    id: 'zero-to-one',
+    title: 'Zero Experience\nRequired',
+    body: "We've trained complete beginners from day one. If you're curious, you're qualified — we handle the rest.",
     glow: 'rgba(179, 0, 255, 0.4)',
     accentColor: '#B300FF',
   },
   {
-    id: 'workshops',
-    title: 'Hands-On\nWorkshops',
-    body: 'Weekly workshop sessions cover technical fundamentals, portfolio strategy, and internship readiness with practical deliverables each week.',
+    id: 'team-builds',
+    title: 'Build With\nA Real Team',
+    body: 'Work in a small pod on one scoped project through the semester. Real collaboration, real deadlines — just like the job.',
     glow: 'rgba(77, 255, 148, 0.4)',
     accentColor: '#4DFF94',
   },
   {
-    id: 'cohort',
-    title: 'Small Cohort\nSupport',
-    body: 'You are placed in a focused group with peers and PM leads who keep accountability high and feedback loops fast throughout semester.',
+    id: 'find-your-role',
+    title: 'Discover\nYour Role',
+    body: "Engineer, PM, or designer? You'll figure it out by actually doing it — not by guessing on a job application.",
     glow: 'rgba(179, 0, 255, 0.4)',
     accentColor: '#B300FF',
   },
@@ -79,25 +86,25 @@ export const techTreksApproachImages: ProgramImageAsset[] = [
 
 export const techTreksPillars: ProgramPillar[] = [
   {
-    id: 'workshops',
-    title: 'Workshops',
+    id: 'treks',
+    title: 'Company Treks',
     description:
-      'Weekly technical workshops build core SWE fundamentals through guided exercises and collaborative practice.',
-    outcome: 'You leave each week with practical skills you can immediately apply.',
+      "Get inside the offices you've only seen on LinkedIn. Hear directly from engineers and PMs about what their day actually looks like.",
+    outcome: "You leave knowing what you're building toward — and who to reach out to.",
   },
   {
     id: 'projects',
     title: 'Team Projects',
     description:
-      'Small teams of 2-3 build one focused project through the semester and present the final result to the cohort.',
-    outcome: 'You gain real team-building reps and a portfolio-ready project.',
+      'Build one focused product with 2–3 teammates and a PM lead. Ship it. Present it. Own it.',
+    outcome: 'A portfolio project and real team reps before your first internship.',
   },
   {
-    id: 'tours',
-    title: 'Office Tours',
+    id: 'workshops',
+    title: 'Weekly Workshops',
     description:
-      'Company visits and conversations with industry professionals give direct exposure to how teams build in the real world.',
-    outcome: 'You build clarity on roles, cultures, and career paths in tech.',
+      'Structured sessions that build your technical foundation and internship readiness in parallel — no prior coding required.',
+    outcome: 'Practical skills and interview prep every week, not just at the end.',
   },
 ]
 
@@ -166,4 +173,19 @@ export const techTreksTracks: ProgramTrack[] = [
     title: 'Demo & Network',
     body: 'End the semester by demoing projects and connecting with mentors, alumni, and peers for continued growth opportunities.',
   },
+]
+
+export const techTreksCompanyLogos = [
+  { src: '/company-logos/google.svg', alt: 'Google', width: 272, height: 92 },
+  { src: '/company-logos/amazon.svg', alt: 'Amazon', width: 512, height: 153 },
+  { src: '/company-logos/meta.svg', alt: 'Meta', width: 512, height: 97 },
+  { src: '/company-logos/microsoft.svg', alt: 'Microsoft', width: 512, height: 109 },
+  { src: '/company-logos/stripe.svg', alt: 'Stripe', width: 300, height: 124 },
+  { src: '/company-logos/figma.svg', alt: 'Figma', width: 192, height: 64 },
+  { src: '/company-logos/openai.svg', alt: 'OpenAI', width: 440, height: 117 },
+  { src: '/company-logos/Anthropic.svg', alt: 'Anthropic', width: 300, height: 100 },
+  { src: '/company-logos/jpmc.svg', alt: 'JPMorgan Chase', width: 300, height: 80 },
+  { src: '/company-logos/snap.svg', alt: 'Snap', width: 300, height: 104 },
+  { src: '/company-logos/notion.svg', alt: 'Notion', width: 300, height: 80 },
+  { src: '/company-logos/Coinbase_Wordmark.svg', alt: 'Coinbase', width: 456, height: 96 },
 ]

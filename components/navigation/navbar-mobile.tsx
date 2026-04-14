@@ -5,6 +5,7 @@ import { ArrowUpRight } from 'lucide-react'
 type NavLink = {
   title: string
   href: string
+  external?: boolean
 }
 
 type NavbarMobileProps = {
@@ -91,8 +92,10 @@ const NavbarMobile = ({
             <div className="space-y-1">
               {primaryLinks.map((link) => (
                 <Link
-                  key={link.href}
+                  key={link.title}
                   href={link.href}
+                  target={link.external ? '_blank' : undefined}
+                  rel={link.external ? 'noreferrer' : undefined}
                   onClick={closeSheet}
                   className="group flex items-center justify-between border-b border-white/10 py-3 text-white transition-colors duration-300 hover:text-[#7ef7a5]"
                 >

@@ -1,5 +1,7 @@
 import { ProgramCardProps, TeamMember, ValueCardProps } from "./types"
 
+export const EVENTS_URL = "https://luma.com/techatnyu"
+
 export const programs = [
     {name: "Dev Team", href: "/programs/dev-team"},
     {name: "Tech Treks", href: "/programs/tech-treks"},

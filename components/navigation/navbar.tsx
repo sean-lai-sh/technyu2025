@@ -3,7 +3,7 @@ import { useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import NavigationDropdown from './navigation_dropdown'
-import { programs } from '@/lib/consts'
+import { EVENTS_URL, programs } from '@/lib/consts'
 import { AnimatePresence, motion } from 'framer-motion'
 import { cn } from '@/lib/utils'
 import styles from './style.module.css'
@@ -17,6 +17,7 @@ const drawerEase = [0.76, 0, 0.24, 1] as [number, number, number, number]
 const primaryLinks = [
   { name: 'Team', href: '/team' },
   { name: 'Blog', href: '/blog' },
+  { name: 'Events', href: EVENTS_URL, external: true },
 ]
 
 const programLinks = programs.map((program) => ({
@@ -45,7 +46,7 @@ const Navbar = () => {
 
   const mobilePrimaryLinks = useMemo(() => (
     [
-      ...primaryLinks.map((link) => ({ title: link.name, href: link.href })),
+      ...primaryLinks.map((link) => ({ title: link.name, href: link.href, external: link.external })),
       { title: 'Contact', href: 'mailto:hello@techatnyu.org' },
     ]
   ), [])
@@ -166,10 +167,16 @@ const Navbar = () => {
 
             <div className="hidden h-full items-center gap-6 md:flex lg:gap-8">
               {primaryLinks.map((link) => {
-                const isCurrent = pathname === link.href || pathname.startsWith(`${link.href}/`)
+                const isCurrent = !link.external && (pathname === link.href || pathname.startsWith(`${link.href}/`))
 
                 return (
-                  <Link key={link.href} href={link.href} className={desktopLinkClassName(isCurrent)}>
+                  <Link
+                    key={link.name}
+                    href={link.href}
+                    target={link.external ? '_blank' : undefined}
+                    rel={link.external ? 'noreferrer' : undefined}
+                    className={desktopLinkClassName(isCurrent)}
+                  >
                     <span
                       className={cn(
                         'relative inline-flex items-center pb-[0.22em]',

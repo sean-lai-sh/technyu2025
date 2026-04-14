@@ -1,7 +1,7 @@
 import React from 'react'
 import { ArrowRightIcon, ExternalLinkIcon } from 'lucide-react'
+import { EVENTS_URL } from '@/lib/consts'
 
-const EVENTS_URL = 'https://events.techatnyu.org/calendar'
 const DISCORD_URL = 'https://discord.gg/q3cBnFMpMQ'
 
 const HomeCTA = () => {

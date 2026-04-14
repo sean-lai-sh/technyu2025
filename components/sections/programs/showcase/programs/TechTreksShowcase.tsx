@@ -1,16 +1,17 @@
 'use client'
 
 import { SanityProgram } from '@/lib/types'
-import ProgramHeroSection from '../ProgramHeroSection'
+import TechTreksHeroSection from '../TechTreksHeroSection'
 import ProgramAboutSection from '../ProgramAboutSection'
 import ProgramPillarsSection from '../ProgramPillarsSection'
 import ProgramAlumniSection from '../ProgramAlumniSection'
+import ProgramCompanyGridSection from '../ProgramCompanyGridSection'
 import ProgramTracksSection from '../ProgramTracksSection'
 import ProgramRolesSection from '../ProgramRolesSection'
 import ProgramFinalSection from '../ProgramFinalSection'
 import StandardBuildTabsSection from '../StandardBuildTabsSection'
 import { getCtaSection, getRolesSection, portableTextToPlainText, toHeroTitle } from '../utils'
-import { CircuitWireframe, HeroWireframe, NetworkGrowthWireframe, RocketWireframe } from '../wireframes'
+import { CircuitWireframe, NetworkGrowthWireframe, RocketWireframe } from '../wireframes'
 import {
   techTreksApproachCards,
   techTreksApproachImages,
@@ -20,6 +21,7 @@ import {
   techTreksShowcaseContent,
   techTreksTestimonials,
   techTreksTracks,
+  techTreksCompanyLogos,
 } from '../data/tech-treks'
 
 type TechTreksShowcaseProps = {
@@ -38,14 +40,12 @@ export default function TechTreksShowcase({ program }: TechTreksShowcaseProps) {
 
   return (
     <div className="bg-[#0A0A0A] text-[#EDEDED] overflow-x-hidden">
-      <ProgramHeroSection
+      <TechTreksHeroSection
         program={program}
         heroTitleLines={resolvedHeroTitle.split('\n')}
         heroDescription={resolvedHeroDescription}
         applyStatusFallback={techTreksShowcaseContent.applyStatusFallback}
-        heroVisual="image"
         heroImage={resolvedHeroImage}
-        heroWireframe={<HeroWireframe />}
       />
 
       <ProgramAboutSection
@@ -67,12 +67,19 @@ export default function TechTreksShowcase({ program }: TechTreksShowcaseProps) {
 
       <ProgramAlumniSection testimonials={techTreksTestimonials} />
 
-      <StandardBuildTabsSection
+      <ProgramCompanyGridSection
+        eyebrow={techTreksShowcaseContent.companyGridEyebrow}
+        title={techTreksShowcaseContent.companyGridTitle}
+        logos={techTreksCompanyLogos}
+        footnote={techTreksShowcaseContent.companyGridFootnote}
+      />
+
+      {/* <StandardBuildTabsSection
         buildEyebrow={techTreksShowcaseContent.buildEyebrow}
         buildTitle={techTreksShowcaseContent.buildTitle}
         buildTabs={techTreksBuildTabs}
         buildImages={techTreksBuildImages}
-      />
+      /> */}
 
       <ProgramTracksSection
         heading={techTreksShowcaseContent.trackHeading}
