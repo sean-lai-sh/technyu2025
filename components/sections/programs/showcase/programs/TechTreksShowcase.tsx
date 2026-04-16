@@ -35,10 +35,7 @@ export default function TechTreksShowcase({ program }: TechTreksShowcaseProps) {
 
   return (
     <div className="bg-[#0A0A0A] text-[#EDEDED] overflow-x-hidden">
-      <TechTreksHeroSection
-        program={program}
-        applyStatusFallback={techTreksShowcaseContent.applyStatusFallback}
-      />
+      <TechTreksHeroSection program={program} />
 
       {/* Companies first — aspirational, shows where they'll go */}
       <ProgramCompanyGridSection
