@@ -5,6 +5,7 @@ import Image from 'next/image'
 import { ApproachCard, ProgramImageAsset } from './types'
 
 type ProgramAboutSectionProps = {
+  eyebrow?: string
   title: string
   cards: ApproachCard[]
   images?: ProgramImageAsset[]
@@ -12,6 +13,7 @@ type ProgramAboutSectionProps = {
 }
 
 export default function ProgramAboutSection({
+  eyebrow = 'Our Approach',
   title,
   cards,
   images,
@@ -20,7 +22,7 @@ export default function ProgramAboutSection({
   return (
     <section className="px-[5vw] lg:px-[8vw] py-[10svh] border-t border-[#EDEDED]/8">
       <p className="font-[family-name:var(--font-inter)] text-[13px] font-semibold tracking-[0.15em] uppercase opacity-55 mb-4">
-        Our Approach
+        {eyebrow}
       </p>
       <h2
         className="font-[family-name:var(--font-darker-grotesque)] font-medium leading-[0.92] text-[#EDEDED] mb-16"

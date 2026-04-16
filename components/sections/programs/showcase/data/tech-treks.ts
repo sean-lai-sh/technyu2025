@@ -108,6 +108,33 @@ export const techTreksPillars: ProgramPillar[] = [
   },
 ]
 
+export const techTreksWhatYoullDoCards: ApproachCard[] = [
+  {
+    id: 'treks',
+    title: 'Visit Real\nCompanies',
+    body:
+      "Step inside the offices you've only seen online and hear directly from engineers and PMs about what their work actually looks like.",
+    glow: 'rgba(179, 0, 255, 0.4)',
+    accentColor: '#B300FF',
+  },
+  {
+    id: 'projects',
+    title: 'Build In\nA Pod',
+    body:
+      'Work with a small team on one scoped product, ship something real, and leave with portfolio reps before your first internship.',
+    glow: 'rgba(77, 255, 148, 0.4)',
+    accentColor: '#4DFF94',
+  },
+  {
+    id: 'workshops',
+    title: 'Train Every\nWeek',
+    body:
+      'Build technical confidence and internship readiness in parallel through recurring workshops designed for complete beginners.',
+    glow: 'rgba(179, 0, 255, 0.4)',
+    accentColor: '#B300FF',
+  },
+]
+
 export const techTreksBuildTabs: BuildTab[] = [
   {
     id: 'cli',
