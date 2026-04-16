@@ -9,20 +9,18 @@ import ProgramCompanyGridSection from '../ProgramCompanyGridSection'
 import ProgramTracksSection from '../ProgramTracksSection'
 import ProgramRolesSection from '../ProgramRolesSection'
 import ProgramFinalSection from '../ProgramFinalSection'
-import StandardBuildTabsSection from '../StandardBuildTabsSection'
-import { getCtaSection, getRolesSection, portableTextToPlainText, toHeroTitle } from '../utils'
+import { getCtaSection, getRolesSection, portableTextToPlainText } from '../utils'
 import { CircuitWireframe, NetworkGrowthWireframe, RocketWireframe } from '../wireframes'
 import {
   techTreksApproachCards,
   techTreksApproachImages,
-  techTreksBuildImages,
-  techTreksBuildTabs,
   techTreksPillars,
   techTreksShowcaseContent,
   techTreksTestimonials,
   techTreksTracks,
   techTreksCompanyLogos,
 } from '../data/tech-treks'
+
 
 type TechTreksShowcaseProps = {
   program?: SanityProgram | null
@@ -31,9 +29,6 @@ type TechTreksShowcaseProps = {
 export default function TechTreksShowcase({ program }: TechTreksShowcaseProps) {
   const rolesSection = getRolesSection(program)
   const ctaSection = getCtaSection(program)
-  const resolvedHeroTitle = toHeroTitle(program?.name) || techTreksShowcaseContent.heroTitle
-  const resolvedHeroDescription = program?.descriptionLarge || program?.tagline || techTreksShowcaseContent.heroDescription
-  const resolvedHeroImage = program?.hero?.heroImageUrl || program?.desktopImageUrl || techTreksShowcaseContent.heroImageFallback
   const resolvedApproachTitle = program?.tagline || techTreksShowcaseContent.approachTitle
   const resolvedFinalBody =
     portableTextToPlainText(ctaSection?.body) || program?.descriptionSmall || techTreksShowcaseContent.finalBody
@@ -42,12 +37,28 @@ export default function TechTreksShowcase({ program }: TechTreksShowcaseProps) {
     <div className="bg-[#0A0A0A] text-[#EDEDED] overflow-x-hidden">
       <TechTreksHeroSection
         program={program}
-        heroTitleLines={resolvedHeroTitle.split('\n')}
-        heroDescription={resolvedHeroDescription}
         applyStatusFallback={techTreksShowcaseContent.applyStatusFallback}
-        heroImage={resolvedHeroImage}
       />
 
+      {/* Companies first — aspirational, shows where they'll go */}
+      <ProgramCompanyGridSection
+        eyebrow={techTreksShowcaseContent.companyGridEyebrow}
+        title={techTreksShowcaseContent.companyGridTitle}
+        logos={techTreksCompanyLogos}
+        footnote={techTreksShowcaseContent.companyGridFootnote}
+      />
+
+      {/* Social proof second */}
+      <ProgramAlumniSection testimonials={techTreksTestimonials} />
+
+      {/* What you'll do */}
+      <ProgramPillarsSection
+        heading={techTreksShowcaseContent.pillarsHeading}
+        title={techTreksShowcaseContent.pillarsTitle}
+        pillars={techTreksPillars}
+      />
+
+      {/* Program approach detail */}
       <ProgramAboutSection
         title={resolvedApproachTitle}
         cards={techTreksApproachCards}
@@ -58,28 +69,6 @@ export default function TechTreksShowcase({ program }: TechTreksShowcaseProps) {
           return <NetworkGrowthWireframe />
         }}
       />
-
-      <ProgramPillarsSection
-        heading={techTreksShowcaseContent.pillarsHeading}
-        title={techTreksShowcaseContent.pillarsTitle}
-        pillars={techTreksPillars}
-      />
-
-      <ProgramAlumniSection testimonials={techTreksTestimonials} />
-
-      <ProgramCompanyGridSection
-        eyebrow={techTreksShowcaseContent.companyGridEyebrow}
-        title={techTreksShowcaseContent.companyGridTitle}
-        logos={techTreksCompanyLogos}
-        footnote={techTreksShowcaseContent.companyGridFootnote}
-      />
-
-      {/* <StandardBuildTabsSection
-        buildEyebrow={techTreksShowcaseContent.buildEyebrow}
-        buildTitle={techTreksShowcaseContent.buildTitle}
-        buildTabs={techTreksBuildTabs}
-        buildImages={techTreksBuildImages}
-      /> */}
 
       <ProgramTracksSection
         heading={techTreksShowcaseContent.trackHeading}

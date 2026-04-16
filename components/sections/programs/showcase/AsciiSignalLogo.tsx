@@ -7,6 +7,7 @@ type AsciiSignalLogoProps = {
   className?: string
   tone?: 'green' | 'purple' | 'neutral'
   scale?: number
+  allowHorizontalShift?: boolean
 }
 
 const NOISE_CHARS = ['#', '@', '%', '&', '*', '+', '=', '?', '~', ':', ';', '/']
@@ -97,6 +98,7 @@ export default function AsciiSignalLogo({
   className = '',
   tone = 'green',
   scale = 1,
+  allowHorizontalShift = true,
 }: AsciiSignalLogoProps) {
   const [frame, setFrame] = useState(0)
   const toneStyle = TONE_STYLES[tone]
@@ -120,7 +122,7 @@ export default function AsciiSignalLogo({
 
   const displayArt = useMemo(() => createCorruptedAscii(normalizedArt, frame), [normalizedArt, frame])
   const staticOpacity = frame % 11 === 0 ? 0.18 : frame % 5 === 0 ? 0.1 : 0.045
-  const jitterX = frame % 7 === 0 ? 1 : frame % 13 === 0 ? -1 : 0
+  const jitterX = allowHorizontalShift ? (frame % 7 === 0 ? 1 : frame % 13 === 0 ? -1 : 0) : 0
 
   return (
     <div
