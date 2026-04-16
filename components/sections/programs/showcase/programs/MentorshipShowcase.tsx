@@ -1,12 +1,14 @@
 'use client'
 
 import { SanityProgram } from '@/lib/types'
-import MentorshipImmersiveIntro from '../MentorshipImmersiveIntro'
+import MentorshipAsciiHeroSection from '../MentorshipAsciiHeroSection'
+import ProgramAboutSection from '../ProgramAboutSection'
 import ProgramAlumniSection from '../ProgramAlumniSection'
 import ProgramTracksSection from '../ProgramTracksSection'
 import ProgramFinalSection from '../ProgramFinalSection'
 import StandardBuildTabsSection from '../StandardBuildTabsSection'
 import { getCtaSection, portableTextToPlainText } from '../utils'
+import { CircuitWireframe, NetworkGrowthWireframe, RocketWireframe } from '../wireframes'
 import {
   mentorshipApproachCards,
   mentorshipApproachImages,
@@ -23,20 +25,26 @@ type MentorshipShowcaseProps = {
 
 export default function MentorshipShowcase({ program }: MentorshipShowcaseProps) {
   const ctaSection = getCtaSection(program)
-  const resolvedHeroImage = program?.hero?.heroImageUrl || program?.desktopImageUrl || mentorshipShowcaseContent.heroImageFallback
   const resolvedFinalBody =
     portableTextToPlainText(ctaSection?.body) || program?.descriptionSmall || mentorshipShowcaseContent.finalBody
 
   return (
     <div className="bg-[#0A0A0A] text-[#EDEDED] overflow-x-hidden">
-      <MentorshipImmersiveIntro
+      <MentorshipAsciiHeroSection
         program={program}
         heroDescription={mentorshipShowcaseContent.heroDescription}
-        heroImage={resolvedHeroImage}
-        tagline={mentorshipShowcaseContent.approachTitle}
+      />
+
+      <ProgramAboutSection
+        eyebrow="Our Approach"
+        title={mentorshipShowcaseContent.approachTitle}
         cards={mentorshipApproachCards}
         images={mentorshipApproachImages}
-        applyStatusFallback={mentorshipShowcaseContent.applyStatusFallback}
+        renderFallbackVisual={(index) => {
+          if (index === 0) return <CircuitWireframe />
+          if (index === 1) return <RocketWireframe />
+          return <NetworkGrowthWireframe />
+        }}
       />
 
       <ProgramAlumniSection testimonials={mentorshipTestimonials} />
