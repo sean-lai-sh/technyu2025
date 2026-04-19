@@ -26,10 +26,13 @@ export default function MentorshipAsciiHeroSection({
   return (
     <section className="relative mt-[72px] h-[calc(100svh-72px)] overflow-hidden bg-[#0A0A0A] md:mt-[92px] md:h-[calc(100svh-92px)]">
       <div className="absolute inset-0">
-        <div className="absolute left-1/2 top-1/2 h-full min-w-full -translate-x-1/2 -translate-y-1/2 aspect-video">
+        <div
+          className="absolute left-1/2 top-1/2 h-full min-w-full aspect-video"
+          style={{ transform: 'translate(-50%, -50%) scale(1.25)' }}
+        >
           <Video2Ascii
             src="/mentorship.mp4"
-            numColumns={92}
+            numColumns={112}
             colored={true}
             brightness={1.14}
             blend={0}
