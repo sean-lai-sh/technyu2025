@@ -33,12 +33,13 @@ export type ProgramStageMeta = {
   trackKey: ProgramTrackKey
   trackLabel: string
   sequence?: number
-  childLabels?: string[]
+  childDetails?: { label: string; detail: string }[]
   label: string
   summary: string
   audience: string
   outcome: string
   position: string
+  detail: string
   accent: string
   accentSoft: string
 }

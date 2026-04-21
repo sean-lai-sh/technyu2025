@@ -11,6 +11,7 @@ const FALLBACK_STAGE: ProgramStageMeta = {
   audience: 'Students who want a clear first step into Tech@NYU.',
   outcome: 'A better sense of where you fit and what comes next.',
   position: 'Discover the lane that makes sense for you.',
+  detail: 'A tight cohort for students looking to find their role in tech and start building.',
   accent: '#B300FF',
   accentSoft: 'rgba(179, 0, 255, 0.16)',
 }
@@ -37,6 +38,8 @@ export const PROGRAM_STAGE_MAP: Record<ProgramStageName, ProgramStageMeta> = {
     outcome:
       'A clearer sense of direction and a first step into a more specific path.',
     position: 'A tight cohort for figuring out where you fit.',
+    detail:
+      'Tight knit 10–12 cohort looking to learn to build in teams and find their niche in tech through workshops and project building.',
     accent: '#B300FF',
     accentSoft: 'rgba(179, 0, 255, 0.16)',
   },
@@ -54,6 +57,8 @@ export const PROGRAM_STAGE_MAP: Record<ProgramStageName, ProgramStageMeta> = {
     outcome:
       'Stronger judgment, better framing, and a more intentional path forward.',
     position: 'Direct guidance for students who already have a direction.',
+    detail:
+      'One-on-one pairings with mentors from Google, Meta, Databricks, and beyond — weekly workshops and personalized 1:1 sessions in cohorts of 10–12.',
     accent: '#7B5CFF',
     accentSoft: 'rgba(123, 92, 255, 0.18)',
   },
@@ -71,15 +76,28 @@ export const PROGRAM_STAGE_MAP: Record<ProgramStageName, ProgramStageMeta> = {
     outcome:
       'Practical experience, shipped work, and a better sense of how to operate on a team.',
     position: 'A place to turn your role into shipped work.',
-    accent: '#4AA8FF',
-    accentSoft: 'rgba(74, 168, 255, 0.18)',
+    detail:
+      'Startup-style pods shipping production code to real users. Two-week sprints with PR reviews, architecture guidance, and a demo day in front of engineers and recruiters.',
+    accent: '#52F8A9',
+    accentSoft: 'rgba(82, 248, 169, 0.18)',
   },
   'Startup Week': {
     name: 'Startup Week',
     key: 'organize-and-network',
     trackKey: 'grow-the-community',
     trackLabel: 'Grow the community',
-    childLabels: ['Buildathon', 'Events'],
+    childDetails: [
+      {
+        label: 'Buildathon',
+        detail:
+          "NYU's flagship hackathon — 24 hours to build, compete for prizes, and ship fast alongside students across the university.",
+      },
+      {
+        label: 'SW Events',
+        detail:
+          'Speaker panels, networking nights, and industry mixers that bring hundreds of students into the same room.',
+      },
+    ],
     label: 'Organize and network',
     summary:
       'Build Startup Week, Buildathon, and the events that pull more people into Tech@NYU.',
@@ -88,6 +106,8 @@ export const PROGRAM_STAGE_MAP: Record<ProgramStageName, ProgramStageMeta> = {
     outcome:
       'Broader relationships, better operator instincts, and a visible hand in how the community grows.',
     position: 'The organizing track for growing the room around the club.',
+    detail:
+      "The annual event week bringing NYU's tech community into one room — panels, Buildathon, and networking organized entirely by students.",
     accent: '#4DFF94',
     accentSoft: 'rgba(77, 255, 148, 0.16)',
   },
