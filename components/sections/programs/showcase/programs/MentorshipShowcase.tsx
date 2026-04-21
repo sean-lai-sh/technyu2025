@@ -4,6 +4,7 @@ import { SanityProgram } from '@/lib/types'
 import MentorshipAsciiHeroSection from '../MentorshipAsciiHeroSection'
 import ProgramAboutSection from '../ProgramAboutSection'
 import ProgramAlumniSection from '../ProgramAlumniSection'
+
 import ProgramCompanyGridSection from '../ProgramCompanyGridSection'
 import ProgramTracksSection from '../ProgramTracksSection'
 import ProgramFinalSection from '../ProgramFinalSection'

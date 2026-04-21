@@ -6,8 +6,11 @@ export const mentorshipShowcaseContent = {
   heroImageFallback: '/program-logos/mentorship-desktop.jpg',
   applyStatusFallback: 'Matching opens each semester',
   approachTitle: 'Our Bespoke program to hone your craft and get your enterprise ready in partnership with Databricks',
-  buildEyebrow: "Skills You'll Gain",
-  buildTitle: "What You'll\nLearn",
+  buildEyebrow: "What You'll Build",
+  buildTitle: "What You'll\nBuild",
+  companyGridEyebrow: 'Spring Mentor Network',
+  companyGridTitle: 'Mentors from\nwhere you want to go',
+  companyGridFootnote: 'Representative Spring mentor companies, plus Databricks as our featured partner.',
   trackHeading: 'Program Flow',
   tracksTitle: 'The Mentorship\nArc',
   finalKicker: 'Ready to Grow?',
@@ -106,6 +109,48 @@ export const mentorshipBuildImages: ProgramImageAsset[] = [
   { src: '/event-pics/mentorship2.jpg', alt: 'Career guidance conversation' },
   { src: '/event-pics/mentorship3.jpg', alt: 'Interview prep discussion' },
   { src: '/event-pics/mentorship1.jpg', alt: 'Mentorship networking group' },
+]
+
+export const mentorshipMentorLogos = [
+  {
+    src: '/company-logos/databricks.png',
+    alt: 'Databricks',
+    width: 200,
+    height: 31,
+    maxVisualWidth: 164,
+  },
+  {
+    src: '/company-logos/google.svg',
+    alt: 'Google',
+    width: 272,
+    height: 92,
+  },
+  {
+    src: '/company-logos/meta.svg',
+    alt: 'Meta',
+    width: 512,
+    height: 97,
+  },
+  {
+    src: '/company-logos/amazon.svg',
+    alt: 'Amazon',
+    width: 512,
+    height: 153,
+  },
+  {
+    src: '/company-logos/waymo.png',
+    alt: 'Waymo',
+    width: 2050,
+    height: 335,
+    maxVisualWidth: 168,
+  },
+  {
+    src: '/company-logos/adobe.svg',
+    alt: 'Adobe',
+    width: 54,
+    height: 60,
+    maxVisualWidth: 92,
+  },
 ]
 
 export const mentorshipTracks: ProgramTrack[] = [
