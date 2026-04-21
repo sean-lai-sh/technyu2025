@@ -17,7 +17,7 @@ export default function ProgramPanel({ program, index }: ProgramPanelProps) {
 
   return (
     <article
-      className="group relative overflow-hidden border border-white/10 bg-[#090909]"
+      className="group relative overflow-hidden border border-white/10 bg-[#090909] transition-colors duration-150 hover:border-white/[0.16]"
       style={{
         boxShadow: `inset 0 0 0 1px rgba(255,255,255,0.04), inset 0 0 18px rgba(255,255,255,0.03), inset 0 0 64px 6px ${accentInset}`,
       }}

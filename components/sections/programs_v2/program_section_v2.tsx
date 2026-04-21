@@ -5,6 +5,7 @@ import ProgramTrackBento from './components/program-track-bento'
 import ProgramPanel from './components/program-panel'
 import { PROGRAM_STAGE_ORDER, getProgramStageMeta } from './program-stage-map'
 import type { ProgramSource, ProgramV2ViewModel } from './types'
+import { ArrowBigLeft, ArrowBigRight, ArrowRight } from 'lucide-react'
 
 const mapProgramSource = (program: ProgramListItem): ProgramSource => ({
   _id: program._id,
@@ -77,22 +78,21 @@ export default async function ProgramSectionV2() {
               Programs
             </p>
             <h2 className="mt-5 font-[family-name:var(--font-darker-grotesque)] text-[clamp(3.5rem,7vw,7.75rem)] leading-[0.9] tracking-[-0.04em] text-white">
-              Find where you fit.
+              {"Taking you from 0 to 100"}
             </h2>
-            <p className="mt-6 max-w-2xl text-[17px] leading-relaxed text-white/68 sm:text-[18px]">
-              Use the map first, then open the program page that feels closest
-              to the role or kind of contribution you want.
+            <p className="mt-6 max-w-3xl text-[17px] leading-relaxed text-white/68 sm:text-[18px]">
+             From growing your network to your own developer journey we have a program for you to join!
             </p>
           </div>
 
           <ProgramTrackBento programs={programs} />
         </div>
 
-        <div className="space-y-5 border-t border-white/10 pt-8">
+        {/* <div className="space-y-5 border-t border-white/10 pt-8">
           {programs.map((program, index) => (
             <ProgramPanel key={program._id} program={program} index={index} />
           ))}
-        </div>
+        </div> */}
       </div>
     </section>
   )
