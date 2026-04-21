@@ -138,7 +138,7 @@ export const mentorshipMentorLogos = [
     height: 153,
   },
   {
-    src: '/company-logos/waymo.png',
+    src: '/company-logos/waymo.svg',
     alt: 'Waymo',
     width: 2050,
     height: 335,
