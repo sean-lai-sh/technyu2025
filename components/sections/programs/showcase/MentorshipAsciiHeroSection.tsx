@@ -31,7 +31,7 @@ export default function MentorshipAsciiHeroSection({
           style={{ transform: 'translate(-50%, -50%) scale(1.25)' }}
         >
           <Video2Ascii
-            src="/mentorship.mp4"
+            src="/mentorship.webm"
             numColumns={112}
             colored={true}
             brightness={1.14}
