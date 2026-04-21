@@ -4,6 +4,7 @@ import { SanityProgram } from '@/lib/types'
 import MentorshipAsciiHeroSection from '../MentorshipAsciiHeroSection'
 import ProgramAboutSection from '../ProgramAboutSection'
 import ProgramAlumniSection from '../ProgramAlumniSection'
+import ProgramCompanyGridSection from '../ProgramCompanyGridSection'
 import ProgramTracksSection from '../ProgramTracksSection'
 import ProgramFinalSection from '../ProgramFinalSection'
 import StandardBuildTabsSection from '../StandardBuildTabsSection'
@@ -14,6 +15,7 @@ import {
   mentorshipApproachImages,
   mentorshipBuildImages,
   mentorshipBuildTabs,
+  mentorshipMentorLogos,
   mentorshipShowcaseContent,
   mentorshipTestimonials,
   mentorshipTracks,
@@ -45,6 +47,13 @@ export default function MentorshipShowcase({ program }: MentorshipShowcaseProps)
           if (index === 1) return <RocketWireframe />
           return <NetworkGrowthWireframe />
         }}
+      />
+
+      <ProgramCompanyGridSection
+        eyebrow={mentorshipShowcaseContent.companyGridEyebrow}
+        title={mentorshipShowcaseContent.companyGridTitle}
+        logos={mentorshipMentorLogos}
+        footnote={mentorshipShowcaseContent.companyGridFootnote}
       />
 
       <ProgramAlumniSection testimonials={mentorshipTestimonials} />
