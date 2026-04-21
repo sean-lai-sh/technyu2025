@@ -78,8 +78,8 @@ export const PROGRAM_STAGE_MAP: Record<ProgramStageName, ProgramStageMeta> = {
     position: 'A place to turn your role into shipped work.',
     detail:
       'Startup-style pods shipping production code to real users. Two-week sprints with PR reviews, architecture guidance, and a demo day in front of engineers and recruiters.',
-    accent: '#72FFBF',
-    accentSoft: 'rgba(114, 255, 191, 0.3)',
+    accent: '#4AA8FF',
+    accentSoft: 'rgba(74, 168, 255, 0.18)',
   },
   'Startup Week': {
     name: 'Startup Week',
@@ -108,8 +108,8 @@ export const PROGRAM_STAGE_MAP: Record<ProgramStageName, ProgramStageMeta> = {
     position: 'The organizing track for growing the room around the club.',
     detail:
       "The annual event week bringing NYU's tech community into one room — panels, Buildathon, and networking organized entirely by students.",
-    accent: '#62FFAE',
-    accentSoft: 'rgba(98, 255, 174, 0.24)',
+    accent: '#4DFF94',
+    accentSoft: 'rgba(77, 255, 148, 0.16)',
   },
 }
 

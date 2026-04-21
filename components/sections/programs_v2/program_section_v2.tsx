@@ -1,11 +1,8 @@
-import React from 'react'
 import { getAllPrograms, type ProgramListItem } from '@/lib/sanity/queries'
 import { getApplicationLink } from '@/lib/application-links'
 import ProgramTrackBento from './components/program-track-bento'
-import ProgramPanel from './components/program-panel'
 import { PROGRAM_STAGE_ORDER, getProgramStageMeta } from './program-stage-map'
 import type { ProgramSource, ProgramV2ViewModel } from './types'
-import { ArrowBigLeft, ArrowBigRight, ArrowRight } from 'lucide-react'
 
 const mapProgramSource = (program: ProgramListItem): ProgramSource => ({
   _id: program._id,
@@ -67,7 +64,7 @@ export default async function ProgramSectionV2() {
         className="pointer-events-none absolute inset-0 opacity-70"
         style={{
           background:
-            'radial-gradient(circle at top left, rgba(179,0,255,0.14), transparent 36%), radial-gradient(circle at 75% 0%, rgba(77,255,148,0.08), transparent 34%)',
+            'radial-gradient(circle at top left, rgba(179,0,255,0.16), transparent 34%), radial-gradient(circle at 72% 0%, rgba(77,255,148,0.09), transparent 30%), radial-gradient(circle at 82% 34%, rgba(74,168,255,0.08), transparent 24%), radial-gradient(circle at 16% 100%, rgba(123,92,255,0.08), transparent 26%)',
         }}
       />
 
@@ -78,10 +75,11 @@ export default async function ProgramSectionV2() {
               Programs
             </p>
             <h2 className="mt-5 font-[family-name:var(--font-darker-grotesque)] text-[clamp(3.5rem,7vw,7.75rem)] leading-[0.9] tracking-[-0.04em] text-white">
-              {"Taking you from 0 to 100"}
+              {'Taking you from 0 to 100'}
             </h2>
             <p className="mt-6 max-w-3xl text-[17px] leading-relaxed text-white/68 sm:text-[18px]">
-             From growing your network to your own developer journey we have a program for you to join!
+              From growing your network to your own developer journey we have a
+              program for you to join!
             </p>
           </div>
 
