@@ -1,13 +1,9 @@
 import React from 'react'
 import { getAllPrograms, type ProgramListItem } from '@/lib/sanity/queries'
 import { getApplicationLink } from '@/lib/application-links'
-import ProgramJourneyRail from './components/program-journey-rail'
+import ProgramTrackBento from './components/program-track-bento'
 import ProgramPanel from './components/program-panel'
-import {
-  PROGRAM_STAGE_ORDER,
-  getOrderedProgramStages,
-  getProgramStageMeta,
-} from './program-stage-map'
+import { PROGRAM_STAGE_ORDER, getProgramStageMeta } from './program-stage-map'
 import type { ProgramSource, ProgramV2ViewModel } from './types'
 
 const mapProgramSource = (program: ProgramListItem): ProgramSource => ({
@@ -60,7 +56,6 @@ const buildProgramViewModel = (program: ProgramListItem): ProgramV2ViewModel => 
 
 export default async function ProgramSectionV2() {
   const programs = resolvePrograms(await getAllPrograms()).map(buildProgramViewModel)
-  const stages = getOrderedProgramStages()
 
   return (
     <section
@@ -76,61 +71,24 @@ export default async function ProgramSectionV2() {
       />
 
       <div className="relative mx-auto flex w-full max-w-[1600px] flex-col gap-14">
-        <div className="grid gap-10 lg:grid-cols-[minmax(0,1.1fr)_minmax(320px,0.9fr)] lg:items-start">
+        <div className="space-y-8">
           <div className="max-w-3xl">
             <p className="text-[11px] font-semibold uppercase tracking-[0.3em] text-white/45">
               Programs
             </p>
             <h2 className="mt-5 font-[family-name:var(--font-darker-grotesque)] text-[clamp(3.5rem,7vw,7.75rem)] leading-[0.9] tracking-[-0.04em] text-white">
-              One club, four ways to grow.
+              Find where you fit.
             </h2>
             <p className="mt-6 max-w-2xl text-[17px] leading-relaxed text-white/68 sm:text-[18px]">
-              Tech@NYU works best when the path is clear. Each program is a
-              different entry point into the same community, moving from
-              discovery to refinement, practice, and eventually giving back.
+              Use the map first, then open the program page that feels closest
+              to the role or kind of contribution you want.
             </p>
-
-            <div className="mt-8 flex flex-wrap gap-3">
-              <span className="border border-white/10 bg-white/[0.03] px-4 py-2 text-[11px] font-semibold uppercase tracking-[0.18em] text-white/55">
-                Four-stage progression
-              </span>
-              <span className="border border-white/10 bg-white/[0.03] px-4 py-2 text-[11px] font-semibold uppercase tracking-[0.18em] text-white/55">
-                Clear program fit
-              </span>
-              <span className="border border-white/10 bg-white/[0.03] px-4 py-2 text-[11px] font-semibold uppercase tracking-[0.18em] text-white/55">
-                Applications by cohort
-              </span>
-            </div>
           </div>
 
-          <div>
-            <div className="border border-white/10 bg-white/[0.02] p-4 sm:p-5">
-              <p className="mb-4 text-[11px] font-semibold uppercase tracking-[0.22em] text-white/40">
-                The map
-              </p>
-              <ProgramJourneyRail stages={stages} />
-            </div>
-          </div>
+          <ProgramTrackBento programs={programs} />
         </div>
 
-        <div className="border-t border-white/10 pt-6 sm:pt-8">
-          <div className="max-w-3xl">
-            <p className="text-[11px] font-semibold uppercase tracking-[0.3em] text-white/45">
-              Program intro
-            </p>
-            <h3 className="mt-4 font-[family-name:var(--font-darker-grotesque)] text-[clamp(2.4rem,4.8vw,4.8rem)] leading-[0.92] tracking-[-0.03em] text-white">
-              Find the role, then learn it well.
-            </h3>
-            <p className="mt-4 max-w-2xl text-[16px] leading-relaxed text-white/64 sm:text-[17px]">
-              The homepage should not ask visitors to decode four random cards.
-              It should show how the club works as a system: Tech Treks starts
-              the journey, Mentorship sharpens it, Dev Team puts it into
-              practice, and Startup Week gives it back to the community.
-            </p>
-          </div>
-        </div>
-
-        <div className="space-y-5">
+        <div className="space-y-5 border-t border-white/10 pt-8">
           {programs.map((program, index) => (
             <ProgramPanel key={program._id} program={program} index={index} />
           ))}

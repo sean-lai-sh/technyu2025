@@ -36,7 +36,7 @@ export default function ProgramPanel({ program, index }: ProgramPanelProps) {
         <div className={`p-6 sm:p-8 lg:p-10 ${panelSideClass}`}>
           <div className="flex flex-wrap items-center gap-3">
             <span className="border border-white/10 bg-white/[0.03] px-3 py-1.5 text-[11px] font-semibold uppercase tracking-[0.18em] text-white/55">
-              Stage 0{index + 1}
+              {program.stage.sequence ? program.stage.label : program.stage.trackLabel}
             </span>
             <ProgramStatusPill isOpen={program.isApplicationOpen} />
           </div>
@@ -124,7 +124,7 @@ export default function ProgramPanel({ program, index }: ProgramPanelProps) {
             <div className="absolute inset-x-0 bottom-0 p-5 sm:p-6">
               <div className="max-w-[28ch]">
                 <p className="text-[10px] font-semibold uppercase tracking-[0.22em] text-white/45">
-                  Stage focus
+                  Program focus
                 </p>
                 <p className="mt-2 text-base leading-relaxed text-white/80">
                   {program.stage.summary}

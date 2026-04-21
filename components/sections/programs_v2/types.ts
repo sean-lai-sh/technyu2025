@@ -19,15 +19,21 @@ export type ProgramStageName =
   | 'Dev Team'
   | 'Startup Week'
 
+export type ProgramTrackKey = 'grow-yourself' | 'grow-the-community'
+
 export type ProgramStageKey =
   | 'find-your-role'
   | 'hone-your-role'
   | 'practice-your-role'
-  | 'contribute-and-network-back'
+  | 'organize-and-network'
 
 export type ProgramStageMeta = {
   name: ProgramStageName
   key: ProgramStageKey
+  trackKey: ProgramTrackKey
+  trackLabel: string
+  sequence?: number
+  childLabels?: string[]
   label: string
   summary: string
   audience: string
@@ -44,4 +50,3 @@ export type ProgramV2ViewModel = ProgramSource & {
   body: string
   intro: string
 }
-

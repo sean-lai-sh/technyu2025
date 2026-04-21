@@ -22,9 +22,9 @@ export type SpotlightContent = {
 export const spotlightContent: SpotlightContent = {
   featuredItem: {
     eyebrow: 'Roadmap',
-    title: 'Our Roadmap for Startup Week and Buildathon',
+    title: 'Startup Week Roadmap: Buildathon and Beyond',
     summary:
-      'A working view into how Tech@NYU is planning its biggest near-term initiatives across Startup Week and Buildathon.',
+      'A working view into how Tech@NYU is shaping Startup Week as the umbrella for Buildathon and the wider community programming around it.',
     image: '/event-pics/buildathon.jpg',
     ctaLabel: 'View Roadmap',
     linkMode: 'internal',
