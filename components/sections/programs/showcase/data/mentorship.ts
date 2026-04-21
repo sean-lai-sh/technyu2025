@@ -58,14 +58,14 @@ export const mentorshipApproachCards: ApproachCard[] = [
   {
     id: 'enterprise',
     title: 'Enterprise\nReadiness',
-    body: 'In partnership with Databricks, weekly workshops cover the product suite — Delta Lake, Unity Catalog, MLflow — so you graduate knowing the exact tooling production data teams run on at scale.',
+    body: 'In partnership with Databricks, weekly workshops cover the product suite: Delta Lake, Unity Catalog, and MLflow. You graduate knowing the exact tooling production data teams run on at scale.',
     glow: 'rgba(255, 176, 148, 0.3)',
     accentColor: '#FFB194',
   },
   {
     id: 'operators',
     title: 'Operator\nAccess',
-    body: 'Complete the program and you become eligible for direct introductions to companies actively hiring Databricks-skilled engineers — including Airbnb, Delta, and American Airlines.',
+    body: 'Complete the program and you become eligible for direct introductions to companies actively hiring Databricks-skilled engineers, including Airbnb, Delta, and American Airlines.',
     glow: 'rgba(77, 255, 148, 0.34)',
     accentColor: '#4DFF94',
   },
@@ -94,7 +94,7 @@ export const mentorshipBuildTabs: BuildTab[] = [
     id: 'ml-ai',
     title: 'ML & AI\nPipelines',
     description:
-      'Use MLflow for experiment tracking and model registry, then deploy with Databricks AI. Build the end-to-end muscle from training runs to serving infrastructure — the full loop most courses skip.',
+      'Use MLflow for experiment tracking and model registry, then deploy with Databricks AI. Build the end-to-end muscle from training runs to serving infrastructure, covering the full loop most courses skip.',
   },
   {
     id: 'career',
@@ -154,34 +154,71 @@ export const mentorshipMentorLogos = [
 
 export const mentorshipTracks: ProgramTrack[] = [
   {
-    id: 'intake',
-    label: 'Intake',
-    title: 'Applications & Goal Setting',
-    body: 'You submit your goals, timeline, target roles, and current data experience. The team assesses fit for the program and maps your background to mentor profiles and workshop cohort placement.',
+    id: 'apply',
+    label: 'Apply',
+    title: 'Tell Us About You',
+    body: 'Share your goals, your background, and what kind of support you are looking for. We use this to understand where you are today and what the right match looks like, beyond just your resume.',
   },
   {
-    id: 'match',
-    label: 'Match',
-    title: 'Mentor Pairing + Cohort Placement',
-    body: 'Mentors are matched by domain and communication style. You are also placed into a workshop cohort. Both tracks kick off with an orientation — your 1:1 rhythm and your weekly workshop schedule start here.',
+    id: 'pairing',
+    label: 'Pairing',
+    title: 'Meet Your Mentor',
+    body: 'Once accepted, you are paired with a relevant industry professional for a dedicated 1:1 relationship. Every pairing is deliberate, matched by domain, role fit, and how you both work best.',
   },
   {
-    id: 'workshop',
-    label: 'Workshops',
-    title: 'Weekly Databricks Sessions',
-    body: 'Each week your cohort covers a module from the Databricks product suite: Delta Lake, data governance, MLflow, and AI pipelines. Sessions are structured around real patterns used in production — not toy examples.',
+    id: 'learn',
+    label: 'Learn',
+    title: 'Build Your Skills',
+    body: 'Engage in weekly Databricks workshops alongside your cohort and show up to personalized mentor calls focused on exactly what you need. Both tracks reinforce each other: what you learn in workshops, your mentor helps you apply.',
   },
   {
-    id: 'sprint',
-    label: 'Sprints',
-    title: 'Biweekly 1:1 Sessions',
-    body: 'Every two weeks you meet your mentor with specific deliverables: updated portfolio artifacts, interview practice, or skill gap closures. The workshop content feeds directly into what you bring to these sessions.',
+    id: 'refine',
+    label: 'Refine',
+    title: 'Grow With Your Cohort',
+    body: 'In a tight cohort of 10–12 people, you improve through shared feedback, peer accountability, and real work reviewed by people who have already shipped it. Small enough that everyone knows each other.',
   },
   {
-    id: 'handoff',
-    label: 'Handoff',
-    title: 'Final Plan + Company Introductions',
-    body: 'Close the cohort with a documented 60–90 day action plan. Students who complete the program become eligible for introductions to partner companies — Airbnb, Delta, American Airlines — actively hiring Databricks-skilled interns.',
+    id: 'celebrate',
+    label: 'Celebrate',
+    title: 'Show What You\'ve Built',
+    body: 'Close the semester by presenting the skills you have acquired and the work you have done, to your cohort, your mentor, and beyond. You leave with a documented story and a mentor who can vouch for it.',
+  },
+]
+
+export type FAQItem = { question: string; answer: string }
+
+export const mentorshipFAQItems: FAQItem[] = [
+  {
+    question: 'Who is this program for?',
+    answer: 'Undergraduate students with some technical background, open to hone their skills in a given technical niche while learning AI and data governance with Databricks.',
+  },
+  {
+    question: 'Do I need prior data or Databricks experience?',
+    answer: 'No. The workshops start from the ground up with the Databricks product suite. What matters is that you show up ready to learn and apply new skills each week.',
+  },
+  {
+    question: 'How are mentors matched to me?',
+    answer: 'After your application, the team reviews your goals, target roles, and background to identify a match by domain and communication style. We do not auto-assign since we aim for every pairing to be deliberate.',
+  },
+  {
+    question: 'What does a typical week look like?',
+    answer: 'One weekly Databricks workshop with your cohort, plus a scheduled 1:1 with your mentor. In between, you complete structured deliverables that tie both tracks together. Its up to you how you want to meet our wonderful mentors.',
+  },
+  {
+    question: 'How long is the program?',
+    answer: 'Roughly 10-12 weeks. Long enough to build real skills, short enough to stay focused.',
+  },
+  {
+    question: 'Why are cohorts kept to 10–12 people?',
+    answer: 'Smaller groups mean you actually know your cohort, get real feedback, and do not get lost in the shuffle. The intimacy is the point.',
+  },
+  {
+    question: 'What companies can I be introduced to?',
+    answer: 'Students who complete the program become eligible for introductions to companies actively hiring Databricks-skilled interns, including Airbnb, Delta, and American Airlines. Introductions are earned and go to students who have done the work.',
+  },
+  {
+    question: 'Is there a GPA or major requirement?',
+    answer: 'No GPA cutoff and no required major. We care about your goals, your commitment, and your curiosity about the data ecosystem.',
   },
 ]
 

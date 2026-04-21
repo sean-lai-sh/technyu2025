@@ -6,16 +6,15 @@ import ProgramAboutSection from '../ProgramAboutSection'
 import ProgramAlumniSection from '../ProgramAlumniSection'
 
 import ProgramCompanyGridSection from '../ProgramCompanyGridSection'
+import ProgramFAQSection from '../ProgramFAQSection'
 import ProgramTracksSection from '../ProgramTracksSection'
 import ProgramFinalSection from '../ProgramFinalSection'
-import StandardBuildTabsSection from '../StandardBuildTabsSection'
 import { getCtaSection, portableTextToPlainText } from '../utils'
 import { CircuitWireframe, NetworkGrowthWireframe, RocketWireframe } from '../wireframes'
 import {
   mentorshipApproachCards,
   mentorshipApproachImages,
-  mentorshipBuildImages,
-  mentorshipBuildTabs,
+  mentorshipFAQItems,
   mentorshipMentorLogos,
   mentorshipShowcaseContent,
   mentorshipTestimonials,
@@ -57,12 +56,12 @@ export default function MentorshipShowcase({ program }: MentorshipShowcaseProps)
         footnote={mentorshipShowcaseContent.companyGridFootnote}
       />
 
-      <StandardBuildTabsSection
+      {/* <StandardBuildTabsSection
         buildEyebrow={mentorshipShowcaseContent.buildEyebrow}
         buildTitle={mentorshipShowcaseContent.buildTitle}
         buildTabs={mentorshipBuildTabs}
         buildImages={mentorshipBuildImages}
-      />
+      /> */}
 
       <ProgramTracksSection
         heading={mentorshipShowcaseContent.trackHeading}
@@ -71,6 +70,13 @@ export default function MentorshipShowcase({ program }: MentorshipShowcaseProps)
       />
 
       <ProgramAlumniSection testimonials={mentorshipTestimonials} />
+
+      <ProgramFAQSection
+        eyebrow="FAQ"
+        title={"Everything you\nneed to know."}
+        items={mentorshipFAQItems}
+        accentColor="#FF6836"
+      />
 
       <ProgramFinalSection
         kicker={mentorshipShowcaseContent.finalKicker}
