@@ -16,7 +16,7 @@ import {
   mentorshipApproachImages,
   mentorshipBuildImages,
   mentorshipBuildTabs,
-  mentorshipCompanyLogos,
+  mentorshipMentorLogos,
   mentorshipShowcaseContent,
   mentorshipTestimonials,
   mentorshipTracks,
@@ -51,10 +51,10 @@ export default function MentorshipShowcase({ program }: MentorshipShowcaseProps)
       />
 
       <ProgramCompanyGridSection
-        eyebrow="Mentors From"
-        title={"Our mentors work\nat these companies"}
-        logos={mentorshipCompanyLogos}
-        footnote="Professionals matched by role, domain, and communication style"
+        eyebrow={mentorshipShowcaseContent.companyGridEyebrow}
+        title={mentorshipShowcaseContent.companyGridTitle}
+        logos={mentorshipMentorLogos}
+        footnote={mentorshipShowcaseContent.companyGridFootnote}
       />
 
       <StandardBuildTabsSection

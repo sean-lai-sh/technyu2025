@@ -113,10 +113,10 @@ export const mentorshipBuildImages: ProgramImageAsset[] = [
 
 export const mentorshipMentorLogos = [
   {
-    src: '/company-logos/databricks.png',
+    src: '/company-logos/databricks.svg',
     alt: 'Databricks',
-    width: 200,
-    height: 31,
+    width: 713,
+    height: 113,
     maxVisualWidth: 164,
   },
   {
@@ -147,9 +147,8 @@ export const mentorshipMentorLogos = [
   {
     src: '/company-logos/adobe.svg',
     alt: 'Adobe',
-    width: 54,
-    height: 60,
-    maxVisualWidth: 92,
+    width: 65,
+    height: 35,
   },
 ]
 
