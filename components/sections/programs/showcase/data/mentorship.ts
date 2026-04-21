@@ -8,6 +8,9 @@ export const mentorshipShowcaseContent = {
   approachTitle: 'Our Bespoke program to hone your craft and get your enterprise ready in partnership with Databricks',
   buildEyebrow: "What You'll Build",
   buildTitle: "What You'll\nBuild",
+  companyGridEyebrow: 'Spring Mentor Network',
+  companyGridTitle: 'Mentors from\nwhere you want to go',
+  companyGridFootnote: 'Representative Spring mentor companies, plus Databricks as our featured partner.',
   trackHeading: 'Program Flow',
   tracksTitle: 'The Mentorship\nArc',
   finalKicker: 'Ready to Grow?',
@@ -48,21 +51,21 @@ export const mentorshipApproachCards: ApproachCard[] = [
   {
     id: 'craft',
     title: 'Craft\nSharpening',
-    body: 'Every pairing is designed to pressure-test how you think, communicate, and execute. Mentors work with you on the details that make strong builders feel deliberate instead of reactive.',
+    body: 'Every pairing is a dedicated 1:1 relationship with a professional who pressure-tests how you think, communicate, and execute. Mentors work with you on the details that make strong builders feel deliberate instead of reactive.',
     glow: 'rgba(255, 104, 54, 0.34)',
     accentColor: '#FF6836',
   },
   {
     id: 'enterprise',
     title: 'Enterprise\nReadiness',
-    body: 'In partnership with Databricks, the program leans into the realities of production-facing work: stakeholder clarity, system quality, and the standards expected when products need to hold up beyond the classroom.',
+    body: 'In partnership with Databricks, weekly workshops cover the product suite: Delta Lake, Unity Catalog, and MLflow. You graduate knowing the exact tooling production data teams run on at scale.',
     glow: 'rgba(255, 176, 148, 0.3)',
     accentColor: '#FFB194',
   },
   {
     id: 'operators',
     title: 'Operator\nAccess',
-    body: 'You leave each cycle with concrete next moves, better judgment, and context from people who have recently shipped, recruited, and navigated the same decisions you are facing now.',
+    body: 'Complete the program and you become eligible for direct introductions to companies actively hiring Databricks-skilled engineers, including Airbnb, Delta, and American Airlines.',
     glow: 'rgba(77, 255, 148, 0.34)',
     accentColor: '#4DFF94',
   },
@@ -76,28 +79,28 @@ export const mentorshipApproachImages: ProgramImageAsset[] = [
 
 export const mentorshipBuildTabs: BuildTab[] = [
   {
-    id: 'cli',
-    title: 'Career\nNarrative',
+    id: 'data-eng',
+    title: 'Data Engineering\nFoundations',
     description:
-      'Craft a clear story around your background, projects, and goals. Learn to position your experience for internships, full-time roles, and startup environments.',
+      'Get hands-on with Delta Lake, Apache Spark, and the lakehouse architecture that powers production pipelines at data-first companies. Learn how modern data platforms are actually built and maintained at scale.',
   },
   {
-    id: 'web',
-    title: 'Interview\nSystems',
+    id: 'governance',
+    title: 'Data\nGovernance',
     description:
-      'Build a practical prep system for technical and behavioral interviews. Focus on consistency, targeted practice, and reflective review after each round.',
+      'Work through Unity Catalog, data lineage tracking, and access control patterns that enterprise compliance requires. Understand why governance is the first thing senior data engineers are held accountable for.',
   },
   {
-    id: 'ml',
-    title: 'Skill Gap\nPlanning',
+    id: 'ml-ai',
+    title: 'ML & AI\nPipelines',
     description:
-      'Break your growth path into weekly milestones. Mentors help prioritize what to learn now versus later, so your effort maps directly to outcomes.',
+      'Use MLflow for experiment tracking and model registry, then deploy with Databricks AI. Build the end-to-end muscle from training runs to serving infrastructure, covering the full loop most courses skip.',
   },
   {
-    id: 'oss',
-    title: 'Network\nExpansion',
+    id: 'career',
+    title: 'Career\nPathway',
     description:
-      'Learn warm outreach, coffee chat strategy, and long-term relationship building. Grow a network that helps beyond a single recruiting cycle.',
+      'Map your Databricks skill set directly to the roles open at target companies like Airbnb, Delta, and American Airlines. Your mentor helps translate workshop output into a portfolio narrative that lands interviews.',
   },
 ]
 
@@ -108,35 +111,122 @@ export const mentorshipBuildImages: ProgramImageAsset[] = [
   { src: '/event-pics/mentorship1.jpg', alt: 'Mentorship networking group' },
 ]
 
+export const mentorshipMentorLogos = [
+  {
+    src: '/company-logos/databricks.svg',
+    alt: 'Databricks',
+    width: 713,
+    height: 113,
+    maxVisualWidth: 164,
+  },
+  {
+    src: '/company-logos/google.svg',
+    alt: 'Google',
+    width: 272,
+    height: 92,
+  },
+  {
+    src: '/company-logos/meta.svg',
+    alt: 'Meta',
+    width: 512,
+    height: 97,
+  },
+  {
+    src: '/company-logos/amazon.svg',
+    alt: 'Amazon',
+    width: 512,
+    height: 153,
+  },
+  {
+    src: '/company-logos/waymo.svg',
+    alt: 'Waymo',
+    width: 2050,
+    height: 335,
+    maxVisualWidth: 168,
+  },
+  {
+    src: '/company-logos/adobe.svg',
+    alt: 'Adobe',
+    width: 65,
+    height: 35,
+  },
+]
+
 export const mentorshipTracks: ProgramTrack[] = [
   {
-    id: 'intake',
-    label: 'Intake',
-    title: 'Applications & Goal Intake',
-    body: 'You submit your goals, timeline, and target roles. The team reviews your profile to map mentor fit and expected outcomes for the semester.',
+    id: 'apply',
+    label: 'Apply',
+    title: 'Tell Us About You',
+    body: 'Share your goals, your background, and what kind of support you are looking for. We use this to understand where you are today and what the right match looks like, beyond just your resume.',
   },
   {
-    id: 'match',
-    label: 'Match',
-    title: 'Mentor Pairing',
-    body: 'Mentors are matched by role relevance and communication style. You begin with a kickoff meeting to define focus areas and session rhythm.',
+    id: 'pairing',
+    label: 'Pairing',
+    title: 'Meet Your Mentor',
+    body: 'Once accepted, you are paired with a relevant industry professional for a dedicated 1:1 relationship. Every pairing is deliberate, matched by domain, role fit, and how you both work best.',
   },
   {
-    id: 'sprint',
-    label: 'Sprint',
-    title: 'Biweekly Growth Cycles',
-    body: 'Each cycle has specific deliverables: updated resume bullets, interview practice logs, project refinements, or outreach tasks.',
+    id: 'learn',
+    label: 'Learn',
+    title: 'Build Your Skills',
+    body: 'Engage in weekly Databricks workshops alongside your cohort and show up to personalized mentor calls focused on exactly what you need. Both tracks reinforce each other: what you learn in workshops, your mentor helps you apply.',
   },
   {
-    id: 'review',
-    label: 'Review',
-    title: 'Midpoint Calibration',
-    body: 'Halfway through semester, mentors and mentees recalibrate goals based on progress, recruiting timelines, and evolving interests.',
+    id: 'refine',
+    label: 'Refine',
+    title: 'Grow With Your Cohort',
+    body: 'In a tight cohort of 10–12 people, you improve through shared feedback, peer accountability, and real work reviewed by people who have already shipped it. Small enough that everyone knows each other.',
   },
   {
-    id: 'handoff',
-    label: 'Handoff',
-    title: 'Final Plan & Next Steps',
-    body: 'Close the cohort with a documented action plan for the next 60-90 days so momentum continues after the formal program ends.',
+    id: 'celebrate',
+    label: 'Celebrate',
+    title: 'Show What You\'ve Built',
+    body: 'Close the semester by presenting the skills you have acquired and the work you have done, to your cohort, your mentor, and beyond. You leave with a documented story and a mentor who can vouch for it.',
   },
+]
+
+export type FAQItem = { question: string; answer: string }
+
+export const mentorshipFAQItems: FAQItem[] = [
+  {
+    question: 'Who is this program for?',
+    answer: 'Undergraduate students with some technical background, open to hone their skills in a given technical niche while learning AI and data governance with Databricks.',
+  },
+  {
+    question: 'Do I need prior data or Databricks experience?',
+    answer: 'No. The workshops start from the ground up with the Databricks product suite. What matters is that you show up ready to learn and apply new skills each week.',
+  },
+  {
+    question: 'How are mentors matched to me?',
+    answer: 'After your application, the team reviews your goals, target roles, and background to identify a match by domain and communication style. We do not auto-assign since we aim for every pairing to be deliberate.',
+  },
+  {
+    question: 'What does a typical week look like?',
+    answer: 'One weekly Databricks workshop with your cohort, plus a scheduled 1:1 with your mentor. In between, you complete structured deliverables that tie both tracks together. Its up to you how you want to meet our wonderful mentors.',
+  },
+  {
+    question: 'How long is the program?',
+    answer: 'Roughly 10-12 weeks. Long enough to build real skills, short enough to stay focused.',
+  },
+  {
+    question: 'Why are cohorts kept to 10–12 people?',
+    answer: 'Smaller groups mean you actually know your cohort, get real feedback, and do not get lost in the shuffle. The intimacy is the point.',
+  },
+  {
+    question: 'What companies can I be introduced to?',
+    answer: 'Students who complete the program become eligible for introductions to companies actively hiring Databricks-skilled interns, including Airbnb, Delta, and American Airlines. Introductions are earned and go to students who have done the work.',
+  },
+  {
+    question: 'Is there a GPA or major requirement?',
+    answer: 'No GPA cutoff and no required major. We care about your goals, your commitment, and your curiosity about the data ecosystem.',
+  },
+]
+
+// Logos sourced from /company-logos (google.svg, datadog.svg exist).
+// Add databricks.svg and bloomberg.svg to /company-logos to complete the grid.
+export const mentorshipCompanyLogos = [
+  { src: '/company-logos/databricks.svg', alt: 'Databricks', width: 180, height: 60 },
+  { src: '/company-logos/google.svg',     alt: 'Google',     width: 183, height: 60 },
+  { src: '/company-logos/bloomberg.svg',  alt: 'Bloomberg',  width: 200, height: 60 },
+  { src: '/company-logos/datadog.svg',    alt: 'Datadog',    width: 140, height: 60 },
 ]

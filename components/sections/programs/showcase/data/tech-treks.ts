@@ -111,25 +111,25 @@ export const techTreksPillars: ProgramPillar[] = [
 export const techTreksWhatYoullDoCards: ApproachCard[] = [
   {
     id: 'treks',
-    title: 'Visit Real\nCompanies',
+    title: 'Embark on \nCompany Treks',
     body:
-      "Step inside the offices you've only seen online and hear directly from engineers and PMs about what their work actually looks like.",
+      "Network and learn how the best in tech operate. Get exclusive access to recruiting staff and engineers from our established pipelines",
     glow: 'rgba(179, 0, 255, 0.4)',
     accentColor: '#B300FF',
   },
   {
     id: 'projects',
-    title: 'Build In\nA Pod',
+    title: 'Projects Based \n Learning',
     body:
-      'Work with a small team on one scoped product, ship something real, and leave with portfolio reps before your first internship.',
+      'Build projects recruiters and companies need to see with other techies. Figure out your role and develop expertise building something you love.',
     glow: 'rgba(77, 255, 148, 0.4)',
     accentColor: '#4DFF94',
   },
   {
     id: 'workshops',
-    title: 'Train Every\nWeek',
+    title: 'Weekly \n Workshops',
     body:
-      'Build technical confidence and internship readiness in parallel through recurring workshops designed for complete beginners.',
+      'We\'ll cover the full stack basics to build your technical foundation and internship readiness in parallel. No prior coding experience required.',
     glow: 'rgba(179, 0, 255, 0.4)',
     accentColor: '#B300FF',
   },

@@ -24,7 +24,7 @@ export default function ProgramFinalSection({
 }: ProgramFinalSectionProps) {
   return (
     <section className="px-[5vw] lg:px-[8vw] py-[14svh] border-t border-[#EDEDED]/8">
-      <div className="max-w-[700px]">
+      <div className="max-w-[700px] ">
         <p className="font-[family-name:var(--font-inter)] text-[13px] font-semibold tracking-[0.15em] uppercase opacity-55 mb-6 flex items-center gap-3">
           <span className="inline-block w-2 h-2 bg-[#B300FF]" aria-hidden="true" />
           {kicker}

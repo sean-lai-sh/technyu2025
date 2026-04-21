@@ -1,17 +1,21 @@
 'use client'
 
 import { SanityProgram } from '@/lib/types'
-import MentorshipImmersiveIntro from '../MentorshipImmersiveIntro'
+import MentorshipAsciiHeroSection from '../MentorshipAsciiHeroSection'
+import ProgramAboutSection from '../ProgramAboutSection'
 import ProgramAlumniSection from '../ProgramAlumniSection'
+
+import ProgramCompanyGridSection from '../ProgramCompanyGridSection'
+import ProgramFAQSection from '../ProgramFAQSection'
 import ProgramTracksSection from '../ProgramTracksSection'
 import ProgramFinalSection from '../ProgramFinalSection'
-import StandardBuildTabsSection from '../StandardBuildTabsSection'
 import { getCtaSection, portableTextToPlainText } from '../utils'
+import { CircuitWireframe, NetworkGrowthWireframe, RocketWireframe } from '../wireframes'
 import {
   mentorshipApproachCards,
   mentorshipApproachImages,
-  mentorshipBuildImages,
-  mentorshipBuildTabs,
+  mentorshipFAQItems,
+  mentorshipMentorLogos,
   mentorshipShowcaseContent,
   mentorshipTestimonials,
   mentorshipTracks,
@@ -23,35 +27,55 @@ type MentorshipShowcaseProps = {
 
 export default function MentorshipShowcase({ program }: MentorshipShowcaseProps) {
   const ctaSection = getCtaSection(program)
-  const resolvedHeroImage = program?.hero?.heroImageUrl || program?.desktopImageUrl || mentorshipShowcaseContent.heroImageFallback
   const resolvedFinalBody =
     portableTextToPlainText(ctaSection?.body) || program?.descriptionSmall || mentorshipShowcaseContent.finalBody
 
   return (
     <div className="bg-[#0A0A0A] text-[#EDEDED] overflow-x-hidden">
-      <MentorshipImmersiveIntro
+      <MentorshipAsciiHeroSection
         program={program}
         heroDescription={mentorshipShowcaseContent.heroDescription}
-        heroImage={resolvedHeroImage}
-        tagline={mentorshipShowcaseContent.approachTitle}
-        cards={mentorshipApproachCards}
-        images={mentorshipApproachImages}
-        applyStatusFallback={mentorshipShowcaseContent.applyStatusFallback}
       />
 
-      <ProgramAlumniSection testimonials={mentorshipTestimonials} />
+      <ProgramAboutSection
+        eyebrow="Our Approach"
+        title={mentorshipShowcaseContent.approachTitle}
+        cards={mentorshipApproachCards}
+        images={mentorshipApproachImages}
+        renderFallbackVisual={(index) => {
+          if (index === 0) return <CircuitWireframe />
+          if (index === 1) return <RocketWireframe />
+          return <NetworkGrowthWireframe />
+        }}
+      />
 
-      <StandardBuildTabsSection
+      <ProgramCompanyGridSection
+        eyebrow={mentorshipShowcaseContent.companyGridEyebrow}
+        title={mentorshipShowcaseContent.companyGridTitle}
+        logos={mentorshipMentorLogos}
+        footnote={mentorshipShowcaseContent.companyGridFootnote}
+      />
+
+      {/* <StandardBuildTabsSection
         buildEyebrow={mentorshipShowcaseContent.buildEyebrow}
         buildTitle={mentorshipShowcaseContent.buildTitle}
         buildTabs={mentorshipBuildTabs}
         buildImages={mentorshipBuildImages}
-      />
+      /> */}
 
       <ProgramTracksSection
         heading={mentorshipShowcaseContent.trackHeading}
         titleLines={mentorshipShowcaseContent.tracksTitle.split('\n')}
         tracks={mentorshipTracks}
+      />
+
+      <ProgramAlumniSection testimonials={mentorshipTestimonials} />
+
+      <ProgramFAQSection
+        eyebrow="FAQ"
+        title={"Everything you\nneed to know."}
+        items={mentorshipFAQItems}
+        accentColor="#FF6836"
       />
 
       <ProgramFinalSection
