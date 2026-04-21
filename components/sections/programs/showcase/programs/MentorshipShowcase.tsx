@@ -4,6 +4,7 @@ import { SanityProgram } from '@/lib/types'
 import MentorshipAsciiHeroSection from '../MentorshipAsciiHeroSection'
 import ProgramAboutSection from '../ProgramAboutSection'
 import ProgramAlumniSection from '../ProgramAlumniSection'
+import ProgramCompanyGridSection from '../ProgramCompanyGridSection'
 import ProgramTracksSection from '../ProgramTracksSection'
 import ProgramFinalSection from '../ProgramFinalSection'
 import StandardBuildTabsSection from '../StandardBuildTabsSection'
@@ -14,6 +15,7 @@ import {
   mentorshipApproachImages,
   mentorshipBuildImages,
   mentorshipBuildTabs,
+  mentorshipCompanyLogos,
   mentorshipShowcaseContent,
   mentorshipTestimonials,
   mentorshipTracks,
@@ -47,7 +49,12 @@ export default function MentorshipShowcase({ program }: MentorshipShowcaseProps)
         }}
       />
 
-      <ProgramAlumniSection testimonials={mentorshipTestimonials} />
+      <ProgramCompanyGridSection
+        eyebrow="Mentors From"
+        title={"Our mentors work\nat these companies"}
+        logos={mentorshipCompanyLogos}
+        footnote="Professionals matched by role, domain, and communication style"
+      />
 
       <StandardBuildTabsSection
         buildEyebrow={mentorshipShowcaseContent.buildEyebrow}
@@ -61,6 +68,8 @@ export default function MentorshipShowcase({ program }: MentorshipShowcaseProps)
         titleLines={mentorshipShowcaseContent.tracksTitle.split('\n')}
         tracks={mentorshipTracks}
       />
+
+      <ProgramAlumniSection testimonials={mentorshipTestimonials} />
 
       <ProgramFinalSection
         kicker={mentorshipShowcaseContent.finalKicker}

@@ -25,7 +25,7 @@ export default function MentorshipAsciiHeroSection({
 
   return (
     <section className="relative mt-[72px] h-[calc(100svh-72px)] overflow-hidden bg-[#0A0A0A] md:mt-[92px] md:h-[calc(100svh-92px)]">
-      <div className="absolute inset-0">
+      <div aria-hidden="true" className="pointer-events-non inset-0">
         <div
           className="absolute left-1/2 top-1/2 h-full min-w-full aspect-video"
           style={{ transform: 'translate(-50%, -50%) scale(1.25)' }}
