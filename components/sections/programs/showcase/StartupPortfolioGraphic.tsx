@@ -7,8 +7,14 @@ type StartupPortfolioGraphicProps = {
 }
 
 export default function StartupPortfolioGraphic({ startupId, asciiArt }: StartupPortfolioGraphicProps) {
-  if ((startupId === 'the-interface' || startupId === 'nozomio-labs') && asciiArt?.trim()) {
-    return <AsciiSignalLogo art={asciiArt} tone="green" scale={startupId === 'nozomio-labs' ? 1.25 : 1} />
+  if ((startupId === 'the-interface' || startupId === 'nozomio-labs' || startupId === 'avantis') && asciiArt?.trim()) {
+    return (
+      <AsciiSignalLogo
+        art={asciiArt}
+        tone="green"
+        scale={startupId === 'nozomio-labs' ? 1.25 : startupId === 'avantis' ? 1.05 : 1}
+      />
+    )
   }
 
   if (startupId === 'redacted-03') {
@@ -31,22 +37,6 @@ export default function StartupPortfolioGraphic({ startupId, asciiArt }: Startup
         <rect x="312" y="252" width="74" height="12" rx="6" fill="#EDEDED" fillOpacity="0.08" />
         <text x="260" y="96" textAnchor="middle" fill="#E6C7FF" fontSize="13" fontFamily="Arial, sans-serif" letterSpacing="4.5" opacity="0.8">
           STEALTH NETWORK
-        </text>
-      </svg>
-    )
-  }
-
-  if (startupId === 'redacted-04') {
-    return (
-      <svg viewBox="0 0 520 360" fill="none" className="h-full w-full" aria-hidden="true">
-        <rect x="54" y="54" width="412" height="252" rx="16" stroke="#EDEDED" strokeWidth="1.4" opacity="0.52" />
-        <rect x="86" y="92" width="348" height="24" rx="12" fill="#EDEDED" fillOpacity="0.05" stroke="#EDEDED" strokeWidth="1" opacity="0.28" />
-        <rect x="86" y="140" width="150" height="118" rx="12" fill="#B300FF" fillOpacity="0.04" stroke="#EDEDED" strokeWidth="1" opacity="0.32" />
-        <rect x="256" y="140" width="178" height="48" rx="10" fill="#EDEDED" fillOpacity="0.04" stroke="#EDEDED" strokeWidth="1" opacity="0.28" />
-        <rect x="256" y="204" width="178" height="54" rx="10" fill="#B300FF" fillOpacity="0.04" stroke="#B300FF" strokeWidth="1.1" opacity="0.38" />
-        <rect x="108" y="286" width="304" height="10" rx="5" fill="#EDEDED" fillOpacity="0.06" />
-        <text x="260" y="182" textAnchor="middle" fill="#E6C7FF" fontSize="17" fontFamily="Arial, sans-serif" letterSpacing="5">
-          UNRELEASED
         </text>
       </svg>
     )

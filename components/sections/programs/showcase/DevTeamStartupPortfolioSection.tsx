@@ -14,6 +14,7 @@ type DevTeamStartupPortfolioSectionProps = {
 
 const buildBadgeToneClasses = {
   public: 'border-[#FF9F43]/58 bg-[#FF9F43]/18 text-[#FFF1DD]',
+  fund: 'border-[#8FC6FF]/52 bg-[#10264F]/72 text-[#F5FBFF] shadow-[0_0_20px_rgba(143,198,255,0.14)]',
   redacted: 'border-[#B300FF]/35 bg-[#B300FF]/10 text-[#E6C7FF]',
   neutral: 'border-[#EDEDED]/15 bg-[#EDEDED]/5 text-[#EDEDED]/70',
 } as const

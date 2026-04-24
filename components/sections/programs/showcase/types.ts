@@ -22,7 +22,7 @@ export type BuildTab = {
   companySummary?: string
   cohortWork?: string
   badge?: string
-  badgeTone?: 'public' | 'redacted' | 'neutral'
+  badgeTone?: 'public' | 'fund' | 'redacted' | 'neutral'
   serial?: string
   facts?: string[]
 }

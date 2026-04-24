@@ -4,6 +4,7 @@ import path from 'path'
 const DEV_TEAM_ASCII_FILES = {
   'the-interface': 'the-interface.txt',
   'nozomio-labs': 'nozomio-labs.txt',
+  avantis: 'avantis.txt',
 } as const
 
 export async function loadDevTeamStartupAsciiArt(): Promise<Partial<Record<string, string>>> {

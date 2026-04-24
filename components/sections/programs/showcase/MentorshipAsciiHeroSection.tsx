@@ -32,12 +32,12 @@ export default function MentorshipAsciiHeroSection({
         >
           <Video2Ascii
             src="/mentorship.webm"
-            numColumns={112}
+            numColumns={84}
             colored={true}
-            brightness={1.14}
-            blend={0}
-            highlight={0}
-            charset="blocks"
+            brightness={1.08}
+            blend={16}
+            highlight={4}
+            charset="minimal"
             enableMouse={false}
             enableRipple={false}
             audioEffect={0}
