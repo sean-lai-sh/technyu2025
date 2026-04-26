@@ -117,7 +117,7 @@ export const devTeamBuildTabs: BuildTab[] = [
     badgeTone: 'redacted',
     description:
       'Another company held in redacted state by design. The point is to show that multiple startups are coming through the pipeline even when not every team is ready to be named publicly.',
-    companySummary: 'A second stealth company used to show the active breadth of the Dev Team portfolio.',
+    companySummary: 'A stealth company used to show the active breadth of the Dev Team portfolio.',
     cohortWork: 'Cohort teams could own infrastructure, product polish, or early feature delivery before public reveal.',
     facts: ['Stealth presentation layer', 'Protected while iterating', 'Still reads as real portfolio output'],
   },
