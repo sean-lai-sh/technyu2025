@@ -56,7 +56,7 @@ export default function TechTreksHeroSection({ program }: TechTreksHeroSectionPr
                 <br />
                 <span
                   className="text-[#4DFF94]"
-                  style={{ textShadow: '0 0 18px rgba(77,255,148,0.34), 0 0 42px rgba(77,255,148,0.18), 0 4px 20px rgba(0,0,0,0.9)' }}
+                  style={{ textShadow: '0 0 10px rgba(77,255,148,0.18), 0 4px 16px rgba(0,0,0,0.8)' }}
                 >
                   Flourish
                 </span>

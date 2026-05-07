@@ -39,8 +39,8 @@ function getContainedDimensions(
 
 export default function LogoGrid({ logos, className = '', footnote }: LogoGridProps) {
   return (
-    <div className={className}>
-      <div className="mx-auto grid grid-cols-2 justify-items-center gap-x-8 gap-y-4 sm:grid-cols-3 lg:grid-cols-3 lg:gap-x-10 lg:gap-y-6 xl:grid-cols-4 xl:gap-x-12">
+    <div className={`mx-auto ${className}`}>
+      <div className="mx-auto grid w-full max-w-md grid-cols-2 justify-items-center gap-x-8 gap-y-4 sm:max-w-2xl sm:grid-cols-3 lg:max-w-3xl lg:grid-cols-3 lg:gap-x-10 lg:gap-y-6 xl:max-w-5xl xl:grid-cols-4 xl:gap-x-12 2xl:max-w-7xl 2xl:grid-cols-6">
         {logos.map((logo) => {
           const baseWidth = logo.width || 120
           const baseHeight = logo.height || 60
