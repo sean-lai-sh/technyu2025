@@ -52,6 +52,36 @@ The brief: keep Darker Grotesque's "thin-but-long" silhouette (tall x-height, sl
 
 **Trial settings to test.** Hero H1 at weight 600–700, tracking ≈ −2%, leading 0.88. That isolates the silhouette comparison from weight/tracking variables.
 
+#### Free combos rendered against site styling
+
+Two combos rendered (live HTML in `docs/font-previews/`, screenshots below). Both use the site's actual surface (`#0A0A0A`), accent dot (`#4DFF94` / `#B300FF`), section spacing, and bento-card chrome — so the comparison is apples-to-apples and only the typography varies.
+
+##### Combo A — Oswald (display) + Inter (body)
+
+![Oswald + Inter preview](./font-previews/oswald-inter.png)
+
+- Sharpest "editorial-technical" silhouette of the free options. Oswald's narrow, tall H1 reads as serious immediately.
+- Inter is already loaded in `lib/fonts.ts:50` → swap risk is low. Eyebrows and CTAs use Inter at uppercase tracking, which matches the existing program-page treatment.
+- Strongest contrast between display and body, which is what `Design.md` says display headings should be doing.
+
+##### Combo B — Barlow Condensed (display) + Barlow (body) [mono-family]
+
+![Barlow Condensed + Barlow preview](./font-previews/barlow-mono.png)
+
+- Same family across display and body. The condensed cut handles hero impact; the regular cut handles paragraph reading.
+- More humanist warmth than Oswald — slightly less "systems-club" and slightly more "campus publication."
+- Mono-family is generally **not** advised because the contrast between display and body collapses. **Barlow is the exception**: the Barlow + Barlow Condensed pairing is *designed* to work together, with matching design DNA but distinct widths.
+
+##### Verdict / recommendation
+
+- **Default pick: Combo A (Oswald + Inter).** It best satisfies `Design.md`'s "technical, structured, editorial" mandate, has the largest visible step from display→body, and ships with the lowest swap cost (Inter already loaded).
+- **Choose Combo B only if** the brand wants to read warmer / more campus-publication and we want the explicit mono-family reduction. Then commit fully — drop Inter from the system, use Barlow regular for everything that's currently Inter or Satoshi-body.
+- **Not recommended:** mixing — e.g. Barlow Condensed display + Inter body. That gets the worst of both (lose mono-family cohesion, lose Oswald's sharpness).
+
+Open the HTML files locally to see at full size:
+- `docs/font-previews/oswald-inter.html`
+- `docs/font-previews/barlow-mono.html`
+
 - [ ] **D1.2a.** After trialing, lock the chosen face. Remove Darker Grotesque from `lib/fonts.ts` and replace every `font-[family-name:var(--font-darker-grotesque)]` occurrence with the new `font-display` Tailwind utility.
 
 #### Wordmark / logo typeface (identification needed)
