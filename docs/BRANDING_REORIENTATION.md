@@ -36,6 +36,51 @@ The "nice heading on the program/view page that looks slightly off" is almost ce
   - [ ] keep Darker Grotesque on program pages but use the new face only for the homepage hero + section headings (split system — **not recommended**, but capturing the option).
 - [ ] **D1.2.** Should the homepage hero (`hero.tsx:110-114`) be re-skinned in the chosen display font? Today it uses Satoshi `font-bold` at `text-[5vw]` which reads softer than the program heroes.
 
+#### Display-font shortlist (need-to-trial)
+
+The brief: keep Darker Grotesque's "thin-but-long" silhouette (tall x-height, slightly narrow proportions, tight tracking at hero sizes) but with conventional R/F/a glyph design. Trial in this order — closest-to-Darker-Grotesque-proportion → most editorially compressed:
+
+| # | Font | License | Why it's on the list |
+| --- | --- | --- | --- |
+| 1 | [Oswald](https://fonts.google.com/specimen/Oswald) | Free (Google) | Closest direct match to Darker Grotesque's silhouette. Tall x-height, medium-narrow, full weight range, conventional R/F. **Trial first.** |
+| 2 | [Barlow Condensed](https://fonts.google.com/specimen/Barlow+Condensed) | Free (Google) | Slightly narrower than Oswald. Very normal letterforms. Ships every weight + italics, so it could double as a body face if we want to consolidate to one family. |
+| 3 | [Big Shoulders Display](https://fonts.google.com/specimen/Big+Shoulders+Display) | Free (Google) | Variable font, taller and narrower than Oswald. Use if we want more "editorial poster" energy at hero sizes. |
+| 4 | [Söhne Schmal](https://klim.co.nz/retail-fonts/sohne-schmal/) | Paid (Klim) | The polished/refined version of this lane. The Stripe-tier pick. |
+| 5 | [Druk](https://commercialtype.com/catalog/druk) | Paid (Commercial Type) | Ultra editorial, goes harder than Darker Grotesque but glyphs are completely conventional. Reserve for one signature treatment, not the system. |
+
+**Trial method.** Drop the font file into `/public/fonts/<Name>`, register it in `lib/fonts.ts` as a `localFont` next to `--font-darker-grotesque`, and swap the CSS variable on a single program-page hero (`ProgramHeroSection.tsx:36`) to compare in context. ~10 min per font for the four free options.
+
+**Trial settings to test.** Hero H1 at weight 600–700, tracking ≈ −2%, leading 0.88. That isolates the silhouette comparison from weight/tracking variables.
+
+- [ ] **D1.2a.** After trialing, lock the chosen face. Remove Darker Grotesque from `lib/fonts.ts` and replace every `font-[family-name:var(--font-darker-grotesque)]` occurrence with the new `font-display` Tailwind utility.
+
+#### Wordmark / logo typeface (identification needed)
+
+`public/logo.svg` is the `tech@nyu` wordmark. The original typeface file is lost; the SVG is fully outlined paths (no `font-family` metadata). Path-trace observations:
+
+- 8 glyphs at x-positions `1, 41, 92, 143, 196, 292, 337, 391` → maps to `t · e · c · h · @ · n · y · u`.
+- Canvas height 79; lowercase x-height ≈ 40 units (≈ 51%) — tall but not extreme.
+- Ascender extension ≈ 18 units; descender ≈ 16 units.
+- Heavy weight (Bold / Black range), neutral grotesk geometry, no humanist quirks.
+- Distinctive double-storey `@` with a solid outer ring and a closed inner double-storey `a` loop.
+
+That proportional fingerprint fits the classic neo-grotesk family. Most probable candidates (in order of fit):
+
+1. **Aktiv Grotesk Bold/Black** (Dalton Maag) — https://www.daltonmaag.com/library/aktiv-grotesk
+2. **Helvetica Neue 75 Bold / 85 Heavy** — https://www.linotype.com/1266875/neue-helvetica-family.html
+3. **Founders Grotesk Bold** (Klim) — https://klim.co.nz/retail-fonts/founders-grotesk/
+4. **Söhne Halbfett / Kräftig** (Klim) — https://klim.co.nz/retail-fonts/sohne/
+5. **Inter Bold/Black** (free) — https://rsms.me/inter/
+
+**Confirm with a matcher.** Upload `public/logo.svg` (or a 2x PNG render) to:
+- Fontspring Matcherator → https://www.fontspring.com/matcherator
+- WhatTheFont → https://www.myfonts.com/pages/whatthefont
+
+- [ ] **D1.2b.** Identify the wordmark typeface and decide:
+  - [ ] re-acquire the original face and use it as-is in the wordmark
+  - [ ] replace with a closest-match free face (Inter Black is the most likely free clone) and re-render the wordmark cleanly at multiple sizes
+  - [ ] keep the SVG as outlined paths (no font dependency) but document the identified family in `Design.md` for future logo lockups
+
 ### 1.2 Body / supporting font
 
 **Observed today.** Mixed.
