@@ -22,6 +22,7 @@ This website is built with modern web technologies:
 - **Styling**: [Tailwind CSS](https://tailwindcss.com)
 - **Animations**: [Framer Motion](https://framer.com/motion)
 - **Deployment**: [Vercel](https://vercel.com)
+- **Analytics**: [Google Analytics](https://analytics.google.com)
 
 ## Project Structure
 
