@@ -21,7 +21,7 @@ export default function ProgramTracksSection({
         {heading}
       </p>
       <h2
-        className="w-full font-[family-name:var(--font-hk-grotesque)] font-medium leading-[0.92] text-[#EDEDED] mb-14"
+        className="w-full font-[family-name:var(--font-satoshi)] font-medium leading-[0.92] text-[#EDEDED] mb-14"
         style={{ fontSize: 'clamp(40px, 6vw, 68px)', letterSpacing: '-1.2px' }}
       >
         {titleLines.map((line, index) => (
@@ -37,7 +37,7 @@ export default function ProgramTracksSection({
         renderPanel={(track) => (
           <>
             <h3
-              className="font-[family-name:var(--font-hk-grotesque)] font-medium text-[#EDEDED] mb-4"
+              className="font-[family-name:var(--font-satoshi)] font-medium text-[#EDEDED] mb-4"
               style={{ fontSize: 'clamp(26px, 3vw, 42px)', letterSpacing: '-0.8px' }}
             >
               {track.title}

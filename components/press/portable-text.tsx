@@ -81,13 +81,13 @@ function PressTextBlock({ block }: { block: PressPortableTextTextBlock }) {
   switch (block.style) {
     case 'h2':
       return (
-        <h2 className="pt-8 font-[family-name:var(--font-hk-grotesque)] text-3xl font-bold leading-none tracking-[-0.04em] text-white md:text-4xl">
+        <h2 className="pt-8 font-[family-name:var(--font-satoshi)] text-3xl font-bold leading-none tracking-[-0.04em] text-white md:text-4xl">
           {children}
         </h2>
       )
     case 'h3':
       return (
-        <h3 className="pt-8 font-[family-name:var(--font-hk-grotesque)] text-2xl font-bold leading-none tracking-[-0.03em] text-white md:text-[2rem]">
+        <h3 className="pt-8 font-[family-name:var(--font-satoshi)] text-2xl font-bold leading-none tracking-[-0.03em] text-white md:text-[2rem]">
           {children}
         </h3>
       )

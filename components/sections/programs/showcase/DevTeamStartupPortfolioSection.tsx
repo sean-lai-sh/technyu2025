@@ -48,7 +48,7 @@ export default function DevTeamStartupPortfolioSection({
           {buildEyebrow}
         </p>
         <h2
-          className="font-[family-name:var(--font-hk-grotesque)] font-medium leading-[0.92] text-[#EDEDED] w-full whitespace-nowrap"
+          className="font-[family-name:var(--font-satoshi)] font-medium leading-[0.92] text-[#EDEDED] w-full whitespace-nowrap"
           style={{ fontSize: 'clamp(40px, 7.5vw, 120px)', letterSpacing: '-1.2px' }}
         >
           {buildTitleLines.join(' ')}
@@ -123,7 +123,7 @@ export default function DevTeamStartupPortfolioSection({
                         </div>
                         <h3
                           aria-label={isRedactedTab ? tab.title : undefined}
-                          className="font-[family-name:var(--font-hk-grotesque)] text-[clamp(28px,3vw,38px)] leading-[0.9]"
+                          className="font-[family-name:var(--font-satoshi)] text-[clamp(28px,3vw,38px)] leading-[0.9]"
                           style={{ letterSpacing: '-0.7px' }}
                         >
                           {isRedactedTab ? (

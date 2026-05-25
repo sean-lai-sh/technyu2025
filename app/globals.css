@@ -175,8 +175,8 @@ body {
 }
 
 /* Opt-in heavier Satoshi weight (600 SemiBold). Must be unlayered and declared
-   after the .text-display-*/.text-heading-* tokens so it overrides their locked
-   font-weight (a Tailwind font-* utility lives in @layer utilities and would
+   after the text-display / text-heading tokens so it overrides their locked
+   font-weight (a Tailwind font utility lives in @layer utilities and would
    lose to the unlayered token). Scoped usage only — currently the team + bio
    pages. See Design.md § Typography. */
 .font-display-semibold {

@@ -35,7 +35,7 @@ function SecondarySpotlightEntry({
       <div className="grid h-full grid-cols-[minmax(0,1fr)_120px] items-start gap-4 bg-surface-base sm:grid-cols-[minmax(0,1fr)_140px] md:grid-cols-[minmax(0,1fr)_150px]">
         <div>
           <h3
-            className={`max-w-[9ch] self-start font-[family-name:var(--font-hk-grotesque)] text-[1.9rem] font-bold leading-[0.9] tracking-[-0.035em] text-white ${titleClassName ?? ''}`}
+            className={`max-w-[9ch] self-start font-[family-name:var(--font-satoshi)] text-[1.9rem] font-bold leading-[0.9] tracking-[-0.035em] text-white ${titleClassName ?? ''}`}
           >
             {item.title}
           </h3>
@@ -72,7 +72,7 @@ function FeaturedSpotlightEntry({ item }: { item: SpotlightItem }) {
       <div className="grid lg:h-[60svh] lg:grid-cols-[minmax(0,1fr)_520px]">
         <div className="relative z-10 flex items-end bg-[linear-gradient(180deg,#090909_0%,#040404_100%)] p-6 md:p-8 lg:h-full lg:p-10">
           <div>
-            <h3 className="max-w-[8.5ch] font-[family-name:var(--font-hk-grotesque)] text-[3.6rem] font-bold leading-[0.84] tracking-[-0.045em] text-white sm:text-[4.5rem] lg:text-[clamp(4.6rem,4.5vw,5.3rem)]">
+            <h3 className="max-w-[8.5ch] font-[family-name:var(--font-satoshi)] text-[3.6rem] font-bold leading-[0.84] tracking-[-0.045em] text-white sm:text-[4.5rem] lg:text-[clamp(4.6rem,4.5vw,5.3rem)]">
               {item.title}
             </h3>
             <SpotlightMetaLine item={item} />

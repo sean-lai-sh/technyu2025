@@ -36,7 +36,7 @@ const NavigationDropdown: React.FC<NavigationDropdownProps> = ({
       <NavigationMenuList>
         <NavigationMenuItem>
           <NavigationMenuTrigger className={cn(
-            "relative h-auto bg-transparent px-0 py-0 font-[family-name:var(--font-hk-grotesque)] text-[1.45rem] font-semibold tracking-normal text-white/72 shadow-none transition-colors duration-300 hover:bg-transparent hover:text-white focus:bg-transparent focus:text-white data-[state=open]:bg-transparent data-[state=open]:text-white",
+            "relative h-auto bg-transparent px-0 py-0 font-[family-name:var(--font-satoshi)] text-[1.45rem] font-semibold tracking-normal text-white/72 shadow-none transition-colors duration-300 hover:bg-transparent hover:text-white focus:bg-transparent focus:text-white data-[state=open]:bg-transparent data-[state=open]:text-white",
             active && "text-white",
             className
           )}>
@@ -57,7 +57,7 @@ const NavigationDropdown: React.FC<NavigationDropdownProps> = ({
               <NavigationMenuLink asChild key={item.name}>
                 <Link
                   href={item.href}
-                  className="block min-w-[18rem] border-b border-white/10 px-5 py-4 font-[family-name:var(--font-hk-grotesque)] text-[1.75rem] tracking-tight text-white/90 transition-colors duration-300 last:border-b-0 hover:text-[#4DFF94]"
+                  className="block min-w-[18rem] border-b border-white/10 px-5 py-4 font-[family-name:var(--font-satoshi)] text-[1.75rem] tracking-tight text-white/90 transition-colors duration-300 last:border-b-0 hover:text-[#4DFF94]"
                 >
                   {item.name}
                 </Link>

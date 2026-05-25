@@ -1,7 +1,5 @@
 'use client'
 
-import { Fragment } from 'react'
-import Image from 'next/image'
 import Link from 'next/link'
 import { motion } from 'framer-motion'
 import type { ProgramV2ViewModel } from '../types'
@@ -11,24 +9,6 @@ type ProgramTrackBentoProps = {
 }
 
 const SELF_TRACK = 'grow-yourself'
-const PROGRAM_SHORT_CODES: Record<string, string> = {
-  'Tech Treks': 'TT',
-  Mentorship: 'MT',
-  'Dev Team': 'DT',
-  'Startup Week': 'SW',
-}
-
-function getProgramShortCode(name: string) {
-  return (
-    PROGRAM_SHORT_CODES[name] ??
-    name
-      .split(' ')
-      .map((part) => part[0])
-      .join('')
-      .slice(0, 2)
-      .toUpperCase()
-  )
-}
 
 function SectionHeader({ label }: { label: string }) {
   return (
@@ -41,93 +21,24 @@ function SectionHeader({ label }: { label: string }) {
   )
 }
 
-function StepArrow() {
-  return (
-    <div className="hidden w-10 shrink-0 items-center justify-center self-stretch lg:flex">
-      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden>
-        <path
-          d="M3 12h18M15 5l6 7-6 7"
-          stroke="rgba(255,255,255,0.16)"
-          strokeWidth="1.5"
-          strokeLinecap="square"
-          strokeLinejoin="miter"
-        />
-      </svg>
-    </div>
-  )
-}
-
-function ProgramLogoPlate({ program }: { program: ProgramV2ViewModel }) {
-  return (
-    <div
-      className="relative flex h-16 w-[112px] shrink-0 items-center justify-center overflow-hidden border border-white/10 bg-surface-deep px-3 py-2 transition-transform duration-150 ease-out group-hover:scale-[1.03] sm:h-[72px] sm:w-[124px]"
-      style={{
-        boxShadow: `inset 0 0 0 1px ${program.stage.accentSoft}, inset 0 0 28px -18px ${program.stage.accent}`,
-      }}
-    >
-      {program.svgIconUrl ? (
-        <Image
-          src={program.svgIconUrl}
-          alt={`${program.name} logo`}
-          fill
-          className="object-contain p-3 sm:p-2.5"
-          sizes="124px"
-        />
-      ) : (
-        <span className="font-[family-name:var(--font-hk-grotesque)] text-[1.7rem] leading-none tracking-[0.06em] text-white">
-          {getProgramShortCode(program.name)}
-        </span>
-      )}
-    </div>
-  )
-}
-
 function ProgramBentoCard({ program }: { program: ProgramV2ViewModel }) {
   return (
     <Link
       href={`/programs/${program.slug}`}
-      className="group relative flex h-full min-h-[340px] w-full flex-col justify-between overflow-hidden border border-white/10 bg-surface-base p-5 transition-transform duration-150 ease-out hover:-translate-y-1 hover:border-white/20 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-white/30 sm:p-6"
-      style={{
-        background: `radial-gradient(circle at 100% 0%, ${program.stage.accent}12 0%, transparent 34%), linear-gradient(180deg, rgba(255,255,255,0.04) 0%, rgba(255,255,255,0.02) 38%, rgba(0,0,0,0.2) 100%)`,
-        boxShadow: `inset 0 0 0 1px rgba(255,255,255,0.03), inset 0 -56px 80px -72px ${program.stage.accentSoft}, inset 0 0 84px -76px ${program.stage.accent}`,
-      }}
+      className="group relative flex h-full min-h-[340px] w-full flex-col justify-between overflow-hidden border border-white/10 bg-surface-raised p-5 transition-transform duration-150 ease-out hover:-translate-y-1 hover:border-white/20 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-white/30 sm:p-6"
     >
       <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-white/10" />
-      <div
-        className="pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-200 ease-out group-hover:opacity-100"
-        style={{
-          background: `radial-gradient(circle at 84% 16%, ${program.stage.accent}12 0%, transparent 40%)`,
-        }}
-      />
-      <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(135deg,transparent_0%,transparent_68%,rgba(255,255,255,0.02)_100%)]" />
 
-      <div className="relative flex flex-col gap-5">
-        <div className="flex items-start gap-4">
-          <ProgramLogoPlate program={program} />
-          <div className="min-w-0 pt-1">
-            <p className="text-[13px] font-semibold uppercase tracking-[0.22em] text-white/72 transition-colors duration-150 ease-out group-hover:text-white sm:text-[14px]">
-              {program.stage.label}
-            </p>
-          </div>
-        </div>
-
-        <div>
-          <h4 className="font-[family-name:var(--font-hk-grotesque)] text-[clamp(2.6rem,3vw,3.9rem)] leading-[0.9] tracking-[-0.04em] text-white">
-            {program.name}
-          </h4>
-          <p className="mt-3 max-w-[25ch] text-[15px] leading-[1.45] text-white/72">
-            {program.stage.position}
-          </p>
-          <p className="mt-4 max-w-[36ch] text-[13px] leading-relaxed text-white/48">
-            {program.stage.detail}
-          </p>
-        </div>
+      <div className="relative flex flex-col">
+        <h4 className="font-[family-name:var(--font-satoshi)] text-[clamp(2.6rem,3vw,3.9rem)] leading-[0.9] tracking-[-0.04em] text-white">
+          {program.name}
+        </h4>
+        <p className="mt-8 max-w-[34ch] text-[15px] leading-[1.5] text-white/72">
+          {program.stage.detail}
+        </p>
       </div>
 
-      <div className="relative mt-6 flex items-center justify-between gap-3 border-t border-white/10 pt-4">
-        <span className="inline-flex items-center justify-center border border-white/10 bg-white/5 px-2.5 py-1 text-[10px] font-semibold uppercase tracking-[0.2em] text-white/48">
-          {program.isApplicationOpen ? 'Apps open' : 'Apps closed'}
-        </span>
+      <div className="relative mt-6 flex items-center justify-end">
         <motion.span
           className="inline-flex items-center justify-center border border-white/70 bg-transparent px-4 py-2.5 text-[12px] font-semibold uppercase tracking-[0.16em] text-white"
           initial={false}
@@ -152,56 +63,45 @@ type CommunitySubCardProps = {
   label: string
   detail: string
   href: string
-  accent: string
-  accentSoft: string
 }
 
 function CommunitySubCard({
   label,
   detail,
   href,
-  accent,
-  accentSoft,
 }: CommunitySubCardProps) {
   return (
     <Link
       href={href}
-      className="group relative flex h-full w-full flex-col justify-between overflow-hidden border border-white/10 bg-surface-base p-4 transition-[border-color,transform] duration-150 ease-out hover:-translate-y-0.5 hover:border-white/20 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-white/30 sm:p-5"
-      style={{
-        background: `radial-gradient(circle at 100% 0%, ${accent}10 0%, transparent 32%), linear-gradient(180deg, rgba(255,255,255,0.04) 0%, rgba(255,255,255,0.015) 44%, rgba(0,0,0,0.2) 100%)`,
-        boxShadow: `inset 0 0 0 1px rgba(255,255,255,0.03), inset 0 -48px 80px -72px ${accentSoft}`,
-      }}
+      className="group relative flex h-full w-full flex-col justify-between overflow-hidden border border-white/10 bg-surface-raised p-5 transition-[border-color,transform] duration-150 ease-out hover:-translate-y-0.5 hover:border-white/20 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-white/30 sm:p-6"
     >
       <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-white/10" />
-      <div
-        className="pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-200 ease-out group-hover:opacity-100"
-        style={{
-          background: `radial-gradient(circle at 84% 16%, ${accent}12 0%, transparent 40%)`,
-        }}
-      />
-      <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(135deg,transparent_0%,transparent_70%,rgba(255,255,255,0.02)_100%)]" />
 
-      <div className="relative flex flex-col gap-4">
-        <p className="text-[10px] font-semibold uppercase tracking-[0.26em] text-white/28">
-          Inside Startup Week
-        </p>
-        <h4 className="font-[family-name:var(--font-hk-grotesque)] text-[clamp(2rem,2.4vw,2.9rem)] leading-[0.9] tracking-[-0.03em] text-white">
+      <div className="relative flex flex-col">
+        <h4 className="font-[family-name:var(--font-satoshi)] text-[clamp(2rem,2.4vw,2.9rem)] leading-[0.9] tracking-[-0.03em] text-white">
           {label}
         </h4>
-        <div className="border border-white/10 bg-black/30 p-3">
-          <p className="text-[10px] font-semibold uppercase tracking-[0.22em] text-white/28">
-            Contribution
-          </p>
-          <p className="mt-2 max-w-[36ch] text-[13px] leading-relaxed text-white/48">
-            {detail}
-          </p>
-        </div>
+        <p className="mt-8 max-w-[36ch] text-[15px] leading-[1.5] text-white/72">
+          {detail}
+        </p>
       </div>
 
-      <div className="relative mt-5 border-t border-white/10 pt-4">
-        <span className="text-[11px] font-semibold uppercase tracking-[0.24em] text-white/48">
-          Open program page
-        </span>
+      <div className="relative mt-6 flex items-center justify-end">
+        <motion.span
+          className="inline-flex items-center justify-center border border-white/70 bg-transparent px-4 py-2.5 text-[12px] font-semibold uppercase tracking-[0.16em] text-white"
+          initial={false}
+          whileHover={{
+            backgroundColor: 'rgba(255,255,255,1)',
+            color: 'rgba(5,5,5,1)',
+            borderColor: 'rgba(255,255,255,1)',
+          }}
+          transition={{
+            duration: 0.18,
+            ease: [0.23, 1, 0.32, 1],
+          }}
+        >
+          Learn more
+        </motion.span>
       </div>
     </Link>
   )
@@ -222,23 +122,13 @@ export default function ProgramTrackBento({
     <div className="flex flex-col gap-5">
       {/* Row 1: Grow yourself — 3 equal cards with step arrows */}
       <div className="relative">
-        <div
-          className="pointer-events-none absolute inset-x-[-8%] inset-y-[-24%] opacity-60 blur-3xl"
-          style={{
-            background:
-              'radial-gradient(circle at 0% 0%, rgba(179,0,255,0.14), transparent 34%)',
-          }}
-        />
         <div className="relative space-y-3">
           <SectionHeader label="Grow yourself" />
-          <div className="flex flex-col gap-3 lg:flex-row lg:items-stretch lg:gap-0">
-            {selfPrograms.map((program, index) => (
-              <Fragment key={program._id}>
-                <div className="min-w-0 flex-1">
-                  <ProgramBentoCard program={program} />
-                </div>
-                {index < selfPrograms.length - 1 && <StepArrow />}
-              </Fragment>
+          <div className="flex flex-col gap-3 lg:flex-row lg:items-stretch">
+            {selfPrograms.map((program) => (
+              <div key={program._id} className="min-w-0 flex-1">
+                <ProgramBentoCard program={program} />
+              </div>
             ))}
           </div>
         </div>
@@ -247,13 +137,6 @@ export default function ProgramTrackBento({
       {/* Row 2: Grow the community — Buildathon + SW Events */}
       {communityProgram?.stage.childDetails ? (
         <div className="relative">
-          <div
-            className="pointer-events-none absolute inset-x-[-8%] inset-y-[-24%] opacity-60 blur-3xl"
-            style={{
-              background:
-                'radial-gradient(circle at 100% 0%, rgba(77,255,148,0.13), transparent 34%)',
-            }}
-          />
           <div className="relative space-y-3">
             <SectionHeader label="Grow the community" />
             <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
@@ -263,8 +146,6 @@ export default function ProgramTrackBento({
                   label={child.label}
                   detail={child.detail}
                   href={`/programs/${communityProgram.slug}`}
-                  accent={communityProgram.stage.accent}
-                  accentSoft={communityProgram.stage.accentSoft}
                 />
               ))}
             </div>

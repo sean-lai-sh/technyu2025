@@ -35,7 +35,7 @@ export default function TextSectionComponent({ section }: TextSectionProps) {
       <div className="mx-auto max-w-[1240px]">
         <div className="rounded-2xl border border-white/10 bg-surface-base p-6 shadow-[inset_0_0_70px_rgba(179,0,255,0.07)] md:p-8 lg:p-10">
           {section.heading && (
-            <h2 className="mb-7 font-[family-name:var(--font-hk-grotesque)] text-4xl font-bold leading-tight tracking-tight text-white md:text-5xl">
+            <h2 className="mb-7 font-[family-name:var(--font-satoshi)] text-4xl font-bold leading-tight tracking-tight text-white md:text-5xl">
               {section.heading}
             </h2>
           )}

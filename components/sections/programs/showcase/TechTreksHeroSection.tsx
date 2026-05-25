@@ -49,7 +49,7 @@ export default function TechTreksHeroSection({ program }: TechTreksHeroSectionPr
           <div className="w-full px-[5vw] pb-[clamp(44px,9vh,88px)] lg:px-[8vw]">
             <div className="max-w-[36rem]">
               <h1
-                className="font-[family-name:var(--font-hk-grotesque)] font-extrabold uppercase leading-[0.83] text-[#EDEDED]"
+                className="font-[family-name:var(--font-satoshi)] font-extrabold uppercase leading-[0.83] text-[#EDEDED]"
                 style={{ fontSize: 'clamp(56px, 8.5vw, 116px)', letterSpacing: '-0.05em' }}
               >
                 Learn, Grow,

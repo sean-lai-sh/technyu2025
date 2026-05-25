@@ -87,7 +87,7 @@ export default function MentorshipImmersiveIntro({
 
           <div className="grid gap-8 lg:grid-cols-[minmax(0,1fr)_minmax(18rem,0.42fr)] lg:items-end">
             <div className="max-w-[56rem]">
-              <h1 className="max-w-[9.2ch] font-[family-name:var(--font-hk-grotesque)] text-[4.4rem] font-semibold uppercase leading-[0.8] tracking-[-0.06em] text-white sm:text-[5.7rem] lg:text-[8rem] xl:text-[9.2rem]">
+              <h1 className="max-w-[9.2ch] font-[family-name:var(--font-satoshi)] text-[4.4rem] font-semibold uppercase leading-[0.8] tracking-[-0.06em] text-white sm:text-[5.7rem] lg:text-[8rem] xl:text-[9.2rem]">
                 Mentorship
                 <br />
                 <span className="text-[#FFB194]">x Databricks</span>
@@ -145,7 +145,7 @@ export default function MentorshipImmersiveIntro({
           className="relative z-10 mx-auto flex min-h-[100svh] max-w-[1600px] flex-col justify-center px-5 py-10 md:px-10 lg:px-[6vw] xl:px-[7vw]"
         >
           <div className="border-b border-white/10 pb-10 lg:pb-12">
-            <h2 className="max-w-none font-[family-name:var(--font-hk-grotesque)] text-[3.4rem] font-semibold leading-[0.84] tracking-[-0.05em] text-white sm:text-[4.4rem] lg:text-[6.4rem]">
+            <h2 className="max-w-none font-[family-name:var(--font-satoshi)] text-[3.4rem] font-semibold leading-[0.84] tracking-[-0.05em] text-white sm:text-[4.4rem] lg:text-[6.4rem]">
               {tagline}
             </h2>
           </div>
@@ -166,7 +166,7 @@ export default function MentorshipImmersiveIntro({
                   </span>
                 </div>
 
-                <h3 className="font-[family-name:var(--font-hk-grotesque)] text-[2.2rem] font-medium leading-[0.9] tracking-[-0.04em] whitespace-pre-line text-white">
+                <h3 className="font-[family-name:var(--font-satoshi)] text-[2.2rem] font-medium leading-[0.9] tracking-[-0.04em] whitespace-pre-line text-white">
                   {card.title}
                 </h3>
 

@@ -16,7 +16,7 @@ export default function RolesSectionComponent({ section, programApply }: RolesSe
   return (
     <section className="mt-18 px-[5vw] pb-[5svh]">
       <div className="mx-auto max-w-[1240px]">
-        <h2 className="mb-6 font-[family-name:var(--font-hk-grotesque)] text-4xl font-bold leading-tight tracking-tight text-white md:text-5xl">
+        <h2 className="mb-6 font-[family-name:var(--font-satoshi)] text-4xl font-bold leading-tight tracking-tight text-white md:text-5xl">
           {section.heading}
         </h2>
 
@@ -34,7 +34,7 @@ export default function RolesSectionComponent({ section, programApply }: RolesSe
                 return (
                   <h3
                     key={block._key}
-                    className="font-[family-name:var(--font-hk-grotesque)] text-3xl font-semibold leading-tight text-white"
+                    className="font-[family-name:var(--font-satoshi)] text-3xl font-semibold leading-tight text-white"
                   >
                     {block.text}
                   </h3>

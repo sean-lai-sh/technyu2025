@@ -32,7 +32,7 @@ const NavbarMobile = ({
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
       transition={{ duration: 0.48 }}
-      className="fixed inset-x-0 z-[95] md:hidden"
+      className="fixed inset-x-0 z-[95] bg-black/95 backdrop-blur-xl md:hidden"
       style={{
         top: headerHeight,
         height: `calc(100svh - ${headerHeight}px)`,
@@ -99,7 +99,7 @@ const NavbarMobile = ({
                   onClick={closeSheet}
                   className="group flex items-center justify-between border-b border-white/10 py-3 text-white transition-colors duration-300 hover:text-[#4DFF94]"
                 >
-                  <span className="font-[family-name:var(--font-hk-grotesque)] text-[2rem] font-semibold leading-none tracking-tight sm:text-[2.15rem]">
+                  <span className="font-[family-name:var(--font-satoshi)] text-[2rem] font-semibold leading-none tracking-tight sm:text-[2.15rem]">
                     {link.title}
                   </span>
                   <ArrowUpRight className="h-[18px] w-[18px] transition-transform duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
@@ -119,7 +119,7 @@ const NavbarMobile = ({
                     key={link.href}
                     href={link.href}
                     onClick={closeSheet}
-                    className="bg-surface-base px-3 py-3 font-[family-name:var(--font-hk-grotesque)] text-[1.05rem] tracking-normal text-white/72 transition-colors duration-300 hover:text-[#B300FF] sm:px-4 sm:py-3.5 sm:text-[1.2rem]"
+                    className="bg-surface-base px-3 py-3 font-[family-name:var(--font-satoshi)] text-[1.05rem] tracking-normal text-white/72 transition-colors duration-300 hover:text-[#B300FF] sm:px-4 sm:py-3.5 sm:text-[1.2rem]"
                   >
                     {link.title}
                   </Link>

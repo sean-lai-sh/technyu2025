@@ -29,7 +29,7 @@ export default function ProgramFAQSection({
             {eyebrow}
           </p>
           <h2
-            className="font-[family-name:var(--font-hk-grotesque)] font-medium leading-[0.92] text-[#EDEDED]"
+            className="font-[family-name:var(--font-satoshi)] font-medium leading-[0.92] text-[#EDEDED]"
             style={{ fontSize: 'clamp(36px, 5vw, 60px)', letterSpacing: '-1px' }}
           >
             {titleLines.map((line, i) => (
@@ -54,7 +54,7 @@ export default function ProgramFAQSection({
                   className="w-full flex items-center justify-between gap-4 px-5 py-4 text-left cursor-pointer [&[data-state=open]>svg]:rotate-45 [&[data-state=open]>svg]:opacity-80"
                 >
                   <span
-                    className="flex-1 font-[family-name:var(--font-hk-grotesque)] text-[#EDEDED] font-medium leading-snug"
+                    className="flex-1 font-[family-name:var(--font-satoshi)] text-[#EDEDED] font-medium leading-snug"
                     style={{ fontSize: 'clamp(15px, 1.3vw, 18px)' }}
                   >
                     {item.question}
