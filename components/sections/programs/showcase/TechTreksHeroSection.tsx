@@ -19,7 +19,7 @@ export default function TechTreksHeroSection({ program }: TechTreksHeroSectionPr
     'inline-flex items-center border border-[#EDEDED] px-7 py-3 font-[family-name:var(--font-inter)] text-[12px] font-semibold uppercase tracking-[0.24em] transition-all duration-500'
 
   return (
-    <section className="relative h-[100svh] overflow-hidden bg-[#0A0A0A]">
+    <section className="relative h-[100svh] overflow-hidden bg-surface-base">
       <div className="relative h-full overflow-hidden">
         <div className="absolute inset-0">
           <GameOfLifeAscii />
@@ -49,7 +49,7 @@ export default function TechTreksHeroSection({ program }: TechTreksHeroSectionPr
           <div className="w-full px-[5vw] pb-[clamp(44px,9vh,88px)] lg:px-[8vw]">
             <div className="max-w-[36rem]">
               <h1
-                className="font-[family-name:var(--font-darker-grotesque)] font-extrabold uppercase leading-[0.83] text-[#EDEDED]"
+                className="font-[family-name:var(--font-hk-grotesque)] font-extrabold uppercase leading-[0.83] text-[#EDEDED]"
                 style={{ fontSize: 'clamp(56px, 8.5vw, 116px)', letterSpacing: '-0.05em' }}
               >
                 Learn, Grow,

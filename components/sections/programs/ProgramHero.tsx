@@ -41,7 +41,7 @@ const portableTextComponents = {
   },
   block: {
     normal: ({ children }: { children?: React.ReactNode }) => (
-      <p className="mb-5 text-base leading-relaxed text-white/88 md:text-lg lg:text-xl">{children}</p>
+      <p className="mb-5 text-base leading-relaxed text-white/90 md:text-lg lg:text-xl">{children}</p>
     ),
   },
 }
@@ -61,19 +61,19 @@ export default function ProgramHero({
   return (
     <section className="px-[5vw]">
       <div className="mx-auto grid max-w-[1240px] grid-cols-1 items-start gap-8 lg:grid-cols-[1.1fr_0.9fr] lg:gap-12">
-        <div className="rounded-2xl border border-white/12 bg-black/45 p-6 shadow-[inset_0_0_80px_rgba(77,255,148,0.08)] md:p-8">
+        <div className="rounded-2xl border border-white/10 bg-black/45 p-6 shadow-[inset_0_0_80px_rgba(77,255,148,0.08)] md:p-8">
           <div className="mb-6 flex flex-wrap items-center gap-3">
-            <span className="inline-flex items-center rounded-full border border-white/20 bg-white/5 px-3 py-1 font-[family-name:var(--font-inter)] text-[11px] font-semibold uppercase tracking-[0.12em] text-white/75">
+            <span className="inline-flex items-center rounded-full border border-white/20 bg-white/5 px-3 py-1 font-[family-name:var(--font-inter)] text-[11px] font-semibold uppercase tracking-[0.12em] text-white/72">
               Program
             </span>
             {apply?.statusText ? (
-              <span className="font-[family-name:var(--font-inter)] text-sm text-white/55">
+              <span className="font-[family-name:var(--font-inter)] text-sm text-white/48">
                 {apply.statusText}
               </span>
             ) : null}
           </div>
 
-          <h1 className="pb-6 font-[family-name:var(--font-darker-grotesque)] text-5xl font-extrabold leading-[0.92] tracking-tight text-white md:text-6xl lg:text-7xl">
+          <h1 className="pb-6 font-[family-name:var(--font-hk-grotesque)] text-5xl font-extrabold leading-[0.92] tracking-tight text-white md:text-6xl lg:text-7xl">
             {displayTitle}
           </h1>
 
@@ -98,7 +98,7 @@ export default function ProgramHero({
           </div>
         </div>
 
-        <div className="relative overflow-hidden rounded-2xl border border-white/12 bg-gradient-to-br from-white/[0.08] to-white/[0.02]">
+        <div className="relative overflow-hidden rounded-2xl border border-white/10 bg-gradient-to-br from-white/[0.08] to-white/[0.02]">
           {heroImageUrl ? (
             <div className="relative h-[280px] w-full md:h-[420px] lg:h-[520px]">
               <Image
@@ -120,7 +120,7 @@ export default function ProgramHero({
                   className="h-full w-full object-contain"
                 />
               ) : (
-                <div className="rounded-lg border border-white/20 px-6 py-4 font-[family-name:var(--font-darker-grotesque)] text-4xl font-bold text-white">
+                <div className="rounded-lg border border-white/20 px-6 py-4 font-[family-name:var(--font-hk-grotesque)] text-4xl font-bold text-white">
                   {name}
                 </div>
               )}

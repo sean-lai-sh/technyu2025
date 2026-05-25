@@ -24,7 +24,7 @@ export default function MentorshipAsciiHeroSection({
     'inline-flex items-center border border-[#EDEDED] px-7 py-3 font-[family-name:var(--font-inter)] text-[12px] font-semibold uppercase tracking-[0.24em] transition-all duration-500'
 
   return (
-    <section className="relative mt-[72px] h-[calc(100svh-72px)] overflow-hidden bg-[#0A0A0A] md:mt-[92px] md:h-[calc(100svh-92px)]">
+    <section className="relative mt-[72px] h-[calc(100svh-72px)] overflow-hidden bg-surface-base md:mt-[92px] md:h-[calc(100svh-92px)]">
       <div aria-hidden="true" className="pointer-events-non inset-0">
         <div
           className="absolute left-1/2 top-1/2 h-full min-w-full aspect-video"
@@ -81,7 +81,7 @@ export default function MentorshipAsciiHeroSection({
         <div className="w-full px-[5vw] pb-[clamp(44px,9vh,88px)] lg:px-[8vw]">
           <div className="max-w-[40rem]">
             <h1
-              className="font-[family-name:var(--font-darker-grotesque)] font-extrabold uppercase leading-[0.83] text-[#EDEDED]"
+              className="font-[family-name:var(--font-hk-grotesque)] font-extrabold uppercase leading-[0.83] text-[#EDEDED]"
               style={{
                 fontSize: 'clamp(56px, 8.5vw, 118px)',
                 letterSpacing: '-0.05em',

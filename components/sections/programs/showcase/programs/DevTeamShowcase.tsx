@@ -30,7 +30,7 @@ export default function DevTeamShowcase({ program, startupAsciiArtById }: DevTea
   const resolvedApproachTitle = program?.tagline || devTeamShowcaseContent.approachTitle
 
   return (
-    <div className="bg-[#0A0A0A] text-[#EDEDED] overflow-x-hidden">
+    <div className="bg-surface-base text-[#EDEDED] overflow-x-hidden">
       <ProgramHeroSection
         program={program}
         heroTitleLines={resolvedHeroTitle.split('\n')}

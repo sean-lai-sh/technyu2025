@@ -55,7 +55,7 @@ export default async function BlogPostPage({ params }: PageProps) {
   }
 
   return (
-    <main className="bg-[#050505]">
+    <main className="bg-surface-deep">
       <PressArticlePage post={post} />
     </main>
   )

@@ -17,9 +17,10 @@ export default function Home() {
   return (
     <div className="w-full h-fit bg-black min-h-screen">
       <Hero />
+      <History />
       <Spotlight />
       <About />
-      <History />
+      
       <Values />
       <ProgramSectionV2 />
       <HomeCTA />

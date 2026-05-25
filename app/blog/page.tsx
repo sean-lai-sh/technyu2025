@@ -15,7 +15,7 @@ export default async function BlogPage() {
   const { posts } = await getPressIndex()
 
   return (
-    <main className="min-h-screen bg-[#050505] text-white] pt-[5svh]">
+    <main className="min-h-screen bg-surface-deep text-white] pt-[5svh]">
       <Spotlight />
       <PressIndexList posts={posts} />
     </main>

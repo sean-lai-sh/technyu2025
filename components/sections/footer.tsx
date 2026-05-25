@@ -11,7 +11,7 @@ const Footer = () => {
   ]
 
   return (
-    <section className="w-full overflow-hidden bg-[#030303] text-[#FFFFFF]">
+    <section className="w-full overflow-hidden bg-surface-base text-[#FFFFFF]">
       <div className="relative min-h-[100svh] w-full border-y border-white/10 bg-[linear-gradient(180deg,#0b0b0b_0%,#060606_68%,#020202_100%)] lg:h-[100vh] lg:min-h-0">
         <div className="pointer-events-none absolute inset-y-0 right-0 hidden w-[54%] bg-[linear-gradient(90deg,rgba(3,3,3,0),rgba(3,3,3,0.38)_10%,rgba(3,3,3,0.78)_36%,rgba(3,3,3,0.98)_100%)] lg:block" />
         <div className="relative z-10 grid min-h-[100svh] grid-rows-[auto_1fr_auto] px-4 pb-6 pt-4 sm:px-6 sm:pb-8 sm:pt-6 lg:h-full lg:min-h-0 lg:px-8 lg:pb-10 lg:pt-8">
@@ -26,7 +26,7 @@ const Footer = () => {
               <div className="grid grid-cols-2 gap-x-8 gap-y-8 sm:grid-cols-3 lg:gap-x-10">
                 {linkGroups.map((group) => (
                   <div key={group.title} className="min-w-0 space-y-3">
-                    <h3 className="text-[12px] font-semibold uppercase tracking-[0.28em] text-white/54 sm:text-[13px]">{group.title}</h3>
+                    <h3 className="text-[12px] font-semibold uppercase tracking-[0.28em] text-white/48 sm:text-[13px]">{group.title}</h3>
                     <div className="flex flex-col gap-2.5">
                       {group.items.map((item) => (
                         <FooterAnchor key={item.name} name={item.name} href={item.href} />
@@ -41,9 +41,9 @@ const Footer = () => {
             <FooterSignalField className="pointer-events-none h-[64svh] w-full max-w-[68rem] opacity-[0.74] sm:h-[68svh] sm:max-w-[72rem] lg:h-[58vh] lg:max-w-[58rem]" />
           </div>
           <div className="pt-8 lg:ml-auto lg:w-[39%]">
-            <div className="space-y-3 border-t border-white/10 pt-4 font-[family-name:var(--font-satoshi)] text-xs text-white/48 sm:text-[13px]">
+            <div className="space-y-3 border-t border-white/10 pt-4 font-[family-name:var(--font-inter)] text-xs text-white/48 sm:text-[13px]">
               <p>© 2025 Tech@NYU. All rights reserved.</p>
-              <p className="text-white/42">Made by Jennifer Huang and Sean Lai 2025.</p>
+              <p className="text-white/28">Made by Jennifer Huang and Sean Lai 2025.</p>
             </div>
           </div>
         </div>
@@ -61,7 +61,7 @@ const FooterAnchor: React.FC<FooterAnchorProps> = ({ name, href, ...rest }) => {
   return (
     <a
       href={href ? href : '#'}
-      className="font-[family-name:var(--font-satoshi)] text-[15px] text-white/72 transition-colors duration-200 hover:text-white sm:text-[17px]"
+      className="font-[family-name:var(--font-inter)] text-[15px] text-white/72 transition-colors duration-200 hover:text-white sm:text-[17px]"
       {...rest}
     >
       {name}

@@ -31,7 +31,7 @@ export default function TechTreksShowcase({ program }: TechTreksShowcaseProps) {
     portableTextToPlainText(ctaSection?.body) || program?.descriptionSmall || techTreksShowcaseContent.finalBody
 
   return (
-    <div className="bg-[#0A0A0A] text-[#EDEDED] overflow-x-hidden">
+    <div className="bg-surface-base text-[#EDEDED] overflow-x-hidden">
       <TechTreksHeroSection program={program} />
 
       {/* What you'll do */}

@@ -17,14 +17,14 @@ export default function FaqSectionComponent({ section }: FaqSectionProps) {
     <section className="mt-18 px-[5vw] pb-20">
       <div className="mx-auto max-w-[1240px]">
         <h2
-          className={`mb-8 font-[family-name:var(--font-darker-grotesque)] text-4xl font-bold leading-tight tracking-tight text-white md:text-5xl ${
+          className={`mb-8 font-[family-name:var(--font-hk-grotesque)] text-4xl font-bold leading-tight tracking-tight text-white md:text-5xl ${
             section.showUnderline ? 'underline underline-offset-8 decoration-white/40' : ''
           }`}
         >
           {section.heading}
         </h2>
 
-        <div className="max-w-[860px] rounded-2xl border border-white/10 bg-[#0B0B0B] p-3 md:p-5">
+        <div className="max-w-[860px] rounded-2xl border border-white/10 bg-surface-base p-3 md:p-5">
           <Accordion type="single" collapsible className="w-full">
             {section.items.map((faq, index) => (
               <AccordionItem

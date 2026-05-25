@@ -31,7 +31,7 @@ export default function MentorshipShowcase({ program }: MentorshipShowcaseProps)
     portableTextToPlainText(ctaSection?.body) || program?.descriptionSmall || mentorshipShowcaseContent.finalBody
 
   return (
-    <div className="bg-[#0A0A0A] text-[#EDEDED] overflow-x-hidden">
+    <div className="bg-surface-base text-[#EDEDED] overflow-x-hidden">
       <MentorshipAsciiHeroSection
         program={program}
         heroDescription={mentorshipShowcaseContent.heroDescription}

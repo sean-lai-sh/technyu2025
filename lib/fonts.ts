@@ -1,52 +1,39 @@
-import { Inter, Darker_Grotesque } from 'next/font/google';
+import { Inter } from 'next/font/google';
 import localFont from 'next/font/local';
 
-// Define Satoshi as a local font
-export const satoshi = localFont({
+// Display / headings: HK Grotesque  (--font-hk-grotesque)
+// Body / UI:          Inter          (--font-inter)
+
+export const hkGrotesque = localFont({
   src: [
     {
-      path: '../public/fonts/Satoshi/Satoshi-Regular.woff2',
+      path: '../public/hk-grotesk/WEB/HKGrotesk-Light.woff2',
+      weight: '300',
+      style: 'normal',
+    },
+    {
+      path: '../public/hk-grotesk/WEB/HKGrotesk-Regular.woff2',
       weight: '400',
       style: 'normal',
     },
     {
-      path: '../public/fonts/Satoshi/Satoshi-Medium.woff2',
+      path: '../public/hk-grotesk/WEB/HKGrotesk-Medium.woff2',
       weight: '500',
       style: 'normal',
     },
     {
-      path: '../public/fonts/Satoshi/Satoshi-Bold.woff2',
-      weight: '700',
+      path: '../public/hk-grotesk/WEB/HKGrotesk-SemiBold.woff2',
+      weight: '600',
       style: 'normal',
     },
     {
-      path: '../public/fonts/Satoshi/Satoshi-Black.woff2',
-      weight: '900',
-      style: 'normal',
-    },
-    {
-      path: '../public/fonts/Satoshi/Satoshi-Italic.woff2',
-      weight: '400',
-      style: 'italic',
-    },
-    {
-      path: '../public/fonts/Satoshi/Satoshi-MediumItalic.woff2',
-      weight: '500',
-      style: 'italic',
-    },
-    {
-      path: '../public/fonts/Satoshi/Satoshi-BoldItalic.woff2',
+      path: '../public/hk-grotesk/WEB/HKGrotesk-Bold.woff2',
       weight: '700',
-      style: 'italic',
-    },
-    {
-      path: '../public/fonts/Satoshi/Satoshi-BlackItalic.woff2',
-      weight: '900',
-      style: 'italic',
+      style: 'normal',
     },
   ],
   display: 'swap',
-  variable: '--font-satoshi',
+  variable: '--font-hk-grotesque',
 });
 
 export const inter = Inter({
@@ -55,9 +42,3 @@ export const inter = Inter({
   variable: '--font-inter',
 });
 
-export const darkerGrotesque = Darker_Grotesque({
-  subsets: ['latin'],
-  display: 'swap',
-  variable: '--font-darker-grotesque',
-  weight: ['400', '500', '600', '700', '800', '900'],
-});
