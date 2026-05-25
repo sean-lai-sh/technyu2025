@@ -118,7 +118,7 @@ const Hero = () => {
               <div className="w-[90%] sm:w-[80%] md:w-[70%] lg:w-[70%] overflow-hidden">
                 <div
                   ref={supportingTextRef}
-                className="text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-2xl font-light tracking-tight leading-[1.2] opacity-0 w-full"
+                className="text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-2xl font-normal tracking-tight leading-[1.2] opacity-0 w-full"
                 >
                   The Space for Creatives, Makers, and Hackers to Build at NYU.{' '} <br className='hidden lg:block' />
                   No matter where you start, we will help you build your dreams one line at a time.
@@ -135,7 +135,7 @@ const Hero = () => {
             >
               <a
                 href="#programs"
-                className="group inline-flex items-center gap-3 border border-white/30 px-8 py-4 text-base font-medium text-white transition-[transform,background-color,color,border-color] duration-200 ease-[cubic-bezier(0.23,1,0.32,1)] hover:-translate-y-0.5 hover:border-white hover:bg-white hover:text-black active:scale-[0.97] md:text-lg"
+                className="group inline-flex items-center gap-3 border border-white/20 px-8 py-4 text-base font-medium text-white transition-[transform,background-color,color,border-color] duration-200 ease-[cubic-bezier(0.23,1,0.32,1)] hover:-translate-y-0.5 hover:border-white hover:bg-white hover:text-black active:scale-[0.97] md:text-lg"
               >
                 <span>View Programs</span>
                 <ArrowRightIcon className="transition-transform duration-200 ease-[cubic-bezier(0.23,1,0.32,1)] group-hover:translate-x-1" />

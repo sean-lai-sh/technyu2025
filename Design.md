@@ -138,25 +138,70 @@ The design should feel like a club for builders with standards, not a generic st
 
 ## Typography
 
-Typography should do most of the heavy lifting.
-
-- headlines should feel assertive, condensed, and directional
-- body copy should stay clean and readable
-- headings should create strong scan hierarchy before color or decoration does
-
-Current direction:
-
-- display: `Darker Grotesque`
-- body/supporting: `Satoshi` / `Inter`
-
-Use typography to create:
-
-- urgency
-- technical confidence
-- momentum
-- progression through the page
+Typography does most of the heavy lifting. Headlines should feel assertive and directional; body copy should stay clean and readable. Headings should create strong scan hierarchy before color or decoration does.
 
 Good typography choices should make the club feel more serious before any image or accent is added.
+
+Use typography to create urgency, technical confidence, momentum, and progression through the page.
+
+### Font System — Locked
+
+Two fonts. No others.
+
+| Role | Font | Weights in use |
+| --- | --- | --- |
+| **Display / headings** | Satoshi | 400 Regular, 500 Medium (heading-1/2) |
+| **Body / UI** | Inter | 400 Regular, 500 Medium, 600 SemiBold |
+
+CSS variables: `--font-satoshi` (display), `--font-inter` (body).
+
+**Allowed:**
+- `Satoshi` — all display headings (`display-1` through `heading-2`), card titles
+- `Inter` — body copy, eyebrows, CTAs, pills, labels, captions, meta text, any UI chrome
+
+**Not allowed:**
+- `Darker Grotesque` — superseded. Remove remaining `font-[family-name:var(--font-darker-grotesque)]` overrides on next cleanup pass.
+- `HK Grotesque` — superseded by Satoshi. Remove from display headings and component overrides on next cleanup pass.
+- Any other typeface without explicit approval in this document.
+
+### Heading Scale
+
+Five steps. Encode as Tailwind utilities (`text-display-1` through `text-heading-2`). Do not use raw `text-[Xvw]` or arbitrary `clamp()` literals in new code — always use the token.
+
+| Token | Size | Weight | Tracking | Leading |
+| --- | --- | --- | --- | --- |
+| `display-1` | `clamp(52px, 8vw, 108px)` | 400 Regular | `−0.02em` | `1.0` |
+| `display-2` | `clamp(38px, 5.5vw, 80px)` | 400 Regular | `−0.015em` | `1.05` |
+| `display-3` | `clamp(28px, 4vw, 54px)` | 400 Regular | `−0.01em` | `1.1` |
+| `heading-1` | `clamp(20px, 2.4vw, 30px)` | 500 Medium | `−0.005em` | `1.2` |
+| `heading-2` | `clamp(16px, 1.6vw, 22px)` | 500 Medium | `0em` | `1.3` |
+
+### Opacity Tiers — Locked
+
+Four tiers. No arbitrary values.
+
+| Token | Value | Used for |
+| --- | --- | --- |
+| `--fg` | `#EDEDED` / `text-white` | Full foreground — headings, active labels |
+| `--fg-body` | `white/90` | Hero lede, primary body copy |
+| `--fg-muted` | `white/72` | Card body, paragraph text, nav links |
+| `--fg-faint` | `white/48` | Eyebrows, step labels, captions, pill text |
+| `--fg-ghost` | `white/28` | Outcome labels, credits, chrome metadata |
+
+Border tiers: `white/10` (default line, 50+ uses), `white/20` (hover/active state).
+Background tiers: `white/5` (pill chip fill), `white/10` (card hover fill).
+
+Do not introduce new opacity values. Round to the nearest tier.
+
+### Body and UI Text
+
+| Role | Font | Size | Weight | Notes |
+| --- | --- | --- | --- | --- |
+| Lede paragraph | Inter | `19px` | 400 | `line-height: 1.55`, `color: white/72` |
+| Body copy | Inter | `15px` / `17px md` | 400 | `line-height: 1.55`, `color: white/72` |
+| Eyebrow | Inter | `12px` | 600 | `uppercase`, `tracking: 0.22em`, `color: white/48` |
+| CTA / button | Inter | `13px` | 600 | `uppercase`, `tracking: 0.16em` |
+| Caption / meta | Inter | `11–13px` | 600 | `uppercase`, `tracking: 0.18em`, `color: white/28–48` |
 
 ## Color and Accent Use
 
@@ -166,10 +211,25 @@ Base palette:
 - white / off-white text
 - muted gray support text
 
-Core accent colors:
+Surface — locked:
 
-- purple
-- green
+| Token | Hex | Role |
+| --- | --- | --- |
+| `--surface-base` | `#0A0A0A` | Page background. Confirmed on retina and IPS. |
+| `--surface-raised` | `#111111` | Cards, panels, elevated surfaces |
+| `--surface-deep` | `#050505` | Inset areas, code blocks, deep recesses |
+
+Core accent colors — locked:
+
+| Token | Hex | RGB | Role |
+| --- | --- | --- | --- |
+| `--accent-purple` | `#B300FF` | `179,0,255` | Primary accent — stage markers, glows, status |
+| `--accent-green` | `#4DFF94` | `77,255,148` | **Dark surfaces only.** Washes out on light. |
+| `--accent-green-light` | `#00994D` | `0,153,77` | Light surfaces only — darkened for legibility |
+
+Two accent hues. No others. `--accent-green` and `--accent-green-light` are the same brand green at different luminosity for their surface context. This is the D1 decision (chosen May 2026).
+
+**Documented partner co-brand exception.** The Mentorship × Databricks hero (`MentorshipAsciiHeroSection.tsx`) renders in Databricks orange (`#FFB194` / `#FF6836`). This is a sanctioned co-brand exception scoped to that one program hero and must not be cited as precedent for introducing additional accent hues elsewhere. New partner co-brands require explicit approval and the same scoped containment.
 
 These are brand signals and should remain the dominant accent language across the site.
 
@@ -358,6 +418,14 @@ If a direction feels:
 - too unserious
 
 it is off-brand.
+
+### Patterns explicitly banned
+
+These patterns have been called out by name as off-brand:
+
+**Section annotation boxes** — bordered or backgrounded cards placed at the top of a section that narrate what the section is ("Our Programs · Stage Overview · Here's what each stage means"). This looks like an AI-generated design system spec, not editorial UI. Sections should be self-evident from heading hierarchy, eyebrows, and content. Never add a small labeled box to explain the section to the reader.
+
+**Stage/color legend cells** — a grid of labeled squares showing stage names, hex values, or descriptions ("Stage 01 / Tech Treks / #B300FF — Pure Purple"). These are design documentation, not site UI. Color identity should be communicated through application, not declaration.
 
 ## Decision Rule
 

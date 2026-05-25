@@ -24,7 +24,7 @@ const portableTextComponents = {
   },
   block: {
     normal: ({ children }: { children?: React.ReactNode }) => (
-      <p className="mb-5 text-base leading-relaxed text-white/88 md:text-lg lg:text-xl">{children}</p>
+      <p className="mb-5 text-base leading-relaxed text-white/90 md:text-lg lg:text-xl">{children}</p>
     ),
   },
 }
@@ -33,9 +33,9 @@ export default function TextSectionComponent({ section }: TextSectionProps) {
   return (
     <section className="mt-18 px-[5vw]">
       <div className="mx-auto max-w-[1240px]">
-        <div className="rounded-2xl border border-white/10 bg-[#0B0B0B] p-6 shadow-[inset_0_0_70px_rgba(179,0,255,0.07)] md:p-8 lg:p-10">
+        <div className="rounded-2xl border border-white/10 bg-surface-base p-6 shadow-[inset_0_0_70px_rgba(179,0,255,0.07)] md:p-8 lg:p-10">
           {section.heading && (
-            <h2 className="mb-7 font-[family-name:var(--font-darker-grotesque)] text-4xl font-bold leading-tight tracking-tight text-white md:text-5xl">
+            <h2 className="mb-7 font-[family-name:var(--font-satoshi)] text-4xl font-bold leading-tight tracking-tight text-white md:text-5xl">
               {section.heading}
             </h2>
           )}

@@ -29,11 +29,11 @@ export default function ProgramHeroSection({
       <div className="w-full grid grid-cols-1 md:grid-cols-2 gap-12 lg:gap-20 items-center">
         <div>
           <p className="font-[family-name:var(--font-inter)] text-[13px] font-semibold tracking-[0.15em] uppercase text-[#EDEDED] opacity-55 mb-6 flex items-center gap-3">
-            <span className="inline-block w-2 h-2 bg-[#4DFF94]" aria-hidden="true" />
+
             TECH@NYU — PROGRAM
           </p>
           <h1
-            className="font-[family-name:var(--font-darker-grotesque)] font-extrabold leading-[0.88] text-[#EDEDED] mb-8"
+            className="font-[family-name:var(--font-satoshi)] font-extrabold leading-[0.88] text-[#EDEDED] mb-8"
             style={{ fontSize: 'clamp(72px, 11vw, 130px)', letterSpacing: '-2px' }}
           >
             {heroTitleLines.map((line, index) => (

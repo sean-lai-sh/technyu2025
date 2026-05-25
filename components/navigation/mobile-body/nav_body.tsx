@@ -29,7 +29,7 @@ export default function Body({ links, selectedLink, setSelectedLink, setIsActive
                 animate="enter"
                 exit="exit"
                 key={char + i}
-                className="satoshi"
+                className=""
             >
                 {char === " " ? "\u00A0" : char}
             </motion.span>

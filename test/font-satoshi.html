@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Font B — Satoshi</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  @font-face {
+    font-family: 'DisplayFont';
+    src: url('../public/fonts/Satoshi/Satoshi-Regular.woff2') format('woff2');
+    font-weight: 400; font-style: normal;
+  }
+  @font-face {
+    font-family: 'DisplayFont';
+    src: url('../public/fonts/Satoshi/Satoshi-Medium.woff2') format('woff2');
+    font-weight: 500; font-style: normal;
+  }
+  @font-face {
+    font-family: 'DisplayFont';
+    src: url('../public/fonts/Satoshi/Satoshi-Bold.woff2') format('woff2');
+    font-weight: 700; font-style: normal;
+  }
+  @font-face {
+    font-family: 'DisplayFont';
+    src: url('../public/fonts/Satoshi/Satoshi-Black.woff2') format('woff2');
+    font-weight: 900; font-style: normal;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --display: 'DisplayFont', system-ui, sans-serif;
+    --body: 'Inter', system-ui, sans-serif;
+    --bg: #0A0A0A;
+    --raised: #111111;
+    --deep: #050505;
+    --purple: #B300FF;
+    --green: #4DFF94;
+    --fg: #EDEDED;
+  }
+
+  html { background: var(--bg); color: var(--fg); }
+  body { font-family: var(--body); font-size: 16px; line-height: 1.5; overflow-x: hidden; }
+
+  .page-wrap { max-width: 1200px; margin: 0 auto; padding: 0 5vw; }
+  section { padding: 80px 0; border-top: 1px solid rgba(237,237,237,0.10); }
+
+  .spec-banner {
+    background: var(--deep);
+    border-bottom: 1px solid rgba(77,255,148,0.30);
+    padding: 14px 5vw;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    flex-wrap: wrap;
+  }
+  .spec-banner .label {
+    font-family: var(--body);
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: rgba(237,237,237,0.48);
+  }
+  .spec-banner .name {
+    font-family: var(--display);
+    font-size: 18px;
+    font-weight: 400;
+    color: var(--green);
+  }
+  .spec-banner .note {
+    font-family: var(--body);
+    font-size: 12px;
+    color: rgba(237,237,237,0.48);
+    max-width: 520px;
+    line-height: 1.5;
+  }
+  .spec-banner .note strong { color: rgba(237,237,237,0.72); font-weight: 500; }
+
+  .eyebrow {
+    font-family: var(--body);
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: rgba(237,237,237,0.48);
+    margin-bottom: 20px;
+  }
+
+  .display-1 {
+    font-family: var(--display);
+    font-size: clamp(52px, 8vw, 108px);
+    font-weight: 400;
+    letter-spacing: -0.02em;
+    line-height: 1.0;
+    color: var(--fg);
+  }
+  .display-2 {
+    font-family: var(--display);
+    font-size: clamp(38px, 5.5vw, 80px);
+    font-weight: 400;
+    letter-spacing: -0.015em;
+    line-height: 1.05;
+    color: var(--fg);
+  }
+  .display-3 {
+    font-family: var(--display);
+    font-size: clamp(28px, 4vw, 54px);
+    font-weight: 400;
+    letter-spacing: -0.01em;
+    line-height: 1.1;
+    color: var(--fg);
+  }
+  .heading-1 {
+    font-family: var(--display);
+    font-size: clamp(20px, 2.4vw, 30px);
+    font-weight: 500;
+    letter-spacing: -0.005em;
+    line-height: 1.2;
+    color: var(--fg);
+  }
+  .heading-2 {
+    font-family: var(--display);
+    font-size: clamp(16px, 1.6vw, 22px);
+    font-weight: 500;
+    letter-spacing: 0em;
+    line-height: 1.3;
+    color: var(--fg);
+  }
+
+  .hero { padding: 100px 0 80px; }
+  .hero-lede {
+    font-family: var(--body);
+    font-size: 19px;
+    font-weight: 400;
+    line-height: 1.55;
+    color: rgba(237,237,237,0.72);
+    max-width: 560px;
+    margin-top: 24px;
+  }
+  .hero-ctas { display: flex; gap: 14px; margin-top: 40px; flex-wrap: wrap; }
+  .btn-primary {
+    font-family: var(--body);
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    background: var(--purple);
+    color: #fff;
+    border: none;
+    padding: 13px 28px;
+    cursor: pointer;
+  }
+  .btn-secondary {
+    font-family: var(--body);
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    background: transparent;
+    color: rgba(237,237,237,0.72);
+    border: 1px solid rgba(237,237,237,0.20);
+    padding: 13px 28px;
+    cursor: pointer;
+  }
+
+  .scale-row {
+    display: grid;
+    grid-template-columns: 100px 1fr;
+    align-items: baseline;
+    gap: 24px;
+    padding: 20px 0;
+    border-bottom: 1px solid rgba(237,237,237,0.06);
+  }
+  .scale-label {
+    font-family: var(--body);
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: rgba(237,237,237,0.28);
+  }
+  .scale-meta { font-family: var(--body); font-size: 11px; color: rgba(237,237,237,0.28); margin-top: 4px; }
+
+  .cards-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2px;
+    margin-top: 40px;
+  }
+  .card {
+    background: var(--raised);
+    padding: 28px;
+    border: 1px solid rgba(237,237,237,0.10);
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+  .card-stage {
+    font-family: var(--body);
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: rgba(237,237,237,0.28);
+  }
+  .card-title { color: var(--fg); }
+  .card-body { font-family: var(--body); font-size: 15px; color: rgba(237,237,237,0.72); line-height: 1.55; flex: 1; }
+  .card-accent-line { width: 32px; height: 2px; background: var(--purple); margin-top: 4px; }
+  .card:nth-child(2) .card-accent-line { background: var(--green); }
+  .card:nth-child(3) .card-accent-line { background: var(--purple); opacity: 0.5; }
+  .card:nth-child(4) .card-accent-line { background: var(--green); opacity: 0.5; }
+  .card-link { font-family: var(--body); font-size: 12px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: rgba(237,237,237,0.48); margin-top: 8px; }
+
+  .body-block { max-width: 680px; }
+  .body-block p { font-family: var(--body); font-size: 17px; color: rgba(237,237,237,0.72); line-height: 1.6; margin-top: 18px; }
+  .body-block p:first-child { font-size: 19px; }
+
+  .stats {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 1px;
+    background: rgba(237,237,237,0.08);
+    border: 1px solid rgba(237,237,237,0.08);
+    margin-top: 40px;
+  }
+  .stat { background: var(--bg); padding: 28px 24px; }
+  .stat-num {
+    font-family: var(--display);
+    font-size: clamp(32px, 4vw, 52px);
+    font-weight: 400;
+    letter-spacing: -0.02em;
+    color: var(--fg);
+    line-height: 1;
+  }
+  .stat-label { font-family: var(--body); font-size: 11px; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(237,237,237,0.28); margin-top: 8px; }
+
+  .nav-sim {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border: 1px solid rgba(237,237,237,0.10);
+    padding: 16px 24px;
+    margin-top: 40px;
+    background: rgba(237,237,237,0.03);
+  }
+  .nav-wordmark { font-family: var(--display); font-size: 16px; font-weight: 500; letter-spacing: 0.04em; color: var(--fg); }
+  .nav-links { display: flex; gap: 32px; list-style: none; }
+  .nav-links li a { font-family: var(--body); font-size: 13px; font-weight: 500; color: rgba(237,237,237,0.72); text-decoration: none; }
+  .nav-cta { font-family: var(--body); font-size: 12px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--green); text-decoration: none; }
+
+  .weight-note {
+    background: rgba(77,255,148,0.04);
+    border: 1px solid rgba(77,255,148,0.18);
+    padding: 16px 20px;
+    margin-top: 40px;
+  }
+  .weight-note p { font-family: var(--body); font-size: 13px; color: rgba(237,237,237,0.72); line-height: 1.6; }
+  .weight-note strong { color: rgba(237,237,237,0.90); font-weight: 600; }
+</style>
+</head>
+<body>
+
+<!-- Font spec banner -->
+<div class="spec-banner">
+  <div>
+    <div class="label">Display Font</div>
+    <div class="name">Satoshi</div>
+  </div>
+  <div class="note">
+    Display/headings: <strong>Satoshi 400 Regular / 500 Medium</strong> &nbsp;·&nbsp;
+    Body/UI: <strong>Inter 400 / 500 / 600</strong><br>
+    Character: geometric sans with humanist refinement, warmer terminals — optically <strong>heavier and denser</strong> than HK Grotesque at equivalent weights. Has 900 Black weight.
+  </div>
+</div>
+
+<!-- Hero -->
+<div class="page-wrap">
+  <section class="hero" style="border-top:none;">
+    <div class="eyebrow">Tech@NYU · Since 2012</div>
+    <h1 class="display-1">Build something<br>that outlasts you.</h1>
+    <p class="hero-lede">Tech@NYU is where ambitious students stop browsing opportunities and start making things that matter. Programs, peers, and proof — in one system.</p>
+    <div class="hero-ctas">
+      <button class="btn-primary">Apply Now</button>
+      <button class="btn-secondary">Explore Programs</button>
+    </div>
+  </section>
+
+  <!-- Type scale -->
+  <section>
+    <div class="eyebrow">Heading Scale — Satoshi</div>
+    <div class="scale-row">
+      <div>
+        <div class="scale-label">display‑1</div>
+        <div class="scale-meta">400 · clamp(52–108px)</div>
+      </div>
+      <div class="display-1">The System</div>
+    </div>
+    <div class="scale-row">
+      <div>
+        <div class="scale-label">display‑2</div>
+        <div class="scale-meta">400 · clamp(38–80px)</div>
+      </div>
+      <div class="display-2">Where builders grow</div>
+    </div>
+    <div class="scale-row">
+      <div>
+        <div class="scale-label">display‑3</div>
+        <div class="scale-meta">400 · clamp(28–54px)</div>
+      </div>
+      <div class="display-3">Programs built for progression</div>
+    </div>
+    <div class="scale-row">
+      <div>
+        <div class="scale-label">heading‑1</div>
+        <div class="scale-meta">500 · clamp(20–30px)</div>
+      </div>
+      <div class="heading-1">Tech Treks — Find Your Role</div>
+    </div>
+    <div class="scale-row" style="border-bottom:none;">
+      <div>
+        <div class="scale-label">heading‑2</div>
+        <div class="scale-meta">500 · clamp(16–22px)</div>
+      </div>
+      <div class="heading-2">Join the mentorship track this semester</div>
+    </div>
+  </section>
+
+  <!-- Stats -->
+  <section>
+    <div class="eyebrow">By the numbers</div>
+    <h2 class="display-3">Results that speak.</h2>
+    <div class="stats">
+      <div class="stat">
+        <div class="stat-num">600+</div>
+        <div class="stat-label">Active Members</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">14</div>
+        <div class="stat-label">Years Running</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">40+</div>
+        <div class="stat-label">Company Partners</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">4</div>
+        <div class="stat-label">Core Programs</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Program cards -->
+  <section>
+    <div class="eyebrow">Programs · Progression System</div>
+    <h2 class="display-3">Four stages.<br>One ladder.</h2>
+    <div class="cards-grid">
+      <div class="card">
+        <div class="card-stage">Stage 01</div>
+        <div class="card-accent-line"></div>
+        <div class="heading-1 card-title">Tech Treks</div>
+        <p class="card-body">Company visits and panels designed to help you find where you fit inside the industry before you commit to a path.</p>
+        <div class="card-link">Find Your Role →</div>
+      </div>
+      <div class="card">
+        <div class="card-stage">Stage 02</div>
+        <div class="card-accent-line"></div>
+        <div class="heading-1 card-title">Mentorship</div>
+        <p class="card-body">One-on-one pairing with practitioners who've navigated what you're building toward. Structured, not casual.</p>
+        <div class="card-link">Hone Your Role →</div>
+      </div>
+      <div class="card">
+        <div class="card-stage">Stage 03</div>
+        <div class="card-accent-line"></div>
+        <div class="heading-1 card-title">Dev Team</div>
+        <p class="card-body">Ship real products with a real team. Not homework. Not a hackathon. Sustained work with real accountability.</p>
+        <div class="card-link">Practice Your Role →</div>
+      </div>
+      <div class="card">
+        <div class="card-stage">Stage 04</div>
+        <div class="card-accent-line"></div>
+        <div class="heading-1 card-title">Startup Week</div>
+        <p class="card-body">An immersive week where what you've built gets tested in front of founders, operators, and your peers.</p>
+        <div class="card-link">Contribute Back →</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Body copy -->
+  <section>
+    <div class="eyebrow">The Room</div>
+    <h2 class="display-3">Who we're for.</h2>
+    <div class="body-block">
+      <p>Tech@NYU exists for students who want real peers, real pressure, and real proof of growth — not a résumé line. If you're here to coast, there are friendlier places.</p>
+      <p>We run structured programs because talent development doesn't happen by accident. Every stage is intentional. The people you meet here are the ones building things that will matter five years from now.</p>
+      <p>First-year or senior, coder or founder — the only requirement is that you're serious about getting better.</p>
+    </div>
+  </section>
+
+  <!-- Nav simulation -->
+  <section>
+    <div class="eyebrow">Navigation Context</div>
+    <p style="font-family:var(--body);font-size:13px;color:rgba(237,237,237,0.48);margin-bottom:20px;">How the wordmark and nav links feel together.</p>
+    <nav class="nav-sim">
+      <span class="nav-wordmark">Tech@NYU</span>
+      <ul class="nav-links">
+        <li><a href="#">Programs</a></li>
+        <li><a href="#">Team</a></li>
+        <li><a href="#">Blog</a></li>
+        <li><a href="#">Press</a></li>
+      </ul>
+      <a href="#" class="nav-cta">Apply →</a>
+    </nav>
+
+    <div class="weight-note">
+      <p><strong>Weight note (Satoshi vs HK Grotesque):</strong> Satoshi 400 Regular reads as denser and more confident at display sizes — slightly heavier stroke, more presence at mid-sizes. The "o" and "c" apertures are tighter, giving it a more compact rhythm. At heading-1/2 (500 Medium) the difference is subtle but Satoshi feels more solid. Satoshi also has a 900 Black weight — useful if you want extreme contrast on a single headline word without going to a heavy weight for the full heading.</p>
+    </div>
+  </section>
+
+</div>
+</body>
+</html>

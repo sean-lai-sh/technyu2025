@@ -63,12 +63,13 @@ export function TimelineNav() {
         transition: 'top 650ms cubic-bezier(0.76, 0, 0.24, 1)',
       }}
     >
-      {/* Vertical line extends into the LinkedIn header strip above the content rail */}
+      {/* Vertical line rises to meet the separator above the rail (matching the
+          grid's lg:pt-10 gap) and stops there — never crossing the separator. */}
       <div
-        className="absolute left-0 w-[2px] bg-gray-800"
+        className="absolute left-0 w-[2px] bg-white/10"
         style={{
-          top: '-5vh',
-          height: 'calc(100% + 5vh)',
+          top: '-2.5rem',
+          height: 'calc(100% + 2.5rem)',
         }}
       />
       <div className="space-y-6">
@@ -79,13 +80,13 @@ export function TimelineNav() {
             className={`relative block w-full text-left transition-colors ${
               activeSection === section.id
                 ? 'text-white font-medium'
-                : 'text-gray-500 hover:text-gray-300'
+                : 'text-white/48 hover:text-white/72'
             }`}
           >
             {activeSection === section.id && (
               <motion.span
                 layoutId="timeline-active-square"
-                className="absolute left-[-28px] top-1/2 h-2 w-2 -translate-y-1/2 bg-white"
+                className="absolute left-[-27px] top-1/2 h-2 w-2 -translate-y-1/2 bg-white"
                 transition={{ duration: 0.3, ease: 'easeOut' }}
               />
             )}

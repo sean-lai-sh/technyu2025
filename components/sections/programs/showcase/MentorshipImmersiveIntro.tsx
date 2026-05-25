@@ -55,7 +55,7 @@ export default function MentorshipImmersiveIntro({
     <>
       <section
         ref={heroRef}
-        className="relative mt-[72px] h-[calc(100svh-72px)] overflow-hidden border-b border-white/8 bg-[#050505] md:mt-[92px] md:h-[calc(100svh-92px)]"
+        className="relative mt-[72px] h-[calc(100svh-72px)] overflow-hidden border-b border-white/10 bg-surface-deep md:mt-[92px] md:h-[calc(100svh-92px)]"
       >
         <motion.div style={heroImageStyle} className="absolute inset-0 scale-[1.08]">
           <Image
@@ -80,30 +80,30 @@ export default function MentorshipImmersiveIntro({
             <span className="rounded-[10px] border border-[rgba(255,104,54,0.4)] bg-[rgba(255,104,54,0.12)] px-4 py-2 text-[11px] font-semibold uppercase tracking-[0.24em] text-[#FFD3C3]">
               Mentorship x Databricks
             </span>
-            <span className="rounded-[10px] border border-white/10 bg-white/5 px-4 py-2 text-[11px] font-semibold uppercase tracking-[0.24em] text-white/62">
+            <span className="rounded-[10px] border border-white/10 bg-white/5 px-4 py-2 text-[11px] font-semibold uppercase tracking-[0.24em] text-white/48">
               Bespoke Program
             </span>
           </div>
 
           <div className="grid gap-8 lg:grid-cols-[minmax(0,1fr)_minmax(18rem,0.42fr)] lg:items-end">
             <div className="max-w-[56rem]">
-              <h1 className="max-w-[9.2ch] font-[family-name:var(--font-darker-grotesque)] text-[4.4rem] font-semibold uppercase leading-[0.8] tracking-[-0.06em] text-white sm:text-[5.7rem] lg:text-[8rem] xl:text-[9.2rem]">
+              <h1 className="max-w-[9.2ch] font-[family-name:var(--font-satoshi)] text-[4.4rem] font-semibold uppercase leading-[0.8] tracking-[-0.06em] text-white sm:text-[5.7rem] lg:text-[8rem] xl:text-[9.2rem]">
                 Mentorship
                 <br />
                 <span className="text-[#FFB194]">x Databricks</span>
               </h1>
 
-              <p className="mt-7 max-w-[34rem] font-[family-name:var(--font-satoshi)] text-[1rem] leading-7 text-white/74 md:text-[1.08rem]">
+              <p className="mt-7 max-w-[34rem] font-[family-name:var(--font-inter)] text-[1rem] leading-7 text-white/72 md:text-[1.08rem]">
                 {heroDescription}
               </p>
             </div>
 
-            <div className="flex flex-col gap-5 rounded-[18px] border border-white/12 bg-[rgba(10,10,10,0.58)] p-5 backdrop-blur-sm">
+            <div className="flex flex-col gap-5 rounded-[18px] border border-white/10 bg-[rgba(10,10,10,0.58)] p-5 backdrop-blur-sm">
               <div className="flex flex-wrap gap-2">
                 {['Biweekly mentor sessions', 'Enterprise-ready workflows', 'Operator feedback loops'].map((item) => (
                   <span
                     key={item}
-                    className="rounded-[10px] border border-white/10 bg-white/[0.04] px-3 py-2 text-[10px] font-semibold uppercase tracking-[0.18em] text-white/68"
+                    className="rounded-[10px] border border-white/10 bg-white/5 px-3 py-2 text-[10px] font-semibold uppercase tracking-[0.18em] text-white/72"
                   >
                     {item}
                   </span>
@@ -119,12 +119,12 @@ export default function MentorshipImmersiveIntro({
                     {program.apply.ctaLabel || 'Apply Now'}
                   </Link>
                 ) : (
-                  <span className="rounded-[10px] border border-white/12 px-6 py-4 text-[12px] font-semibold uppercase tracking-[0.22em] text-white/34">
+                  <span className="rounded-[10px] border border-white/10 px-6 py-4 text-[12px] font-semibold uppercase tracking-[0.22em] text-white/28">
                     Applications Closed
                   </span>
                 )}
 
-                <span className="text-[12px] uppercase tracking-[0.18em] text-white/44">
+                <span className="text-[12px] uppercase tracking-[0.18em] text-white/28">
                   {program?.apply?.statusText || applyStatusFallback}
                 </span>
               </div>
@@ -135,7 +135,7 @@ export default function MentorshipImmersiveIntro({
 
       <section
         ref={textSectionRef}
-        className="relative min-h-[100svh] overflow-hidden border-b border-white/8 bg-[#0D0D0F]"
+        className="relative min-h-[100svh] overflow-hidden border-b border-white/10 bg-surface-raised"
       >
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(179,0,255,0.12),transparent_28%),radial-gradient(circle_at_top_right,rgba(77,255,148,0.08),transparent_24%),linear-gradient(180deg,#101013_0%,#0B0B0D_100%)]" />
         <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.05)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.05)_1px,transparent_1px)] bg-[length:26px_26px] opacity-[0.06]" />
@@ -144,8 +144,8 @@ export default function MentorshipImmersiveIntro({
           style={textContentStyle}
           className="relative z-10 mx-auto flex min-h-[100svh] max-w-[1600px] flex-col justify-center px-5 py-10 md:px-10 lg:px-[6vw] xl:px-[7vw]"
         >
-          <div className="border-b border-white/8 pb-10 lg:pb-12">
-            <h2 className="max-w-none font-[family-name:var(--font-darker-grotesque)] text-[3.4rem] font-semibold leading-[0.84] tracking-[-0.05em] text-white sm:text-[4.4rem] lg:text-[6.4rem]">
+          <div className="border-b border-white/10 pb-10 lg:pb-12">
+            <h2 className="max-w-none font-[family-name:var(--font-satoshi)] text-[3.4rem] font-semibold leading-[0.84] tracking-[-0.05em] text-white sm:text-[4.4rem] lg:text-[6.4rem]">
               {tagline}
             </h2>
           </div>
@@ -161,16 +161,16 @@ export default function MentorshipImmersiveIntro({
                     className="h-[2px] w-14"
                     style={{ backgroundColor: card.accentColor }}
                   />
-                  <span className="text-[11px] font-semibold uppercase tracking-[0.24em] text-white/42">
+                  <span className="text-[11px] font-semibold uppercase tracking-[0.24em] text-white/48">
                     0{index + 1}
                   </span>
                 </div>
 
-                <h3 className="font-[family-name:var(--font-darker-grotesque)] text-[2.2rem] font-medium leading-[0.9] tracking-[-0.04em] whitespace-pre-line text-white">
+                <h3 className="font-[family-name:var(--font-satoshi)] text-[2.2rem] font-medium leading-[0.9] tracking-[-0.04em] whitespace-pre-line text-white">
                   {card.title}
                 </h3>
 
-                <p className="font-[family-name:var(--font-satoshi)] text-[0.98rem] leading-7 text-white/70">
+                <p className="font-[family-name:var(--font-inter)] text-[0.98rem] leading-7 text-white/70">
                   {card.body}
                 </p>
               </article>

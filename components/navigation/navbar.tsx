@@ -26,7 +26,7 @@ const programLinks = programs.map((program) => ({
 }))
 
 const navUnderlineClassName =
-  'pointer-events-none absolute inset-x-0 bottom-0 h-[1.5px] origin-left rounded-full bg-[#7c4dff] shadow-[0_0_14px_rgba(124,77,255,0.62)] transition-transform duration-300 group-hover:scale-x-100'
+  'pointer-events-none absolute inset-x-0 bottom-0 h-[1.5px] origin-left rounded-full bg-[#B300FF] shadow-[0_0_14px_rgba(179,0,255,0.55)] transition-transform duration-300 group-hover:scale-x-100'
 
 const Navbar = () => {
   const pathname = usePathname()
@@ -112,7 +112,7 @@ const Navbar = () => {
   }, [isActive])
 
   const desktopLinkClassName = (isCurrent: boolean) => cn(
-    'group relative flex items-center font-[family-name:var(--font-darker-grotesque)] text-[1.45rem] font-semibold uppercase tracking-[0.08em] text-white/76 transition-colors duration-300 hover:text-white',
+    'group relative flex items-center font-[family-name:var(--font-satoshi)] text-[1.45rem] font-semibold tracking-normal text-white/72 transition-colors duration-300 hover:text-white',
     isCurrent && 'text-white'
   )
 
@@ -140,11 +140,15 @@ const Navbar = () => {
         <div
           ref={headerRef}
           className={cn(
-            'relative w-full border-b border-white/12 transition-colors duration-500',
-            !isHomeOverlay || !isAtHeroTop || isActive ? 'bg-black' : 'bg-transparent'
+            'relative w-full border-b border-white/10 transition-colors duration-500',
+            isActive
+              ? 'bg-black/95 backdrop-blur-xl'
+              : !isHomeOverlay || !isAtHeroTop
+                ? 'bg-black'
+                : 'bg-transparent'
           )}
         >
-          <div className="absolute inset-x-0 top-0 h-px bg-[linear-gradient(90deg,rgba(109,94,252,0),rgba(109,94,252,0.92),rgba(126,247,165,0.65),rgba(126,247,165,0))]" />
+          <div className="absolute inset-x-0 top-0 h-px bg-[linear-gradient(90deg,rgba(179,0,255,0),rgba(179,0,255,0.75),rgba(77,255,148,0.55),rgba(77,255,148,0))]" />
 
           <div className="mx-auto flex h-[72px] max-w-[1600px] items-center justify-between px-4 sm:px-6 md:h-[92px] md:px-8 lg:px-[5vw]">
             <div className="flex min-w-0 items-center gap-4 md:gap-8">
@@ -156,10 +160,10 @@ const Navbar = () => {
               </Link>
 
               {/* <div className="hidden xl:flex flex-col justify-center">
-                <span className="font-[family-name:var(--font-inter)] text-[0.62rem] font-semibold uppercase tracking-[0.32em] text-white/35">
+                <span className="font-[family-name:var(--font-inter)] text-[0.62rem] font-semibold uppercase tracking-[0.32em] text-white/28">
                   New York University
                 </span>
-                <span className="font-[family-name:var(--font-darker-grotesque)] text-[1rem] font-semibold uppercase tracking-[0.18em] text-white/72">
+                <span className="font-[family-name:var(--font-satoshi)] text-[1rem] font-semibold uppercase tracking-[0.18em] text-white/72">
                   Student-led technical system
                 </span>
               </div> */}

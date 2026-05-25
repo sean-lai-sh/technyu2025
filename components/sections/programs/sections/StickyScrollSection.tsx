@@ -36,7 +36,7 @@ export default function StickyScrollSectionComponent({ section }: StickyScrollSe
     <section className="mt-18">
       <div className="mx-auto mb-6 max-w-[1240px] px-[5vw]">
         <h2
-          className={`font-[family-name:var(--font-darker-grotesque)] text-4xl font-bold leading-tight tracking-tight text-white md:text-5xl ${
+          className={`font-[family-name:var(--font-satoshi)] text-4xl font-bold leading-tight tracking-tight text-white md:text-5xl ${
             section.showUnderline ? 'underline underline-offset-8 decoration-white/40' : ''
           }`}
         >

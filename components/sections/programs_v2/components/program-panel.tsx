@@ -17,7 +17,7 @@ export default function ProgramPanel({ program, index }: ProgramPanelProps) {
 
   return (
     <article
-      className="group relative overflow-hidden border border-white/10 bg-[#090909]"
+      className="group relative overflow-hidden border border-white/10 bg-surface-base transition-colors duration-150 hover:border-white/20"
       style={{
         boxShadow: `inset 0 0 0 1px rgba(255,255,255,0.04), inset 0 0 18px rgba(255,255,255,0.03), inset 0 0 64px 6px ${accentInset}`,
       }}
@@ -35,8 +35,8 @@ export default function ProgramPanel({ program, index }: ProgramPanelProps) {
       <div className="relative grid lg:grid-cols-[minmax(0,1.05fr)_minmax(320px,0.95fr)]">
         <div className={`p-6 sm:p-8 lg:p-10 ${panelSideClass}`}>
           <div className="flex flex-wrap items-center gap-3">
-            <span className="border border-white/10 bg-white/[0.03] px-3 py-1.5 text-[11px] font-semibold uppercase tracking-[0.18em] text-white/55">
-              Stage 0{index + 1}
+            <span className="border border-white/10 bg-white/5 px-3 py-1.5 text-[11px] font-semibold uppercase tracking-[0.18em] text-white/48">
+              {program.stage.sequence ? program.stage.label : program.stage.trackLabel}
             </span>
             <ProgramStatusPill isOpen={program.isApplicationOpen} />
           </div>
@@ -53,10 +53,10 @@ export default function ProgramPanel({ program, index }: ProgramPanelProps) {
                 />
               </div>
             ) : null}
-            <p className="text-[11px] font-semibold uppercase tracking-[0.22em] text-white/35">
+            <p className="text-[11px] font-semibold uppercase tracking-[0.22em] text-white/28">
               {program.stage.position}
             </p>
-            <h3 className="mt-2 font-[family-name:var(--font-darker-grotesque)] text-5xl leading-[0.88] tracking-[-0.03em] text-white sm:text-6xl">
+            <h3 className="mt-2 font-[family-name:var(--font-satoshi)] text-5xl leading-[0.88] tracking-[-0.03em] text-white sm:text-6xl">
               {program.name}
             </h3>
             <p className="mt-3 max-w-2xl text-lg leading-relaxed text-white/72">
@@ -76,12 +76,12 @@ export default function ProgramPanel({ program, index }: ProgramPanelProps) {
                 href={program.applicationHref}
                 target="_blank"
                 rel="noreferrer"
-                className="inline-flex items-center justify-center border border-white/10 bg-white/[0.03] px-5 py-3 text-sm font-semibold text-white/75 transition-all duration-300 ease-out hover:border-white/20 hover:bg-white/[0.06] hover:text-white active:scale-[0.98]"
+                className="inline-flex items-center justify-center border border-white/10 bg-white/5 px-5 py-3 text-sm font-semibold text-white/72 transition-all duration-300 ease-out hover:border-white/20 hover:bg-white/5 hover:text-white active:scale-[0.98]"
               >
                 Apply now
               </a>
             ) : null}
-            <p className="text-sm leading-relaxed text-white/45">
+            <p className="text-sm leading-relaxed text-white/48">
               {program.intro}
             </p>
           </div>
@@ -90,7 +90,7 @@ export default function ProgramPanel({ program, index }: ProgramPanelProps) {
         <div
           className={`flex min-h-[320px] border-t border-white/10 p-4 sm:p-5 lg:min-h-[100%] lg:border-l lg:border-t-0 lg:p-6 ${mediaSideClass}`}
         >
-          <div className="relative min-h-[288px] flex-1 overflow-hidden border border-white/10 bg-[#050505]">
+          <div className="relative min-h-[288px] flex-1 overflow-hidden border border-white/10 bg-surface-deep">
             {program.desktopImageUrl ? (
               <>
                 <Image
@@ -111,10 +111,10 @@ export default function ProgramPanel({ program, index }: ProgramPanelProps) {
                 }}
               >
                 <div className="border border-white/10 bg-black/40 px-8 py-10 text-center">
-                  <p className="text-[11px] font-semibold uppercase tracking-[0.24em] text-white/45">
+                  <p className="text-[11px] font-semibold uppercase tracking-[0.24em] text-white/48">
                     {program.stage.label}
                   </p>
-                  <p className="mt-4 max-w-[14ch] font-[family-name:var(--font-darker-grotesque)] text-5xl leading-[0.9] text-white">
+                  <p className="mt-4 max-w-[14ch] font-[family-name:var(--font-satoshi)] text-5xl leading-[0.9] text-white">
                     {program.name}
                   </p>
                 </div>
@@ -123,10 +123,10 @@ export default function ProgramPanel({ program, index }: ProgramPanelProps) {
 
             <div className="absolute inset-x-0 bottom-0 p-5 sm:p-6">
               <div className="max-w-[28ch]">
-                <p className="text-[10px] font-semibold uppercase tracking-[0.22em] text-white/45">
-                  Stage focus
+                <p className="text-[10px] font-semibold uppercase tracking-[0.22em] text-white/48">
+                  Program focus
                 </p>
-                <p className="mt-2 text-base leading-relaxed text-white/80">
+                <p className="mt-2 text-base leading-relaxed text-white/72">
                   {program.stage.summary}
                 </p>
               </div>

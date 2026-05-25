@@ -32,7 +32,7 @@ const NavbarMobile = ({
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
       transition={{ duration: 0.48 }}
-      className="fixed inset-x-0 z-[95] md:hidden"
+      className="fixed inset-x-0 z-[95] bg-black/95 backdrop-blur-xl md:hidden"
       style={{
         top: headerHeight,
         height: `calc(100svh - ${headerHeight}px)`,
@@ -64,7 +64,7 @@ const NavbarMobile = ({
           scaleY: { duration: 0.78, ease: sheetEase },
         }}
         style={{ transformOrigin: 'top center' }}
-        className="flex h-full flex-col overflow-hidden border-b border-white/12 bg-[#040404]"
+        className="flex h-full flex-col overflow-hidden border-b border-white/10 bg-surface-base"
       >
         <div className="relative h-[3px] overflow-hidden">
           <motion.div
@@ -77,7 +77,7 @@ const NavbarMobile = ({
               delay: 0.12,
             }}
             style={{ transformOrigin: 'center center' }}
-            className="absolute inset-0 bg-[linear-gradient(90deg,rgba(109,94,252,0),rgba(109,94,252,0.95),rgba(126,247,165,0.72),rgba(126,247,165,0))]"
+            className="absolute inset-0 bg-[linear-gradient(90deg,rgba(179,0,255,0),rgba(179,0,255,0.78),rgba(77,255,148,0.60),rgba(77,255,148,0))]"
           />
         </div>
 
@@ -97,9 +97,9 @@ const NavbarMobile = ({
                   target={link.external ? '_blank' : undefined}
                   rel={link.external ? 'noreferrer' : undefined}
                   onClick={closeSheet}
-                  className="group flex items-center justify-between border-b border-white/10 py-3 text-white transition-colors duration-300 hover:text-[#7ef7a5]"
+                  className="group flex items-center justify-between border-b border-white/10 py-3 text-white transition-colors duration-300 hover:text-[#4DFF94]"
                 >
-                  <span className="font-[family-name:var(--font-darker-grotesque)] text-[2rem] font-semibold uppercase leading-none tracking-[0.055em] sm:text-[2.15rem]">
+                  <span className="font-[family-name:var(--font-satoshi)] text-[2rem] font-semibold leading-none tracking-tight sm:text-[2.15rem]">
                     {link.title}
                   </span>
                   <ArrowUpRight className="h-[18px] w-[18px] transition-transform duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
@@ -107,9 +107,9 @@ const NavbarMobile = ({
               ))}
             </div>
 
-            <div className="mt-6 border border-white/10 bg-white/[0.02]">
+            <div className="mt-6 border border-white/10 bg-white/5">
               <div className="border-b border-white/10 px-4 py-2.5">
-                <p className="font-[family-name:var(--font-inter)] text-[0.65rem] font-semibold uppercase tracking-[0.32em] text-white/38">
+                <p className="font-[family-name:var(--font-inter)] text-[0.65rem] font-semibold uppercase tracking-[0.32em] text-white/28">
                   Programs
                 </p>
               </div>
@@ -119,7 +119,7 @@ const NavbarMobile = ({
                     key={link.href}
                     href={link.href}
                     onClick={closeSheet}
-                    className="bg-[#040404] px-3 py-3 font-[family-name:var(--font-darker-grotesque)] text-[1.05rem] uppercase tracking-[0.065em] text-white/82 transition-colors duration-300 hover:text-[#6d5efc] sm:px-4 sm:py-3.5 sm:text-[1.2rem]"
+                    className="bg-surface-base px-3 py-3 font-[family-name:var(--font-satoshi)] text-[1.05rem] tracking-normal text-white/72 transition-colors duration-300 hover:text-[#B300FF] sm:px-4 sm:py-3.5 sm:text-[1.2rem]"
                   >
                     {link.title}
                   </Link>
@@ -133,7 +133,7 @@ const NavbarMobile = ({
           <Link
             href="mailto:hello@techatnyu.org"
             onClick={closeSheet}
-            className="font-[family-name:var(--font-inter)] text-[0.68rem] uppercase tracking-[0.18em] text-white/55 transition-colors duration-300 hover:text-white"
+            className="font-[family-name:var(--font-inter)] text-[0.68rem] uppercase tracking-[0.18em] text-white/48 transition-colors duration-300 hover:text-white"
           >
             hello@techatnyu.org
           </Link>

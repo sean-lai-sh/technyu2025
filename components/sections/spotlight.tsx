@@ -31,11 +31,11 @@ function SecondarySpotlightEntry({
   titleClassName?: string
 }) {
   const content = (
-    <div className={`h-full bg-[#050505] ${className ?? ''}`}>
-      <div className="grid h-full grid-cols-[minmax(0,1fr)_120px] items-start gap-4 bg-[#040404] sm:grid-cols-[minmax(0,1fr)_140px] md:grid-cols-[minmax(0,1fr)_150px]">
+    <div className={`h-full bg-surface-base ${className ?? ''}`}>
+      <div className="grid h-full grid-cols-[minmax(0,1fr)_120px] items-start gap-4 bg-surface-base sm:grid-cols-[minmax(0,1fr)_140px] md:grid-cols-[minmax(0,1fr)_150px]">
         <div>
           <h3
-            className={`max-w-[9ch] self-start font-[family-name:var(--font-darker-grotesque)] text-[1.9rem] font-bold leading-[0.9] tracking-[-0.035em] text-white ${titleClassName ?? ''}`}
+            className={`max-w-[9ch] self-start font-[family-name:var(--font-satoshi)] text-[1.9rem] font-bold leading-[0.9] tracking-[-0.035em] text-white ${titleClassName ?? ''}`}
           >
             {item.title}
           </h3>
@@ -68,11 +68,11 @@ function SecondarySpotlightEntry({
 
 function FeaturedSpotlightEntry({ item }: { item: SpotlightItem }) {
   const content = (
-    <div className="bg-[#050505]">
+    <div className="bg-surface-base">
       <div className="grid lg:h-[60svh] lg:grid-cols-[minmax(0,1fr)_520px]">
-        <div className="relative z-10 flex items-end bg-[linear-gradient(180deg,#090909_0%,#040404_100%)] p-6 md:p-8 lg:h-full lg:p-10">
+        <div className="relative z-10 flex items-end bg-surface-base p-6 md:p-8 lg:h-full lg:p-10">
           <div>
-            <h3 className="max-w-[8.5ch] font-[family-name:var(--font-darker-grotesque)] text-[3.6rem] font-bold leading-[0.84] tracking-[-0.045em] text-white sm:text-[4.5rem] lg:text-[clamp(4.6rem,4.5vw,5.3rem)]">
+            <h3 className="max-w-[8.5ch] font-[family-name:var(--font-satoshi)] text-[3.6rem] font-bold leading-[0.84] tracking-[-0.045em] text-white sm:text-[4.5rem] lg:text-[clamp(4.6rem,4.5vw,5.3rem)]">
               {item.title}
             </h3>
             <SpotlightMetaLine item={item} />
@@ -110,14 +110,11 @@ export function SpotlightSection({ content }: { content: SpotlightContent }) {
   return (
     <section className="w-full px-5 py-18 md:px-10 lg:px-[5vw] lg:py-24">
       <div className="mx-auto flex w-full max-w-[1600px] flex-col gap-8">
-        <div className="flex items-center gap-3 text-white">
-          <span className="h-3 w-3 bg-[#4D8DFF]" />
-          <span className="text-xs font-semibold uppercase tracking-[0.35em] text-white/78">
-            Spotlight
-          </span>
-        </div>
+        <p className="text-[11px] font-semibold uppercase tracking-[0.28em] text-white/48">
+          Spotlight
+        </p>
 
-        <div className="border-t border-white/16 pt-5">
+        <div className="border-t border-white/20 pt-5">
           <FeaturedSpotlightEntry item={featuredItem} />
 
           <Separator className="my-4 bg-white/55" />

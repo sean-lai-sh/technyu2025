@@ -12,7 +12,7 @@ export default function ProgramRolesSection({ rolesSection }: ProgramRolesSectio
         Open Roles
       </p>
       <h2
-        className="font-[family-name:var(--font-darker-grotesque)] font-medium text-[#EDEDED] mb-14"
+        className="font-[family-name:var(--font-satoshi)] font-medium text-[#EDEDED] mb-14"
         style={{ fontSize: 'clamp(40px, 6vw, 68px)', letterSpacing: '-1.2px' }}
       >
         {rolesSection.heading}
@@ -23,7 +23,7 @@ export default function ProgramRolesSection({ rolesSection }: ProgramRolesSectio
           {rolesSection.preRolesContent.map((block) => {
             if (block.type === 'subheading') {
               return (
-                <h3 key={block._key} className="font-[family-name:var(--font-darker-grotesque)] font-medium text-[#EDEDED] text-2xl">
+                <h3 key={block._key} className="font-[family-name:var(--font-satoshi)] font-medium text-[#EDEDED] text-2xl">
                   {block.text}
                 </h3>
               )
@@ -64,7 +64,7 @@ export default function ProgramRolesSection({ rolesSection }: ProgramRolesSectio
           return (
             <div key={role._key} className="p-8 border border-[#EDEDED] bg-black" style={glowStyle}>
               <h3
-                className="font-[family-name:var(--font-darker-grotesque)] font-medium text-[#EDEDED] mb-2"
+                className="font-[family-name:var(--font-satoshi)] font-medium text-[#EDEDED] mb-2"
                 style={{ fontSize: 'clamp(28px, 3vw, 42px)', letterSpacing: '-0.8px' }}
               >
                 {role.title}

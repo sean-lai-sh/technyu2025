@@ -28,7 +28,7 @@ const Timeline = ({ events }: TimelineProps) => {
       {sortedYears.map((year) => (
         <div key={year} className="space-y-4">
           {/* Year Header */}
-          <h3 className="text-2xl font-light text-white/50">
+          <h3 className="text-2xl font-normal text-white/48">
             {year}
           </h3>
           

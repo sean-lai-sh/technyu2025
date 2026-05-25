@@ -92,8 +92,22 @@ export const devTeamBuildTabs: BuildTab[] = [
     companySummary:
       'An applied product lab building Nia, a context infrastructure layer for coding agents and software teams.',
     cohortWork:
-      'Cohort teams could work on retrieval pipelines, evals, agent UX, source connectors, or systems that keep agent context legible, fresh, and reliable.',
+      'Build anything from source integrations ontop of the generic source API to building use cases of Nia. From stress tests to open markets its your job to help determine what can be indexed.',
     facts: ['YC S25', 'Nia context layer', 'Agent infrastructure'],
+  },
+  {
+    id: 'avantis',
+    serial: 'Onchain Trading Infrastructure',
+    title: 'Avantis',
+    badge: 'Founders Fund',
+    badgeTone: 'fund',
+    description:
+      'Avantis serves over 110K active crypto traders worldwide, with project scope that can flex across multiple trading and market-intelligence surfaces.',
+    companySummary:
+      'Avantis supports more than 110K active traders worldwide, building products across high-conviction market workflows by letting leverage upto 500x trading on Base',
+    cohortWork:
+      'Work could span anything from agentic trading bots requested by traders to workflow analytics to prediction markets and gambling on chain. You decide the limit of what you want.',
+    facts: ['Founders Fund', '110K+ active traders', 'Crypto market tooling'],
   },
   {
     id: 'redacted-03',
@@ -103,21 +117,9 @@ export const devTeamBuildTabs: BuildTab[] = [
     badgeTone: 'redacted',
     description:
       'Another company held in redacted state by design. The point is to show that multiple startups are coming through the pipeline even when not every team is ready to be named publicly.',
-    companySummary: 'A second stealth company used to show the active breadth of the Dev Team portfolio.',
+    companySummary: 'A stealth company used to show the active breadth of the Dev Team portfolio.',
     cohortWork: 'Cohort teams could own infrastructure, product polish, or early feature delivery before public reveal.',
     facts: ['Stealth presentation layer', 'Protected while iterating', 'Still reads as real portfolio output'],
-  },
-  {
-    id: 'redacted-04',
-    serial: '04',
-    title: '[REDACTED]',
-    badge: 'Redacted',
-    badgeTone: 'redacted',
-    description:
-      'A final hidden slot rounds out the roster. It gives Dev Team a distinct startup-portfolio feel instead of framing the cohort around a single shared stack.',
-    companySummary: 'A final unreleased company entry that rounds out the startup roster without breaking confidentiality.',
-    cohortWork: 'Cohort teams could support launch preparation, technical cleanup, or fast iteration on core workflows.',
-    facts: ['Deliberately unrevealed', 'Portfolio slot stays live', 'Supports the stealth-to-public arc'],
   },
 ]
 

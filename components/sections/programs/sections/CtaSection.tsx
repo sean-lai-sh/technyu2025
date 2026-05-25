@@ -35,7 +35,7 @@ const portableTextComponents = {
   },
   block: {
     normal: ({ children }: { children?: React.ReactNode }) => (
-      <p className="mb-5 max-w-[72ch] text-base leading-relaxed text-white/88 md:text-lg">{children}</p>
+      <p className="mb-5 max-w-[72ch] text-base leading-relaxed text-white/90 md:text-lg">{children}</p>
     ),
   },
 }
@@ -49,7 +49,7 @@ export default function CtaSectionComponent({ section, programApply }: CtaSectio
   return (
     <section className="mt-18 px-[5vw]">
       <div className="mx-auto max-w-[1240px] rounded-2xl border border-white/10 bg-gradient-to-br from-[#111111] to-[#090909] p-7 shadow-[inset_0_0_110px_rgba(179,0,255,0.10)] md:p-10">
-        <h2 className="mb-7 font-[family-name:var(--font-darker-grotesque)] text-4xl font-bold leading-tight tracking-tight text-white md:text-5xl">
+        <h2 className="mb-7 font-[family-name:var(--font-satoshi)] text-4xl font-bold leading-tight tracking-tight text-white md:text-5xl">
           {section.heading}
         </h2>
 
@@ -74,7 +74,7 @@ export default function CtaSectionComponent({ section, programApply }: CtaSectio
           />
         )}
         {!applyStatus ? (
-          <p className="mt-3 text-sm text-white/55">
+          <p className="mt-3 text-sm text-white/48">
             Applications are currently closed. Check back for the next cohort update.
           </p>
         ) : null}

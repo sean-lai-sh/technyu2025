@@ -10,7 +10,7 @@ export default function ProgramStatusPill({ isOpen }: ProgramStatusPillProps) {
       className={`inline-flex items-center gap-2 border px-3 py-1.5 text-[11px] font-semibold uppercase tracking-[0.16em] ${
         isOpen
           ? 'border-[#4DFF94]/30 bg-[#4DFF94]/10 text-[#BFFFD5]'
-          : 'border-white/10 bg-white/[0.03] text-white/45'
+          : 'border-white/10 bg-white/5 text-white/48'
       }`}
     >
       <span

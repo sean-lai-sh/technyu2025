@@ -87,7 +87,7 @@ const TeamGrid = ({ initialTeamMembers }: TeamGridProps) => {
     <div className='w-[100svw] h-fit flex flex-col items-center justify-center pb-[20svh]'>
       {/* Sticky Filter Section - synced with navbar show/hide */}
       <div
-        className='sticky z-20 w-[100svw] flex justify-center border-b-2 pt-5 border-t-2 border-t-black border-white bg-black/95 backdrop-blur-sm'
+        className='sticky z-20 w-[100svw] flex justify-center border-b-2 pt-5 border-t-2 border-t-black border-white/10 bg-black/95 backdrop-blur-sm'
         style={{
           top: isNavbarVisible ? headerHeight : 0,
           transition: 'top 650ms cubic-bezier(0.76, 0, 0.24, 1)',

@@ -28,7 +28,7 @@ const LogoSlider = ({ logos, speed = 30, className = '' }: LogoSliderProps) => {
           }}
         >
           {logos.map((logo, index) => (
-            <div 
+            <div
               key={`first-${index}`}
               className="flex-shrink-0 w-32 h-16 flex items-center justify-center transition-all duration-500 hover:scale-110"
             >
@@ -45,9 +45,9 @@ const LogoSlider = ({ logos, speed = 30, className = '' }: LogoSliderProps) => {
             </div>
           ))}
         </div>
-        
+
         {/* Duplicate set for seamless loop */}
-        <div 
+        <div
           className="flex items-center space-x-12 animate-scroll whitespace-nowrap"
           style={{
             animationDuration: `${speed}s`,
@@ -56,7 +56,7 @@ const LogoSlider = ({ logos, speed = 30, className = '' }: LogoSliderProps) => {
           }}
         >
           {logos.map((logo, index) => (
-            <div 
+            <div
               key={`second-${index}`}
               className="flex-shrink-0 w-32 h-16 flex items-center justify-center transition-all duration-500 hover:scale-110"
             >

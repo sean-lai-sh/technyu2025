@@ -20,7 +20,7 @@ export default function ProgramPillarsSection({
         {heading}
       </p>
       <h2
-        className="font-[family-name:var(--font-darker-grotesque)] font-medium leading-[0.92] text-[#EDEDED] mb-12"
+        className="font-[family-name:var(--font-satoshi)] font-medium leading-[0.92] text-[#EDEDED] mb-12"
         style={{ fontSize: 'clamp(36px, 5vw, 62px)', letterSpacing: '-1px' }}
       >
         {title}
@@ -35,7 +35,7 @@ export default function ProgramPillarsSection({
               Step {String(index + 1).padStart(2, '0')}
             </p>
             <h3
-              className="font-[family-name:var(--font-darker-grotesque)] text-[#EDEDED] leading-tight mb-3"
+              className="font-[family-name:var(--font-satoshi)] text-[#EDEDED] leading-tight mb-3"
               style={{ fontSize: 'clamp(26px, 2.4vw, 34px)', letterSpacing: '-0.6px' }}
             >
               {pillar.title}

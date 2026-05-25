@@ -81,25 +81,25 @@ function PressTextBlock({ block }: { block: PressPortableTextTextBlock }) {
   switch (block.style) {
     case 'h2':
       return (
-        <h2 className="pt-8 font-[family-name:var(--font-darker-grotesque)] text-3xl font-bold leading-none tracking-[-0.04em] text-white md:text-4xl">
+        <h2 className="pt-8 font-[family-name:var(--font-satoshi)] text-3xl font-bold leading-none tracking-[-0.04em] text-white md:text-4xl">
           {children}
         </h2>
       )
     case 'h3':
       return (
-        <h3 className="pt-8 font-[family-name:var(--font-darker-grotesque)] text-2xl font-bold leading-none tracking-[-0.03em] text-white md:text-[2rem]">
+        <h3 className="pt-8 font-[family-name:var(--font-satoshi)] text-2xl font-bold leading-none tracking-[-0.03em] text-white md:text-[2rem]">
           {children}
         </h3>
       )
     case 'blockquote':
       return (
-        <blockquote className="my-8 border-l-2 border-white/20 pl-5 text-[1.08rem] italic leading-8 text-white/86 md:text-[1.15rem]">
+        <blockquote className="my-8 border-l-2 border-white/20 pl-5 text-[1.08rem] italic leading-8 text-white/90 md:text-[1.15rem]">
           {children}
         </blockquote>
       )
     default:
       return (
-        <p className="max-w-[72ch] text-[1.03rem] leading-8 text-white/80 md:text-[1.08rem]">
+        <p className="max-w-[72ch] text-[1.03rem] leading-8 text-white/72 md:text-[1.08rem]">
           {children}
         </p>
       )
@@ -121,7 +121,7 @@ function PressImageBlock({ block }: { block: PressPortableTextImageBlock }) {
         />
       </div>
       {block.caption ? (
-        <figcaption className="border-t border-white/10 px-5 py-4 text-sm leading-6 text-white/58">
+        <figcaption className="border-t border-white/10 px-5 py-4 text-sm leading-6 text-white/48">
           {block.caption}
         </figcaption>
       ) : null}
