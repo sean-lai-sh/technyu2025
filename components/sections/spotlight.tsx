@@ -31,7 +31,7 @@ function SecondarySpotlightEntry({
   titleClassName?: string
 }) {
   const content = (
-    <div className={`h-full bg-surface-deep ${className ?? ''}`}>
+    <div className={`h-full bg-surface-base ${className ?? ''}`}>
       <div className="grid h-full grid-cols-[minmax(0,1fr)_120px] items-start gap-4 bg-surface-base sm:grid-cols-[minmax(0,1fr)_140px] md:grid-cols-[minmax(0,1fr)_150px]">
         <div>
           <h3
@@ -68,9 +68,9 @@ function SecondarySpotlightEntry({
 
 function FeaturedSpotlightEntry({ item }: { item: SpotlightItem }) {
   const content = (
-    <div className="bg-surface-deep">
+    <div className="bg-surface-base">
       <div className="grid lg:h-[60svh] lg:grid-cols-[minmax(0,1fr)_520px]">
-        <div className="relative z-10 flex items-end bg-[linear-gradient(180deg,#090909_0%,#040404_100%)] p-6 md:p-8 lg:h-full lg:p-10">
+        <div className="relative z-10 flex items-end bg-surface-base p-6 md:p-8 lg:h-full lg:p-10">
           <div>
             <h3 className="max-w-[8.5ch] font-[family-name:var(--font-satoshi)] text-[3.6rem] font-bold leading-[0.84] tracking-[-0.045em] text-white sm:text-[4.5rem] lg:text-[clamp(4.6rem,4.5vw,5.3rem)]">
               {item.title}

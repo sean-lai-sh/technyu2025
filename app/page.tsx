@@ -16,7 +16,7 @@ export const metadata: Metadata = {
 
 export default function Home() {
   return (
-    <div className="w-full h-fit bg-black min-h-screen">
+    <div className="w-full h-fit bg-surface-base min-h-screen">
       <Hero />
       <History />
       <ProgramSectionV2 />
