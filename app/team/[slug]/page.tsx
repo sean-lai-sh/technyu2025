@@ -87,7 +87,7 @@ export default async function ProfilePage({ params }: PageProps) {
               </div>
               <div>
               {/* Name */}
-              <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold leading-tight tracking-tight pt-10">
+              <h1 className="text-display-2 pt-10">
                 {bio.name}
               </h1>
 {/* 
@@ -159,9 +159,9 @@ export default async function ProfilePage({ params }: PageProps) {
             <div className="lg:col-span-9 space-y-24 pb-20">
               {/* Background Section with Timeline */}
               <section id="background" className="">
-                <h2 
+                <h2
                   tabIndex={0}
-                  className="text-3xl md:text-4xl font-bold mb-8"
+                  className="text-display-3 mb-8"
                 >
                   Background
                 </h2>
@@ -184,9 +184,9 @@ export default async function ProfilePage({ params }: PageProps) {
                     {bio.qa.map((item, index) => (
                       <div key={index} className="space-y-6">
                         {/* Question */}
-                        <h3 
+                        <h3
                           tabIndex={0}
-                          className="text-2xl md:text-3xl lg:text-4xl font-bold leading-tight"
+                          className="text-display-3"
                         >
                           {item.question}
                         </h3>

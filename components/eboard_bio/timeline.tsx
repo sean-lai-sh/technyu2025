@@ -26,7 +26,7 @@ export function Timeline({ events }: TimelineProps) {
             {/* Content */}
             <div className="space-y-2">
               <p className="text-sm text-gray-500 font-medium">{event.year}</p>
-              <h3 className="text-xl font-bold text-white">{event.title}</h3>
+              <h3 className="text-heading-2 text-white">{event.title}</h3>
               {event.organization && (
                 <p className="text-base text-gray-400">{event.organization}</p>
               )}

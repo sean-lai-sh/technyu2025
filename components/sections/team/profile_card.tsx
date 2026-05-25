@@ -163,7 +163,7 @@ const ProfileCard = ({ member, priority }: { member: TeamMember, priority?: bool
     ></div>
     <div ref={contentRef} className="absolute bottom-0 left-0 right-0 p-6 text-white z-10 group">
       <div>
-        <h5 className="text-2xl font-bold ">{member.name}</h5>
+        <h5 className="text-heading-1 text-white">{member.name}</h5>
         <p className="text-base font-normal">{member.title}</p>
         
         {/* LinkedIn link that appears on hover */}

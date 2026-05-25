@@ -35,7 +35,7 @@ const TeamFiltersMobile = ({
     <div className='lg:hidden w-[90%] md:w-[85svw] lg:w-[95svw] lg:px-[2svw] px-4'>
       {/* Header with Title */}
       <div className='flex justify-between items-center mb-2 gap-4'>
-        <h2 className='font-bold font-[family-name:var(--font-hk-grotesque)] text-2xl sm:text-3xl text-white mb-4 pt-4 pr-2'>Team</h2>
+        <h2 className='text-heading-1 text-white mb-4 pt-4 pr-2'>Team</h2>
         
         {/* Search and Filter Row */}
         <div className='flex gap-3 items-center'>
