@@ -21,7 +21,7 @@ const TeamFiltersDesktop = ({
   return (
     <div className='hidden lg:flex w-[90%] md:w-[85svw] lg:w-[95svw] lg:px-[2svw] justify-between'>
       <div className='py-2 mb-6'>
-        <h2 className='text-heading-1 text-white'>Team</h2>
+        <h2 className='text-heading-1 font-display-semibold text-white'>Team</h2>
       </div>
       <div className='flex gap-10'>
         {/* Category Filters */}

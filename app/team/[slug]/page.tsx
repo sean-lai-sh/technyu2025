@@ -87,7 +87,7 @@ export default async function ProfilePage({ params }: PageProps) {
               </div>
               <div>
               {/* Name */}
-              <h1 className="text-display-2 pt-10">
+              <h1 className="text-display-2 font-display-semibold pt-10">
                 {bio.name}
               </h1>
 {/* 
@@ -161,7 +161,7 @@ export default async function ProfilePage({ params }: PageProps) {
               <section id="background" className="">
                 <h2
                   tabIndex={0}
-                  className="text-display-3 mb-8"
+                  className="text-display-3 font-display-semibold mb-8"
                 >
                   Background
                 </h2>
@@ -186,7 +186,7 @@ export default async function ProfilePage({ params }: PageProps) {
                         {/* Question */}
                         <h3
                           tabIndex={0}
-                          className="text-display-3"
+                          className="text-display-3 font-display-semibold"
                         >
                           {item.question}
                         </h3>
