@@ -17,7 +17,7 @@ export default function FaqSectionComponent({ section }: FaqSectionProps) {
     <section className="mt-18 px-[5vw] pb-20">
       <div className="mx-auto max-w-[1240px]">
         <h2
-          className={`mb-8 font-[family-name:var(--font-hk-grotesque)] text-4xl font-bold leading-tight tracking-tight text-white md:text-5xl ${
+          className={`mb-8 font-[family-name:var(--font-satoshi)] text-4xl font-bold leading-tight tracking-tight text-white md:text-5xl ${
             section.showUnderline ? 'underline underline-offset-8 decoration-white/40' : ''
           }`}
         >

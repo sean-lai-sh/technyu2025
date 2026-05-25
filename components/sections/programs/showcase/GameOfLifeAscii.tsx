@@ -181,7 +181,7 @@ export default function GameOfLifeAscii() {
         <pre
           className="select-none whitespace-pre font-mono font-semibold tracking-[0.01em]"
           style={{
-            color: '#98f7b4',
+            color: '#4DFF94',
             fontSize: `${stageMetrics.fontSize}px`,
             lineHeight: ASCII_LINE_HEIGHT_RATIO,
             textShadow: '0 0 10px rgba(77,255,148,0.22), 0 0 2px rgba(77,255,148,0.12)',

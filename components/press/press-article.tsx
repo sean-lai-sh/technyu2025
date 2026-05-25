@@ -10,7 +10,7 @@ function SplitHero({ post }: { post: PressPost }) {
       <div className="mx-auto grid max-w-[1440px] gap-6 lg:grid-cols-[0.84fr_1.16fr] lg:gap-8">
         <div className="flex min-h-[30rem] flex-col justify-end border border-white/10 bg-[linear-gradient(180deg,#0b0b0b_0%,#050505_100%)] p-6 md:p-8 lg:px-10 lg:py-9 xl:px-12">
           <PressArticleMeta post={post} />
-          <h1 className="max-w-[9.4ch] pt-5 font-[family-name:var(--font-hk-grotesque)] text-[3.2rem] font-bold leading-[0.9] tracking-[-0.048em] text-white sm:text-[4rem] lg:text-[4.65rem] xl:text-[5.1rem]">
+          <h1 className="max-w-[9.4ch] pt-5 font-[family-name:var(--font-satoshi)] text-[3.2rem] font-bold leading-[0.9] tracking-[-0.048em] text-white sm:text-[4rem] lg:text-[4.65rem] xl:text-[5.1rem]">
             {post.title}
           </h1>
         </div>
@@ -50,7 +50,7 @@ function EditorialRailHero({ post }: { post: PressPost }) {
 
         <div className="border border-white/10 bg-surface-base p-6 md:p-8 lg:px-10 lg:py-9 xl:px-12">
           <PressArticleMeta post={post} />
-          <h1 className="max-w-[10.2ch] pt-6 font-[family-name:var(--font-hk-grotesque)] text-[3.2rem] font-bold leading-[0.9] tracking-[-0.048em] text-white sm:text-[4.05rem] lg:text-[5.15rem] xl:text-[5.55rem]">
+          <h1 className="max-w-[10.2ch] pt-6 font-[family-name:var(--font-satoshi)] text-[3.2rem] font-bold leading-[0.9] tracking-[-0.048em] text-white sm:text-[4.05rem] lg:text-[5.15rem] xl:text-[5.55rem]">
             {post.title}
           </h1>
         </div>

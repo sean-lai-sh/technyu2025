@@ -150,18 +150,18 @@ Two fonts. No others.
 
 | Role | Font | Weights in use |
 | --- | --- | --- |
-| **Display / headings** | HK Grotesque | 400 Regular, 500 Medium (heading-1/2) |
+| **Display / headings** | Satoshi | 400 Regular, 500 Medium (heading-1/2) |
 | **Body / UI** | Inter | 400 Regular, 500 Medium, 600 SemiBold |
 
-CSS variables: `--font-hk-grotesque` (display), `--font-inter` (body).
+CSS variables: `--font-satoshi` (display), `--font-inter` (body).
 
 **Allowed:**
-- `HK Grotesque` — all display headings (`display-1` through `heading-2`), card titles
+- `Satoshi` — all display headings (`display-1` through `heading-2`), card titles
 - `Inter` — body copy, eyebrows, CTAs, pills, labels, captions, meta text, any UI chrome
 
 **Not allowed:**
 - `Darker Grotesque` — superseded. Remove remaining `font-[family-name:var(--font-darker-grotesque)]` overrides on next cleanup pass.
-- `Satoshi` — superseded. Remove from body default and component overrides on next cleanup pass.
+- `HK Grotesque` — superseded by Satoshi. Remove from display headings and component overrides on next cleanup pass.
 - Any other typeface without explicit approval in this document.
 
 ### Heading Scale
@@ -228,6 +228,8 @@ Core accent colors — locked:
 | `--accent-green-light` | `#00994D` | `0,153,77` | Light surfaces only — darkened for legibility |
 
 Two accent hues. No others. `--accent-green` and `--accent-green-light` are the same brand green at different luminosity for their surface context. This is the D1 decision (chosen May 2026).
+
+**Documented partner co-brand exception.** The Mentorship × Databricks hero (`MentorshipAsciiHeroSection.tsx`) renders in Databricks orange (`#FFB194` / `#FF6836`). This is a sanctioned co-brand exception scoped to that one program hero and must not be cited as precedent for introducing additional accent hues elsewhere. New partner co-brands require explicit approval and the same scoped containment.
 
 These are brand signals and should remain the dominant accent language across the site.
 

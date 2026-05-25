@@ -39,7 +39,7 @@ export const PROGRAM_STAGE_MAP: Record<ProgramStageName, ProgramStageMeta> = {
       'A clearer sense of direction and a first step into a more specific path.',
     position: 'A tight cohort for figuring out where you fit.',
     detail:
-      'Tight knit 10–12 cohort looking to learn to build in teams and find their niche in tech through workshops and project building.',
+      'Our beginner program. A project-based cohort of 10–15 exploring the breadth of tech together.',
     accent: '#B300FF',
     accentSoft: 'rgba(179, 0, 255, 0.16)',
   },
@@ -58,7 +58,7 @@ export const PROGRAM_STAGE_MAP: Record<ProgramStageName, ProgramStageMeta> = {
       'Stronger judgment, better framing, and a more intentional path forward.',
     position: 'Direct guidance for students who already have a direction.',
     detail:
-      'One-on-one pairings with mentors from Google, Meta, Databricks, and beyond — weekly workshops and personalized 1:1 sessions in cohorts of 10–12.',
+      'Our intermediate program. A cohort of 10–15 getting direct industry exposure and lessons from Databricks.',
     accent: '#7B5CFF',
     accentSoft: 'rgba(123, 92, 255, 0.18)',
   },
@@ -77,7 +77,7 @@ export const PROGRAM_STAGE_MAP: Record<ProgramStageName, ProgramStageMeta> = {
       'Practical experience, shipped work, and a better sense of how to operate on a team.',
     position: 'A place to turn your role into shipped work.',
     detail:
-      'Startup-style pods shipping production code to real users. Two-week sprints with PR reviews, architecture guidance, and a demo day in front of engineers and recruiters.',
+      'Our advanced applied program. A cohort of 10–15 matching our strongest engineers with the rising startups of our generation.',
     accent: '#4AA8FF',
     accentSoft: 'rgba(74, 168, 255, 0.18)',
   },

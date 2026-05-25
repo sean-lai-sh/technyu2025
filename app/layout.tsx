@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import Navbar from "@/components/navigation/navbar";
-import { inter, hkGrotesque } from "@/lib/fonts";
+import { inter, satoshi } from "@/lib/fonts";
 import Footer from "@/components/sections/footer";
 import { SITE_DESCRIPTION, SITE_NAME } from "@/lib/seo";
 import { NavigationProvider } from "@/contexts/navigation-context";
@@ -27,7 +27,7 @@ export default function RootLayout({
   return (
     <html lang="en" className="dark">
       <body
-        className={`${hkGrotesque.variable} ${inter.variable} w-[100svw] overflow-x-clip antialiased bg-surface-base scheme-only-dark`}
+        className={`${satoshi.variable} ${inter.variable} w-[100svw] overflow-x-clip antialiased bg-surface-base scheme-only-dark`}
       >
         <NavigationProvider>
           <Navbar />

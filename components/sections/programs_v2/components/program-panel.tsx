@@ -56,7 +56,7 @@ export default function ProgramPanel({ program, index }: ProgramPanelProps) {
             <p className="text-[11px] font-semibold uppercase tracking-[0.22em] text-white/28">
               {program.stage.position}
             </p>
-            <h3 className="mt-2 font-[family-name:var(--font-hk-grotesque)] text-5xl leading-[0.88] tracking-[-0.03em] text-white sm:text-6xl">
+            <h3 className="mt-2 font-[family-name:var(--font-satoshi)] text-5xl leading-[0.88] tracking-[-0.03em] text-white sm:text-6xl">
               {program.name}
             </h3>
             <p className="mt-3 max-w-2xl text-lg leading-relaxed text-white/72">
@@ -114,7 +114,7 @@ export default function ProgramPanel({ program, index }: ProgramPanelProps) {
                   <p className="text-[11px] font-semibold uppercase tracking-[0.24em] text-white/48">
                     {program.stage.label}
                   </p>
-                  <p className="mt-4 max-w-[14ch] font-[family-name:var(--font-hk-grotesque)] text-5xl leading-[0.9] text-white">
+                  <p className="mt-4 max-w-[14ch] font-[family-name:var(--font-satoshi)] text-5xl leading-[0.9] text-white">
                     {program.name}
                   </p>
                 </div>

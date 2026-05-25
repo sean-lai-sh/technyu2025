@@ -1,39 +1,27 @@
 import { Inter } from 'next/font/google';
 import localFont from 'next/font/local';
 
-// Display / headings: HK Grotesque  (--font-hk-grotesque)
-// Body / UI:          Inter          (--font-inter)
+// Display / headings: Satoshi  (--font-satoshi)
+// Body / UI:          Inter     (--font-inter)
 
-export const hkGrotesque = localFont({
+// Variable font covers the full 300–900 axis, so every weight the design
+// system uses (300/400/500/600/700) resolves exactly — including the 600
+// SemiBold that Satoshi ships no static cut for.
+export const satoshi = localFont({
   src: [
     {
-      path: '../public/hk-grotesk/WEB/HKGrotesk-Light.woff2',
-      weight: '300',
+      path: '../public/fonts/Satoshi/Satoshi-Variable.woff2',
+      weight: '300 900',
       style: 'normal',
     },
     {
-      path: '../public/hk-grotesk/WEB/HKGrotesk-Regular.woff2',
-      weight: '400',
-      style: 'normal',
-    },
-    {
-      path: '../public/hk-grotesk/WEB/HKGrotesk-Medium.woff2',
-      weight: '500',
-      style: 'normal',
-    },
-    {
-      path: '../public/hk-grotesk/WEB/HKGrotesk-SemiBold.woff2',
-      weight: '600',
-      style: 'normal',
-    },
-    {
-      path: '../public/hk-grotesk/WEB/HKGrotesk-Bold.woff2',
-      weight: '700',
-      style: 'normal',
+      path: '../public/fonts/Satoshi/Satoshi-VariableItalic.woff2',
+      weight: '300 900',
+      style: 'italic',
     },
   ],
   display: 'swap',
-  variable: '--font-hk-grotesque',
+  variable: '--font-satoshi',
 });
 
 export const inter = Inter({

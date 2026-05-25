@@ -51,7 +51,7 @@ export default function ImmersiveRevealArticle({ post }: { post: PressPost }) {
           <div className="relative flex h-full items-end px-5 pb-[24svh] md:px-10 lg:px-[6vw] lg:pb-[25svh] xl:px-[7vw]">
             <motion.div style={heroStyle} className="w-full origin-bottom-left">
               <div className="max-w-[74rem]">
-                <h1 className="max-w-[10.5ch] pt-6 font-[family-name:var(--font-hk-grotesque)] text-[3.8rem] font-bold leading-[0.84] tracking-[-0.05em] text-white sm:text-[5.1rem] lg:text-[6.2rem] xl:text-[7rem]">
+                <h1 className="max-w-[10.5ch] pt-6 font-[family-name:var(--font-satoshi)] text-[3.8rem] font-bold leading-[0.84] tracking-[-0.05em] text-white sm:text-[5.1rem] lg:text-[6.2rem] xl:text-[7rem]">
                   {post.title}
                 </h1>
               </div>

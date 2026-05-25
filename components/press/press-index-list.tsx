@@ -23,7 +23,7 @@ export default function PressIndexList({ posts }: { posts: PressPostPreview[] })
             <p className="text-[0.72rem] font-semibold uppercase tracking-[0.3em] text-white/28">
               Archive
             </p>
-            <h2 className="pt-2 font-[family-name:var(--font-hk-grotesque)] text-4xl font-bold tracking-[-0.04em] text-white md:text-5xl">
+            <h2 className="pt-2 font-[family-name:var(--font-satoshi)] text-4xl font-bold tracking-[-0.04em] text-white md:text-5xl">
               All posts
             </h2>
           </div>
@@ -66,7 +66,7 @@ export default function PressIndexList({ posts }: { posts: PressPostPreview[] })
                 </div>
 
                 <div className="min-w-0">
-                  <h3 className="font-[family-name:var(--font-hk-grotesque)] text-[1.8rem] font-bold leading-[0.9] tracking-[-0.04em] text-white md:text-[2.2rem]">
+                  <h3 className="font-[family-name:var(--font-satoshi)] text-[1.8rem] font-bold leading-[0.9] tracking-[-0.04em] text-white md:text-[2.2rem]">
                     {post.title}
                   </h3>
                   <p className="mt-3 max-w-[64ch] text-sm leading-7 text-white/48 md:text-[1rem]">

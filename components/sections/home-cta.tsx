@@ -7,17 +7,16 @@ const DISCORD_URL = 'https://discord.gg/q3cBnFMpMQ'
 const HomeCTA = () => {
   return (
     <section className="w-[100svw] px-5 py-8 pb-16 md:px-10 md:py-12 lg:px-[5vw]">
-      <div className="relative overflow-hidden rounded-[2rem] border border-white/10 bg-surface-raised px-6 py-8 shadow-[0_36px_120px_rgba(0,0,0,0.42)] md:px-10 md:py-10">
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(77,255,148,0.14),transparent_36%),radial-gradient(circle_at_bottom_left,rgba(179,0,255,0.12),transparent_30%)]" />
-        <div className="relative z-10 flex flex-col gap-8 md:flex-row md:items-end md:justify-between">
+      <div className="relative border border-white/10 bg-surface-raised px-6 py-8 shadow-[0_36px_120px_rgba(0,0,0,0.42)] md:px-10 md:py-10">
+        <div className="flex flex-col gap-8 md:flex-row md:items-end md:justify-between">
           <div className="max-w-2xl">
-            <p className="text-xs font-semibold uppercase tracking-[0.28em] text-white/48">
+            <p className="text-xs font-semibold uppercase tracking-[0.22em] text-white/48">
               Stay connected
             </p>
-            <h2 className="mt-3 text-3xl md:text-5xl font-bold tracking-tight text-white">
+            <h2 className="mt-3 text-display-3 font-display-semibold text-white">
               Join the community, then see what is happening next.
             </h2>
-            <p className="mt-4 max-w-xl text-base md:text-lg leading-relaxed text-white/70">
+            <p className="mt-4 max-w-xl text-base md:text-lg leading-relaxed text-white/72">
               Discord is where the club stays active. The calendar shows what is coming up now.
             </p>
           </div>

@@ -21,7 +21,7 @@ const TeamFiltersDesktop = ({
   return (
     <div className='hidden lg:flex w-[90%] md:w-[85svw] lg:w-[95svw] lg:px-[2svw] justify-between'>
       <div className='py-2 mb-6'>
-        <h2 className='font-bold font-[family-name:var(--font-hk-grotesque)] text-3xl text-white'>Team</h2>
+        <h2 className='text-heading-1 font-display-semibold text-white'>Team</h2>
       </div>
       <div className='flex gap-10'>
         {/* Category Filters */}
@@ -30,10 +30,10 @@ const TeamFiltersDesktop = ({
             <button
               key={category}
               onClick={() => setActiveFilter(category)}
-              className={`font-medium transition-colors hover:text-green-600 pb-1 ${
-                activeFilter === category 
-                  ? "border-b-2 border-green-500 text-green-600" 
-                  : "border-b-2 border-transparent text-gray-100"
+              className={`font-medium transition-colors hover:text-accent-green pb-1 ${
+                activeFilter === category
+                  ? "border-b-2 border-accent-green text-accent-green"
+                  : "border-b-2 border-transparent text-white/72"
               }`}
             >
               {category}

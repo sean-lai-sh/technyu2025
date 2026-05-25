@@ -33,7 +33,7 @@ export default function ProgramHeroSection({
             TECH@NYU — PROGRAM
           </p>
           <h1
-            className="font-[family-name:var(--font-hk-grotesque)] font-extrabold leading-[0.88] text-[#EDEDED] mb-8"
+            className="font-[family-name:var(--font-satoshi)] font-extrabold leading-[0.88] text-[#EDEDED] mb-8"
             style={{ fontSize: 'clamp(72px, 11vw, 130px)', letterSpacing: '-2px' }}
           >
             {heroTitleLines.map((line, index) => (

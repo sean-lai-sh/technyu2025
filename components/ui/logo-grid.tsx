@@ -98,7 +98,7 @@ export default function LogoGrid({ logos, className = '', footnote, density = 'd
               {logo.marker ? (
                 <span
                   aria-hidden="true"
-                  className="pointer-events-none absolute left-1/2 top-1/2 font-[family-name:var(--font-inter)] text-sm font-semibold leading-none text-white/90"
+                  className="pointer-events-none absolute left-1/2 top-1/2 z-10 font-[family-name:var(--font-inter)] text-sm font-semibold leading-none text-white/90"
                   style={{
                     transform: `translate(${offsetX + markerOffsetX}px, ${offsetY + markerOffsetY}px)`,
                   }}

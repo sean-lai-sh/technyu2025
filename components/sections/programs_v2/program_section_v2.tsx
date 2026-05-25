@@ -58,23 +58,15 @@ export default async function ProgramSectionV2() {
   return (
     <section
       id="programs"
-      className="relative overflow-hidden border-t border-white/10 bg-surface-base px-[5vw] py-[12svh] text-white lg:px-[7vw]"
+      className="relative overflow-hidden bg-surface-base px-[5vw] lg:py-[5svh] py-[12svh] text-white lg:px-[7vw]"
     >
-      <div
-        className="pointer-events-none absolute inset-0"
-        style={{
-          background:
-            'radial-gradient(circle at top left, rgba(179,0,255,0.08), transparent 38%), radial-gradient(circle at 78% 100%, rgba(77,255,148,0.05), transparent 30%)',
-        }}
-      />
-
       <div className="relative mx-auto flex w-full max-w-[1600px] flex-col gap-14">
         <div className="space-y-8">
           <div className="max-w-3xl">
             <p className="text-[11px] font-semibold uppercase tracking-[0.3em] text-white/48">
               Programs
             </p>
-            <h2 className="mt-5 font-[family-name:var(--font-hk-grotesque)] text-[clamp(3.5rem,7vw,7.75rem)] leading-[0.9] tracking-[-0.04em] text-white">
+            <h2 className="mt-5 font-[family-name:var(--font-satoshi)] text-[clamp(3.5rem,7vw,7.75rem)] leading-[1.0] tracking-[-0.04em] text-white">
               {'Taking you from 0 to 100'}
             </h2>
             <p className="mt-6 max-w-3xl text-[17px] leading-relaxed text-white/72 sm:text-[18px]">

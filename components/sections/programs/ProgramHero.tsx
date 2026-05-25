@@ -73,7 +73,7 @@ export default function ProgramHero({
             ) : null}
           </div>
 
-          <h1 className="pb-6 font-[family-name:var(--font-hk-grotesque)] text-5xl font-extrabold leading-[0.92] tracking-tight text-white md:text-6xl lg:text-7xl">
+          <h1 className="pb-6 font-[family-name:var(--font-satoshi)] text-5xl font-extrabold leading-[0.92] tracking-tight text-white md:text-6xl lg:text-7xl">
             {displayTitle}
           </h1>
 
@@ -120,7 +120,7 @@ export default function ProgramHero({
                   className="h-full w-full object-contain"
                 />
               ) : (
-                <div className="rounded-lg border border-white/20 px-6 py-4 font-[family-name:var(--font-hk-grotesque)] text-4xl font-bold text-white">
+                <div className="rounded-lg border border-white/20 px-6 py-4 font-[family-name:var(--font-satoshi)] text-4xl font-bold text-white">
                   {name}
                 </div>
               )}

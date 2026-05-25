@@ -223,7 +223,7 @@ export default function ProgramAlumniSection({ testimonials }: ProgramAlumniSect
                 exit="exit"
               >
                 <blockquote
-                  className="font-[family-name:var(--font-hk-grotesque)] italic text-[#EDEDED] leading-[1.15] mb-8"
+                  className="font-[family-name:var(--font-satoshi)] italic text-[#EDEDED] leading-[1.15] mb-8"
                   style={{ fontSize: 'clamp(22px, 3.4vw, 40px)' }}
                 >
                   {activeTestimonialData.quote}

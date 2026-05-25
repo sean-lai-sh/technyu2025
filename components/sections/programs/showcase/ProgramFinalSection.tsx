@@ -30,7 +30,7 @@ export default function ProgramFinalSection({
           {kicker}
         </p>
         <h2
-          className="font-[family-name:var(--font-hk-grotesque)] font-extrabold text-[#EDEDED] mb-8 leading-none"
+          className="font-[family-name:var(--font-satoshi)] font-extrabold text-[#EDEDED] mb-8 leading-none"
           style={{ fontSize: 'clamp(52px, 8vw, 100px)', letterSpacing: '-2px' }}
         >
           {title}
