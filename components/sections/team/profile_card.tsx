@@ -128,7 +128,7 @@ const ProfileCard = ({ member, priority }: { member: TeamMember, priority?: bool
     >
       <a
         href={`/team/${member.slug}`}
-        className="absolute inset-0 z-10 focus:outline-none focus:ring-4 focus:ring-green-500 focus:ring-inset"
+        className="absolute inset-0 z-10 focus:outline-none focus:ring-4 focus:ring-accent-green focus:ring-inset"
         aria-label={`Learn more about ${member.name}`}
       />
         <Image
@@ -159,7 +159,7 @@ const ProfileCard = ({ member, priority }: { member: TeamMember, priority?: bool
     <div 
       ref={greenShadowRef}
       style={{ boxShadow: 'inset 0px 0px 100px rgba(77, 255, 148, 0.4)' }}
-      className="absolute inset-0 bg-gradient-to-t from-green-700/60 via-green-500/10 to-green-400/10" 
+      className="absolute inset-0 bg-gradient-to-t from-[rgba(77,255,148,0.6)] via-[rgba(77,255,148,0.1)] to-[rgba(77,255,148,0.1)]"
     ></div>
     <div ref={contentRef} className="absolute bottom-0 left-0 right-0 p-6 text-white z-10 group">
       <div>

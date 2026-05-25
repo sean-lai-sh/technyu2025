@@ -42,31 +42,31 @@ const TeamFiltersMobile = ({
           <DropdownMenu>
             <DropdownMenuTrigger 
               className={cn(
-                "text-mdfont-normal text-white transition-colors focus:outline-none flex items-center gap-2 px-4 py-3 border border-white/20 rounded-lg hover:bg-white/10 whitespace-nowrap"
+                "text-base font-normal text-white transition-colors focus:outline-none flex items-center gap-2 px-4 py-3 border border-white/20 rounded-lg hover:bg-white/10 whitespace-nowrap"
               )}
             >
               Filter
               <ChevronDown className="h-4 w-4" />
             </DropdownMenuTrigger>
           <DropdownMenuContent
-            className="border-none shadow-lg bg-gray-900/95 backdrop-blur-sm p-4 min-w-[200px] mt-2"
+            className="border border-white/10 shadow-lg bg-[rgba(17,17,17,0.95)] backdrop-blur-sm p-4 min-w-[200px] mt-2"
             align="end"
             sideOffset={8}
           >
             {categories.map((category) => (
               <DropdownMenuItem 
                 key={category} 
-                className="hover:bg-green-500/20 focus:bg-green-500/20 cursor-pointerpx-3 py-2 rounded-md transition-colors"
+                className="hover:bg-[rgba(77,255,148,0.12)] focus:bg-[rgba(77,255,148,0.12)] cursor-pointer px-3 py-2 rounded-md transition-colors"
                 onClick={() => handleFilterSelect(category)}
               >
                 <span className={cn(
-                  "text-white hover:text-green-400 transition-colors",
-                  activeFilter === category && "text-green-400 font-medium"
+                  "text-white hover:text-accent-green transition-colors",
+                  activeFilter === category && "text-accent-green font-medium"
                 )}>
                   {category}
                 </span>
                 {activeFilter === category && (
-                  <span className="ml-auto text-green-400">✓</span>
+                  <span className="ml-auto text-accent-green">✓</span>
                 )}
               </DropdownMenuItem>
             ))}
@@ -85,11 +85,11 @@ const TeamFiltersMobile = ({
       {activeFilter !== 'All' && (
         <div className='flex items-center gap-2 text-white mb-4'>
           <span className='text-sm'>Active filter:</span>
-          <Badge variant="secondary" className="flex items-center gap-1 bg-green-500/20 text-green-400 border-green-500/30">
+          <Badge variant="secondary" className="flex items-center gap-1 bg-[rgba(77,255,148,0.12)] text-accent-green border-[rgba(77,255,148,0.3)]">
             {activeFilter}
             <button
               onClick={() => setActiveFilter('All')}
-              className="ml-1 hover:text-green-200 transition-colors"
+              className="ml-1 hover:text-white transition-colors"
               aria-label="Clear filter"
             >
               <X size={12} />

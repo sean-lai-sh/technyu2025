@@ -15,7 +15,7 @@ export function Timeline({ events }: TimelineProps) {
   return (
     <div className="relative">
       {/* Continuous vertical line */}
-      <div className="absolute left-0 top-0 bottom-0 w-[2px] bg-gray-800" />
+      <div className="absolute left-0 top-0 bottom-0 w-[2px] bg-white/10" />
       
       <div className="space-y-8">
         {events.map((event, index) => (
@@ -25,12 +25,12 @@ export function Timeline({ events }: TimelineProps) {
             
             {/* Content */}
             <div className="space-y-2">
-              <p className="text-sm text-gray-500 font-medium">{event.year}</p>
+              <p className="text-sm text-white/48 font-medium">{event.year}</p>
               <h3 className="text-heading-2 text-white">{event.title}</h3>
               {event.organization && (
-                <p className="text-base text-gray-400">{event.organization}</p>
+                <p className="text-base text-white/72">{event.organization}</p>
               )}
-              <p className="text-base text-gray-300 leading-relaxed">
+              <p className="text-base text-white/72 leading-relaxed">
                 {event.description}
               </p>
             </div>

@@ -65,7 +65,7 @@ export function TimelineNav() {
     >
       {/* Vertical line extends into the LinkedIn header strip above the content rail */}
       <div
-        className="absolute left-0 w-[2px] bg-gray-800"
+        className="absolute left-0 w-[2px] bg-white/10"
         style={{
           top: '-5vh',
           height: 'calc(100% + 5vh)',
@@ -79,7 +79,7 @@ export function TimelineNav() {
             className={`relative block w-full text-left transition-colors ${
               activeSection === section.id
                 ? 'text-white font-medium'
-                : 'text-gray-500 hover:text-gray-300'
+                : 'text-white/48 hover:text-white/72'
             }`}
           >
             {activeSection === section.id && (

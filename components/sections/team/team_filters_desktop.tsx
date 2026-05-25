@@ -30,10 +30,10 @@ const TeamFiltersDesktop = ({
             <button
               key={category}
               onClick={() => setActiveFilter(category)}
-              className={`font-medium transition-colors hover:text-green-600 pb-1 ${
-                activeFilter === category 
-                  ? "border-b-2 border-green-500 text-green-600" 
-                  : "border-b-2 border-transparent text-gray-100"
+              className={`font-medium transition-colors hover:text-accent-green pb-1 ${
+                activeFilter === category
+                  ? "border-b-2 border-accent-green text-accent-green"
+                  : "border-b-2 border-transparent text-white/72"
               }`}
             >
               {category}

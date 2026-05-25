@@ -106,7 +106,7 @@ export default async function ProfilePage({ params }: PageProps) {
 
               {/* Short Description */}
               {bio.shortDescription && (
-                <p className="text-lg md:text-xl text-gray-300 leading-relaxed w-full">
+                <p className="text-lg md:text-xl text-white/72 leading-relaxed w-full">
                   {bio.shortDescription}
                 </p>
               )}
@@ -139,14 +139,14 @@ export default async function ProfilePage({ params }: PageProps) {
                     href={bio.linkedinUrl}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-white hover:text-green-400 transition-colors uppercase text-sm tracking-wide font-medium"
+                    className="text-white hover:text-accent-green transition-colors uppercase text-sm tracking-wide font-medium"
                   >
                     LinkedIn
                   </Link>
                 )}
               </div>
             </div>
-            <Separator className='w-full h-[2px] bg-white/40'/>
+            <Separator className='w-full h-[2px] bg-white/10'/>
           </div>
 
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 pt-8 lg:pt-10">
@@ -172,7 +172,7 @@ export default async function ProfilePage({ params }: PageProps) {
                       description: ''
                     }))} />
                   ) : (
-                    <p className="text-lg text-gray-400 italic">No timeline data available yet.</p>
+                    <p className="text-lg text-white/48 italic">No timeline data available yet.</p>
                   )}
                 </div>
               </section>
@@ -192,7 +192,7 @@ export default async function ProfilePage({ params }: PageProps) {
                         </h3>
                         
                         {/* Answer */}
-                        <p className="text-base md:text-lg text-gray-300 leading-relaxed whitespace-pre-wrap max-w-3xl">
+                        <p className="text-base md:text-lg text-white/72 leading-relaxed whitespace-pre-wrap max-w-3xl">
                           {item.answer}
                         </p>
                         
