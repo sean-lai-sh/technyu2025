@@ -25,7 +25,7 @@ export default function ProgramAboutSection({
         {eyebrow}
       </p>
       <h2
-        className="font-[family-name:var(--font-darker-grotesque)] font-medium leading-[0.92] text-[#EDEDED] mb-16"
+        className="font-[family-name:var(--font-hk-grotesque)] font-medium leading-[0.92] text-[#EDEDED] mb-16"
         style={{ fontSize: 'clamp(40px, 6vw, 68px)', letterSpacing: '-1.2px' }}
       >
         {title}
@@ -53,7 +53,7 @@ export default function ProgramAboutSection({
             )}
             <div>
               <h3
-                className="font-[family-name:var(--font-darker-grotesque)] font-medium text-[#EDEDED] mb-3 whitespace-pre-line leading-tight"
+                className="font-[family-name:var(--font-hk-grotesque)] font-medium text-[#EDEDED] mb-3 whitespace-pre-line leading-tight"
                 style={{ fontSize: 'clamp(28px, 3.2vw, 44px)', letterSpacing: '-1px' }}
               >
                 {card.title}

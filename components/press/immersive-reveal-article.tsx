@@ -26,9 +26,9 @@ export default function ImmersiveRevealArticle({ post }: { post: PressPost }) {
   const slabStyle = shouldReduceMotion ? undefined : { y: slabY }
 
   return (
-    <article className="min-h-screen bg-[#050505] text-white">
+    <article className="min-h-screen bg-surface-deep text-white">
       <section ref={revealRef} className="relative min-h-[220svh]">
-        <div className="sticky top-0 h-[100svh] overflow-hidden border-b border-white/8 bg-[#030303]">
+        <div className="sticky top-0 h-[100svh] overflow-hidden border-b border-white/10 bg-surface-base">
           <motion.div style={mediaStyle} className="absolute inset-0 scale-[1.06]">
             {post.coverImage.url ? (
               <Image
@@ -51,7 +51,7 @@ export default function ImmersiveRevealArticle({ post }: { post: PressPost }) {
           <div className="relative flex h-full items-end px-5 pb-[24svh] md:px-10 lg:px-[6vw] lg:pb-[25svh] xl:px-[7vw]">
             <motion.div style={heroStyle} className="w-full origin-bottom-left">
               <div className="max-w-[74rem]">
-                <h1 className="max-w-[10.5ch] pt-6 font-[family-name:var(--font-darker-grotesque)] text-[3.8rem] font-bold leading-[0.84] tracking-[-0.05em] text-white sm:text-[5.1rem] lg:text-[6.2rem] xl:text-[7rem]">
+                <h1 className="max-w-[10.5ch] pt-6 font-[family-name:var(--font-hk-grotesque)] text-[3.8rem] font-bold leading-[0.84] tracking-[-0.05em] text-white sm:text-[5.1rem] lg:text-[6.2rem] xl:text-[7rem]">
                   {post.title}
                 </h1>
               </div>

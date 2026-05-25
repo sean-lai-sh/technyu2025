@@ -113,8 +113,8 @@ const outcomeCompanies = [
     width: 142,
     height: 34,
     marker: '*',
-    markerOffsetX: 70,
-    markerOffsetY: -18,
+    markerOffsetX: 48,
+    markerOffsetY: -12,
   },
   {
     src: '/company-logos/apollo-global.svg',
@@ -128,8 +128,8 @@ const outcomeCompanies = [
     width: 1023,
     height: 515,
     marker: '*',
-    markerOffsetX: 42,
-    markerOffsetY: -26,
+    markerOffsetX: 28,
+    markerOffsetY: -16,
   },
   {
     src: '/company-logos/tandem-health.svg',
@@ -161,14 +161,15 @@ const outcomeCompanies = [
 
 const History = () => {
   return (
-    <section id="history" className="w-[100svw] px-5 py-16 md:px-10 md:py-20 lg:px-[5vw]">
-      <div className="mx-auto max-w-[1600px]">
-        <h2 className="text-center font-[family-name:var(--font-satoshi)] text-[0.82rem] font-medium uppercase tracking-[0.3em] text-white/72 sm:text-[0.92rem]">
-          Where We&apos;ve Gone
+    <section id="history" className="flex min-h-[60svh] w-full flex-col justify-center px-5 py-12 md:px-10 lg:px-[5vw]">
+      <div className="mx-auto w-full max-w-[1600px]">
+        <h2 className="text-center font-[family-name:var(--font-inter)] text-[0.82rem] font-medium uppercase tracking-[0.3em] text-white/72 sm:text-[0.92rem]">
+          Developing Talent
         </h2>
         <LogoGrid
+          density="compact"
           logos={outcomeCompanies}
-          className="mt-8 max-w-[1440px] md:mt-10"
+          className="mt-6 max-w-[1280px] md:mt-8"
           footnote="* Founded by Tech@NYU E-Board alumni"
         />
       </div>

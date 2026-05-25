@@ -16,25 +16,25 @@ export default function RolesSectionComponent({ section, programApply }: RolesSe
   return (
     <section className="mt-18 px-[5vw] pb-[5svh]">
       <div className="mx-auto max-w-[1240px]">
-        <h2 className="mb-6 font-[family-name:var(--font-darker-grotesque)] text-4xl font-bold leading-tight tracking-tight text-white md:text-5xl">
+        <h2 className="mb-6 font-[family-name:var(--font-hk-grotesque)] text-4xl font-bold leading-tight tracking-tight text-white md:text-5xl">
           {section.heading}
         </h2>
 
         {section.intro && (
-          <p className="mb-8 max-w-[72ch] text-base leading-relaxed text-white/85 md:text-lg">
+          <p className="mb-8 max-w-[72ch] text-base leading-relaxed text-white/90 md:text-lg">
             {section.intro}
           </p>
         )}
 
         {/* Pre-roles content blocks */}
         {section.preRolesContent && section.preRolesContent.length > 0 && (
-          <div className="mb-10 space-y-4 rounded-2xl border border-white/10 bg-[#0B0B0B] p-5 md:p-6">
+          <div className="mb-10 space-y-4 rounded-2xl border border-white/10 bg-surface-base p-5 md:p-6">
             {section.preRolesContent.map((block) => {
               if (block.type === 'subheading') {
                 return (
                   <h3
                     key={block._key}
-                    className="font-[family-name:var(--font-darker-grotesque)] text-3xl font-semibold leading-tight text-white"
+                    className="font-[family-name:var(--font-hk-grotesque)] text-3xl font-semibold leading-tight text-white"
                   >
                     {block.text}
                   </h3>
@@ -42,14 +42,14 @@ export default function RolesSectionComponent({ section, programApply }: RolesSe
               }
               if (block.type === 'paragraph') {
                 return (
-                  <p key={block._key} className="max-w-[72ch] text-base leading-relaxed text-white/85 md:text-lg">
+                  <p key={block._key} className="max-w-[72ch] text-base leading-relaxed text-white/90 md:text-lg">
                     {block.text}
                   </p>
                 )
               }
               if (block.type === 'contact' && block.link) {
                 return (
-                  <p key={block._key} className="max-w-[72ch] text-base leading-relaxed text-white/85 md:text-lg">
+                  <p key={block._key} className="max-w-[72ch] text-base leading-relaxed text-white/90 md:text-lg">
                     {block.text}{' '}
                     <a
                       href={block.link}
@@ -66,7 +66,7 @@ export default function RolesSectionComponent({ section, programApply }: RolesSe
         )}
 
         {section.rolesIntro && (
-          <p className="mb-8 max-w-[72ch] text-base leading-relaxed text-white/85 md:text-lg">
+          <p className="mb-8 max-w-[72ch] text-base leading-relaxed text-white/90 md:text-lg">
             {section.rolesIntro}
           </p>
         )}
@@ -104,9 +104,9 @@ export default function RolesSectionComponent({ section, programApply }: RolesSe
 
         {/* Footer */}
         {(section.footer || section.footerContact) && (
-          <div className="mt-10 rounded-xl border border-white/10 bg-white/[0.03] p-5 text-center">
+          <div className="mt-10 rounded-xl border border-white/10 bg-white/5 p-5 text-center">
             {section.footer && (
-              <p className="mb-3 text-base text-white/80 md:text-lg">{section.footer}</p>
+              <p className="mb-3 text-base text-white/72 md:text-lg">{section.footer}</p>
             )}
             {section.footerContact && (
               <p className="text-base md:text-lg">

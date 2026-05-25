@@ -35,14 +35,14 @@ const TeamFiltersMobile = ({
     <div className='lg:hidden w-[90%] md:w-[85svw] lg:w-[95svw] lg:px-[2svw] px-4'>
       {/* Header with Title */}
       <div className='flex justify-between items-center mb-2 gap-4'>
-        <h2 className='font-bold font-satoshi text-2xl sm:text-3xl text-white mb-4 pt-4 pr-2'>Team</h2>
+        <h2 className='font-bold font-[family-name:var(--font-hk-grotesque)] text-2xl sm:text-3xl text-white mb-4 pt-4 pr-2'>Team</h2>
         
         {/* Search and Filter Row */}
         <div className='flex gap-3 items-center'>
           <DropdownMenu>
             <DropdownMenuTrigger 
               className={cn(
-                "text-md font-satoshi font-normal text-white transition-colors focus:outline-none flex items-center gap-2 px-4 py-3 border border-white/20 rounded-lg hover:bg-white/10 whitespace-nowrap"
+                "text-mdfont-normal text-white transition-colors focus:outline-none flex items-center gap-2 px-4 py-3 border border-white/20 rounded-lg hover:bg-white/10 whitespace-nowrap"
               )}
             >
               Filter
@@ -56,7 +56,7 @@ const TeamFiltersMobile = ({
             {categories.map((category) => (
               <DropdownMenuItem 
                 key={category} 
-                className="hover:bg-green-500/20 focus:bg-green-500/20 cursor-pointer font-satoshi px-3 py-2 rounded-md transition-colors"
+                className="hover:bg-green-500/20 focus:bg-green-500/20 cursor-pointerpx-3 py-2 rounded-md transition-colors"
                 onClick={() => handleFilterSelect(category)}
               >
                 <span className={cn(

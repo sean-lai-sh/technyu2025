@@ -23,7 +23,7 @@ interface NavigationDropdownProps {
 }
 
 const navUnderlineClassName =
-  "pointer-events-none absolute inset-x-0 bottom-0 h-[1.5px] origin-left rounded-full bg-[#7c4dff] shadow-[0_0_14px_rgba(124,77,255,0.62)] transition-transform duration-300 group-hover:scale-x-100 group-data-[state=open]:scale-x-100"
+  "pointer-events-none absolute inset-x-0 bottom-0 h-[1.5px] origin-left rounded-full bg-[#B300FF] shadow-[0_0_14px_rgba(179,0,255,0.55)] transition-transform duration-300 group-hover:scale-x-100 group-data-[state=open]:scale-x-100"
 
 const NavigationDropdown: React.FC<NavigationDropdownProps> = ({ 
   name, 
@@ -36,7 +36,7 @@ const NavigationDropdown: React.FC<NavigationDropdownProps> = ({
       <NavigationMenuList>
         <NavigationMenuItem>
           <NavigationMenuTrigger className={cn(
-            "relative h-auto bg-transparent px-0 py-0 font-[family-name:var(--font-darker-grotesque)] text-[1.45rem] font-semibold uppercase tracking-[0.08em] text-white/76 shadow-none transition-colors duration-300 hover:bg-transparent hover:text-white focus:bg-transparent focus:text-white data-[state=open]:bg-transparent data-[state=open]:text-white",
+            "relative h-auto bg-transparent px-0 py-0 font-[family-name:var(--font-hk-grotesque)] text-[1.45rem] font-semibold tracking-normal text-white/72 shadow-none transition-colors duration-300 hover:bg-transparent hover:text-white focus:bg-transparent focus:text-white data-[state=open]:bg-transparent data-[state=open]:text-white",
             active && "text-white",
             className
           )}>
@@ -52,12 +52,12 @@ const NavigationDropdown: React.FC<NavigationDropdownProps> = ({
               />
             </span>
           </NavigationMenuTrigger>
-          <NavigationMenuContent className="z-50 min-w-[18rem] w-fit bg-[#040404] p-0 text-left">
+          <NavigationMenuContent className="z-50 min-w-[18rem] w-fit border border-white/10 bg-black/80 p-0 text-left backdrop-blur-md [border-top:1px_solid_rgba(179,0,255,0.30)]">
             {items.map(item => (
               <NavigationMenuLink asChild key={item.name}>
                 <Link
                   href={item.href}
-                  className="block min-w-[18rem] border-b border-white/10 px-5 py-4 font-[family-name:var(--font-darker-grotesque)] text-[1.75rem] uppercase tracking-[0.08em] text-white/85 transition-colors duration-300 last:border-b-0 hover:text-[#7ef7a5]"
+                  className="block min-w-[18rem] border-b border-white/10 px-5 py-4 font-[family-name:var(--font-hk-grotesque)] text-[1.75rem] tracking-tight text-white/90 transition-colors duration-300 last:border-b-0 hover:text-[#4DFF94]"
                 >
                   {item.name}
                 </Link>

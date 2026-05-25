@@ -18,11 +18,11 @@ export default function LogoSliderSectionComponent({ section }: LogoSliderSectio
   return (
     <section className="mt-18">
       <div className="mx-auto max-w-[1240px] px-[5vw]">
-        <h2 className="mb-6 font-[family-name:var(--font-darker-grotesque)] text-4xl font-bold leading-tight tracking-tight text-white md:text-5xl">
+        <h2 className="mb-6 font-[family-name:var(--font-hk-grotesque)] text-4xl font-bold leading-tight tracking-tight text-white md:text-5xl">
           {section.heading}
         </h2>
         {section.body && (
-          <p className="mb-8 max-w-[72ch] text-base leading-relaxed text-white/85 md:text-lg">{section.body}</p>
+          <p className="mb-8 max-w-[72ch] text-base leading-relaxed text-white/90 md:text-lg">{section.body}</p>
         )}
       </div>
       <div className="rounded-xl border-y border-white/10 bg-black/40 py-2">

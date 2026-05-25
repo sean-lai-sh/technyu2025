@@ -16,7 +16,7 @@ export default async function DynamicProgramPage({ slug }: DynamicProgramPagePro
   }
 
   return (
-    <div className="relative overflow-hidden bg-[#050505] pb-24">
+    <div className="relative overflow-hidden bg-surface-deep pb-24">
       <div
         className="pointer-events-none absolute inset-0 opacity-50"
         style={{

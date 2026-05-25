@@ -16,10 +16,15 @@ module.exports = {
     },
     extend: {
       fontFamily: {
-        sans: ['var(--font-satoshi)', 'system-ui', 'sans-serif'],
+        sans: ['var(--font-inter)', 'system-ui', 'sans-serif'],
         mono: ['var(--font-geist-mono)', 'monospace'],
       },
       colors: {
+        'accent-purple': 'var(--accent-purple)',
+        'accent-green':  'var(--accent-green)',
+        'surface-base':  'var(--surface-base)',
+        'surface-raised': 'var(--surface-raised)',
+        'surface-deep':  'var(--surface-deep)',
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
         ring: "hsl(var(--ring))",

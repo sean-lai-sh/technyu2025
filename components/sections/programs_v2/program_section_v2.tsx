@@ -58,26 +58,26 @@ export default async function ProgramSectionV2() {
   return (
     <section
       id="programs"
-      className="relative overflow-hidden border-t border-white/10 bg-[#070707] px-[5vw] py-[12svh] text-white lg:px-[7vw]"
+      className="relative overflow-hidden border-t border-white/10 bg-surface-base px-[5vw] py-[12svh] text-white lg:px-[7vw]"
     >
       <div
-        className="pointer-events-none absolute inset-0 opacity-70"
+        className="pointer-events-none absolute inset-0"
         style={{
           background:
-            'radial-gradient(circle at top left, rgba(179,0,255,0.16), transparent 34%), radial-gradient(circle at 72% 0%, rgba(77,255,148,0.09), transparent 30%), radial-gradient(circle at 82% 34%, rgba(74,168,255,0.08), transparent 24%), radial-gradient(circle at 16% 100%, rgba(123,92,255,0.08), transparent 26%)',
+            'radial-gradient(circle at top left, rgba(179,0,255,0.08), transparent 38%), radial-gradient(circle at 78% 100%, rgba(77,255,148,0.05), transparent 30%)',
         }}
       />
 
       <div className="relative mx-auto flex w-full max-w-[1600px] flex-col gap-14">
         <div className="space-y-8">
           <div className="max-w-3xl">
-            <p className="text-[11px] font-semibold uppercase tracking-[0.3em] text-white/45">
+            <p className="text-[11px] font-semibold uppercase tracking-[0.3em] text-white/48">
               Programs
             </p>
-            <h2 className="mt-5 font-[family-name:var(--font-darker-grotesque)] text-[clamp(3.5rem,7vw,7.75rem)] leading-[0.9] tracking-[-0.04em] text-white">
+            <h2 className="mt-5 font-[family-name:var(--font-hk-grotesque)] text-[clamp(3.5rem,7vw,7.75rem)] leading-[0.9] tracking-[-0.04em] text-white">
               {'Taking you from 0 to 100'}
             </h2>
-            <p className="mt-6 max-w-3xl text-[17px] leading-relaxed text-white/68 sm:text-[18px]">
+            <p className="mt-6 max-w-3xl text-[17px] leading-relaxed text-white/72 sm:text-[18px]">
               From growing your network to your own developer journey we have a
               program for you to join!
             </p>

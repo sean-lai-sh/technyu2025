@@ -154,7 +154,7 @@ export default function ProgramAlumniSection({ testimonials }: ProgramAlumniSect
   return (
     <section className="px-[5vw] lg:px-[8vw] py-[10svh] border-t border-[#EDEDED]/8">
       <div className="flex items-center gap-3 mb-12">
-        <span className="inline-block w-3 h-3 bg-[#B300FF]" aria-hidden="true" />
+
         <p className="font-[family-name:var(--font-inter)] text-[13px] font-semibold tracking-[0.15em] uppercase opacity-55">
           ALUMNI
         </p>
@@ -223,7 +223,7 @@ export default function ProgramAlumniSection({ testimonials }: ProgramAlumniSect
                 exit="exit"
               >
                 <blockquote
-                  className="font-[family-name:var(--font-darker-grotesque)] italic text-[#EDEDED] leading-[1.15] mb-8"
+                  className="font-[family-name:var(--font-hk-grotesque)] italic text-[#EDEDED] leading-[1.15] mb-8"
                   style={{ fontSize: 'clamp(22px, 3.4vw, 40px)' }}
                 >
                   {activeTestimonialData.quote}

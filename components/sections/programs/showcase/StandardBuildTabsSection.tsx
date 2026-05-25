@@ -14,6 +14,7 @@ type StandardBuildTabsSectionProps = {
 
 const buildBadgeToneClasses = {
   public: 'border-[#FF9F43]/58 bg-[#FF9F43]/18 text-[#FFF1DD]',
+  fund: 'border-[#4DFF94]/40 bg-[#4DFF94]/10 text-[#4DFF94]',
   redacted: 'border-[#B300FF]/35 bg-[#B300FF]/10 text-[#E6C7FF]',
   neutral: 'border-[#EDEDED]/15 bg-[#EDEDED]/5 text-[#EDEDED]/70',
 } as const
@@ -44,7 +45,7 @@ export default function StandardBuildTabsSection({
         {buildEyebrow}
       </p>
       <h2
-        className="font-[family-name:var(--font-darker-grotesque)] font-medium leading-[0.92] text-[#EDEDED] mb-16 w-full whitespace-nowrap"
+        className="font-[family-name:var(--font-hk-grotesque)] font-medium leading-[0.92] text-[#EDEDED] mb-16 w-full whitespace-nowrap"
         style={{ fontSize: 'clamp(40px, 7.5vw, 120px)', letterSpacing: '-1.2px' }}
       >
         {buildTitleLines.join(' ')}
@@ -79,7 +80,7 @@ export default function StandardBuildTabsSection({
                 </div>
               )}
               <h3
-                className="font-[family-name:var(--font-darker-grotesque)] font-medium whitespace-pre-line leading-tight"
+                className="font-[family-name:var(--font-hk-grotesque)] font-medium whitespace-pre-line leading-tight"
                 style={{ fontSize: 'clamp(24px, 2.8vw, 36px)', letterSpacing: '-0.5px' }}
               >
                 {tab.title}
@@ -112,7 +113,7 @@ export default function StandardBuildTabsSection({
                   <p className="font-[family-name:var(--font-inter)] text-[11px] tracking-[0.12em] uppercase text-[#EDEDED]/60 mb-1">
                     Current Focus
                   </p>
-                  <p className="font-[family-name:var(--font-darker-grotesque)] text-[24px] leading-none text-[#EDEDED] whitespace-pre-line">
+                  <p className="font-[family-name:var(--font-hk-grotesque)] text-[24px] leading-none text-[#EDEDED] whitespace-pre-line">
                     {activeBuildTabData.title}
                   </p>
                 </div>

@@ -65,7 +65,7 @@ export default async function ProfilePage({ params }: PageProps) {
   }
 
   return (
-    <div className="min-h-screen bg-[#0a0a0a] text-white">
+    <div className="min-h-screen bg-surface-base text-white">
       {/* Profile Section */}
       <div className="container pt-24 md:pt-40 lg:pt-[20svh]">
           {/* Profile Container - Responsive Layout */}
@@ -131,7 +131,7 @@ export default async function ProfilePage({ params }: PageProps) {
       {/* Content Section with Timeline Navigation */}
       <div className="container mx-auto px-6">
         <div className="max-w-7xl mx-auto">
-          <div className="relative left-1/2 w-screen -translate-x-1/2 bg-[#0a0a0a]">
+          <div className="relative left-1/2 w-screen -translate-x-1/2 bg-surface-base">
             <div className="mx-auto flex min-h-[96px] max-w-7xl items-end px-[5svw] py-6 xl:min-h-[112px] xl:py-8">
               <div className="flex gap-6">
                 {bio.linkedinUrl && (
