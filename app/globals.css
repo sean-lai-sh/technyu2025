@@ -178,7 +178,8 @@ body {
    after the text-display / text-heading tokens so it overrides their locked
    font-weight (a Tailwind font utility lives in @layer utilities and would
    lose to the unlayered token). Scoped usage only — currently the team + bio
-   pages. See Design.md § Typography. */
+   pages and the mobile nav primary links (drawer presence). See Design.md
+   § Typography. */
 .font-display-semibold {
   font-weight: 600;
 }
