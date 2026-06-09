@@ -115,7 +115,7 @@ const Hero = () => {
               </div>
 
               {/* Supporting text - more refined like BCV's subtitle */}
-              <div className="w-[90%] sm:w-[80%] md:w-[70%] lg:w-[70%] overflow-hidden">
+              <div className="w-full overflow-hidden">
                 <div
                   ref={supportingTextRef}
                 className="text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-2xl font-normal tracking-tight leading-[1.2] opacity-0 w-full"
