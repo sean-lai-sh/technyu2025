@@ -160,8 +160,8 @@ CSS variables: `--font-satoshi` (display), `--font-inter` (body).
 - `Inter` — body copy, eyebrows, CTAs, pills, labels, captions, meta text, any UI chrome
 
 **Not allowed:**
-- `Darker Grotesque` — superseded. Remove remaining `font-[family-name:var(--font-darker-grotesque)]` overrides on next cleanup pass.
-- `HK Grotesque` — superseded by Satoshi. Remove from display headings and component overrides on next cleanup pass.
+- `Darker Grotesque` — superseded and fully removed. No `font-[family-name:var(--font-darker-grotesque)]` overrides remain, and the font var is no longer wired.
+- `HK Grotesque` — trialed and rejected in favor of Satoshi; fully removed from display headings, component overrides, and font config.
 - Any other typeface without explicit approval in this document.
 
 ### Heading Scale
@@ -228,6 +228,8 @@ Core accent colors — locked:
 | `--accent-green-light` | `#00994D` | `0,153,77` | Light surfaces only — darkened for legibility |
 
 Two accent hues. No others. `--accent-green` and `--accent-green-light` are the same brand green at different luminosity for their surface context. This is the D1 decision (chosen May 2026).
+
+**Known deviation (pending cleanup).** `components/sections/programs_v2/program-stage-map.ts` currently still ships two off-palette stage accents — Mentorship periwinkle `#7B5CFF` and Dev Team blue `#4AA8FF` — left over from a rejected 4-color stage system. These violate the purple+green lock and are slated to collapse to `trackKey`-mapped purple/green. Do not treat them as sanctioned hues.
 
 **Documented partner co-brand exception.** The Mentorship × Databricks hero (`MentorshipAsciiHeroSection.tsx`) renders in Databricks orange (`#FFB194` / `#FF6836`). This is a sanctioned co-brand exception scoped to that one program hero and must not be cited as precedent for introducing additional accent hues elsewhere. New partner co-brands require explicit approval and the same scoped containment.
 

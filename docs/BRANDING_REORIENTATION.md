@@ -8,6 +8,16 @@
 
 ---
 
+> ## ⚑ Status — this is now a decision record, not an open worklist
+>
+> The **typography, color, surface, and motion** decisions below have been **RESOLVED** and live in **`Design.md`** (the source of truth). Resolved items are marked `[x]` with a `→ RESOLVED:` line pointing at the locked value; their rejected alternatives are kept as plain bullets for history, not as open choices.
+>
+> **Still open:** §3 Layout / spacing / containers and §4 Components — plus a few flagged §1/§2 items (wordmark typeface `D1.2b`, italics policy `D1.8`, accent token shape `D2.3`, status-pill hexes `D2.4`, gradient presets `D2.6`/`D2.7`, card inset library `D2.8`). See the **Still open** roll-up at the bottom.
+>
+> Two places where reality **superseded** this doc's original proposals: the eyebrow tier is **`white/48`** (not the `white/55` proposed in `D1.6`), and the opacity system locked at **four** tiers (not the three proposed in `D1.9`).
+
+---
+
 ## How to use this doc
 
 For each section below:
@@ -29,12 +39,10 @@ The "nice heading on the program/view page that looks slightly off" is almost ce
 
 **To decide.**
 
-- [ ] **D1.1.** Keep `Darker Grotesque` as the display family across the whole site (homepage hero + program heroes + every H2/H3)?
-  - [ ] yes, keep — but standardize on **`font-medium` (500)** as the default display weight, reserving `font-extrabold` (800) only for hero H1s.
-  - [ ] yes, keep — but **drop tracking from `-0.05em` to `-0.025em`** on hero sizes to make R/F read more naturally.
-  - [ ] swap to a different display face (candidates to A/B: Inter Display, GT America Mono / Cond, Neue Haas Grotesk Display, Söhne Breit). If swapping, the old Darker Grotesque should be removed from `lib/fonts.ts` and the `font-[family-name:var(--font-darker-grotesque)]` overrides replaced with a single Tailwind utility (`font-display`).
-  - [ ] keep Darker Grotesque on program pages but use the new face only for the homepage hero + section headings (split system — **not recommended**, but capturing the option).
-- [ ] **D1.2.** Should the homepage hero (`hero.tsx:110-114`) be re-skinned in the chosen display font? Today it uses Satoshi `font-bold` at `text-[5vw]` which reads softer than the program heroes.
+- [x] **D1.1.** → **RESOLVED: `Satoshi` is the single display family** site-wide (homepage hero + program heroes + every H2/H3). `Darker Grotesque` is superseded; the HK Grotesque lane (below) was trialed and rejected. See `Design.md › Font System — Locked`. Considered and rejected: keeping Darker Grotesque (any weight/tracking), and the Oswald/Barlow swap.
+- [x] **D1.2.** → **RESOLVED:** the homepage hero is on the same display family (Satoshi) as the program heroes — one display system, no split.
+
+> **⌗ HISTORICAL — the HK Grotesque / Oswald-Barlow trial below was explored and rejected; the system shipped on Satoshi (`Design.md › Font System — Locked`). Retained for context only; do not treat as live direction.**
 
 #### Display-font shortlist (need-to-trial)
 
@@ -82,7 +90,7 @@ Open the HTML files locally to see at full size:
 - `docs/font-previews/oswald-inter.html`
 - `docs/font-previews/barlow-mono.html`
 
-- [ ] **D1.2a.** After trialing, lock the chosen face. Remove Darker Grotesque from `lib/fonts.ts` and replace every `font-[family-name:var(--font-darker-grotesque)]` occurrence with the new `font-display` Tailwind utility.
+- [x] **D1.2a.** → **RESOLVED + DONE:** locked on **Satoshi** (not the trialed Oswald/Barlow). `lib/fonts.ts` now exports only `satoshi` + `inter`; the Darker Grotesque and HK Grotesque overrides have been fully removed from the codebase (0 refs remain, 0 vars wired).
 
 #### Wordmark / logo typeface (identification needed)
 
@@ -121,11 +129,8 @@ That proportional fingerprint fits the classic neo-grotesk family. Most probable
 
 **To decide.**
 
-- [ ] **D1.3.** One body family or two?
-  - [ ] **Satoshi everywhere** — remove every `font-[family-name:var(--font-inter)]` override (~80). Inter would still load via Tailwind preflight but be unused.
-  - [ ] **Inter everywhere** — flip globals.css to Inter and delete the Satoshi local font.
-  - [ ] **Satoshi for body + Inter for "system" labels** (eyebrows, status pills, monospace-feel uppercase). This is roughly today's intent but executed inconsistently — formalize and enforce.
-- [ ] **D1.4.** Pick a single family for **eyebrow / kicker text** (`UPPERCASE`, `tracking-[0.15em]`, `text-[13px] opacity-55`). Today: Inter on program pages, Satoshi everywhere else (e.g. spotlight `text-xs uppercase tracking-[0.35em]`, footer `tracking-[0.28em]`). Pick one font + one tracking value (see §1.5).
+- [x] **D1.3.** → **RESOLVED: two fonts — Satoshi for display, Inter for body/UI.** Inter carries body copy, eyebrows, CTAs, pills, labels, captions, and all UI chrome; Satoshi carries display headings and card titles. See `Design.md › Font System — Locked`.
+- [x] **D1.4.** → **RESOLVED: eyebrows are Inter**, single token `text-[12px] font-semibold uppercase tracking-[0.22em] text-white/48` (see D1.6). One font, one tracking value.
 
 ### 1.3 Heading scale (one ladder, applied consistently)
 
@@ -155,15 +160,14 @@ That proportional fingerprint fits the classic neo-grotesk family. Most probable
 
 **To decide.**
 
-- [ ] **D1.5.** Adopt a single heading ladder (suggested 5 steps). Proposed numbers below — to be ratified.
+- [x] **D1.5.** → **RESOLVED: a single 5-step ladder** encoded as Tailwind utilities (`text-display-1` … `text-heading-2`), raw `text-[Xvw]`/`clamp()` literals forbidden in new code. The locked sizes/weights/tracking shipped slightly refined from the proposal below (display weights are 400 Regular, headings 500 Medium) — see the authoritative table in `Design.md › Heading Scale`. Proposed-then-refined numbers retained for history:
   - `display-1` (page hero H1): `clamp(64px, 10vw, 128px)` — `font-extrabold`, `tracking-[-0.04em]`, `leading-[0.88]`
   - `display-2` (section H2 / "in-page hero"): `clamp(48px, 7vw, 96px)` — `font-extrabold`, `tracking-[-0.035em]`, `leading-[0.9]`
   - `display-3` (standard section H2): `clamp(36px, 5vw, 64px)` — `font-medium`, `tracking-[-0.02em]`, `leading-[0.92]`
   - `heading-1` (card / inline H3): `clamp(24px, 2.6vw, 36px)` — `font-medium`, `tracking-[-0.015em]`, `leading-[1.05]`
   - `heading-2` (sub-card H4): `clamp(18px, 1.6vw, 22px)` — `font-medium`, `tracking-[-0.005em]`, `leading-[1.15]`
-  - encode as Tailwind utilities (`text-display-1` etc.) and forbid raw `text-[Xvw]` in new code.
-- [ ] **D1.6.** Standardize **eyebrow** → one token: `text-[12px] font-semibold uppercase tracking-[0.22em] text-white/55`. Today's tracking varies: `0.12em / 0.14em / 0.15em / 0.16em / 0.18em / 0.22em / 0.24em / 0.28em / 0.3em / 0.32em / 0.35em` (every section invents its own).
-- [ ] **D1.7.** Standardize **body copy** → `text-[15px] md:text-[17px] leading-[1.55] text-white/72`. Today: `text-[13px]/[14px]/[15px]/[16px]/[17px]/[18px]/[19px]` mixed; opacities are `/55, /58, /62, /66, /68, /70, /72, /74, /82` — eight different "muted" tones.
+- [x] **D1.6.** → **RESOLVED: one eyebrow token** `text-[12px] font-semibold uppercase tracking-[0.22em] text-white/48`. **Note:** the foreground locked at **`white/48`**, superseding the `white/55` originally proposed here. See `Design.md › Body and UI Text`.
+- [x] **D1.7.** → **RESOLVED: one body token** `text-[15px] md:text-[17px] leading-[1.55] text-white/72`. See `Design.md › Body and UI Text`.
 - [ ] **D1.8.** Italics policy. Italic display (Darker Grotesque italic) is used once — pull-quote in `ProgramAlumniSection.tsx:226`. Either keep as the dedicated quote treatment or remove italic display from the system entirely.
 
 ### 1.4 Tracking conventions
@@ -176,14 +180,8 @@ That proportional fingerprint fits the classic neo-grotesk family. Most probable
 
 **To decide.**
 
-- [ ] **D1.9.** Reduce to 3 tiers and write into a Tailwind theme:
-  - `text-fg` = `#EDEDED` (full)
-  - `text-fg-muted` = `white/72`
-  - `text-fg-faint` = `white/48`
-  - `text-fg-ghost` = `white/28` (disabled / footnote)
-  - `border-line` = `white/10`
-  - `border-line-strong` = `white/22`
-- [ ] **D1.10.** Pick `#EDEDED` vs pure `#FFFFFF` as the canonical foreground. Currently both ship.
+- [x] **D1.9.** → **RESOLVED: four foreground tiers** (the proposal here said "3 tiers" but the system locked at **four**): `--fg` `#EDEDED`/`text-white` · `--fg-body` `white/90` · `--fg-muted` `white/72` · `--fg-faint` `white/48` · `--fg-ghost` `white/28`. Borders `white/10` (default) and `white/20` (hover/active). Backgrounds `white/5` and `white/10`. See `Design.md › Opacity Tiers — Locked`.
+- [x] **D1.10.** → **RESOLVED: `#EDEDED`** is the canonical foreground (`--fg`), not pure `#FFFFFF`. See `Design.md › Opacity Tiers — Locked`.
 
 ---
 
@@ -209,11 +207,9 @@ That proportional fingerprint fits the classic neo-grotesk family. Most probable
 
 **To decide.**
 
-- [ ] **D2.1.** Lock the brand to **purple + green only** (Design.md baseline)?
-  - [ ] yes — purple `#B300FF`, green `#4DFF94`. Demote everything else to neutral white/gray.
-  - [ ] yes, but allow **one tertiary signal** (blue or orange) and pick which. Currently the system has multiple tertiaries with no rule.
-  - [ ] no — formalize a 4-color stage system (purple → indigo → blue → green) tied to the program ladder (Tech Treks → Mentorship → Dev Team → Startup Week). This is what `program-stage-map.ts` already encodes; if we adopt it, every other accent (orange, blue spotlight, build-tab oranges) must be removed.
-- [ ] **D2.2.** Mentorship orange (`#FF6836`/`#FFB194`) — keep as a Mentorship-only signature, or kill in favor of purple? Today it bleeds into FAQ default (`ProgramFAQSection.tsx:19`) and is used on Tech Treks pages indirectly, which dilutes the "Mentorship = orange" intent.
+- [x] **D2.1.** → **RESOLVED: purple + green only.** `--accent-purple` `#B300FF` and `--accent-green` `#4DFF94` (plus `--accent-green-light` `#00994D`, the same green darkened for light surfaces). The 4-color stage system was **rejected**. See `Design.md › Color and Accent Use`.
+  > **⚠ Known code-vs-doc conflict (open cleanup item).** `program-stage-map.ts` still ships off-palette stage accents — Mentorship periwinkle `#7B5CFF` and Dev Team blue `#4AA8FF` — which violate this locked decision. Fixing them (collapse to `trackKey`-mapped purple/green) is a **separate code thread**, tracked alongside the "off-palette accents" work, not resolved here.
+- [x] **D2.2.** → **RESOLVED: Mentorship orange is killed as a general accent**, retained **only** as the scoped **Databricks partner co-brand** on the Mentorship × Databricks hero (`#FFB194` / `#FF6836`). It must not be cited as precedent for new hues; new partner co-brands need explicit approval. See `Design.md › Color and Accent Use` (Documented partner co-brand exception).
 - [ ] **D2.3.** Define the canonical accent token shape:
   ```
   --accent-primary: #B300FF;
@@ -230,11 +226,7 @@ That proportional fingerprint fits the classic neo-grotesk family. Most probable
 
 **To decide.**
 
-- [ ] **D2.5.** Compress to 3 surface tokens:
-  - `--surface-base` = `#0A0A0A` (page background, matches `globals.css`)
-  - `--surface-raised` = `#0D0D0D` (cards, hero overlays)
-  - `--surface-deep` = `#050505` (footer, deep wells, image plates)
-  - everything else gets purged.
+- [x] **D2.5.** → **RESOLVED: three surface tokens.** `--surface-base` `#0A0A0A` (page) · `--surface-raised` `#111111` (cards/panels) · `--surface-deep` `#050505` (insets/wells). **Note:** raised locked at `#111111` (not the `#0D0D0D` proposed here). See `Design.md › Color and Accent Use` (Surface — locked).
 
 ### 2.3 Gradients & radial glows
 
@@ -460,8 +452,8 @@ These two render the same data (RolesSection) and ship side by side. The legacy 
 
 **To decide.**
 
-- [ ] **D5.1.** Adopt `lib/motion.ts` tokens everywhere and ban raw `duration-N`/`ease-[...]` in components. Standard durations: hover-in 200ms, hover-out 160ms, enter 560ms, exit 460ms.
-- [ ] **D5.2.** Drop `transition-all duration-500` on program CTAs in favor of the snappier 200ms hover-invert (matches `Design.md` "UI interactions should still feel immediate").
+- [x] **D5.1.** → **RESOLVED: `lib/motion.ts` (`motionTokens`) is the source of truth**, mirrored in `globals.css` as `--motion-*`; bespoke `cubic-bezier`/`ease:[...]` literals and generic `transition-all duration-300` banned in new code. **Two curves** (`brandEnterEase` / `brandExitEase`) and **four durations** locked at **220 / 180 / 560 / 460ms** (hover-in/out, enter, exit) — the proposed 200/160 was refined to 220/180. See `Design.md › Curves and durations — Locked`.
+- [x] **D5.2.** → **RESOLVED:** program CTAs use the locked brand curve at `hoverInDurationMs`/`hoverOutDurationMs` (the bento "Learn more" CTA is the reference implementation); `transition-all duration-500` is forbidden. See `Design.md › Curves and durations — Locked`.
 - [ ] **D5.3.** Decide whether the homepage hero's GSAP word-by-word reveal stays (it's the only place using SplitText) or whether we move to the same motion token system.
 
 ---
@@ -483,13 +475,28 @@ These two render the same data (RolesSection) and ship side by side. The legacy 
 
 ---
 
+## 6.5 Still open — what this doc has NOT resolved
+
+The system-level **typography, color, surface, and motion** decisions are RESOLVED above and locked in `Design.md`. What remains genuinely open (no `Design.md` lock exists — do not infer one):
+
+- **A few §1/§2 items:** `D1.2b` wordmark typeface identification, `D1.8` italic-display policy, `D2.3` accent CSS-variable shape / raw-rgba ban, `D2.4` status-pill open/closed hexes + glow, `D2.6`/`D2.7` named gradient presets + single section vignette, `D2.8` card-inset library utility.
+- **All of §3 — Layout / spacing / containers:** `D3.1`–`D3.10` (section shell, max-width scale, radius scale, divider rule, grid-background recipe).
+- **All of §4 — Components:** `D4.1`–`D4.20` (TriadCards, bento merge, role-card fate, status pill, CTA spec, dot-eyebrow, footer signal field, spotlight, home About/Values, team page).
+- **Motion `D5.3`** (GSAP SplitText hero — keep or migrate) and **all of §6 — Imagery** (`D6.1`–`D6.3`).
+
+**Known code-vs-doc conflict to clean up (not a decision):** `program-stage-map.ts` still ships off-palette stage accents (Mentorship `#7B5CFF`, Dev Team `#4AA8FF`) that violate the locked purple+green decision (`D2.1`).
+
+---
+
 ## 7. Summary — the morning ticklist
+
+> **Note:** the typography/color/surface/motion rows below are **RESOLVED** (see each decision above and `Design.md`). The table is retained as the original ticklist; treat only the §3/§4/§6 + flagged-open rows as live.
 
 Run through these in order. Each gets a yes / no / written answer and lands in `Design.md`:
 
 | # | Question |
 | --- | --- |
-| D1.1 | Keep Darker Grotesque as display? Default weight = medium, hero only = extrabold? |
+| D1.1 | ~~Keep Darker Grotesque as display?~~ **RESOLVED → Satoshi** (Darker/HK Grotesque rejected). |
 | D1.2 | Re-skin homepage hero in chosen display font? |
 | D1.3 | Body family — Satoshi everywhere / Inter everywhere / Satoshi + Inter for system labels? |
 | D1.4 | Eyebrow font + tracking value — pick one. |
