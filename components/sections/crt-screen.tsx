@@ -39,7 +39,6 @@ export default function CrtScreen({
     let cells: Cell[] = [];
     let gridCells: Cell[] = [];
     let cellSize = 10;
-    let maxR = 0;
     let ledSprite: HTMLCanvasElement | null = null;
     let dimSprite: HTMLCanvasElement | null = null;
     let halo: HTMLCanvasElement | null = null;
@@ -102,7 +101,6 @@ export default function CrtScreen({
 
       ledSprite = makeSprite(false);
       dimSprite = makeSprite(true);
-      maxR = Math.hypot(vw / 2, vh / 2) * 1.1;
 
       const logoW = Math.min(vw * 0.66, 1100);
       cellSize = Math.max(3, Math.round(logoW / 240));
@@ -243,27 +241,47 @@ export default function CrtScreen({
 
     };
 
-    // The clear window: a soft-edged zone opening from the center that
-    // wipes veil AND grain together — outside it the mist stays at full
-    // strength until the edge arrives.
-    const clearWindow = (R: number) => {
-      if (R <= 0) return;
-      const w = vh * 0.16;
-      const c = ctx.createRadialGradient(
-        vw / 2,
-        vh / 2,
-        Math.max(0, R - w),
-        vw / 2,
-        vh / 2,
-        R + w * 0.3
-      );
-      c.addColorStop(0, "rgba(0,0,0,1)");
-      c.addColorStop(1, "rgba(0,0,0,0)");
+    // Glitch dissolve: the veil breaks up in place — a field of small
+    // blocks, each melting away at its own moment, no shape at all.
+    const DISSOLVE_BLOCK = 18;
+    const dissolve = (p: number) => {
+      if (p <= 0) return;
       ctx.save();
       ctx.globalCompositeOperation = "destination-out";
-      ctx.fillStyle = c;
-      ctx.fillRect(0, 0, vw, vh);
+      ctx.fillStyle = "#000";
+      for (let y = 0; y < vh; y += DISSOLVE_BLOCK) {
+        for (let x = 0; x < vw; x += DISSOLVE_BLOCK) {
+          const th = hash(x * 0.37 + 11.3, y * 0.53 + 7.7);
+          const d = (p * 1.15 - th) / 0.12;
+          if (d <= 0) continue;
+          ctx.globalAlpha = Math.min(1, d);
+          ctx.fillRect(x, y, DISSOLVE_BLOCK, DISSOLVE_BLOCK);
+        }
+      }
       ctx.restore();
+    };
+
+    // Whisper glitch: a slice or two of the frame nudged sideways while
+    // the dissolve is live.
+    const glitchSlices = (strength: number) => {
+      if (strength <= 0 || Math.random() > 0.3) return;
+      const n = Math.random() < 0.3 ? 2 : 1;
+      for (let i = 0; i < n; i++) {
+        const sy = Math.random() * vh * 0.9;
+        const h = 6 + Math.random() * 16;
+        const dx = (Math.random() - 0.5) * 56 * strength;
+        ctx.drawImage(
+          canvas,
+          0,
+          Math.floor(sy * dpr),
+          canvas.width,
+          Math.max(1, Math.floor(h * dpr)),
+          dx,
+          sy,
+          vw,
+          h
+        );
+      }
     };
 
     const drawGrain = (alpha: number) => {
@@ -304,12 +322,13 @@ export default function CrtScreen({
       t: number,
       list: Cell[],
       sprite: HTMLCanvasElement,
-      R: number,
+      progress: number,
       maxAlpha: (c: Cell) => number,
       scale: number
     ) => {
       for (const cell of list) {
-        if (!cell.onAt && R >= cell.rc) cell.onAt = t;
+        // each cell wakes at its own moment of the dissolve
+        if (!cell.onAt && progress >= 0.1 + 0.8 * cell.rnd) cell.onAt = t;
         if (!cell.onAt) continue;
         const b = bloomEase(clamp01((t - cell.onAt) / BLOOM));
         const breathe = 0.95 + 0.05 * Math.sin(t * 0.0025 + cell.rnd * 6.28);
@@ -333,33 +352,16 @@ export default function CrtScreen({
       ctx.fillRect(0, 0, vw, vh);
 
       const waveP = clamp01((t - VEIL) / WAVE);
-      // hesitant start, confident finish: the middle visibly opens first
-      const R = maxR * Math.pow(waveP, 2.2);
+      // hesitant start, confident finish for the dissolve
+      const p = Math.pow(waveP, 1.6);
 
-      // veil persists until the wave has fully carried it out
+      // veil persists until the dissolve has fully eaten it
       if (waveP < 1) {
         drawVeil(t);
-        // the wave itself: one soft luminance crest riding the window's edge
-        if (waveP > 0) {
-          const w = vh * 0.22;
-          const crest = ctx.createRadialGradient(
-            vw / 2,
-            vh / 2,
-            Math.max(0, R - w * 0.3),
-            vw / 2,
-            vh / 2,
-            R + w
-          );
-          const a = 0.09 * Math.sin(Math.PI * waveP);
-          crest.addColorStop(0, "rgba(0,0,0,0)");
-          crest.addColorStop(0.4, `rgba(196,204,190,${Math.max(0, a)})`);
-          crest.addColorStop(1, "rgba(0,0,0,0)");
-          ctx.fillStyle = crest;
-          ctx.fillRect(0, 0, vw, vh);
-        }
         drawGrain(0.16);
-        // the window wipes veil, crest, and grain together
-        clearWindow(R);
+        // the veil breaks up in place; a stray slice glitches sideways
+        dissolve(p);
+        glitchSlices(Math.sin(Math.PI * waveP));
       } else {
         drawGrain(0.18);
       }
@@ -370,7 +372,7 @@ export default function CrtScreen({
           t,
           gridCells,
           dimSprite,
-          R,
+          p,
           (c) => (0.06 + 0.06 * c.rnd) * globalFlicker,
           1.2
         );
@@ -386,7 +388,7 @@ export default function CrtScreen({
         ctx.restore();
       }
       if (ledSprite) {
-        drawCells(t, cells, ledSprite, R, () => globalFlicker, 1);
+        drawCells(t, cells, ledSprite, p, () => globalFlicker, 1);
       }
 
       if (!doneFired && t > LOGO_DONE) {
