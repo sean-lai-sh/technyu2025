@@ -31,7 +31,7 @@ export default function ResponsiveMedia({ src, alt = '', className = '' }: Props
   if (isPortrait === null) {
     return (
       <div className={`mx-auto max-w-3xl ${className}`}>
-        <div className="w-full h-48 bg-gray-900" />
+        <div className="w-full h-48 bg-surface-raised" />
       </div>
     )
   }

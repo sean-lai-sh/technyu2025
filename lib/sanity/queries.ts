@@ -1,6 +1,16 @@
 import { defineQuery } from 'next-sanity'
 import { client } from './client'
-import { TeamMember, SanityProgram } from '../types'
+import {
+  TeamMember,
+  SanityProgram,
+  PressPost,
+  PressPostPreview,
+  PressSpotlight,
+} from '../types'
+
+const pressClient = client.withConfig({
+  useCdn: false,
+})
 
 // GROQ query for team members
 const teamMembersQuery = defineQuery(/* groq */ `
@@ -238,6 +248,167 @@ export async function getAllPrograms(): Promise<ProgramListItem[]> {
     return programs
   } catch (error) {
     console.error('Error fetching programs from Sanity:', error)
+    return []
+  }
+}
+
+// ===== Press Queries =====
+
+const pressPostPreviewFields = /* groq */ `
+  _id,
+  title,
+  "slug": slug.current,
+  publishedAt,
+  category,
+  layout,
+  excerpt,
+  eyebrow,
+  seoTitle,
+  seoDescription,
+  sourceName,
+  sourceUrl,
+  "coverImage": select(
+    defined(coverImage.asset) => {
+      "url": coverImage.asset->url,
+      "alt": coverImage.alt
+    },
+    {
+      "url": null,
+      "alt": coverImage.alt
+    }
+  )
+`
+
+const pressBodyFields = /* groq */ `
+  body[]{
+    ...,
+    _type == "block" => {
+      _key,
+      _type,
+      style,
+      markDefs[]{
+        _key,
+        _type,
+        href,
+        color
+      },
+      children[]{
+        _key,
+        _type,
+        text,
+        marks
+      }
+    },
+    _type == "image" => {
+      _key,
+      _type,
+      "imageUrl": asset->url,
+      alt,
+      caption
+    }
+  }
+`
+
+const pressSpotlightQuery = defineQuery(/* groq */ `
+  *[_type == "pressSpotlight" && _id == "pressSpotlight"][0]{
+    "featuredPost": featuredPost->{
+      ${pressPostPreviewFields}
+    },
+    "secondaryPosts": secondaryPosts[]->{
+      ${pressPostPreviewFields}
+    }
+  }
+`)
+
+export async function getPressSpotlight(): Promise<PressSpotlight | null> {
+  try {
+    const spotlight = await pressClient.fetch(pressSpotlightQuery)
+
+    if (
+      !spotlight?.featuredPost ||
+      !Array.isArray(spotlight.secondaryPosts) ||
+      spotlight.secondaryPosts.length !== 3
+    ) {
+      return null
+    }
+
+    return spotlight as PressSpotlight
+  } catch (error) {
+    console.error('Error fetching press spotlight from Sanity:', error)
+    return null
+  }
+}
+
+const pressIndexQuery = defineQuery(/* groq */ `
+  *[
+    _type == "pressPost" &&
+    defined(slug.current) &&
+    !(_id in $excludedIds)
+  ]
+  | order(publishedAt desc) {
+    ${pressPostPreviewFields}
+  }
+`)
+
+export type PressIndexResult = {
+  spotlight: PressSpotlight | null
+  posts: PressPostPreview[]
+}
+
+export async function getPressIndex(): Promise<PressIndexResult> {
+  try {
+    const spotlight = await getPressSpotlight()
+    const excludedIds = [
+      spotlight?.featuredPost?._id,
+      ...(spotlight?.secondaryPosts?.map((post) => post._id) ?? []),
+    ].filter((id): id is string => Boolean(id))
+
+    const posts = await pressClient.fetch<PressPostPreview[]>(pressIndexQuery, {
+      excludedIds,
+    })
+
+    return {
+      spotlight,
+      posts,
+    }
+  } catch (error) {
+    console.error('Error fetching press index from Sanity:', error)
+    return {
+      spotlight: null,
+      posts: [],
+    }
+  }
+}
+
+const pressPostBySlugQuery = defineQuery(/* groq */ `
+  *[_type == "pressPost" && slug.current == $slug][0]{
+    ${pressPostPreviewFields},
+    ${pressBodyFields}
+  }
+`)
+
+export async function getPressPostBySlug(slug: string): Promise<PressPost | null> {
+  try {
+    const post = await pressClient.fetch<PressPost>(pressPostBySlugQuery, { slug })
+    return post ?? null
+  } catch (error) {
+    console.error(`Error fetching press post "${slug}" from Sanity:`, error)
+    return null
+  }
+}
+
+const allPressSlugsQuery = defineQuery(/* groq */ `
+  *[_type == "pressPost" && defined(slug.current)]{
+    "slug": slug.current
+  }
+`)
+
+export async function getAllPressSlugs(): Promise<{ slug: string }[]> {
+  try {
+    const slugs = await pressClient.fetch<{ slug: string }[]>(allPressSlugsQuery)
+    return slugs
+  } catch (error) {
+    console.error('Error fetching press slugs from Sanity:', error)
     return []
   }
 }

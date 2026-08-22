@@ -1,6 +1,13 @@
+import type { Metadata } from 'next'
 import Card404 from '@/components/404/404card'
+import { SITE_DESCRIPTION } from '@/lib/seo'
 import { ValueCardProps } from '@/lib/types'
 import React from 'react'
+
+export const metadata: Metadata = {
+  title: 'Page Not Found',
+  description: SITE_DESCRIPTION,
+}
 
 const NotFound = () => {
   const valuesData: ValueCardProps[] = [

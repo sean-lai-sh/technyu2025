@@ -1,4 +1,3 @@
-import { NavigationProvider } from '@/contexts/navigation-context'
 import { ReactNode } from 'react'
 
 interface TeamLayoutProps {
@@ -6,9 +5,5 @@ interface TeamLayoutProps {
 }
 
 export default function TeamLayout({ children }: TeamLayoutProps) {
-  return (
-    <NavigationProvider>
-      {children}
-    </NavigationProvider>
-  )
+  return <>{children}</>
 }

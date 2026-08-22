@@ -3,8 +3,9 @@ import { notFound } from 'next/navigation'
 import Image from 'next/image'
 import Link from 'next/link'
 import { getProfile } from '@/lib/sanity/queries'
+import { SITE_DESCRIPTION, SITE_NAME } from '@/lib/seo'
 import { ProfileBio } from '@/lib/types'
-import { Metadata } from 'next'
+import type { Metadata } from 'next'
 import { client } from '@/lib/sanity/client'
 import { Separator } from '@radix-ui/react-dropdown-menu'
 import { TimelineNav } from '@/components/eboard_bio/timeline-nav'
@@ -38,15 +39,18 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   if (!bio) {
     return {
       title: 'Team Member Not Found',
+      description: SITE_DESCRIPTION,
     }
   }
 
+  const profileDescription = bio.shortDescription || SITE_DESCRIPTION
+
   return {
-    title: `${bio.name} | Tech@NYU Team`,
-    description: bio.shortDescription || `Meet ${bio.name}, a member of the Tech@NYU team.`,
+    title: bio.name,
+    description: profileDescription,
     openGraph: {
-      title: `${bio.name} | Tech@NYU Team`,
-      description: bio.shortDescription || `Meet ${bio.name}, a member of the Tech@NYU team.`,
+      title: `${bio.name} | ${SITE_NAME}`,
+      description: profileDescription,
       images: bio.profileImage.url ? [bio.profileImage.url] : [],
     },
   }
@@ -61,7 +65,7 @@ export default async function ProfilePage({ params }: PageProps) {
   }
 
   return (
-    <div className="min-h-screen bg-[#0a0a0a] text-white">
+    <div className="min-h-screen bg-surface-base text-white">
       {/* Profile Section */}
       <div className="container pt-24 md:pt-40 lg:pt-[20svh]">
           {/* Profile Container - Responsive Layout */}
@@ -83,7 +87,7 @@ export default async function ProfilePage({ params }: PageProps) {
               </div>
               <div>
               {/* Name */}
-              <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold leading-tight tracking-tight pt-10">
+              <h1 className="text-display-2 font-display-semibold pt-10">
                 {bio.name}
               </h1>
 {/* 
@@ -102,7 +106,7 @@ export default async function ProfilePage({ params }: PageProps) {
 
               {/* Short Description */}
               {bio.shortDescription && (
-                <p className="text-lg md:text-xl text-gray-300 leading-relaxed w-full">
+                <p className="mt-6 text-lg md:text-xl text-white/72 leading-relaxed w-full">
                   {bio.shortDescription}
                 </p>
               )}
@@ -124,42 +128,43 @@ export default async function ProfilePage({ params }: PageProps) {
       </div>
 
       {/* Separator */}
-      {/* Content Section with Timeline Navigation */}
-      <div className="container mx-auto px-6">
-        <div className="max-w-7xl mx-auto">
-          <div className='w-screen absolute left-0 min-h-[15svh] bg-[#0a0a0a] z-5 flex justify-between flex-col'>
-            <div className="py-4 pt-12 xl:pt-16 w-full px-[5svw]">
-                <div className="flex gap-6">
-                  {bio.linkedinUrl && (
-                    <Link
-                      href={bio.linkedinUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-white hover:text-green-400 transition-colors uppercase text-sm tracking-wide font-medium"
-                    >
-                      LinkedIn
-                    </Link>
-                  )}
-                 
-                </div>
-              </div> 
-            <Separator className='w-full h-[2px] bg-white/40'/>
+      {/* Content Section with Timeline Navigation — shares the hero's px-[5svw]
+          horizontal system so LinkedIn + the rail align with the description. */}
+      <div className="px-[5svw]">
+          <div className="relative bg-surface-base">
+            <div className="flex min-h-[96px] items-end py-6 xl:min-h-[112px] xl:py-8">
+              <div className="flex gap-6">
+                {bio.linkedinUrl && (
+                  <Link
+                    href={bio.linkedinUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-white hover:text-accent-green transition-colors uppercase text-sm tracking-wide font-medium"
+                  >
+                    LinkedIn
+                  </Link>
+                )}
+              </div>
+            </div>
+            {/* Full-bleed separator while the label stays aligned to the content grid */}
+            <div className="relative left-1/2 w-screen -translate-x-1/2">
+              <Separator className='h-[2px] w-full bg-white/10'/>
+            </div>
           </div>
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 ">
+
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 pt-8 lg:pt-10">
             {/* Left Sidebar - Timeline Navigation */}
             <div className="hidden lg:block lg:col-span-3">
-              <div className="sticky top-0">
-                <TimelineNav />
-              </div>
+              <TimelineNav />
             </div>
                   
             {/* Main Content */}
-            <div className="lg:col-span-9 space-y-24 pt-[19.5svh] mb-20">
+            <div className="lg:col-span-9 space-y-24 pb-20">
               {/* Background Section with Timeline */}
               <section id="background" className="">
-                <h2 
+                <h2
                   tabIndex={0}
-                  className="text-3xl md:text-4xl font-bold mb-8"
+                  className="text-display-3 font-display-semibold mb-8"
                 >
                   Background
                 </h2>
@@ -170,7 +175,7 @@ export default async function ProfilePage({ params }: PageProps) {
                       description: ''
                     }))} />
                   ) : (
-                    <p className="text-lg text-gray-400 italic">No timeline data available yet.</p>
+                    <p className="text-lg text-white/48 italic">No timeline data available yet.</p>
                   )}
                 </div>
               </section>
@@ -182,15 +187,15 @@ export default async function ProfilePage({ params }: PageProps) {
                     {bio.qa.map((item, index) => (
                       <div key={index} className="space-y-6">
                         {/* Question */}
-                        <h3 
+                        <h3
                           tabIndex={0}
-                          className="text-2xl md:text-3xl lg:text-4xl font-bold leading-tight"
+                          className="text-display-3 font-display-semibold"
                         >
                           {item.question}
                         </h3>
                         
                         {/* Answer */}
-                        <p className="text-base md:text-lg text-gray-300 leading-relaxed whitespace-pre-wrap max-w-3xl">
+                        <p className="text-base md:text-lg text-white/72 leading-relaxed whitespace-pre-wrap max-w-3xl">
                           {item.answer}
                         </p>
                         
@@ -207,7 +212,6 @@ export default async function ProfilePage({ params }: PageProps) {
               )}
             </div>
           </div>
-        </div>
       </div>
     </div>
   )

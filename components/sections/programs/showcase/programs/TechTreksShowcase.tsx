@@ -1,0 +1,79 @@
+'use client'
+
+import { SanityProgram } from '@/lib/types'
+import TechTreksHeroSection from '../TechTreksHeroSection'
+import ProgramAboutSection from '../ProgramAboutSection'
+import ProgramAlumniSection from '../ProgramAlumniSection'
+import ProgramCompanyGridSection from '../ProgramCompanyGridSection'
+import ProgramTracksSection from '../ProgramTracksSection'
+import ProgramRolesSection from '../ProgramRolesSection'
+import ProgramFinalSection from '../ProgramFinalSection'
+import { getCtaSection, getRolesSection, portableTextToPlainText } from '../utils'
+import { CircuitWireframe, NetworkGrowthWireframe, RocketWireframe } from '../wireframes'
+import {
+  techTreksApproachImages,
+  techTreksShowcaseContent,
+  techTreksTestimonials,
+  techTreksTracks,
+  techTreksCompanyLogos,
+  techTreksWhatYoullDoCards,
+} from '../data/tech-treks'
+
+
+type TechTreksShowcaseProps = {
+  program?: SanityProgram | null
+}
+
+export default function TechTreksShowcase({ program }: TechTreksShowcaseProps) {
+  const rolesSection = getRolesSection(program)
+  const ctaSection = getCtaSection(program)
+  const resolvedFinalBody =
+    portableTextToPlainText(ctaSection?.body) || program?.descriptionSmall || techTreksShowcaseContent.finalBody
+
+  return (
+    <div className="bg-surface-base text-[#EDEDED] overflow-x-hidden">
+      <TechTreksHeroSection program={program} />
+
+      {/* What you'll do */}
+      <ProgramAboutSection
+        eyebrow={techTreksShowcaseContent.pillarsHeading}
+        title={techTreksShowcaseContent.pillarsTitle}
+        cards={techTreksWhatYoullDoCards}
+        images={techTreksApproachImages}
+        renderFallbackVisual={(index) => {
+          if (index === 0) return <CircuitWireframe />
+          if (index === 1) return <RocketWireframe />
+          return <NetworkGrowthWireframe />
+        }}
+      />
+
+      {/* Companies second — aspirational, shows where they'll go */}
+      <ProgramCompanyGridSection
+        eyebrow={techTreksShowcaseContent.companyGridEyebrow}
+        title={techTreksShowcaseContent.companyGridTitle}
+        logos={techTreksCompanyLogos}
+        footnote={techTreksShowcaseContent.companyGridFootnote}
+      />
+
+      {/* Social proof third */}
+      <ProgramAlumniSection testimonials={techTreksTestimonials} />
+
+      <ProgramTracksSection
+        heading={techTreksShowcaseContent.trackHeading}
+        titleLines={techTreksShowcaseContent.tracksTitle.split('\n')}
+        tracks={techTreksTracks}
+      />
+
+      {rolesSection && <ProgramRolesSection rolesSection={rolesSection} />}
+
+      <ProgramFinalSection
+        kicker={techTreksShowcaseContent.finalKicker}
+        title={techTreksShowcaseContent.finalTitle}
+        accent={techTreksShowcaseContent.finalAccent}
+        body={resolvedFinalBody}
+        closedHint={techTreksShowcaseContent.finalClosedHint}
+        apply={program?.apply}
+      />
+    </div>
+  )
+}
