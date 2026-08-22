@@ -112,7 +112,12 @@ export default function CrtScreen({
       off.width = vw;
       off.height = vh;
       const octx = off.getContext("2d")!;
-      const family = getComputedStyle(document.body).fontFamily || "sans-serif";
+      // The wordmark renders in Satoshi (display font), not the Inter body font
+      const satoshi = getComputedStyle(document.documentElement)
+        .getPropertyValue("--font-satoshi")
+        .trim();
+      const family =
+        satoshi || getComputedStyle(document.body).fontFamily || "sans-serif";
       let fs = 100;
       octx.font = `600 ${fs}px ${family}`;
       fs = (fs * logoW) / octx.measureText(TEXT).width;

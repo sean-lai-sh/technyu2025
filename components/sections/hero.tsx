@@ -1,5 +1,5 @@
 'use client'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import CrtScreen from './crt-screen'
 
 const GRAIN =
@@ -8,10 +8,21 @@ const GRAIN =
 const Hero = () => {
   const [settled, setSettled] = useState(false);
 
+  // Gate the navbar's fade-in on the wordmark landing (see globals.css)
+  useEffect(() => {
+    document.documentElement.setAttribute('data-crt-boot', 'pending');
+    return () => document.documentElement.removeAttribute('data-crt-boot');
+  }, []);
+
+  const handleLogoDone = () => {
+    setSettled(true);
+    document.documentElement.setAttribute('data-crt-boot', 'settled');
+  };
+
   return (
     <section className="relative w-[100svw] h-[100svh] overflow-hidden bg-black">
       {/* CRT boot: sage veil -> clear-window wave -> LED dot-matrix wordmark */}
-      <CrtScreen onLogoDone={() => setSettled(true)} />
+      <CrtScreen onLogoDone={handleLogoDone} />
 
       {/* soft phosphor glow drifting across the tube */}
       <div
