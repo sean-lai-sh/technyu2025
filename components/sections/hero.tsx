@@ -20,7 +20,7 @@ const Hero = () => {
   };
 
   return (
-    <section className="relative w-[100svw] h-[100svh] overflow-hidden bg-black">
+    <section className="relative w-[100svw] h-[100svh] overflow-hidden">
       {/* CRT boot: sage veil -> clear-window wave -> LED dot-matrix wordmark */}
       <CrtScreen onLogoDone={handleLogoDone} />
 

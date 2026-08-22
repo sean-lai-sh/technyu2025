@@ -407,8 +407,8 @@ export default function CrtScreen({
       const t = now - start;
 
       ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-      ctx.fillStyle = "#050505";
-      ctx.fillRect(0, 0, vw, vh);
+      // transparent base: the homepage's photo backdrop shows through
+      ctx.clearRect(0, 0, vw, vh);
 
       const waveP = clamp01((t - VEIL) / WAVE);
       // TV-on: the screen opens vertically from the center seam —
