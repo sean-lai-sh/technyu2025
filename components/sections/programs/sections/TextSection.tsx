@@ -12,7 +12,7 @@ const portableTextComponents = {
       const href = value?.href || '#'
       const rel = !href.startsWith('/') ? 'noreferrer noopener' : undefined
       return (
-        <a href={href} rel={rel} className="text-blue-500 hover:text-blue-400 transition-colors">
+        <a href={href} rel={rel} className="font-medium text-[#4DFF94] hover:text-[#8DFFC0] transition-colors">
           {children}
         </a>
       )
@@ -24,24 +24,28 @@ const portableTextComponents = {
   },
   block: {
     normal: ({ children }: { children?: React.ReactNode }) => (
-      <p className="text-white text-lg md:text-xl lg:text-2xl mb-6">{children}</p>
+      <p className="mb-5 text-base leading-relaxed text-white/90 md:text-lg lg:text-xl">{children}</p>
     ),
   },
 }
 
 export default function TextSectionComponent({ section }: TextSectionProps) {
   return (
-    <section className="mt-16 px-[5vw]">
-      {section.heading && (
-        <h2 className="text-white text-3xl md:text-4xl lg:text-5xl font-bold text-left mb-8">
-          {section.heading}
-        </h2>
-      )}
-      {section.body && (
-        <div className="max-w-4xl">
-          <PortableText value={section.body} components={portableTextComponents} />
+    <section className="mt-18 px-[5vw]">
+      <div className="mx-auto max-w-[1240px]">
+        <div className="rounded-2xl border border-white/10 bg-surface-base p-6 shadow-[inset_0_0_70px_rgba(179,0,255,0.07)] md:p-8 lg:p-10">
+          {section.heading && (
+            <h2 className="mb-7 font-[family-name:var(--font-satoshi)] text-4xl font-bold leading-tight tracking-tight text-white md:text-5xl">
+              {section.heading}
+            </h2>
+          )}
+          {section.body && (
+            <div className="max-w-[72ch]">
+              <PortableText value={section.body} components={portableTextComponents} />
+            </div>
+          )}
         </div>
-      )}
+      </div>
     </section>
   )
 }

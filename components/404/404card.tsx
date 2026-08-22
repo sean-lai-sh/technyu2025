@@ -12,7 +12,7 @@ const Card404 = ({ValueDetail, variant}: {ValueDetail: ValueCardProps, variant: 
                 <h1 style={{ 
                   filter: 'drop-shadow(10px 0 5px rgba(255, 75, 43, 0.95)) drop-shadow(0 0 10px rgba(255, 75, 43, 0.95)) drop-shadow(0 -10px 16px rgba(255, 75, 43, 0.70)) drop-shadow(0 5px 21px rgba(255, 75, 43, 0.6)) drop-shadow(0 0 26px rgba(255, 75, 43, 0.75))'
                 }}
-                className='text-[3vw] font-light tracking-tight leading-7'
+                className='text-[3vw] font-normal tracking-tight leading-7'
                 >
                     {name}
                 </h1>

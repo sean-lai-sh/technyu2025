@@ -56,7 +56,7 @@ const RoleCard: React.FC<RoleCardProps> = ({
   const hasLink = Boolean(applicationLink);
 
   return (
-    <div className='font-satoshi p-6 outline-2' style={{ boxShadow: 'inset 0px 0px 100px rgba(179, 0, 255, 0.4)' }}>
+    <div className='font-[family-name:var(--font-inter)] p-6 outline-2' style={{ boxShadow: 'inset 0px 0px 100px rgba(179, 0, 255, 0.4)' }}>
       <div className='mb-6'>
         <h3 className='text-white text-2xl lg:text-3xl font-bold mb-4'>{title}</h3>
         <div className={`w-16 h-1 ${colorMap[color].accent} rounded shadow-[0_0_16px_4px_rgba(34,197,94,0.7)]`}></div>

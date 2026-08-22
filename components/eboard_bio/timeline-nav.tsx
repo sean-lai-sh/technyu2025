@@ -1,6 +1,8 @@
 'use client'
 
-import React, { useEffect, useState, useRef } from 'react'
+import React, { useEffect, useState } from 'react'
+import { motion } from 'framer-motion'
+import { useNavigation } from '@/contexts/navigation-context'
 
 interface TimelineSection {
   id: string
@@ -14,8 +16,9 @@ const sections: TimelineSection[] = [
 
 export function TimelineNav() {
   const [activeSection, setActiveSection] = useState<string>('background')
-  const [squarePosition, setSquarePosition] = useState<number>(0)
-  const buttonRefs = useRef<Map<string, HTMLButtonElement>>(new Map())
+  const { isNavbarVisible, headerHeight } = useNavigation()
+
+  const stickyOffset = isNavbarVisible ? headerHeight : 0
 
   useEffect(() => {
     const handleScroll = () => {
@@ -24,8 +27,8 @@ export function TimelineNav() {
         element: document.getElementById(section.id),
       }))
 
-      // Use middle of viewport for more immediate switching
-      const scrollPosition = window.scrollY + window.innerHeight / 3
+      // Bias the trigger line below the fixed header so the active state matches the visible section.
+      const scrollPosition = window.scrollY + stickyOffset + window.innerHeight * 0.22
 
       for (let i = sectionElements.length - 1; i >= 0; i--) {
         const section = sectionElements[i]
@@ -40,71 +43,53 @@ export function TimelineNav() {
     handleScroll()
 
     return () => window.removeEventListener('scroll', handleScroll)
-  }, [])
-
-  useEffect(() => {
-    // Update square position when active section changes or window resizes
-    const updateSquarePosition = () => {
-      const activeButton = buttonRefs.current.get(activeSection)
-      if (activeButton) {
-        const buttonRect = activeButton.getBoundingClientRect()
-        const navRect = activeButton.parentElement?.parentElement?.getBoundingClientRect()
-        if (navRect) {
-          // Position square at the vertical center of the active button
-          const relativeTop = buttonRect.top - navRect.top + (buttonRect.height / 2) - 4 // -4 to center the 8px square
-          setSquarePosition(relativeTop)
-        }
-      }
-    }
-
-    // Small delay to ensure DOM is ready
-    const timer = setTimeout(updateSquarePosition, 100)
-    updateSquarePosition()
-    
-    window.addEventListener('resize', updateSquarePosition)
-    
-    return () => {
-      clearTimeout(timer)
-      window.removeEventListener('resize', updateSquarePosition)
-    }
-  }, [activeSection])
+  }, [stickyOffset])
 
   const scrollToSection = (id: string) => {
     const element = document.getElementById(id)
     if (element) {
-      const yOffset = -100
+      const yOffset = -(stickyOffset + 24)
       const y = element.getBoundingClientRect().top + window.pageYOffset + yOffset
       window.scrollTo({ top: y, behavior: 'smooth' })
     }
   }
 
   return (
-    <nav className="relative pl-6 min-h-screen">
-      {/* Vertical line - centered at left edge, spans full screen */}
-      <div className="absolute left-0 top-0 h-screen w-[2px] bg-gray-800" />
-
-      {/* Animated active indicator square */}
-      <div 
-        className="absolute left-[-4px] w-2 h-2 bg-white transition-all duration-300 ease-out"
-        style={{ 
-          transform: `translateY(${squarePosition}px)`
+    <nav
+      className="relative min-h-screen pl-6 pt-[5vh]"
+      style={{
+        position: 'sticky',
+        top: stickyOffset,
+        transition: 'top 650ms cubic-bezier(0.76, 0, 0.24, 1)',
+      }}
+    >
+      {/* Vertical line rises to meet the separator above the rail (matching the
+          grid's lg:pt-10 gap) and stops there — never crossing the separator. */}
+      <div
+        className="absolute left-0 w-[2px] bg-white/10"
+        style={{
+          top: '-2.5rem',
+          height: 'calc(100% + 2.5rem)',
         }}
       />
-      
-      <div className="space-y-6 pt-[20svh]">
+      <div className="space-y-6">
         {sections.map((section) => (
           <button
             key={section.id}
-            ref={(el) => {
-              if (el) buttonRefs.current.set(section.id, el)
-            }}
             onClick={() => scrollToSection(section.id)}
-            className={`block text-left transition-colors w-full ${
+            className={`relative block w-full text-left transition-colors ${
               activeSection === section.id
                 ? 'text-white font-medium'
-                : 'text-gray-500 hover:text-gray-300'
+                : 'text-white/48 hover:text-white/72'
             }`}
           >
+            {activeSection === section.id && (
+              <motion.span
+                layoutId="timeline-active-square"
+                className="absolute left-[-27px] top-1/2 h-2 w-2 -translate-y-1/2 bg-white"
+                transition={{ duration: 0.3, ease: 'easeOut' }}
+              />
+            )}
             <span className="text-sm md:text-2xl uppercase tracking-wide">{section.label}</span>
           </button>
         ))}

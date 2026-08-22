@@ -1,47 +1,22 @@
 import { Inter } from 'next/font/google';
 import localFont from 'next/font/local';
 
-// Define Satoshi as a local font
+// Display / headings: Satoshi  (--font-satoshi)
+// Body / UI:          Inter     (--font-inter)
+
+// Variable font covers the full 300–900 axis, so every weight the design
+// system uses (300/400/500/600/700) resolves exactly — including the 600
+// SemiBold that Satoshi ships no static cut for.
 export const satoshi = localFont({
   src: [
     {
-      path: '../public/fonts/Satoshi/Satoshi-Regular.woff2',
-      weight: '400',
+      path: '../public/fonts/Satoshi/Satoshi-Variable.woff2',
+      weight: '300 900',
       style: 'normal',
     },
     {
-      path: '../public/fonts/Satoshi/Satoshi-Medium.woff2',
-      weight: '500',
-      style: 'normal',
-    },
-    {
-      path: '../public/fonts/Satoshi/Satoshi-Bold.woff2',
-      weight: '700',
-      style: 'normal',
-    },
-    {
-      path: '../public/fonts/Satoshi/Satoshi-Black.woff2',
-      weight: '900',
-      style: 'normal',
-    },
-    {
-      path: '../public/fonts/Satoshi/Satoshi-Italic.woff2',
-      weight: '400',
-      style: 'italic',
-    },
-    {
-      path: '../public/fonts/Satoshi/Satoshi-MediumItalic.woff2',
-      weight: '500',
-      style: 'italic',
-    },
-    {
-      path: '../public/fonts/Satoshi/Satoshi-BoldItalic.woff2',
-      weight: '700',
-      style: 'italic',
-    },
-    {
-      path: '../public/fonts/Satoshi/Satoshi-BlackItalic.woff2',
-      weight: '900',
+      path: '../public/fonts/Satoshi/Satoshi-VariableItalic.woff2',
+      weight: '300 900',
       style: 'italic',
     },
   ],
@@ -49,9 +24,9 @@ export const satoshi = localFont({
   variable: '--font-satoshi',
 });
 
-// Optionally keep Inter as a fallback or secondary font
 export const inter = Inter({
   subsets: ['latin'],
   display: 'swap',
   variable: '--font-inter',
 });
+

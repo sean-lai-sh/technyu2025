@@ -2,6 +2,7 @@
 import React, { useRef, useEffect } from 'react'
 import gsap from 'gsap'
 import Link from 'next/link'
+import { motionTokens } from '@/lib/motion'
 
 const Anim_Button = ({
   content,
@@ -27,8 +28,8 @@ const Anim_Button = ({
       gsap.killTweensOf(bg)
       gsap.to(bg, {
         clipPath: 'inset(0% 0% 0% 0%)',
-        duration: 0.35,
-        ease: 'cubic-bezier(0.22, 1, 0.28, 1)',
+        duration: motionTokens.hoverInDurationMs / 1000,
+        ease: motionTokens.brandEnterEaseCss,
       })
     }
 
@@ -36,8 +37,8 @@ const Anim_Button = ({
       gsap.killTweensOf(bg)
       gsap.to(bg, {
         clipPath: 'inset(0% 0% 100% 0%)',
-        duration: 0.35,
-        ease: 'cubic-bezier(0.22, 1, 0.28, 1)',
+        duration: motionTokens.hoverOutDurationMs / 1000,
+        ease: motionTokens.brandExitEaseCss,
         onComplete: () => {
           gsap.set(bg, { clipPath: 'inset(100% 0% 0% 0%)' })
         },

@@ -33,15 +33,23 @@ export default function StickyScrollSectionComponent({ section }: StickyScrollSe
   }))
 
   return (
-    <section className="mt-16">
-      <h2
-        className={`text-white text-3xl md:text-4xl lg:text-5xl font-bold text-left mb-4 md:mb-8 px-[5vw] ${
-          section.showUnderline ? 'underline underline-offset-10' : ''
-        }`}
-      >
-        {section.heading}
-      </h2>
-      <StickyScroll content={content} />
+    <section className="mt-18">
+      <div className="mx-auto mb-6 max-w-[1240px] px-[5vw]">
+        <h2
+          className={`font-[family-name:var(--font-satoshi)] text-4xl font-bold leading-tight tracking-tight text-white md:text-5xl ${
+            section.showUnderline ? 'underline underline-offset-8 decoration-white/40' : ''
+          }`}
+        >
+          {section.heading}
+        </h2>
+      </div>
+      <div className="mx-auto max-w-[1320px]">
+        <StickyScroll
+          content={content}
+          containerClassName="min-h-[95vh]"
+          contentClassName="rounded-2xl border border-white/10 bg-black/65 p-2 shadow-[inset_0_0_90px_rgba(77,255,148,0.06)]"
+        />
+      </div>
     </section>
   )
 }
