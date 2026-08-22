@@ -241,23 +241,78 @@ export default function CrtScreen({
 
     };
 
-    // Glitch dissolve: the veil breaks up in place — a field of small
-    // blocks, each melting away at its own moment, no shape at all.
+    // TV-on opening: the screen opens as a horizontal band from the center
+    // seam, expanding up and down. The veil is cleared inside the band; a
+    // narrow glitch-dissolve fringe of pixel blocks bites at both moving
+    // edges — the glitch lives only where the screen is opening.
     const DISSOLVE_BLOCK = 18;
-    const dissolve = (p: number) => {
-      if (p <= 0) return;
+    const FRINGE = 54;
+    const openBand = (H: number) => {
+      if (H <= 0) return;
+      const cy = vh / 2;
+      const f = 20; // soft feather right at the edge, under the blocks
       ctx.save();
       ctx.globalCompositeOperation = "destination-out";
+      const top = cy - H - f;
+      const total = 2 * (H + f);
+      const g = ctx.createLinearGradient(0, top, 0, top + total);
+      const k = Math.min(0.5, f / total);
+      g.addColorStop(0, "rgba(0,0,0,0)");
+      g.addColorStop(k, "rgba(0,0,0,1)");
+      g.addColorStop(1 - k, "rgba(0,0,0,1)");
+      g.addColorStop(1, "rgba(0,0,0,0)");
+      ctx.fillStyle = g;
+      ctx.fillRect(0, top, vw, total);
+      // glitch fringe: blocks melting just OUTSIDE each moving edge
       ctx.fillStyle = "#000";
-      for (let y = 0; y < vh; y += DISSOLVE_BLOCK) {
-        for (let x = 0; x < vw; x += DISSOLVE_BLOCK) {
-          const th = hash(x * 0.37 + 11.3, y * 0.53 + 7.7);
-          const d = (p * 1.15 - th) / 0.12;
-          if (d <= 0) continue;
-          ctx.globalAlpha = Math.min(1, d);
-          ctx.fillRect(x, y, DISSOLVE_BLOCK, DISSOLVE_BLOCK);
+      for (const dir of [-1, 1]) {
+        for (let off = 0; off < FRINGE; off += DISSOLVE_BLOCK) {
+          const y =
+            Math.floor((cy + dir * (H + off)) / DISSOLVE_BLOCK) *
+            DISSOLVE_BLOCK;
+          if (y < -DISSOLVE_BLOCK || y > vh) continue;
+          const reach = 1 - off / FRINGE; // strongest right at the edge
+          for (let x = 0; x < vw; x += DISSOLVE_BLOCK) {
+            const th = hash(x * 0.37 + 11.3, y * 0.53 + 7.7);
+            const d = reach * 1.2 - th;
+            if (d <= 0) continue;
+            ctx.globalAlpha = Math.min(1, d / 0.3);
+            ctx.fillRect(x, y, DISSOLVE_BLOCK, DISSOLVE_BLOCK);
+          }
         }
       }
+      ctx.restore();
+    };
+
+    // The tube's luminous seam: a soft sage-white glow at the center line —
+    // anticipation at the end of the warm-up, brightest as the screen
+    // begins to open, letting go as the band grows. Never a hard line.
+    const drawSeam = (t: number, waveP: number) => {
+      let a = 0;
+      if (t > VEIL - 350 && t < VEIL) {
+        a = 0.34 * ((t - (VEIL - 350)) / 350);
+      } else if (waveP > 0) {
+        a = 0.34 * Math.max(0, 1 - waveP / 0.45);
+      }
+      if (a <= 0.005) return;
+      const cy = vh / 2;
+      ctx.save();
+      ctx.globalCompositeOperation = "screen";
+      // elliptical glow: soft vertically, fading toward left/right edges
+      const seam = (ry: number, alpha: number) => {
+        ctx.save();
+        ctx.translate(vw / 2, cy);
+        ctx.scale(vw / (2 * ry), 1);
+        const g = ctx.createRadialGradient(0, 0, 0, 0, 0, ry);
+        g.addColorStop(0, `rgba(226,236,222,${alpha})`);
+        g.addColorStop(0.7, `rgba(214,226,208,${alpha * 0.5})`);
+        g.addColorStop(1, "rgba(0,0,0,0)");
+        ctx.fillStyle = g;
+        ctx.fillRect(-ry, -ry, 2 * ry, 2 * ry);
+        ctx.restore();
+      };
+      seam(10, a); // tight core
+      seam(70, a * 0.35); // wide bloom
       ctx.restore();
     };
 
@@ -327,8 +382,12 @@ export default function CrtScreen({
       scale: number
     ) => {
       for (const cell of list) {
-        // each cell wakes at its own moment of the dissolve
-        if (!cell.onAt && progress >= 0.1 + 0.8 * cell.rnd) cell.onAt = t;
+        // each cell wakes as the opening passes its row (slight jitter)
+        if (
+          !cell.onAt &&
+          progress >= Math.abs(cell.y - vh / 2) + (cell.rnd - 0.5) * 30
+        )
+          cell.onAt = t;
         if (!cell.onAt) continue;
         const b = bloomEase(clamp01((t - cell.onAt) / BLOOM));
         const breathe = 0.95 + 0.05 * Math.sin(t * 0.0025 + cell.rnd * 6.28);
@@ -352,16 +411,17 @@ export default function CrtScreen({
       ctx.fillRect(0, 0, vw, vh);
 
       const waveP = clamp01((t - VEIL) / WAVE);
-      // hesitant start, confident finish for the dissolve
-      const p = Math.pow(waveP, 1.6);
+      // TV-on: the screen opens vertically from the center seam —
+      // hesitant start, confident finish
+      const openH = (vh / 2 + vh * 0.1) * Math.pow(waveP, 1.6);
 
-      // veil persists until the dissolve has fully eaten it
+      // veil persists until the opening has carried it out
       if (waveP < 1) {
         drawVeil(t);
         drawGrain(0.16);
-        // the veil breaks up in place; a stray slice glitches sideways
-        dissolve(p);
+        openBand(openH);
         glitchSlices(Math.sin(Math.PI * waveP));
+        drawSeam(t, waveP);
       } else {
         drawGrain(0.18);
       }
@@ -372,7 +432,7 @@ export default function CrtScreen({
           t,
           gridCells,
           dimSprite,
-          p,
+          openH,
           (c) => (0.06 + 0.06 * c.rnd) * globalFlicker,
           1.2
         );
@@ -388,7 +448,7 @@ export default function CrtScreen({
         ctx.restore();
       }
       if (ledSprite) {
-        drawCells(t, cells, ledSprite, p, () => globalFlicker, 1);
+        drawCells(t, cells, ledSprite, openH, () => globalFlicker, 1);
       }
 
       if (!doneFired && t > LOGO_DONE) {
