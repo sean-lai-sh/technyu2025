@@ -74,3 +74,33 @@ body {
   color: var(--foreground);
   font-family: var(--font-satoshi), system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
 }
+
+/* --- CRT hero ambience -------------------------------------------------- */
+
+@keyframes crt-grain-jitter {
+  0% { transform: translate(0, 0); }
+  25% { transform: translate(-18px, 12px); }
+  50% { transform: translate(14px, -20px); }
+  75% { transform: translate(-10px, -8px); }
+  100% { transform: translate(0, 0); }
+}
+
+.crt-grain {
+  animation: crt-grain-jitter 0.45s steps(4) infinite;
+}
+
+@keyframes crt-glow-breathe {
+  0%, 100% { opacity: 0.9; }
+  50% { opacity: 1; }
+}
+
+.crt-glow {
+  animation: crt-glow-breathe 5.5s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .crt-grain,
+  .crt-glow {
+    animation: none;
+  }
+}

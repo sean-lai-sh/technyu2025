@@ -1,116 +1,60 @@
 'use client'
-import React, { useRef, useEffect } from 'react'
-import Image from 'next/image'
-import { MaskText } from '../inlinemask/inline-mask';
-import { MaskSVG } from '../inlinemask/inline-image-mask';
-import { gsap } from 'gsap';
-import CustomEase from 'gsap/CustomEase';
-import Logo from '@/components/assets/logo.svg'
+import React, { useState } from 'react'
+import CrtScreen from './crt-screen'
 
-gsap.registerPlugin(CustomEase);
+const GRAIN =
+  "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='260' height='260'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='260' height='260' filter='url(%23n)'/%3E%3C/svg%3E\")";
 
 const Hero = () => {
-  const videoRef = useRef<HTMLVideoElement>(null);
-  const containerRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    const video = videoRef.current;
-    const container = containerRef.current;
-    
-    if (!video || !container) return;
-
-    let hasAnimated = false;
-
-    const handleTimeUpdate = () => {
-      // Trigger animation when 3 seconds remain
-      const timeRemaining = video.duration - video.currentTime;
-      
-      if (timeRemaining <= 22 && !hasAnimated) {
-        hasAnimated = true;
-        
-        // Calculate responsive scale based on viewport width to match navbar proportions
-        // Navbar: w-[90svw] md:w-[85svw] lg:w-[95svw]
-        // Use actual svw units to account for scrollbar presence
-        const viewportWidth = window.innerWidth;
-        let targetWidth = '90svw'; // default
-        let targetY = '10vh';
-        if (viewportWidth >= 1024) {
-          targetWidth = '90svw'; // lg breakpoint
-          targetY = '20vh';
-        } else if (viewportWidth >= 768) {
-          targetWidth = '85svw'; // md breakpoint
-          targetY = '12vh';
-        }
-        
-        // Create GSAP timeline for smooth, synchronized animation
-        const tl = gsap.timeline({
-          defaults: { duration: 1.8, ease: 'power2.inOut' }
-        });
-
-        tl.to(container, {
-          width: targetWidth,
-          y: targetY,
-          boxShadow: "0 0 0 2px rgba(255, 255, 255, 0.3), 0 20px 40px -15px rgba(255, 255, 255, 0.15), 0 10px 20px -8px rgba(255, 255, 255, 0.1)",
-          borderRadius: "24px",
-        });
-      }
-    };
-
-    video.addEventListener('timeupdate', handleTimeUpdate);
-
-    return () => {
-      video.removeEventListener('timeupdate', handleTimeUpdate);
-    };
-  }, []);
+  const [settled, setSettled] = useState(false);
 
   return (
-    <section className="relative w-[100svw] h-[100svh] overflow-visible aspect-video flex items-center justify-center bg-black">
-      {/* Video container with animation target */}
-      <div 
-        ref={containerRef}
-        className="relative w-[100svw] h-[100svh] overflow-hidden z-[30]"
-        style={{ transformOrigin: 'center top' }}
+    <section className="relative w-[100svw] h-[100svh] overflow-hidden bg-black">
+      {/* CRT boot: sage veil -> clear-window wave -> LED dot-matrix wordmark */}
+      <CrtScreen onLogoDone={() => setSettled(true)} />
+
+      {/* soft phosphor glow drifting across the tube */}
+      <div
+        className="pointer-events-none absolute inset-0 z-10 crt-glow"
+        style={{
+          background:
+            'radial-gradient(120% 90% at 18% 85%, rgba(190,200,195,0.10), transparent 55%), radial-gradient(80% 60% at 70% 20%, rgba(120,135,128,0.05), transparent 60%)',
+        }}
+      />
+
+      {/* film grain */}
+      <div
+        className="pointer-events-none absolute -inset-[60px] z-10 crt-grain opacity-[0.07] mix-blend-screen"
+        style={{ backgroundImage: GRAIN }}
+      />
+
+      {/* scanlines — motionless, felt more than seen */}
+      <div
+        className="pointer-events-none absolute inset-0 z-10 opacity-25"
+        style={{
+          backgroundImage:
+            'repeating-linear-gradient(0deg, rgba(0,0,0,0.22) 0px, rgba(0,0,0,0.22) 1px, transparent 1px, transparent 3px)',
+        }}
+      />
+
+      {/* tube vignette */}
+      <div
+        className="pointer-events-none absolute inset-0 z-10"
+        style={{
+          background:
+            'radial-gradient(115% 115% at 50% 50%, transparent 55%, rgba(0,0,0,0.55) 100%)',
+        }}
+      />
+
+      {/* tagline fades in once the wordmark lands */}
+      <div
+        className={`pointer-events-none absolute inset-x-0 top-[68%] z-20 flex justify-center transition-opacity duration-1000 ${
+          settled ? 'opacity-100' : 'opacity-0'
+        }`}
       >
-        {/* Full screen video */}
-        <video 
-          ref={videoRef}
-          className="absolute inset-0 w-full h-full object-cover aspect-video"
-          playsInline
-          autoPlay
-          muted
-          preload="auto"
-        >
-          <source src="/hero_vp9.webm" type="video/webm" />
-        </video>
-        
-        {/* Dark overlay to make text more readable */}
-        <div className="absolute inset-0 w-full h-full bg-black opacity-50"></div>
-        
-        {/* Bottom-right aligned content with padding */}
-        <div className="relative z-1 flex flex-col items-start justify-end w-full h-full text-white p-5 md:p-10 lg:py-12 lg:px-[2.5%]">
-          <div className="w-full">
-            {/* SVG Logo with mask animation */}
-            <div className="mb-[1.5%] md:mb-3 lg:mb-1">
-              <MaskSVG
-                customDelay={0.75}
-                duration={1.7}
-                className="w-[70svw] sm:w-[60svw] md:w-[55svw] lg:w-[30svw]"
-              >
-                <Logo 
-                  alt="Tech@NYU" 
-                  className="w-full h-auto"
-                />
-              </MaskSVG>
-            </div>
-            <div className="text-2xl sm:text-4xl md:text-4xl lg:text-[2.25vw] text-left font-satoshi tracking-tight">
-              <MaskText 
-                phrases={['The Space for Artists, Makers, and Hackers to Build @ NYU']} 
-                customDelay={0.75} 
-                duration={1.5}
-              />
-            </div>
-          </div>
-        </div>
+        <p className="font-satoshi tracking-tight text-white/80 text-lg md:text-2xl text-center px-6">
+          The Space for Artists, Makers, and Hackers to Build @ NYU
+        </p>
       </div>
     </section>
   )
