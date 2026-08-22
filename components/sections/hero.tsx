@@ -35,7 +35,7 @@ const Hero = () => {
 
       {/* film grain */}
       <div
-        className="pointer-events-none absolute -inset-[60px] z-10 crt-grain opacity-[0.05] mix-blend-soft-light"
+        className="pointer-events-none absolute -inset-[60px] z-10 crt-grain opacity-[0.07] mix-blend-screen"
         style={{ backgroundImage: GRAIN }}
       />
 
