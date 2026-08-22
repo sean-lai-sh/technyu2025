@@ -418,13 +418,14 @@ export default function CrtScreen({
       // veil persists until the opening has carried it out
       if (waveP < 1) {
         drawVeil(t);
-        drawGrain(0.16);
+        drawGrain(0.1);
         openBand(openH);
         glitchSlices(Math.sin(Math.PI * waveP));
         drawSeam(t, waveP);
-      } else {
-        drawGrain(0.18);
       }
+      // Once settled the canvas is transparent, so canvas grain would paint a
+      // gray wash over the page backdrop — the CSS film-grain layer carries
+      // the texture from here.
 
       const globalFlicker = Math.random() < 0.01 ? 0.85 : 1;
       if (dimSprite) {

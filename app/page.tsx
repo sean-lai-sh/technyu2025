@@ -29,7 +29,7 @@ export default function Home() {
           sizes="100vw"
           className="object-cover"
         />
-        <div className="absolute inset-0 bg-black/75" />
+        <div className="absolute inset-0 bg-black/[0.88]" />
       </div>
       <Hero />
       <History />
