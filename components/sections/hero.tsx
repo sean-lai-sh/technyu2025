@@ -29,13 +29,13 @@ const Hero = () => {
         className="pointer-events-none absolute inset-0 z-10 crt-glow"
         style={{
           background:
-            'radial-gradient(120% 90% at 18% 85%, rgba(190,200,195,0.10), transparent 55%), radial-gradient(80% 60% at 70% 20%, rgba(120,135,128,0.05), transparent 60%)',
+            'radial-gradient(120% 90% at 18% 85%, rgba(190,200,195,0.05), transparent 55%), radial-gradient(80% 60% at 70% 20%, rgba(120,135,128,0.025), transparent 60%)',
         }}
       />
 
       {/* film grain */}
       <div
-        className="pointer-events-none absolute -inset-[60px] z-10 crt-grain opacity-[0.07] mix-blend-screen"
+        className="pointer-events-none absolute -inset-[60px] z-10 crt-grain opacity-[0.06] mix-blend-soft-light"
         style={{ backgroundImage: GRAIN }}
       />
 
