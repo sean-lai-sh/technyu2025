@@ -55,8 +55,9 @@ const resolvePrograms = (programs: ProgramListItem[]) => {
 const buildProgramViewModel = (program: ProgramListItem): ProgramV2ViewModel => {
   const stage = getProgramStageMeta(program.name)
   const fallbackApplication = getApplicationLink(program.name)
-  const isApplicationOpen = program.apply?.status ?? fallbackApplication.status
   const applicationHref = program.apply?.link || fallbackApplication.link || undefined
+  const requestedOpenState = program.apply?.status ?? fallbackApplication.status
+  const isApplicationOpen = Boolean(requestedOpenState && applicationHref)
 
   const source = mapProgramSource(program)
   const body =

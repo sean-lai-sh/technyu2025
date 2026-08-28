@@ -1,6 +1,5 @@
 import type { Metadata } from 'next'
-import { getProgramBySlug } from '@/lib/sanity/queries'
-import MentorshipShowcase from '@/components/sections/programs/showcase/programs/MentorshipShowcase'
+import DynamicProgramPage from '@/components/sections/programs/DynamicProgramPage'
 import { SITE_DESCRIPTION } from '@/lib/seo'
 
 export const dynamic = 'force-static'
@@ -9,7 +8,6 @@ export const metadata: Metadata = {
   description: SITE_DESCRIPTION,
 }
 
-export default async function MentorshipPage() {
-  const program = await getProgramBySlug('mentorship')
-  return <MentorshipShowcase program={program} />
+export default function MentorshipPage() {
+  return <DynamicProgramPage slug="mentorship" />
 }
