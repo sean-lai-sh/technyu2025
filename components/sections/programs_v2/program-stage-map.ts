@@ -20,7 +20,8 @@ export const PROGRAM_STAGE_ORDER: ProgramStageName[] = [
   'Tech Treks',
   'Mentorship',
   'Dev Team',
-  'Startup Week',
+  'Buildathon',
+  'NYSW',
 ]
 
 export const PROGRAM_STAGE_MAP: Record<ProgramStageName, ProgramStageMeta> = {
@@ -81,33 +82,41 @@ export const PROGRAM_STAGE_MAP: Record<ProgramStageName, ProgramStageMeta> = {
     accent: '#4AA8FF',
     accentSoft: 'rgba(74, 168, 255, 0.18)',
   },
-  'Startup Week': {
-    name: 'Startup Week',
+  Buildathon: {
+    name: 'Buildathon',
+    key: 'build-the-community',
+    trackKey: 'grow-the-community',
+    trackLabel: 'Grow the community',
+    sequence: 1,
+    label: 'Build the community',
+    summary:
+      'Bring builders together for an intensive hackathon shaped around ambitious ideas, strong teams, and shipped work.',
+    audience:
+      'Students who want to build under pressure, collaborate across disciplines, and turn an idea into a working project.',
+    outcome:
+      'A shipped prototype, new collaborators, and direct experience building against a deadline.',
+    position: 'The hands-on build event for NYU founders and technologists.',
+    detail:
+      'Tech@NYU’s 48-hour hackathon for turning ambitious ideas into working projects with a team.',
+    accent: '#B300FF',
+    accentSoft: 'rgba(179, 0, 255, 0.16)',
+  },
+  NYSW: {
+    name: 'NYSW',
     key: 'organize-and-network',
     trackKey: 'grow-the-community',
     trackLabel: 'Grow the community',
-    childDetails: [
-      {
-        label: 'Buildathon',
-        detail:
-          "Help bring to life our hiring hackathons and other hacking initiatives, surfacing top talent from NYU to those who want us. Previously supported by leading giants like Databricks, Nvidia, Anthropic (Claude), Vercel, & More!",
-      },
-      {
-        label: 'SW Events',
-        detail:
-          'Curate the speakers you want to come on campus as part of the committee, be our eyes and ears for what startup founders need at NYU',
-      },
-    ],
+    sequence: 2,
     label: 'Organize and network',
     summary:
-      'Build Startup Week, Buildathon, and the events that pull more people into Tech@NYU.',
+      'Bring founders, operators, investors, and students together through New York Startup Week programming.',
     audience:
       'Students who want to organize, connect people, and help the club show up at a community level.',
     outcome:
-      'Broader relationships, better operator instincts, and a visible hand in how the community grows.',
+      'Broader relationships, stronger operator instincts, and a visible hand in how the community grows.',
     position: 'The organizing track for growing the room around the club.',
     detail:
-      "The annual event week bringing NYU's tech community into one room — panels, Buildathon, and networking organized entirely by students.",
+      "The student-run event week bringing NYU's startup community together through speakers, panels, workshops, and networking.",
     accent: '#4DFF94',
     accentSoft: 'rgba(77, 255, 148, 0.16)',
   },

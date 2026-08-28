@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-Tech@NYU marketing website built with Next.js 16 (App Router), React 19, and TypeScript. Features four programs: Dev Team, Tech Treks, Startup Week, and Mentorship.
+Tech@NYU marketing website built with Next.js 16 (App Router), React 19, and TypeScript. Features five programs: Dev Team, Tech Treks, Buildathon, NYSW, and Mentorship.
 
 ## Development Commands
 

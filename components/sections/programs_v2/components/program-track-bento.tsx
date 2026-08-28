@@ -115,9 +115,9 @@ export default function ProgramTrackBento({
     .filter((p) => p.stage.trackKey === SELF_TRACK)
     .sort((a, b) => (a.stage.sequence ?? 99) - (b.stage.sequence ?? 99))
 
-  const communityProgram = programs.find(
-    (p) => p.stage.trackKey === 'grow-the-community'
-  )
+  const communityPrograms = programs
+    .filter((p) => p.stage.trackKey === 'grow-the-community')
+    .sort((a, b) => (a.stage.sequence ?? 99) - (b.stage.sequence ?? 99))
 
   return (
     <div className="flex flex-col gap-5">
@@ -135,18 +135,18 @@ export default function ProgramTrackBento({
         </div>
       </div>
 
-      {/* Row 2: Grow the community — Buildathon + SW Events */}
-      {communityProgram?.stage.childDetails ? (
+      {/* Row 2: Grow the community — Buildathon + NYSW */}
+      {communityPrograms.length > 0 ? (
         <div className="relative">
           <div className="relative space-y-3">
             <SectionHeader label="Grow the community" />
             <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
-              {communityProgram.stage.childDetails.map((child) => (
+              {communityPrograms.map((program) => (
                 <CommunitySubCard
-                  key={child.label}
-                  label={child.label}
-                  detail={child.detail}
-                  href={`/programs/${communityProgram.slug}`}
+                  key={program._id}
+                  label={program.name}
+                  detail={program.stage.detail}
+                  href={`/programs/${program.slug}`}
                 />
               ))}
             </div>

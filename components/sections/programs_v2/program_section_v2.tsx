@@ -17,14 +17,37 @@ const mapProgramSource = (program: ProgramListItem): ProgramSource => ({
 })
 
 const resolvePrograms = (programs: ProgramListItem[]) => {
-  const byName = new Map(programs.map((program) => [program.name, program]))
+  const hasBuildathon = programs.some((program) => program.name === 'Buildathon')
+  const hasNysw = programs.some((program) => program.name === 'NYSW')
+  const legacyStartupWeek = programs.find((program) => program.name === 'Startup Week')
+  const migratedPrograms = programs.filter((program) => program.name !== 'Startup Week')
+
+  if (legacyStartupWeek && !hasBuildathon) {
+    migratedPrograms.push({
+      ...legacyStartupWeek,
+      _id: `${legacyStartupWeek._id}-buildathon-fallback`,
+      name: 'Buildathon',
+      slug: 'buildathon',
+    })
+  }
+
+  if (legacyStartupWeek && !hasNysw) {
+    migratedPrograms.push({
+      ...legacyStartupWeek,
+      _id: `${legacyStartupWeek._id}-nysw-fallback`,
+      name: 'NYSW',
+      slug: 'nysw',
+    })
+  }
+
+  const byName = new Map(migratedPrograms.map((program) => [program.name, program]))
 
   const ordered = PROGRAM_STAGE_ORDER.map((name) => byName.get(name)).filter(
     Boolean
   ) as ProgramListItem[]
 
   const orderedNames = new Set(ordered.map((program) => program.name))
-  const remaining = programs.filter((program) => !orderedNames.has(program.name))
+  const remaining = migratedPrograms.filter((program) => !orderedNames.has(program.name))
 
   return [...ordered, ...remaining]
 }
