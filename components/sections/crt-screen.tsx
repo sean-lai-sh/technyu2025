@@ -2,12 +2,11 @@
 
 import { useEffect, useRef } from "react";
 
-// Timeline (ms): dark silk veil -> liquid wave radiates from center,
-// LED cells bloom in its wake -> ambient. No flashes, no lines.
-const VEIL = 1500;
+// Timeline (ms): the dark tube face opens from a luminous center seam,
+// LED cells bloom as it passes their row -> ambient. No pre-open scene.
 const WAVE = 2800;
 const BLOOM = 450;
-const LOGO_DONE = VEIL + WAVE + 600;
+const LOGO_DONE = WAVE + 600;
 const TEXT = "tech@nyu";
 
 type Cell = { x: number; y: number; rc: number; rnd: number; onAt: number };
@@ -47,8 +46,6 @@ export default function CrtScreen({
       const n = Math.sin(x * 127.1 + y * 311.7) * 43758.5453;
       return n - Math.floor(n);
     };
-    const easeInOut = (p: number) =>
-      p < 0.5 ? 2 * p * p : 1 - Math.pow(-2 * p + 2, 2) / 2;
     const clamp01 = (p: number) => Math.max(0, Math.min(1, p));
 
     // One pre-rendered dot, blitted per cell: a small CRISP square — no
@@ -167,78 +164,23 @@ export default function CrtScreen({
       hctx.fillText(TEXT, vw / 2, vh / 2);
     };
 
-    // The pre-open veil: the -22.jpg reference pulled down a register —
-    // a sage-to-deep-green wash with soft blurred blooms and one dark
-    // rounded shadow mass, all breathing as a single body of light.
-    const drawVeil = (t: number) => {
-      // the tube warming up: the whole veil swells gently from dim toward
-      // the wave, with the subtlest electrical flicker
-      let warm = 0.55 + 0.45 * easeInOut(clamp01(t / VEIL));
-      if (Math.random() < 0.02) warm *= 0.96;
-      const breathe = (1 + 0.08 * Math.sin(t * 0.0005)) * warm;
-      const shift = Math.sin(t * 0.00035) * vh * 0.02;
-
-      // vertical wash: smoky sage above sinking into deep green-black
-      const wash = ctx.createLinearGradient(0, shift, 0, vh + shift);
-      wash.addColorStop(0, `rgba(152,164,140,${0.3 * breathe})`);
-      wash.addColorStop(0.33, `rgba(100,116,88,${0.2 * breathe})`);
-      wash.addColorStop(0.68, `rgba(48,62,46,${0.16 * breathe})`);
-      wash.addColorStop(1, "rgba(16,24,18,0.3)");
-      ctx.fillStyle = wash;
+    // The unlit tube face: plain black covering the page, carrying only a
+    // whisper of electricity — the screen opens out of this.
+    const drawTubeFace = (t: number) => {
+      const flicker = Math.random() < 0.02 ? 0.97 : 1;
+      ctx.fillStyle = `rgba(4,4,4,${flicker})`;
       ctx.fillRect(0, 0, vw, vh);
 
-      // the old phosphor mass, silvered: a gray breath inside the sage
-      // that grows as the tube warms — keeps the b&w soul in the green
-      const px = vw * 0.5 + Math.sin(t * 0.00028) * vw * 0.03;
-      const phos = ctx.createRadialGradient(
-        px,
-        vh * 0.34,
-        0,
-        px,
-        vh * 0.34,
-        vh * 0.8 * (0.8 + 0.2 * warm)
-      );
-      phos.addColorStop(0, `rgba(198,202,198,${0.11 * warm})`);
-      phos.addColorStop(0.6, `rgba(140,144,140,${0.04 * warm})`);
-      phos.addColorStop(1, "rgba(0,0,0,0)");
-      ctx.fillStyle = phos;
-      ctx.fillRect(0, 0, vw, vh);
-
-      // whisper of electricity: at most two faint hairlines drifting down
+      // at most two faint hairlines drifting down the dark
       const period = 1150;
       for (let k = 0; k < 2; k++) {
         const cycle = Math.floor((t + k * 560) / period);
         const phase = ((t + k * 560) % period) / period;
         const sy = vh * (0.12 + 0.72 * hash(cycle * 7.3 + k, 3.1));
-        const a = Math.sin(Math.PI * phase) * 0.045 * warm;
+        const a = Math.sin(Math.PI * phase) * 0.05;
         ctx.fillStyle = `rgba(212,220,210,${a})`;
         ctx.fillRect(0, sy + phase * 16, vw, 1);
       }
-
-      // blurred light blooms along the top, like the reference's bright patches
-      const bx = vw * 0.32 + Math.sin(t * 0.0002) * vw * 0.04;
-      const bloom = ctx.createRadialGradient(bx, vh * 0.06, 0, bx, vh * 0.06, vh * 0.75);
-      bloom.addColorStop(0, `rgba(186,196,172,${0.17 * breathe})`);
-      bloom.addColorStop(1, "rgba(0,0,0,0)");
-      ctx.fillStyle = bloom;
-      ctx.fillRect(0, 0, vw, vh);
-
-      const b2x = vw * 0.8 + Math.cos(t * 0.00017) * vw * 0.03;
-      const bloom2 = ctx.createRadialGradient(b2x, vh * 0.12, 0, b2x, vh * 0.12, vh * 0.55);
-      bloom2.addColorStop(0, `rgba(172,184,158,${0.12 * breathe})`);
-      bloom2.addColorStop(1, "rgba(0,0,0,0)");
-      ctx.fillStyle = bloom2;
-      ctx.fillRect(0, 0, vw, vh);
-
-      // soft dark rounded shadow mass mid-left, for the reference's depth
-      const sx = vw * 0.3 + Math.sin(t * 0.00024 + 2) * vw * 0.03;
-      const sy = vh * 0.62 + Math.cos(t * 0.0002 + 1) * vh * 0.025;
-      const shadow = ctx.createRadialGradient(sx, sy, 0, sx, sy, vh * 0.62);
-      shadow.addColorStop(0, "rgba(6,10,7,0.4)");
-      shadow.addColorStop(1, "rgba(0,0,0,0)");
-      ctx.fillStyle = shadow;
-      ctx.fillRect(0, 0, vw, vh);
-
     };
 
     // TV-on opening: the screen opens as a horizontal band from the center
@@ -285,15 +227,11 @@ export default function CrtScreen({
     };
 
     // The tube's luminous seam: a soft sage-white glow at the center line —
-    // anticipation at the end of the warm-up, brightest as the screen
-    // begins to open, letting go as the band grows. Never a hard line.
+    // strikes as the screen wakes, letting go as the band grows. Never a
+    // hard line.
     const drawSeam = (t: number, waveP: number) => {
-      let a = 0;
-      if (t > VEIL - 350 && t < VEIL) {
-        a = 0.34 * ((t - (VEIL - 350)) / 350);
-      } else if (waveP > 0) {
-        a = 0.34 * Math.max(0, 1 - waveP / 0.45);
-      }
+      const a =
+        0.34 * Math.min(1, t / 240) * Math.max(0, 1 - waveP / 0.45);
       if (a <= 0.005) return;
       const cy = vh / 2;
       ctx.save();
@@ -410,20 +348,19 @@ export default function CrtScreen({
       // transparent base: the homepage's photo backdrop shows through
       ctx.clearRect(0, 0, vw, vh);
 
-      const waveP = clamp01((t - VEIL) / WAVE);
+      const waveP = clamp01(t / WAVE);
       // TV-on: the screen opens vertically from the center seam —
       // hesitant start, confident finish
       const openH = (vh / 2 + vh * 0.1) * Math.pow(waveP, 1.6);
 
-      // veil persists until the opening has carried it out
+      // the dark tube face holds until the opening has carried it out;
+      // after that the canvas stays transparent over the page backdrop
       if (waveP < 1) {
-        drawVeil(t);
-        drawGrain(0.16);
+        drawTubeFace(t);
+        drawGrain(0.1);
         openBand(openH);
         glitchSlices(Math.sin(Math.PI * waveP));
         drawSeam(t, waveP);
-      } else {
-        drawGrain(0.18);
       }
 
       const globalFlicker = Math.random() < 0.01 ? 0.85 : 1;
