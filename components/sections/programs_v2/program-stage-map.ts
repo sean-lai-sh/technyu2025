@@ -59,7 +59,7 @@ export const PROGRAM_STAGE_MAP: Record<ProgramStageName, ProgramStageMeta> = {
       'Stronger judgment, better framing, and a more intentional path forward.',
     position: 'Direct guidance for students who already have a direction.',
     detail:
-      'Our intermediate program. A cohort of 10–15 getting direct industry exposure and lessons from Databricks.',
+      'Our mentorship program pairs students with experienced professionals for targeted guidance, accountability, and career clarity.',
     accent: '#7B5CFF',
     accentSoft: 'rgba(123, 92, 255, 0.18)',
   },

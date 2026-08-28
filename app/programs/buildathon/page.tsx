@@ -16,6 +16,7 @@ export default function BuildathonPage() {
       fallbackName="Buildathon"
       fallbackTitle="Buildathon"
       fallbackBody="Tech@NYU’s 48-hour hackathon brings students together to turn ambitious ideas into working projects with a team."
+      fallbackSectionMode="buildathon"
     />
   )
 }
