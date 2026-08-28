@@ -1,6 +1,5 @@
 'use client'
 import React, { useRef, useEffect } from 'react'
-import Image from 'next/image'
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 
@@ -84,7 +83,8 @@ const TwoColumnSection = ({ title, description, image, flip, last }: TwoColumnSe
       <div className='w-full h-full items-center flex justify-center'>
       <div className={`w-full h-full lg:py-0 xl:mx-[6rem] bg-amber-200 relative overflow-hidden ${flip ? 'lg:order-1' : ''}`}>
         {image && (
-          <img src={image} className="w-full h-auto object-contain" />
+          // eslint-disable-next-line @next/next/no-img-element
+          <img src={image} alt="" className="w-full h-auto object-contain" />
         )}
       </div>
       </div>

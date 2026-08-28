@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useMemo, useRef, useEffect } from 'react'
+import { useState, useMemo, useRef } from 'react'
 import ProfileCard from './profile_card'
 import { TeamMember } from '@/lib/types'
 import TeamFiltersDesktop from './team_filters_desktop'

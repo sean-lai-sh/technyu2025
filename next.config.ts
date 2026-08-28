@@ -21,7 +21,10 @@ const nextConfig: NextConfig = {
   },
   webpack(config) {
     // Exclude SVG from the default file-loader
+    // Webpack exposes loader rules as a broad union; this legacy SVG branch
+    // only needs the rule's RegExp-compatible shape.
     const fileLoaderRule = config.module.rules.find(
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       (rule: any) => rule.test && rule.test.test && rule.test.test('.svg')
     );
     if (fileLoaderRule) {
