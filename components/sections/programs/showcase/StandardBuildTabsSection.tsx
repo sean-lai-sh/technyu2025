@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import Image from 'next/image'
 import { BuildTab, ProgramImageAsset } from './types'
 import { TabWireframe } from './wireframes'
@@ -27,17 +27,14 @@ export default function StandardBuildTabsSection({
 }: StandardBuildTabsSectionProps) {
   const [activeBuildTab, setActiveBuildTab] = useState(0)
 
-  useEffect(() => {
-    setActiveBuildTab(0)
-  }, [buildTabs])
-
+  const safeActiveBuildTab = Math.min(activeBuildTab, Math.max(buildTabs.length - 1, 0))
   const buildTitleLines = buildTitle.split('\n')
-  const activeBuildTabData = buildTabs[activeBuildTab] ?? buildTabs[0] ?? {
+  const activeBuildTabData = buildTabs[safeActiveBuildTab] ?? buildTabs[0] ?? {
     id: 'cli',
     title: '',
     description: '',
   }
-  const activeBuildImage = buildImages?.[activeBuildTab] ?? buildImages?.[0]
+  const activeBuildImage = buildImages?.[safeActiveBuildTab] ?? buildImages?.[0]
 
   return (
     <section className="px-[5vw] lg:px-[8vw] py-[10svh] border-t border-[#EDEDED]/8">
@@ -57,11 +54,11 @@ export default function StandardBuildTabsSection({
               key={tab.id}
               onClick={() => setActiveBuildTab(index)}
               className={`text-left p-6 border transition-all duration-300 ${
-                activeBuildTab === index
+                safeActiveBuildTab === index
                   ? 'border-dashed border-[#4DFF94] text-[#4DFF94]'
                   : 'border-transparent text-[#EDEDED]/50 hover:text-[#EDEDED]/75 hover:border-[#EDEDED]/15'
               }`}
-              style={activeBuildTab === index ? { boxShadow: '0 0 24px rgba(77,255,148,0.07)' } : undefined}
+              style={safeActiveBuildTab === index ? { boxShadow: '0 0 24px rgba(77,255,148,0.07)' } : undefined}
             >
               {(tab.serial || tab.badge) && (
                 <div className="mb-3 flex items-center justify-between gap-3">
@@ -85,7 +82,7 @@ export default function StandardBuildTabsSection({
               >
                 {tab.title}
               </h3>
-              {activeBuildTab === index && (
+              {safeActiveBuildTab === index && (
                 <p className="font-[family-name:var(--font-inter)] text-[15px] mt-3 text-[#EDEDED]/68 leading-relaxed">
                   {tab.description}
                 </p>

@@ -6,14 +6,6 @@ export default defineConfig([
   ...nextVitals,
   ...nextTs,
   {
-    rules: {
-      // Existing interactive sections intentionally reset local state when
-      // route or CMS-backed collections change. Keep the React 19 diagnostic
-      // visible while those components are migrated to keyed state.
-      "react-hooks/set-state-in-effect": "warn",
-    },
-  },
-  {
     files: ["tailwind.config.js"],
     rules: {
       "@typescript-eslint/no-require-imports": "off",
@@ -25,5 +17,6 @@ export default defineConfig([
     "out/**",
     "build/**",
     "next-env.d.ts",
+    "public/company-logos/logo-config.js",
   ]),
 ]);
