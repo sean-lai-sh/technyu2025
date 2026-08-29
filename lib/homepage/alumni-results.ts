@@ -112,7 +112,7 @@ const FALLBACK_TILES: AlumniResultTile[] = [
     href: 'https://thebrowser.company',
     foundedByEboard: true,
     statLabel: 'Founded by E-Board alumni Hursh Agrawal',
-    quote: '$800M exit to Atlassian',
+    quote: '$610M exit to Atlassian',
     alt: 'The Browser Company',
     imageUrl: '/company-logos/the-browser-company.svg',
     width: 1023,
