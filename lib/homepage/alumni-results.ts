@@ -68,7 +68,7 @@ const FALLBACK_LOGOS: LogoInput[] = [
   },
   { src: '/company-logos/jane-street.svg', alt: 'Jane Street', width: 181, height: 49, col: 9, row: 1 },
   {
-    src: '/company-logos/Anthropic.svg',
+    src: '/company-logos/anthropic.svg',
     alt: 'Anthropic',
     width: 579,
     height: 65,
