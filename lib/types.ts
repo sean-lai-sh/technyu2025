@@ -206,6 +206,51 @@ export type PartnerLogo = {
   height?: number;
 };
 
+// ===== Homepage alumni-results bento (Clay-style mixed tiles) =====
+// Studio schema to add: see lib/sanity/alumni-results-schema.ts
+// Production currently has ZERO alumniResultsSection documents — UI falls back.
+
+export type AlumniResultTileType = 'logo' | 'quote' | 'stat' | 'person'
+
+export type AlumniResultTile = {
+  _key: string
+  tileType: AlumniResultTileType
+  col?: number
+  row?: number
+  span?: number
+  tall?: number
+  href?: string
+  foundedByEboard?: boolean
+  marker?: string
+  markerOffsetX?: number
+  markerOffsetY?: number
+  alt?: string
+  imageUrl?: string
+  width?: number
+  height?: number
+  maxVisualWidth?: number
+  maxVisualHeight?: number
+  offsetX?: number
+  offsetY?: number
+  quote?: string
+  attributionName?: string
+  attributionRole?: string
+  statValue?: string
+  statLabel?: string
+  personName?: string
+  personRole?: string
+  personImageUrl?: string
+  isFallbackExample?: boolean
+}
+
+export type AlumniResultsSection = {
+  heading: string
+  body?: string
+  footnote?: string
+  tiles: AlumniResultTile[]
+  source: 'sanity' | 'fallback'
+}
+
 // Section Types
 export type TextSection = {
   _key: string;
