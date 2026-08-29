@@ -116,7 +116,7 @@ const FALLBACK_TILES: AlumniResultTile[] = [
     alt: 'The Browser Company',
     imageUrl: '/company-logos/the-browser-company.svg',
     width: 1023,
-    height: 515,
+    height: 360,
   },
   {
     _key: 'fallback-sierra',
