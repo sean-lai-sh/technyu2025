@@ -33,12 +33,12 @@ function logoTile(input: LogoInput, index: number): AlumniResultTile {
 /**
  * Opening beat (leftmost 2 columns, row-major):
  * Anthropic, SpaceX, Clay, Stripe, Jane Street, Check.
- * Then Mag 7 punch, then the rest of the existing wall.
+ * Next cluster: Mag 7 + Browser Company (Founded by…), then the rest.
  *
  *   slot  1        2        3        4        5       6       7       8       9
  *   r1  Anthropic SpaceX   |-- 100% Mag 7 --| Apple  Google  Meta   Amazon  Microsoft
  *   r2  Clay      Stripe   Coinbase Cursor   Datadog Pinterest Blck  JPMC   Box
- *   r3  Jane St   Check    Carta    Apollo   Browser Tandem  Nozomio Manus  Zingage
+ *   r3  Jane St   Check    Browser  Carta    Apollo  Tandem  Nozomio Manus  Zingage
  */
 const FALLBACK_LOGOS: LogoInput[] = [
   {
@@ -127,19 +127,10 @@ const FALLBACK_LOGOS: LogoInput[] = [
     width: 99,
     height: 43,
     href: 'https://carta.com',
-    col: 3,
+    col: 4,
     row: 3,
   },
-  { src: '/company-logos/apollo-global.svg', alt: 'Apollo Global', width: 343, height: 54, col: 4, row: 3 },
-  {
-    src: '/company-logos/the-browser-company.svg',
-    alt: 'The Browser Company',
-    width: 1023,
-    height: 515,
-    href: 'https://thebrowser.company',
-    col: 5,
-    row: 3,
-  },
+  { src: '/company-logos/apollo-global.svg', alt: 'Apollo Global', width: 343, height: 54, col: 5, row: 3 },
   {
     src: '/company-logos/tandem-health.svg',
     alt: 'Tandem Health',
@@ -162,11 +153,25 @@ const FALLBACK_FEATURE_TILES: AlumniResultTile[] = [
     span: 1,
     tall: 1,
     href: 'https://www.checkhq.com',
-    statLabel: 'Founded by E-Board',
+    statLabel: 'Founded by E-Board alumni Vivek Patel',
     imageUrl: '/company-logos/check.svg',
     alt: 'Check',
     width: 142,
     height: 34,
+  },
+  {
+    _key: 'fallback-browser-company',
+    tileType: 'combo',
+    col: 3,
+    row: 3,
+    span: 1,
+    tall: 1,
+    href: 'https://thebrowser.company',
+    statLabel: 'Founded by E-Board alumni Hursh Agrawal',
+    imageUrl: '/company-logos/the-browser-company.svg',
+    alt: 'The Browser Company',
+    width: 1023,
+    height: 515,
   },
   {
     _key: 'fallback-stat-mag7',
