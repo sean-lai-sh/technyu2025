@@ -239,8 +239,8 @@ const FALLBACK_TILES: AlumniResultTile[] = [
     href: 'https://forus.com',
     alt: 'Forus',
     imageUrl: '/company-logos/forus.svg',
-    width: 62,
-    height: 14,
+    width: 59,
+    height: 16,
   },
   {
     _key: 'fallback-cursor',
