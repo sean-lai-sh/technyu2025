@@ -239,7 +239,7 @@ const FALLBACK_TILES: AlumniResultTile[] = [
     href: 'https://forus.com',
     alt: 'Forus',
     imageUrl: '/company-logos/forus.svg',
-    width: 112,
+    width: 62,
     height: 14,
   },
   {
