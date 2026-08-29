@@ -63,7 +63,12 @@ function TileBody({ tile }: { tile: AlumniResultTile }) {
       <div className={styles.combo}>
         <TileLogo tile={tile} />
         {tile.statValue ? <p className={styles.statValue}>{tile.statValue}</p> : null}
-        {tile.statLabel ? <p className={styles.comboLabel}>{tile.statLabel}</p> : null}
+        {tile.statLabel || tile.quote ? (
+          <div className={styles.comboCopy}>
+            {tile.statLabel ? <p className={styles.comboLabel}>{tile.statLabel}</p> : null}
+            {tile.quote ? <p className={styles.comboDetail}>{tile.quote}</p> : null}
+          </div>
+        ) : null}
       </div>
     )
   }
@@ -121,19 +126,26 @@ function AlumniTile({ tile, inert }: { tile: AlumniResultTile; inert?: boolean }
   return <div {...dataProps}>{body}</div>
 }
 
+function cycleColumns(tiles: AlumniResultTile[]) {
+  return tiles.reduce((max, tile) => Math.max(max, (tile.col ?? 1) + (tile.span ?? 1) - 1), 1)
+}
+
 function TileGrid({
   tiles,
   duplicate,
   gridRef,
+  columns,
 }: {
   tiles: AlumniResultTile[]
   duplicate?: boolean
   gridRef?: Ref<HTMLDivElement>
+  columns: number
 }) {
   return (
     <div
       ref={gridRef}
       className={cn(styles.grid, duplicate && styles.duplicate)}
+      style={{ ['--cols' as string]: String(columns) }}
       aria-hidden={duplicate || undefined}
     >
       {tiles.map((tile) => (
@@ -184,10 +196,7 @@ export default function AlumniResultsBento({ tiles, className }: AlumniResultsBe
     }
     motionQuery.addEventListener('change', onMotionChange)
 
-    const measure = () => {
-      const width = cycleNode.getBoundingClientRect().width
-      return width
-    }
+    const measure = () => cycleNode.offsetWidth
 
     const apply = () => {
       if (reduceMotionRef.current) {
@@ -237,7 +246,7 @@ export default function AlumniResultsBento({ tiles, className }: AlumniResultsBe
     const cycleNode = cycleRef.current
     if (!viewport || !track || !cycleNode) return
 
-    const cycleWidth = () => cycleNode.getBoundingClientRect().width
+    const cycleWidth = () => cycleNode.offsetWidth
 
     const apply = () => {
       if (reduceMotionRef.current) {
@@ -298,6 +307,8 @@ export default function AlumniResultsBento({ tiles, className }: AlumniResultsBe
 
   if (tiles.length === 0) return null
 
+  const columns = cycleColumns(tiles)
+
   return (
     <div ref={trayRef} className={cn(styles.tray, className)}>
       <div
@@ -309,6 +320,7 @@ export default function AlumniResultsBento({ tiles, className }: AlumniResultsBe
             <TileGrid
               key={`copy-${copyIndex}`}
               tiles={tiles}
+              columns={columns}
               duplicate={copyIndex > 0}
               gridRef={copyIndex === 0 ? cycleRef : undefined}
             />

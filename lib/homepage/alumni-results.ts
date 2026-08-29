@@ -4,16 +4,13 @@ const FALLBACK_HEADING = 'Developing The Talent Building The Future Since 2009'
 
 /**
  * Clay-style 3-row unit grid. Featured tiles use tall 2–3 / wide span.
- * Opening beat (left edge): Anthropic, SpaceX, Clay, Stripe, Jane Street, Check.
- * First two columns always include a tall well-known (Anthropic) and a tall
- * founded-by (Check) so phone/tablet/laptop first frames share that mix.
+ * Opening beat: Anthropic, SpaceX, Clay, Stripe, Jane Street, Check.
+ * Every column is filled (no empty slots) so the infinite copies sit flush.
  *
- *   c1          c2          c3          c4          c5–c6         c7
- *   Anthropic   SpaceX ──────────────   Stripe      100% Mag 7    Browser
- *   Anthropic   Check       Clay        Stripe      100% Mag 7    Browser
- *   Jane St     Check       Clay        Coinbase    Carta Apollo  Browser
- *
- * Then Mag 7 names as tall-2, remaining companies as 1×1.
+ *   c1          c2          c3          c4          c5–c6         c7–c8            c9
+ *   Anthropic   SpaceX ──────────────   Stripe      100% Mag 7    Browser (wide)   Sierra
+ *   Anthropic   Check       Clay        Stripe      100% Mag 7    Browser          Sierra
+ *   Jane St     Check       Clay        Coinbase    Carta Apollo  Forus   Cursor   Sierra
  */
 const FALLBACK_TILES: AlumniResultTile[] = [
   {
@@ -39,8 +36,8 @@ const FALLBACK_TILES: AlumniResultTile[] = [
     href: 'https://www.spacex.com',
     alt: 'SpaceX',
     imageUrl: '/company-logos/spacex.svg',
-    width: 24,
-    height: 12,
+    width: 400,
+    height: 50,
   },
   {
     _key: 'fallback-jane-street',
@@ -110,20 +107,34 @@ const FALLBACK_TILES: AlumniResultTile[] = [
     tileType: 'combo',
     col: 7,
     row: 1,
-    span: 1,
-    tall: 3,
+    span: 2,
+    tall: 2,
     href: 'https://thebrowser.company',
     foundedByEboard: true,
     statLabel: 'Founded by E-Board alumni Hursh Agrawal',
+    quote: '$800M exit to Atlassian',
     alt: 'The Browser Company',
     imageUrl: '/company-logos/the-browser-company.svg',
     width: 1023,
     height: 515,
   },
   {
+    _key: 'fallback-sierra',
+    tileType: 'logo',
+    col: 9,
+    row: 1,
+    span: 1,
+    tall: 3,
+    href: 'https://sierra.ai',
+    alt: 'Sierra',
+    imageUrl: '/company-logos/sierra.svg',
+    width: 116,
+    height: 36,
+  },
+  {
     _key: 'fallback-apple',
     tileType: 'logo',
-    col: 8,
+    col: 10,
     row: 1,
     span: 1,
     tall: 2,
@@ -135,7 +146,7 @@ const FALLBACK_TILES: AlumniResultTile[] = [
   {
     _key: 'fallback-google',
     tileType: 'logo',
-    col: 9,
+    col: 11,
     row: 1,
     span: 1,
     tall: 2,
@@ -147,7 +158,7 @@ const FALLBACK_TILES: AlumniResultTile[] = [
   {
     _key: 'fallback-meta',
     tileType: 'logo',
-    col: 10,
+    col: 12,
     row: 1,
     span: 1,
     tall: 2,
@@ -159,7 +170,7 @@ const FALLBACK_TILES: AlumniResultTile[] = [
   {
     _key: 'fallback-amazon',
     tileType: 'logo',
-    col: 11,
+    col: 13,
     row: 1,
     span: 1,
     tall: 2,
@@ -171,7 +182,7 @@ const FALLBACK_TILES: AlumniResultTile[] = [
   {
     _key: 'fallback-microsoft',
     tileType: 'logo',
-    col: 12,
+    col: 14,
     row: 1,
     span: 1,
     tall: 2,
@@ -219,6 +230,19 @@ const FALLBACK_TILES: AlumniResultTile[] = [
     height: 54,
   },
   {
+    _key: 'fallback-forus',
+    tileType: 'logo',
+    col: 7,
+    row: 3,
+    span: 1,
+    tall: 1,
+    href: 'https://forus.com',
+    alt: 'Forus',
+    imageUrl: '/company-logos/forus.svg',
+    width: 112,
+    height: 14,
+  },
+  {
     _key: 'fallback-cursor',
     tileType: 'logo',
     col: 8,
@@ -234,7 +258,7 @@ const FALLBACK_TILES: AlumniResultTile[] = [
   {
     _key: 'fallback-datadog',
     tileType: 'logo',
-    col: 9,
+    col: 10,
     row: 3,
     span: 1,
     tall: 1,
@@ -247,7 +271,7 @@ const FALLBACK_TILES: AlumniResultTile[] = [
   {
     _key: 'fallback-pinterest',
     tileType: 'logo',
-    col: 10,
+    col: 11,
     row: 3,
     span: 1,
     tall: 1,
@@ -259,7 +283,7 @@ const FALLBACK_TILES: AlumniResultTile[] = [
   {
     _key: 'fallback-blackrock',
     tileType: 'logo',
-    col: 11,
+    col: 12,
     row: 3,
     span: 1,
     tall: 1,
@@ -271,7 +295,7 @@ const FALLBACK_TILES: AlumniResultTile[] = [
   {
     _key: 'fallback-jpmc',
     tileType: 'logo',
-    col: 12,
+    col: 13,
     row: 3,
     span: 1,
     tall: 1,
@@ -281,33 +305,9 @@ const FALLBACK_TILES: AlumniResultTile[] = [
     height: 30,
   },
   {
-    _key: 'fallback-box',
-    tileType: 'logo',
-    col: 13,
-    row: 1,
-    span: 1,
-    tall: 1,
-    alt: 'Box',
-    imageUrl: '/company-logos/box.svg',
-    width: 40,
-    height: 22,
-  },
-  {
-    _key: 'fallback-tandem',
-    tileType: 'logo',
-    col: 13,
-    row: 2,
-    span: 1,
-    tall: 1,
-    alt: 'Tandem Health',
-    imageUrl: '/company-logos/tandem-health.svg',
-    width: 95,
-    height: 20,
-  },
-  {
     _key: 'fallback-nozomio',
     tileType: 'logo',
-    col: 13,
+    col: 14,
     row: 3,
     span: 1,
     tall: 1,
@@ -317,10 +317,22 @@ const FALLBACK_TILES: AlumniResultTile[] = [
     height: 89,
   },
   {
+    _key: 'fallback-box',
+    tileType: 'logo',
+    col: 15,
+    row: 1,
+    span: 1,
+    tall: 1,
+    alt: 'Box',
+    imageUrl: '/company-logos/box.svg',
+    width: 40,
+    height: 22,
+  },
+  {
     _key: 'fallback-manus',
     tileType: 'logo',
-    col: 14,
-    row: 1,
+    col: 15,
+    row: 2,
     span: 1,
     tall: 1,
     alt: 'Manus AI',
@@ -331,8 +343,8 @@ const FALLBACK_TILES: AlumniResultTile[] = [
   {
     _key: 'fallback-zingage',
     tileType: 'logo',
-    col: 14,
-    row: 2,
+    col: 15,
+    row: 3,
     span: 1,
     tall: 1,
     alt: 'Zingage',
