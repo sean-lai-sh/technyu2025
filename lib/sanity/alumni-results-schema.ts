@@ -40,7 +40,7 @@
  *     defineField({
  *       name: 'tileType',
  *       type: 'string',
- *       options: { list: ['logo', 'quote', 'stat', 'person'] },
+ *       options: { list: ['logo', 'quote', 'stat', 'person', 'combo'] },
  *       validation: Rule => Rule.required(),
  *     }),
  *     defineField({ name: 'col', type: 'number', description: 'Desktop start slot (1–12). Blank = auto-flow.' }),

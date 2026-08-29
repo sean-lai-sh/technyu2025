@@ -1,21 +1,24 @@
 /*
-  Clay-style alumni-results wall, translated to Tech@NYU tokens.
+  Clay homepage trusted wall — mechanics observed live (Aug 2026):
 
-  Clay (clay.com, observed Aug 2026): 15-slot × 3-row unit grid inside a
-  rounded tray. One slot = one logo card. Quote/stat tiles span. Desktop
-  pins via col/row; below tablet, pins go auto and the wall reflows.
-  Mobile drops to 2 rows. A slow horizontal marquee + edge shades reveal
-  the overflow. prefers-reduced-motion: static wrapping grid, no marquee.
+  One 3-row dense column grid. Mixed data-tall / data-span is the bento.
+  Three duplicated tracks translate lockstep ~24px/s (JS, not keyframes).
+  Same 3-row structure at laptop / tablet / phone; only --unit-w shrinks
+  (160.8 → 148.8 → 139.2). Overflow hidden. 20% edge shades. Permanent ↗
+  on linked tiles. Flat cards, gap only — no hover lift. Reduced motion:
+  static, no transform.
 
-  We keep that FUNCTIONALITY (unit grid, mixed spans, 3→2 row reflow,
-  restrained marquee, hover lift + ↗) and swap Clay's beige/forest for
-  --surface-deep tray / --surface-raised tiles / purple+green accents.
+  Color is ours: deep tray, raised tiles, green/purple accents only.
 */
 
 .tray {
+  --unit-h: 5rem;
+  --unit-w: 160.8px;
+  --unit-gap: 0.75rem;
+
   position: relative;
   overflow: hidden;
-  border-radius: 24px;
+  border-radius: 32px;
   border: 1px solid rgba(237, 237, 237, 0.1);
   background: var(--surface-deep);
   padding: 1rem 0.85rem;
@@ -23,27 +26,22 @@
 
 .viewport {
   overflow: hidden;
+  cursor: grab;
+  touch-action: pan-y;
+}
+
+.viewportDragging {
+  cursor: grabbing;
+  user-select: none;
 }
 
 .track {
   display: flex;
   width: max-content;
-  animation-name: alumniMarquee;
-  animation-duration: 56s;
-  animation-timing-function: linear;
-  animation-iteration-count: infinite;
-}
-
-.tray:hover .track,
-.tray:focus-within .track {
-  animation-play-state: paused;
+  will-change: transform;
 }
 
 .grid {
-  --unit-h: 5.15rem;
-  --unit-w: 9.6rem;
-  --unit-gap: 0.7rem;
-
   display: grid;
   grid-template-rows: repeat(3, var(--unit-h));
   grid-auto-columns: var(--unit-w);
@@ -51,7 +49,6 @@
   grid-auto-flow: column dense;
   align-items: stretch;
   align-content: stretch;
-  /* Trailing gap so two copies loop on a -50% marquee without a seam. */
   padding-right: var(--unit-gap);
 }
 
@@ -69,14 +66,10 @@
   flex-direction: column;
   justify-content: center;
   overflow: hidden;
-  border-radius: 16px;
-  border: 1px solid rgba(237, 237, 237, 0.1);
+  border-radius: 18px;
   background: var(--surface-raised);
   color: inherit;
   text-decoration: none;
-  transition-property: transform, border-color, box-shadow;
-  transition-duration: var(--motion-hover-out-duration);
-  transition-timing-function: var(--motion-brand-exit);
 }
 
 .card > * {
@@ -89,6 +82,8 @@
 .card[data-col='7'] { --col: 7; } .card[data-col='8'] { --col: 8; }
 .card[data-col='9'] { --col: 9; } .card[data-col='10'] { --col: 10; }
 .card[data-col='11'] { --col: 11; } .card[data-col='12'] { --col: 12; }
+.card[data-col='13'] { --col: 13; } .card[data-col='14'] { --col: 14; }
+.card[data-col='15'] { --col: 15; }
 
 .card[data-row='1'] { --row: 1; }
 .card[data-row='2'] { --row: 2; }
@@ -100,15 +95,6 @@
 
 .card[data-tall='2'] { --tall: 2; }
 .card[data-tall='3'] { --tall: 3; }
-
-.cardClickable:hover,
-.cardClickable:focus-visible {
-  transform: translateY(-3px);
-  border-color: rgba(237, 237, 237, 0.2);
-  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.35);
-  transition-duration: var(--motion-hover-in-duration);
-  transition-timing-function: var(--motion-brand-enter);
-}
 
 .cardClickable:focus-visible {
   outline: 1px solid rgba(77, 255, 148, 0.55);
@@ -122,19 +108,6 @@
   width: 0.85rem;
   height: 0.85rem;
   color: var(--fg-ghost);
-  opacity: 0.72;
-  transition-property: color, opacity, transform;
-  transition-duration: var(--motion-hover-out-duration);
-  transition-timing-function: var(--motion-brand-exit);
-}
-
-.cardClickable:hover .arrow,
-.cardClickable:focus-visible .arrow {
-  color: var(--accent-green);
-  opacity: 1;
-  transform: translate(1px, -1px);
-  transition-duration: var(--motion-hover-in-duration);
-  transition-timing-function: var(--motion-brand-enter);
 }
 
 .logoWrap {
@@ -151,8 +124,14 @@
   height: 100%;
   flex-direction: column;
   justify-content: space-between;
-  gap: 0.65rem;
-  padding: 0.85rem 1rem 0.8rem;
+  gap: 0.55rem;
+  padding: 0.75rem 0.9rem 0.7rem;
+}
+
+.quoteWide {
+  flex-direction: row;
+  align-items: center;
+  gap: 0.85rem;
 }
 
 .quoteLogo {
@@ -166,10 +145,14 @@
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 5;
   font-family: var(--font-inter), system-ui, sans-serif;
-  font-size: 0.84rem;
+  font-size: 0.8rem;
   font-weight: 400;
-  line-height: 1.45;
+  line-height: 1.4;
   color: var(--fg-muted);
+}
+
+.quoteWide .quoteText {
+  -webkit-line-clamp: 3;
 }
 
 .quoteMeta {
@@ -178,31 +161,40 @@
 }
 
 .quoteName {
-  font-size: 0.72rem;
+  font-size: 0.7rem;
   font-weight: 600;
-  letter-spacing: 0.04em;
   color: var(--foreground);
 }
 
 .quoteRole {
-  margin-top: 0.15rem;
-  font-size: 0.68rem;
+  margin-top: 0.12rem;
+  font-size: 0.66rem;
   font-weight: 500;
-  letter-spacing: 0.06em;
   color: var(--fg-faint);
 }
 
 .stat {
   display: flex;
   height: 100%;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.65rem 0.85rem;
+}
+
+.statStack {
   flex-direction: column;
+  align-items: flex-start;
   justify-content: center;
-  padding: 0.7rem 0.95rem;
+  gap: 0.3rem;
+}
+
+.statCopy {
+  min-width: 0;
 }
 
 .statValue {
   font-family: var(--font-satoshi), system-ui, sans-serif;
-  font-size: 1.85rem;
+  font-size: 1.7rem;
   font-weight: 500;
   letter-spacing: -0.03em;
   line-height: 1;
@@ -210,13 +202,22 @@
 }
 
 .statLabel {
-  margin-top: 0.35rem;
+  margin-top: 0.28rem;
   font-family: var(--font-inter), system-ui, sans-serif;
   font-size: 0.62rem;
   font-weight: 600;
   letter-spacing: 0.16em;
   text-transform: uppercase;
   color: var(--fg-faint);
+}
+
+.combo {
+  display: flex;
+  height: 100%;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 0.45rem;
+  padding: 0.75rem 0.9rem 0.7rem;
 }
 
 .person {
@@ -257,9 +258,9 @@
 }
 
 .example {
-  margin-top: 0.35rem;
+  margin-top: 0.28rem;
   font-family: var(--font-inter), system-ui, sans-serif;
-  font-size: 0.58rem;
+  font-size: 0.56rem;
   font-weight: 600;
   letter-spacing: 0.14em;
   text-transform: uppercase;
@@ -272,7 +273,7 @@
   top: 0;
   bottom: 0;
   z-index: 2;
-  width: 3.25rem;
+  width: 20%;
 }
 
 .shadeLeft {
@@ -285,118 +286,42 @@
   background: linear-gradient(270deg, var(--surface-deep) 0%, transparent 100%);
 }
 
-@keyframes alumniMarquee {
-  to {
-    transform: translateX(-50%);
+/* Same 3-row structure; only the slot width shrinks. */
+@media (max-width: 991px) {
+  .tray {
+    --unit-w: 148.8px;
   }
 }
 
-/* Tablet: unpin desktop coordinates, keep 3-row unit strip. */
-@media (max-width: 1023px) {
-  .grid {
-    --unit-w: 8.9rem;
-  }
-
-  .card {
-    --col: auto;
-    --row: auto;
-  }
-}
-
-/* Phone: 2-row strip, shorter units. Tall-3 would overflow. */
 @media (max-width: 767px) {
   .tray {
-    border-radius: 20px;
-    padding: 0.75rem 0.6rem;
-  }
-
-  .grid {
-    --unit-h: 4.85rem;
-    --unit-w: 8.35rem;
-    --unit-gap: 0.55rem;
-    grid-template-rows: repeat(2, var(--unit-h));
-  }
-
-  .card[data-tall='3'] {
-    --tall: 2;
+    --unit-w: 139.2px;
+    border-radius: 24px;
+    padding: 0.75rem 0.55rem;
   }
 
   .quoteText {
-    -webkit-line-clamp: 3;
-    font-size: 0.78rem;
-  }
-
-  .shade {
-    width: 1.75rem;
+    font-size: 0.74rem;
   }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .tray {
-    overflow: visible;
-  }
-
-  .viewport {
-    overflow: visible;
-  }
-
   .track {
-    display: block;
-    width: 100%;
-    animation: none;
+    transform: none !important;
+    will-change: auto;
   }
 
   .duplicate {
     display: none;
   }
 
-  .grid {
-    width: 100%;
-    padding-right: 0;
-    grid-auto-flow: row dense;
-    grid-auto-columns: unset;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    grid-template-rows: none;
-    grid-auto-rows: var(--unit-h);
+  .viewport {
+    cursor: auto;
+    overflow-x: auto;
+    scrollbar-width: none;
   }
 
-  .card {
-    --col: auto;
-    --row: auto;
-  }
-
-  .card[data-span='3'],
-  .card[data-span='4'],
-  .card[data-span='5'] {
-    --span: 2;
-  }
-
-  .shade {
+  .viewport::-webkit-scrollbar {
     display: none;
-  }
-}
-
-@media (prefers-reduced-motion: reduce) and (min-width: 768px) {
-  .grid {
-    grid-template-columns: repeat(4, minmax(0, 1fr));
-  }
-
-  .card[data-span='3'] {
-    --span: 2;
-  }
-
-  .card[data-span='4'],
-  .card[data-span='5'] {
-    --span: 3;
-  }
-}
-
-@media (prefers-reduced-motion: reduce) and (min-width: 1280px) {
-  .grid {
-    grid-template-columns: repeat(6, minmax(0, 1fr));
-  }
-
-  .card[data-span='3'] {
-    --span: 3;
   }
 }

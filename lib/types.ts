@@ -210,7 +210,7 @@ export type PartnerLogo = {
 // Studio schema to add: see lib/sanity/alumni-results-schema.ts
 // Production currently has ZERO alumniResultsSection documents — UI falls back.
 
-export type AlumniResultTileType = 'logo' | 'quote' | 'stat' | 'person'
+export type AlumniResultTileType = 'logo' | 'quote' | 'stat' | 'person' | 'combo'
 
 export type AlumniResultTile = {
   _key: string
