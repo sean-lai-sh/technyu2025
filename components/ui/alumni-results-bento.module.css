@@ -12,9 +12,11 @@
 */
 
 .tray {
-  --unit-h: 5rem;
+  --unit-h: 6.25rem;
   --unit-w: 160.8px;
   --unit-gap: 0.75rem;
+  --logo-slot-w: 7.6rem;
+  --logo-slot-h: 2.35rem;
 
   position: relative;
   overflow: hidden;
@@ -116,7 +118,23 @@
   width: 100%;
   align-items: center;
   justify-content: center;
-  padding: 0.7rem 0.85rem;
+  padding: 0.85rem 0.9rem;
+}
+
+.logoSlot {
+  position: relative;
+  display: flex;
+  width: var(--logo-slot-w);
+  height: var(--logo-slot-h);
+  flex: 0 0 auto;
+  align-items: center;
+  justify-content: center;
+}
+
+.logoMark {
+  object-fit: contain;
+  object-position: center;
+  pointer-events: none;
 }
 
 .quote {
@@ -143,11 +161,11 @@
   display: -webkit-box;
   overflow: hidden;
   -webkit-box-orient: vertical;
-  -webkit-line-clamp: 5;
+  -webkit-line-clamp: 2;
   font-family: var(--font-inter), system-ui, sans-serif;
-  font-size: 0.8rem;
+  font-size: 0.78rem;
   font-weight: 400;
-  line-height: 1.4;
+  line-height: 1.35;
   color: var(--fg-muted);
 }
 
@@ -188,13 +206,18 @@
   gap: 0.3rem;
 }
 
+.statPunch {
+  align-items: center;
+  text-align: center;
+}
+
 .statCopy {
   min-width: 0;
 }
 
 .statValue {
   font-family: var(--font-satoshi), system-ui, sans-serif;
-  font-size: 1.7rem;
+  font-size: 2rem;
   font-weight: 500;
   letter-spacing: -0.03em;
   line-height: 1;
@@ -215,9 +238,22 @@
   display: flex;
   height: 100%;
   flex-direction: column;
-  justify-content: space-between;
+  align-items: center;
+  justify-content: center;
   gap: 0.45rem;
-  padding: 0.75rem 0.9rem 0.7rem;
+  padding: 0.7rem 0.75rem;
+}
+
+.comboLabel {
+  max-width: 100%;
+  font-family: var(--font-inter), system-ui, sans-serif;
+  font-size: 0.58rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  line-height: 1.25;
+  text-align: center;
+  text-transform: uppercase;
+  color: var(--fg-faint);
 }
 
 .person {
@@ -242,29 +278,6 @@
   font-weight: 500;
   line-height: 1.35;
   color: var(--fg-faint);
-}
-
-.marker {
-  pointer-events: none;
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  z-index: 2;
-  font-family: var(--font-inter), system-ui, sans-serif;
-  font-size: 0.8rem;
-  font-weight: 600;
-  line-height: 1;
-  color: var(--accent-green);
-}
-
-.example {
-  margin-top: 0.28rem;
-  font-family: var(--font-inter), system-ui, sans-serif;
-  font-size: 0.56rem;
-  font-weight: 600;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: var(--fg-ghost);
 }
 
 .shade {
