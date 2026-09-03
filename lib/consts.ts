@@ -5,7 +5,8 @@ export const EVENTS_URL = "https://luma.com/techatnyu"
 export const programs = [
     {name: "Dev Team", href: "/programs/dev-team"},
     {name: "Tech Treks", href: "/programs/tech-treks"},
-    {name: "Startup Week", href: "/programs/startup-week"},
+    {name: "Buildathon", href: "/programs/buildathon"},
+    {name: "NYSW", href: "/programs/nysw"},
     {name: "Mentorship", href: "/programs/mentorship"},
 ]
 
@@ -57,12 +58,21 @@ export const programsLinks: ProgramCardProps[] = [
         desktopImage: "/program-logos/tech-treks-desktop.jpg"
     },
     {
-        name: "Startup Week",
-        url: "/programs/startup-week",
+        name: "Buildathon",
+        url: "/programs/buildathon",
         svgicon: "/program-logos/startup-week.svg",
-        tagline: "Launch your startup journey",
-        description_small: "Build your network in nyc with VCs, founders, and operators all while hosting events",
-        description_large: "Join our committee pulling off NYU's student run entrepreunership week, Startup Week. Network with the rising stars, learn what these Startups are looking for, and build lasting connections and friendships.",
+        tagline: "Build something ambitious in 48 hours",
+        description_small: "Team up, build under pressure, and turn an ambitious idea into a working project.",
+        description_large: "Tech@NYU's 48-hour hackathon brings students together to turn ambitious ideas into working projects with a team.",
+        desktopImage: "/event-pics/buildathon.jpg"
+    },
+    {
+        name: "NYSW",
+        url: "/programs/nysw",
+        svgicon: "/program-logos/startup-week.svg",
+        tagline: "New York Startup Week",
+        description_small: "Meet founders, operators, investors, and students through a week of startup programming.",
+        description_large: "Help bring NYU's startup community together through student-run speakers, panels, workshops, and networking.",
         desktopImage: "/program-logos/startup-week-desktop.jpg"
     },
     {

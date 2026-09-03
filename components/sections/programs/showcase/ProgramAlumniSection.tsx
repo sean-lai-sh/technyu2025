@@ -61,9 +61,13 @@ export default function ProgramAlumniSection({ testimonials }: ProgramAlumniSect
   }
 
   useEffect(() => {
-    setActiveTestimonial(0)
-    setTestimonialProgress(0)
-    setRecentlyCompletedTestimonial(null)
+    const frame = window.requestAnimationFrame(() => {
+      setActiveTestimonial(0)
+      setTestimonialProgress(0)
+      setRecentlyCompletedTestimonial(null)
+    })
+
+    return () => window.cancelAnimationFrame(frame)
   }, [testimonialCount])
 
   useEffect(() => {
@@ -77,22 +81,25 @@ export default function ProgramAlumniSection({ testimonials }: ProgramAlumniSect
 
   useEffect(() => {
     if (testimonialCount <= 1) {
-      setTestimonialProgress(0)
-      return
+      const resetFrame = window.requestAnimationFrame(() => setTestimonialProgress(0))
+      return () => window.cancelAnimationFrame(resetFrame)
     }
 
-    setTestimonialProgress(0)
     if (shouldReduceMotion) {
-      setTestimonialProgress(100)
+      const progressFrame = window.requestAnimationFrame(() => setTestimonialProgress(100))
       const advanceTimeout = window.setTimeout(() => {
         setTransitionDirection(1)
         setTestimonialProgress(100)
         setActiveTestimonial((current) => (current + 1) % testimonialCount)
         setRecentlyCompletedTestimonial(activeTestimonial)
       }, AUTOPLAY_MS)
-      return () => window.clearTimeout(advanceTimeout)
+      return () => {
+        window.cancelAnimationFrame(progressFrame)
+        window.clearTimeout(advanceTimeout)
+      }
     }
 
+    const progressFrame = window.requestAnimationFrame(() => setTestimonialProgress(0))
     const startedAt = window.performance.now()
 
     const progressInterval = window.setInterval(() => {
@@ -109,6 +116,7 @@ export default function ProgramAlumniSection({ testimonials }: ProgramAlumniSect
     }, AUTOPLAY_MS)
 
     return () => {
+      window.cancelAnimationFrame(progressFrame)
       window.clearInterval(progressInterval)
       window.clearTimeout(advanceTimeout)
     }

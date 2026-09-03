@@ -9,7 +9,7 @@ const DevTeamRoles = () => {
     <section id='dev-team-roles' className='mt-16 px-[5vw] pb-20'>
       <h2 className='text-white text-3xl md:text-4xl lg:text-5xl font-bold text-left mb-8'>Ready to join?</h2>
       <p className='text-white text-lg md:text-xl mb-8'>
-        If you're curious about AI-powered development workflows, excited to experiment with autonomous coding agents, or interested in building tools that reshape how developers work, there's a place for you on our team.
+        If you&apos;re curious about AI-powered development workflows, excited to experiment with autonomous coding agents, or interested in building tools that reshape how developers work, there&apos;s a place for you on our team.
       </p>
       <div className='grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8 mb-6'>
         {devTeamRoles.map((role, index) => {

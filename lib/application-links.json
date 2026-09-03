@@ -30,7 +30,11 @@
       }
     }
   },
-  "Startup Week": {
+  "Buildathon": {
+    "status": false,
+    "link": ""
+  },
+  "NYSW": {
     "status": false,
     "link": "",
     "roles": {

@@ -57,9 +57,13 @@ export const NavigationProvider = ({ children }: NavigationProviderProps) => {
     const currentScrollY = window.scrollY
 
     lastScrollYRef.current = currentScrollY
-    setLastScrollY(currentScrollY)
-    setScrollDirection(currentScrollY <= 8 ? 'up' : null)
-    setIsNavbarVisible(true)
+    const frame = window.requestAnimationFrame(() => {
+      setLastScrollY(currentScrollY)
+      setScrollDirection(currentScrollY <= 8 ? 'up' : null)
+      setIsNavbarVisible(true)
+    })
+
+    return () => window.cancelAnimationFrame(frame)
   }, [pathname])
 
   useEffect(() => {

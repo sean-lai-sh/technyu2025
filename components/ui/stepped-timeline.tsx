@@ -1,6 +1,6 @@
 'use client'
 
-import React, { startTransition, useEffect, useMemo, useRef, useState } from 'react'
+import React, { startTransition, useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import { AnimatePresence, motion, useReducedMotion } from 'framer-motion'
 import { useInView } from 'react-intersection-observer'
 import { motionTokens } from '@/lib/motion'
@@ -84,13 +84,13 @@ export function SteppedTimeline<T extends SteppedTimelineItem>({
     [shouldReduceMotion],
   )
 
-  const emitStepChange = (index: number, source: StepChangeSource) => {
+  const emitStepChange = useCallback((index: number, source: StepChangeSource) => {
     const item = items[index]
     if (!item) return
     onStepChange?.(index, item, source)
-  }
+  }, [items, onStepChange])
 
-  const advanceStep = () => {
+  const advanceStep = useCallback(() => {
     if (!hasMultipleItems) return
 
     const nextIndex = safeActiveIndex >= lastIndex ? 0 : safeActiveIndex + 1
@@ -104,23 +104,28 @@ export function SteppedTimeline<T extends SteppedTimelineItem>({
       setPlaybackVersion((current) => current + 1)
     })
     emitStepChange(nextIndex, 'auto')
-  }
+  }, [emitStepChange, hasMultipleItems, lastIndex, safeActiveIndex])
 
   useEffect(() => {
     const clampedIndex = clampIndex(defaultActiveIndex, items.length)
     elapsedRef.current = 0
-    setTransitionDirection(1)
-    setSegmentProgress(0)
-    setActiveIndex(clampedIndex)
-    setPlaybackVersion((current) => current + 1)
+    const frame = window.requestAnimationFrame(() => {
+      setTransitionDirection(1)
+      setSegmentProgress(0)
+      setActiveIndex(clampedIndex)
+      setPlaybackVersion((current) => current + 1)
+    })
+
+    return () => window.cancelAnimationFrame(frame)
   }, [defaultActiveIndex, items])
 
   useEffect(() => {
     if (!activeItem) return
     if (!canAutoAdvance) {
       if (!hasMultipleItems) {
-        setSegmentProgress(0)
         elapsedRef.current = 0
+        const resetFrame = window.requestAnimationFrame(() => setSegmentProgress(0))
+        return () => window.cancelAnimationFrame(resetFrame)
       }
       return
     }

@@ -10,7 +10,8 @@ tech@nyu is the space for artists, makers, and hackers to build at NYU. We foste
 
 - **Dev Team** - Build products from 0 → 1 in small cohorts, learning from users and creating public proof of work
 - **Tech Treks** - Explore the tech industry with company visits and professional networking  
-- **Startup Week** - A week-long event to launch your startup journey with industry experts
+- **Buildathon** - A 48-hour hackathon for turning ambitious ideas into working projects
+- **NYSW** - Student-run startup programming for founders, operators, investors, and students
 - **Mentorship** - Connect with experienced mentors for career guidance and support
 
 ## Tech Stack

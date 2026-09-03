@@ -23,7 +23,6 @@ export default function MentorshipImmersiveIntro({
   heroImage,
   tagline,
   cards,
-  images,
   applyStatusFallback,
 }: MentorshipImmersiveIntroProps) {
   const heroRef = useRef<HTMLDivElement | null>(null)

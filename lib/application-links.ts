@@ -14,14 +14,24 @@ export type ApplicationLinkConfig = {
 export const applicationLinksByProgram =
   applicationLinks as Record<string, ApplicationLinkConfig>
 
-export const getApplicationLink = (programName: string): ApplicationLinkConfig =>
-  applicationLinksByProgram[programName] ?? { status: false, link: '' }
+export const getApplicationLink = (programName: string): ApplicationLinkConfig => {
+  const config = applicationLinksByProgram[programName]
+
+  if (!config) return { status: false, link: '' }
+
+  return {
+    ...config,
+    status: Boolean(config.status && config.link.trim()),
+  }
+}
 
 export const getRoleApplicationLink = (
   programName: string,
   roleTitle: string
 ): { status: boolean; link: string } => {
-  const program = getApplicationLink(programName)
+  const program = applicationLinksByProgram[programName]
+  if (!program) return { status: false, link: '' }
+
   const role = program.roles?.[roleTitle]
 
   if (role) {

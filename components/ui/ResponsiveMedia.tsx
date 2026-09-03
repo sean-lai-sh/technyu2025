@@ -54,6 +54,8 @@ export default function ResponsiveMedia({ src, alt = '', className = '' }: Props
   // Landscape or square: constrain by max-w-3xl and left-align
   return (
     <div className={`max-w-3xl ${className}`}>
+        {/* Preserve authored dimensions for arbitrary CMS media URLs. */}
+        {/* eslint-disable-next-line @next/next/no-img-element */}
         <img src={src} alt={alt} className="w-auto max-w-full block max-h-[50svh]" />
     </div>
   )

@@ -25,7 +25,7 @@ export const aboutSectionContent: SectionContent[] = [{
             </p> 
             <br/>
             <p>
-                If you're willing to learn, there is a place for you here.
+                If you&apos;re willing to learn, there is a place for you here.
             </p>
             <br/>
         </>

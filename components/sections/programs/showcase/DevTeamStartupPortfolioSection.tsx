@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import RedactedDecryptLabel from './RedactedDecryptLabel'
 import StartupPortfolioGraphic from './StartupPortfolioGraphic'
 import { BuildTab } from './types'
@@ -27,12 +27,9 @@ export default function DevTeamStartupPortfolioSection({
 }: DevTeamStartupPortfolioSectionProps) {
   const [activeBuildTab, setActiveBuildTab] = useState(0)
 
-  useEffect(() => {
-    setActiveBuildTab(0)
-  }, [buildTabs])
-
+  const safeActiveBuildTab = Math.min(activeBuildTab, Math.max(buildTabs.length - 1, 0))
   const buildTitleLines = buildTitle.split('\n')
-  const activeBuildTabData = buildTabs[activeBuildTab] ?? buildTabs[0] ?? {
+  const activeBuildTabData = buildTabs[safeActiveBuildTab] ?? buildTabs[0] ?? {
     id: 'the-interface',
     title: '',
     description: '',
@@ -69,14 +66,14 @@ export default function DevTeamStartupPortfolioSection({
                     <div
                       key={tab.id}
                       className={`group relative overflow-hidden border-b border-white/10 transition-colors [transition-duration:var(--motion-hover-in-duration)] [transition-timing-function:var(--motion-brand-enter)] last:border-b-0 ${
-                        activeBuildTab === index ? 'bg-surface-raised' : 'bg-transparent'
+                        safeActiveBuildTab === index ? 'bg-surface-raised' : 'bg-transparent'
                       }`}
-                      style={activeBuildTab === index ? { boxShadow: 'inset 0 0 0 1px rgba(77,255,148,0.28)' } : undefined}
+                      style={safeActiveBuildTab === index ? { boxShadow: 'inset 0 0 0 1px rgba(77,255,148,0.28)' } : undefined}
                     >
                       <button
                         onClick={() => setActiveBuildTab(index)}
                         className={`relative z-10 block w-full px-5 py-4 text-left transition-colors [transition-duration:var(--motion-hover-in-duration)] [transition-timing-function:var(--motion-brand-enter)] ${
-                          activeBuildTab === index ? 'text-white' : 'text-white/48 hover:text-white/72'
+                          safeActiveBuildTab === index ? 'text-white' : 'text-white/48 hover:text-white/72'
                         }`}
                       >
                         <div className="mb-2 flex items-center justify-between gap-3">
@@ -104,7 +101,7 @@ export default function DevTeamStartupPortfolioSection({
 
                       <div
                         className={`grid transition-[grid-template-rows,opacity] [transition-duration:var(--motion-enter-duration)] [transition-timing-function:var(--motion-brand-enter)] ${
-                          activeBuildTab === index ? 'grid-rows-[1fr] opacity-100' : 'grid-rows-[0fr] opacity-0'
+                          safeActiveBuildTab === index ? 'grid-rows-[1fr] opacity-100' : 'grid-rows-[0fr] opacity-0'
                         }`}
                       >
                         <div className="overflow-hidden">

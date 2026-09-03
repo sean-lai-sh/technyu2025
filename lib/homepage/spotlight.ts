@@ -22,13 +22,13 @@ export type SpotlightContent = {
 export const spotlightContent: SpotlightContent = {
   featuredItem: {
     eyebrow: 'Roadmap',
-    title: 'Startup Week Roadmap: Buildathon and Beyond',
+    title: 'NYSW Roadmap: Buildathon and Beyond',
     summary:
-      'A working view into how Tech@NYU is shaping Startup Week as the umbrella for Buildathon and the wider community programming around it.',
+      'A working view into how Tech@NYU is shaping Buildathon and the wider NYSW community programming around it.',
     image: '/event-pics/buildathon.jpg',
     ctaLabel: 'View Roadmap',
     linkMode: 'internal',
-    url: '/programs/startup-week',
+    url: '/programs/nysw',
     badge: 'Main story',
     date: 'Spring 2026',
   },

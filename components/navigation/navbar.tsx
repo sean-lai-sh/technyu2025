@@ -76,7 +76,8 @@ const Navbar = () => {
   }, [setHeaderHeight])
 
   useEffect(() => {
-    setIsActive(false)
+    const frame = window.requestAnimationFrame(() => setIsActive(false))
+    return () => window.cancelAnimationFrame(frame)
   }, [pathname])
 
   useEffect(() => {
