@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Hero from "@/components/sections/hero";
 import Spotlight from "@/components/sections/spotlight";
 import Values from "@/components/sections/values";
@@ -16,7 +17,20 @@ export const metadata: Metadata = {
 
 export default function Home() {
   return (
-    <div className="w-full h-fit bg-surface-base min-h-screen">
+    <div className="relative w-full h-fit min-h-screen">
+      {/* Homepage backdrop: the gradient photo under a deep dark scrim,
+          fixed behind every section from the very first frame */}
+      <div className="fixed inset-0 -z-10">
+        <Image
+          src="/gradient-backdrop.png"
+          alt=""
+          fill
+          priority
+          sizes="100vw"
+          className="object-cover"
+        />
+        <div className="absolute inset-0 bg-black/75" />
+      </div>
       <Hero />
       <History />
       <ProgramSectionV2 />

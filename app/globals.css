@@ -204,3 +204,50 @@ body {
     animation: none !important;
   }
 }
+
+/* --- CRT hero ambience -------------------------------------------------- */
+
+/* Navbar holds back until the CRT wordmark lands, then fades in.
+   The hero sets data-crt-boot="pending" on mount and "settled" once the
+   logo has bloomed (components/sections/hero.tsx). Homepage only. */
+html[data-crt-boot] body > header {
+  transition: opacity 1s ease;
+}
+html[data-crt-boot='pending'] body > header {
+  opacity: 0 !important;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html[data-crt-boot] body > header {
+    transition: none;
+  }
+}
+
+@keyframes crt-grain-jitter {
+  0% { transform: translate(0, 0); }
+  25% { transform: translate(-18px, 12px); }
+  50% { transform: translate(14px, -20px); }
+  75% { transform: translate(-10px, -8px); }
+  100% { transform: translate(0, 0); }
+}
+
+.crt-grain {
+  animation: crt-grain-jitter 0.45s steps(4) infinite;
+}
+
+@keyframes crt-glow-breathe {
+  0%, 100% { opacity: 0.9; }
+  50% { opacity: 1; }
+}
+
+.crt-glow {
+  animation: crt-glow-breathe 5.5s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .crt-grain,
+  .crt-glow {
+    animation: none;
+  }
+}
