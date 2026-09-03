@@ -67,7 +67,7 @@ export default function ProgramPanel({ program, index }: ProgramPanelProps) {
           <div className="mt-8 flex flex-wrap items-center gap-4">
             <Link
               href={`/programs/${program.slug}`}
-              className="inline-flex items-center justify-center border border-white/20 bg-white px-5 py-3 text-sm font-semibold text-black transition-all duration-300 ease-out hover:-translate-y-0.5 hover:bg-white/90 active:translate-y-0 active:scale-[0.98]"
+              className="inline-flex items-center justify-center border border-white/20 bg-white px-5 py-3 text-sm font-semibold text-black transition-[colors,transform] duration-[var(--motion-hover-in-duration)] ease-[var(--motion-brand-enter)] hover:-translate-y-0.5 hover:bg-white/90 active:translate-y-0 active:scale-[0.98]"
             >
               Learn more
             </Link>
@@ -76,7 +76,7 @@ export default function ProgramPanel({ program, index }: ProgramPanelProps) {
                 href={program.applicationHref}
                 target="_blank"
                 rel="noreferrer"
-                className="inline-flex items-center justify-center border border-white/10 bg-white/5 px-5 py-3 text-sm font-semibold text-white/72 transition-all duration-300 ease-out hover:border-white/20 hover:bg-white/5 hover:text-white active:scale-[0.98]"
+                className="inline-flex items-center justify-center border border-white/10 bg-white/5 px-5 py-3 text-sm font-semibold text-white/72 transition-[colors,transform] duration-[var(--motion-hover-in-duration)] ease-[var(--motion-brand-enter)] hover:border-white/20 hover:bg-white/5 hover:text-white active:scale-[0.98]"
               >
                 Apply now
               </a>

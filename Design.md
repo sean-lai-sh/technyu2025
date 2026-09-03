@@ -160,8 +160,8 @@ CSS variables: `--font-satoshi` (display), `--font-inter` (body).
 - `Inter` — body copy, eyebrows, CTAs, pills, labels, captions, meta text, any UI chrome
 
 **Not allowed:**
-- `Darker Grotesque` — superseded. Remove remaining `font-[family-name:var(--font-darker-grotesque)]` overrides on next cleanup pass.
-- `HK Grotesque` — superseded by Satoshi. Remove from display headings and component overrides on next cleanup pass.
+- `Darker Grotesque` — superseded and fully removed. No `font-[family-name:var(--font-darker-grotesque)]` overrides remain, and the font var is no longer wired.
+- `HK Grotesque` — trialed and rejected in favor of Satoshi; fully removed from display headings, component overrides, and font config.
 - Any other typeface without explicit approval in this document.
 
 ### Heading Scale
@@ -228,6 +228,8 @@ Core accent colors — locked:
 | `--accent-green-light` | `#00994D` | `0,153,77` | Light surfaces only — darkened for legibility |
 
 Two accent hues. No others. `--accent-green` and `--accent-green-light` are the same brand green at different luminosity for their surface context. This is the D1 decision (chosen May 2026).
+
+**Known deviation (pending cleanup).** `components/sections/programs_v2/program-stage-map.ts` currently still ships two off-palette stage accents — Mentorship periwinkle `#7B5CFF` and Dev Team blue `#4AA8FF` — left over from a rejected 4-color stage system. These violate the purple+green lock and are slated to collapse to `trackKey`-mapped purple/green. Do not treat them as sanctioned hues.
 
 **Documented partner co-brand exception.** The Mentorship × Databricks hero (`MentorshipAsciiHeroSection.tsx`) renders in Databricks orange (`#FFB194` / `#FF6836`). This is a sanctioned co-brand exception scoped to that one program hero and must not be cited as precedent for introducing additional accent hues elsewhere. New partner co-brands require explicit approval and the same scoped containment.
 
@@ -337,6 +339,32 @@ Default rule:
 
 - homepage sections may feel cinematic in composition
 - UI interactions should still feel immediate
+
+### Curves and durations — Locked
+
+Two curves. No others. Source of truth is `lib/motion.ts` (`motionTokens`); CSS mirrors live in `globals.css` as `--motion-brand-enter` / `--motion-brand-exit` and the `--motion-*-duration` set.
+
+| Token | Curve | Used for |
+| --- | --- | --- |
+| `brandEnterEase` | `cubic-bezier(0.22, 1, 0.36, 1)` | Default for every UI feedback motion — hover state, CTA fill, card lift, content arrival. Fast departure, decisive settle, no overshoot. |
+| `brandExitEase` | `cubic-bezier(0.55, 0, 0.2, 1)` | Reverse direction — hover-out, content dismissal, toast / popover close. |
+
+| Duration | Value | Used for |
+| --- | --- | --- |
+| `hoverInDurationMs` | `220ms` | hover-in (color, background, transform) |
+| `hoverOutDurationMs` | `180ms` | hover-out, reverting to rest |
+| `enterDurationMs` | `560ms` | content arrival on scroll / route entry |
+| `exitDurationMs` | `460ms` | content dismissal |
+
+**Reference implementation.** The "Learn more" CTA on the program track bento (`components/sections/programs_v2/components/program-track-bento.tsx`) is the canonical Learn-more / CTA pattern: `brandEnterEase` for hover-in at `hoverInDurationMs`, reversing through `brandExitEase` at `hoverOutDurationMs` when leaving. When in doubt about any small interactive transition, mirror that pattern.
+
+**Not allowed in new code:**
+
+- Bespoke `cubic-bezier(...)` literals or framer-motion `ease: [...]` arrays in components. Import `motionTokens` from `@/lib/motion` and reference `.brandEnterEase` / `.brandExitEase` (or the `*Css` variants for Tailwind / inline styles).
+- `transition-all duration-300 ease-out` and similar generic Tailwind defaults on interactive components. `ease-out` has a slow start that reads as sluggish; `duration-300` overshoots the locked hover band. Use `transition-[colors,transform]` with the brand curve at the locked duration.
+- Inventing new duration values. Round to one of the four duration tokens above.
+
+**Sheet exception.** Full-screen sheets (mobile nav drawer, modals, route transitions) read as section-level composition rather than UI feedback. They may use a longer cinematic duration (600–800ms) and an in-out curve, but should still pull from `motionTokens` rather than inline a bespoke curve — extend the token surface if a new sheet curve is needed.
 
 ## Homepage Guidance
 

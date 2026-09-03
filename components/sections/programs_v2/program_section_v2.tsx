@@ -62,16 +62,15 @@ export default async function ProgramSectionV2() {
     >
       <div className="relative mx-auto flex w-full max-w-[1600px] flex-col gap-14">
         <div className="space-y-8">
-          <div className="max-w-3xl">
-            <p className="text-[11px] font-semibold uppercase tracking-[0.3em] text-white/48">
+          <div className="max-w-3xl lg:w-full lg:max-w-full">
+            {/* <p className="text-[11px] font-semibold uppercase tracking-[0.3em] text-white/48">
               Programs
-            </p>
-            <h2 className="mt-5 font-[family-name:var(--font-satoshi)] text-[clamp(3.5rem,7vw,7.75rem)] leading-[1.0] tracking-[-0.04em] text-white">
-              {'Taking you from 0 to 100'}
+            </p> */}
+            <h2 className="mt-5 font-(family-name:--font-satoshi) text-[clamp(3.5rem,7vw,7.75rem)] leading-[1.0] tracking-[-0.04em] text-white">
+              Go from 0 to 100
             </h2>
-            <p className="mt-6 max-w-3xl text-[17px] leading-relaxed text-white/72 sm:text-[18px]">
-              From growing your network to your own developer journey we have a
-              program for you to join!
+            <p className="mt-6 text-[17px] leading-relaxed text-white/72 sm:text-[18px]">
+              Be it your network, your skills as a builder, or exposure to tech, we have something for you.
             </p>
           </div>
 

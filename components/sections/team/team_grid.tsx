@@ -115,7 +115,7 @@ const TeamGrid = ({ initialTeamMembers }: TeamGridProps) => {
       {/* Team Grid */}
       <div 
         ref={gridRef}
-        className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10 xl:gap-10 w-[80%] sm:w-[90%] lg:w-[90%] xl:w-fit px-[2svw] sm:px-[2svw] lg:px-[4svw] pt-6 lg:pt-40'
+        className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10 xl:gap-10 w-[80%] sm:w-[90%] lg:w-[90%] xl:w-fit px-[2svw] sm:px-[2svw] lg:px-[4svw] pt-6 lg:pt-16'
       >
         {filteredTeam.length > 0 ? (
           filteredTeam.map((member: TeamMember, index: number) => (

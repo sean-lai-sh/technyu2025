@@ -90,12 +90,12 @@ export const PROGRAM_STAGE_MAP: Record<ProgramStageName, ProgramStageMeta> = {
       {
         label: 'Buildathon',
         detail:
-          "NYU's flagship hackathon — 24 hours to build, compete for prizes, and ship fast alongside students across the university.",
+          "Help bring to life our hiring hackathons and other hacking initiatives, surfacing top talent from NYU to those who want us. Previously supported by leading giants like Databricks, Nvidia, Anthropic (Claude), Vercel, & More!",
       },
       {
         label: 'SW Events',
         detail:
-          'Speaker panels, networking nights, and industry mixers that bring hundreds of students into the same room.',
+          'Curate the speakers you want to come on campus as part of the committee, be our eyes and ears for what startup founders need at NYU',
       },
     ],
     label: 'Organize and network',

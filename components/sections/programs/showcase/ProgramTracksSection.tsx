@@ -16,14 +16,11 @@ export default function ProgramTracksSection({
   tracks,
 }: ProgramTracksSectionProps) {
   return (
-    <section className="px-[5vw] lg:px-[8vw] py-[10svh] border-t border-[#EDEDED]/8">
-      <p className="font-[family-name:var(--font-inter)] text-[13px] font-semibold tracking-[0.15em] uppercase opacity-55 mb-4">
+    <section className="px-[5vw] lg:px-[8vw] py-[10svh] border-t border-white/10">
+      <p className="font-[family-name:var(--font-inter)] text-[12px] font-semibold tracking-[0.22em] uppercase text-white/48 mb-4">
         {heading}
       </p>
-      <h2
-        className="w-full font-[family-name:var(--font-satoshi)] font-medium leading-[0.92] text-[#EDEDED] mb-14"
-        style={{ fontSize: 'clamp(40px, 6vw, 68px)', letterSpacing: '-1.2px' }}
-      >
+      <h2 className="text-display-2 text-white mb-14">
         {titleLines.map((line, index) => (
           <React.Fragment key={line}>
             {line}
@@ -36,13 +33,10 @@ export default function ProgramTracksSection({
         ariaLabel={`${heading} timeline`}
         renderPanel={(track) => (
           <>
-            <h3
-              className="font-[family-name:var(--font-satoshi)] font-medium text-[#EDEDED] mb-4"
-              style={{ fontSize: 'clamp(26px, 3vw, 42px)', letterSpacing: '-0.8px' }}
-            >
+            <h3 className="text-display-3 text-white mb-4">
               {track.title}
             </h3>
-            <p className="font-[family-name:var(--font-inter)] text-[17px] leading-relaxed text-[#EDEDED] opacity-72">
+            <p className="font-[family-name:var(--font-inter)] text-[17px] leading-relaxed text-white/72">
               {track.body}
             </p>
           </>

@@ -1,0 +1,407 @@
+/*
+  Clay homepage trusted wall — mechanics observed live (Aug 2026):
+
+  One 3-row dense column grid. Mixed data-tall / data-span is the bento.
+  Three duplicated tracks translate lockstep ~24px/s (JS, not keyframes).
+  Same 3-row structure at laptop / tablet / phone; only --unit-w shrinks
+  (160.8 → 148.8 → 139.2). Overflow hidden. 20% edge shades. Permanent ↗
+  on linked tiles. Flat cards, gap only — no hover lift. Reduced motion:
+  static, no transform.
+
+  Frames are ours, not Clay's: square trays and tiles (Design.md — blocky
+  over squircle). Color is ours: deep tray, raised tiles, green/purple only.
+*/
+
+.tray {
+  --unit-h: 6.25rem;
+  --unit-w: 160.8px;
+  --unit-gap: 0.75rem;
+  --logo-slot-w: 7.6rem;
+  --logo-slot-h: 2.35rem;
+
+  position: relative;
+  overflow: hidden;
+  border-radius: 0;
+  border: 1px solid rgba(237, 237, 237, 0.1);
+  background: var(--surface-deep);
+  padding: 1rem 0.85rem;
+}
+
+.viewport {
+  overflow: hidden;
+  cursor: grab;
+  touch-action: pan-y;
+}
+
+.viewportDragging {
+  cursor: grabbing;
+  user-select: none;
+}
+
+.track {
+  display: flex;
+  width: max-content;
+  flex-wrap: nowrap;
+  will-change: transform;
+}
+
+.grid {
+  display: grid;
+  flex: 0 0 auto;
+  width: max-content;
+  min-width: max-content;
+  grid-template-columns: repeat(var(--cols), var(--unit-w));
+  grid-template-rows: repeat(3, var(--unit-h));
+  gap: var(--unit-gap);
+  grid-auto-flow: dense;
+  align-items: stretch;
+  align-content: stretch;
+  padding-right: var(--unit-gap);
+}
+
+.card {
+  --col: auto;
+  --row: auto;
+  --span: 1;
+  --tall: 1;
+
+  position: relative;
+  display: flex;
+  min-width: 0;
+  grid-column: var(--col) / span var(--span);
+  grid-row: var(--row) / span var(--tall);
+  flex-direction: column;
+  justify-content: center;
+  overflow: hidden;
+  border-radius: 0;
+  border: 1px solid rgba(237, 237, 237, 0.1);
+  background: var(--surface-raised);
+  color: inherit;
+  text-decoration: none;
+}
+
+.card > * {
+  min-width: 0;
+}
+
+.card[data-col='1'] { --col: 1; } .card[data-col='2'] { --col: 2; }
+.card[data-col='3'] { --col: 3; } .card[data-col='4'] { --col: 4; }
+.card[data-col='5'] { --col: 5; } .card[data-col='6'] { --col: 6; }
+.card[data-col='7'] { --col: 7; } .card[data-col='8'] { --col: 8; }
+.card[data-col='9'] { --col: 9; } .card[data-col='10'] { --col: 10; }
+.card[data-col='11'] { --col: 11; } .card[data-col='12'] { --col: 12; }
+.card[data-col='13'] { --col: 13; } .card[data-col='14'] { --col: 14; }
+.card[data-col='15'] { --col: 15; }
+
+.card[data-row='1'] { --row: 1; }
+.card[data-row='2'] { --row: 2; }
+.card[data-row='3'] { --row: 3; }
+
+.card[data-span='1'] { --span: 1; } .card[data-span='2'] { --span: 2; }
+.card[data-span='3'] { --span: 3; } .card[data-span='4'] { --span: 4; }
+.card[data-span='5'] { --span: 5; }
+
+.card[data-tall='2'] { --tall: 2; }
+.card[data-tall='3'] { --tall: 3; }
+
+.cardClickable {
+  transition: border-color var(--motion-hover-in-duration) var(--motion-brand-enter);
+}
+
+.cardClickable:hover {
+  border-color: rgba(237, 237, 237, 0.2);
+}
+
+.cardClickable:focus-visible {
+  outline: 1px solid rgba(77, 255, 148, 0.55);
+  outline-offset: 2px;
+}
+
+.arrow {
+  position: absolute;
+  top: 0.45rem;
+  right: 0.5rem;
+  width: 0.85rem;
+  height: 0.85rem;
+  color: var(--fg-ghost);
+}
+
+.logoWrap {
+  display: flex;
+  height: 100%;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+  padding: 0.85rem 0.9rem;
+}
+
+.logoSlot {
+  position: relative;
+  display: flex;
+  width: var(--logo-slot-w);
+  height: var(--logo-slot-h);
+  flex: 0 0 auto;
+  align-items: center;
+  justify-content: center;
+}
+
+.logoMark {
+  object-fit: contain;
+  object-position: center;
+  pointer-events: none;
+}
+
+.quote {
+  display: flex;
+  height: 100%;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 0.55rem;
+  padding: 0.75rem 0.9rem 0.7rem;
+}
+
+.quoteWide {
+  flex-direction: row;
+  align-items: center;
+  gap: 0.85rem;
+}
+
+.quoteLogo {
+  flex: 0 0 auto;
+}
+
+.quoteText {
+  flex: 1 1 auto;
+  display: -webkit-box;
+  overflow: hidden;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  font-family: var(--font-inter), system-ui, sans-serif;
+  font-size: 0.78rem;
+  font-weight: 400;
+  line-height: 1.35;
+  color: var(--fg-muted);
+}
+
+.quoteWide .quoteText {
+  -webkit-line-clamp: 3;
+}
+
+.quoteMeta {
+  flex: 0 0 auto;
+  font-family: var(--font-inter), system-ui, sans-serif;
+}
+
+.quoteName {
+  font-size: 0.7rem;
+  font-weight: 600;
+  color: var(--foreground);
+}
+
+.quoteRole {
+  margin-top: 0.12rem;
+  font-size: 0.66rem;
+  font-weight: 500;
+  color: var(--fg-faint);
+}
+
+.stat {
+  display: flex;
+  height: 100%;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.65rem 0.85rem;
+}
+
+.statStack {
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 0.3rem;
+}
+
+.statPunch {
+  align-items: center;
+  text-align: center;
+}
+
+.statCopy {
+  min-width: 0;
+}
+
+.statValue {
+  font-family: var(--font-satoshi), system-ui, sans-serif;
+  font-size: 2rem;
+  font-weight: 500;
+  letter-spacing: -0.03em;
+  line-height: 1;
+  color: var(--accent-green);
+}
+
+.statLabel {
+  margin-top: 0.28rem;
+  font-family: var(--font-inter), system-ui, sans-serif;
+  font-size: 0.62rem;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--fg-faint);
+}
+
+.combo {
+  display: flex;
+  height: 100%;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.45rem;
+  padding: 0.7rem 0.75rem;
+}
+
+.card[data-tall] .combo {
+  gap: 0.85rem;
+  padding: 1.1rem 0.85rem;
+}
+
+.card[data-span='2'] .combo,
+.card[data-span='3'] .combo {
+  flex-direction: row;
+  justify-content: center;
+  gap: 1rem;
+  padding: 0.85rem 1.15rem;
+}
+
+.comboCopy {
+  display: flex;
+  min-width: 0;
+  flex-direction: column;
+  gap: 0.28rem;
+}
+
+.comboLabel {
+  max-width: 100%;
+  font-family: var(--font-inter), system-ui, sans-serif;
+  font-size: 0.52rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  line-height: 1.2;
+  text-align: center;
+  text-transform: uppercase;
+  color: var(--fg-faint);
+}
+
+.comboDetail {
+  max-width: 100%;
+  font-family: var(--font-inter), system-ui, sans-serif;
+  font-size: 0.52rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  line-height: 1.2;
+  text-align: center;
+  text-transform: uppercase;
+  color: var(--accent-green);
+}
+
+.card[data-tall] .comboLabel,
+.card[data-tall] .comboDetail {
+  font-size: 0.58rem;
+  letter-spacing: 0.05em;
+  line-height: 1.3;
+}
+
+.card[data-span='2'] .comboLabel,
+.card[data-span='2'] .comboDetail,
+.card[data-span='3'] .comboLabel,
+.card[data-span='3'] .comboDetail {
+  text-align: left;
+}
+
+.card[data-tall] .statValue {
+  font-size: 2.55rem;
+}
+
+.card[data-tall] .statLabel {
+  margin-top: 0.45rem;
+}
+
+.person {
+  display: flex;
+  height: 100%;
+  flex-direction: column;
+  justify-content: center;
+  gap: 0.2rem;
+  padding: 0.7rem 0.95rem;
+}
+
+.personName {
+  font-family: var(--font-inter), system-ui, sans-serif;
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--foreground);
+}
+
+.personRole {
+  font-family: var(--font-inter), system-ui, sans-serif;
+  font-size: 0.68rem;
+  font-weight: 500;
+  line-height: 1.35;
+  color: var(--fg-faint);
+}
+
+.shade {
+  pointer-events: none;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  z-index: 2;
+  width: 20%;
+}
+
+.shadeLeft {
+  left: 0;
+  background: linear-gradient(90deg, var(--surface-deep) 0%, transparent 100%);
+}
+
+.shadeRight {
+  right: 0;
+  background: linear-gradient(270deg, var(--surface-deep) 0%, transparent 100%);
+}
+
+/* Same 3-row structure; only the slot width shrinks. */
+@media (max-width: 991px) {
+  .tray {
+    --unit-w: 148.8px;
+  }
+}
+
+@media (max-width: 767px) {
+  .tray {
+    --unit-w: 139.2px;
+    padding: 0.75rem 0.55rem;
+  }
+
+  .quoteText {
+    font-size: 0.74rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .track {
+    transform: none !important;
+    will-change: auto;
+  }
+
+  .duplicate {
+    display: none;
+  }
+
+  .viewport {
+    cursor: auto;
+    overflow-x: auto;
+    scrollbar-width: none;
+  }
+
+  .viewport::-webkit-scrollbar {
+    display: none;
+  }
+}

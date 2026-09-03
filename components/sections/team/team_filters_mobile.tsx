@@ -33,12 +33,9 @@ const TeamFiltersMobile = ({
 
   return (
     <div className='lg:hidden w-[90%] md:w-[85svw] lg:w-[95svw] lg:px-[2svw] px-4'>
-      {/* Header with Title */}
-      <div className='flex justify-between items-center mb-2 gap-4'>
-        <h2 className='text-heading-1 font-display-semibold text-white mb-4 pt-4 pr-2'>Team</h2>
-        
-        {/* Search and Filter Row */}
-        <div className='flex gap-3 items-center'>
+      {/* Search and Filter Row */}
+      <div className='flex justify-center items-center mb-2 gap-4 pt-4'>
+        <div className='flex gap-3 items-center w-full justify-center'>
           <DropdownMenu>
             <DropdownMenuTrigger 
               className={cn(
@@ -83,7 +80,7 @@ const TeamFiltersMobile = ({
 
       {/* Active Filter Indicator */}
       {activeFilter !== 'All' && (
-        <div className='flex items-center gap-2 text-white mb-4'>
+        <div className='flex items-center justify-center gap-2 text-white mb-4'>
           <span className='text-sm'>Active filter:</span>
           <Badge variant="secondary" className="flex items-center gap-1 bg-[rgba(77,255,148,0.12)] text-accent-green border-[rgba(77,255,148,0.3)]">
             {activeFilter}

@@ -1,6 +1,10 @@
+'use client'
+
 import React from 'react'
+import { useReducedMotion } from 'framer-motion'
 
 export function HeroWireframe() {
+  const shouldReduceMotion = useReducedMotion()
   return (
     <svg viewBox="0 0 480 480" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full h-full" aria-hidden="true">
       <circle cx="240" cy="240" r="200" stroke="#EDEDED" strokeWidth="0.6" strokeDasharray="3 8" opacity="0.2" />
@@ -29,28 +33,14 @@ export function HeroWireframe() {
       <circle cx="60" cy="305" r="5" fill="#EDEDED" />
       <circle cx="240" cy="390" r="5" fill="#EDEDED" />
       <circle cx="240" cy="225" r="8" fill="#B300FF" opacity="0.9">
-        <animate attributeName="r" values="6;11;6" dur="3s" repeatCount="indefinite" />
-        <animate attributeName="opacity" values="0.7;1;0.7" dur="3s" repeatCount="indefinite" />
+        {!shouldReduceMotion && (
+          <>
+            <animate attributeName="r" values="7;10;7" dur="3s" repeatCount="indefinite" />
+            <animate attributeName="opacity" values="0.7;1;0.7" dur="3s" repeatCount="indefinite" />
+          </>
+        )}
       </circle>
-      <circle cx="240" cy="225" r="32" fill="#B300FF" opacity="0.05">
-        <animate attributeName="r" values="22;44;22" dur="3s" repeatCount="indefinite" />
-      </circle>
-      <circle cx="240" cy="60" r="3" fill="#4DFF94">
-        <animate attributeName="opacity" values="0.4;1;0.4" dur="2s" repeatCount="indefinite" />
-      </circle>
-      <circle cx="380" cy="170" r="3" fill="#4DFF94">
-        <animate attributeName="opacity" values="0.4;1;0.4" dur="2.5s" repeatCount="indefinite" begin="0.5s" />
-      </circle>
-      <circle cx="420" cy="305" r="3" fill="#B300FF">
-        <animate attributeName="opacity" values="0.4;1;0.4" dur="2s" repeatCount="indefinite" begin="1s" />
-      </circle>
-      <circle cx="60" cy="305" r="3" fill="#B300FF">
-        <animate attributeName="opacity" values="0.4;1;0.4" dur="2.5s" repeatCount="indefinite" begin="1.5s" />
-      </circle>
-      <circle r="3" fill="#4DFF94" opacity="0.8">
-        <animateMotion dur="9s" repeatCount="indefinite" path="M180,130 Q250,80 310,150 Q260,220 180,130" />
-        <animate attributeName="opacity" values="0;0.9;0" dur="9s" repeatCount="indefinite" />
-      </circle>
+      <circle cx="240" cy="225" r="28" fill="#B300FF" opacity="0.05" />
       <g opacity="0.07" stroke="#EDEDED" strokeWidth="0.5">
         <line x1="60" y1="240" x2="420" y2="240" />
         <line x1="240" y1="60" x2="240" y2="420" />
@@ -81,13 +71,7 @@ export function CircuitWireframe() {
       <circle cx="240" cy="145" r="2" fill="#EDEDED" opacity="0.7" />
       <circle cx="160" cy="58" r="4" stroke="#EDEDED" strokeWidth="1" fill="none" />
       <circle cx="160" cy="58" r="2" fill="#EDEDED" opacity="0.7" />
-      <circle cx="160" cy="118" r="16" stroke="#4DFF94" strokeWidth="1" fill="none" opacity="0.2">
-        <animate attributeName="r" values="13;20;13" dur="2.2s" repeatCount="indefinite" />
-        <animate attributeName="opacity" values="0.08;0.35;0.08" dur="2.2s" repeatCount="indefinite" />
-      </circle>
-      <circle cx="120" cy="58" r="3" fill="#B300FF" opacity="0.9">
-        <animate attributeName="opacity" values="0.4;1;0.4" dur="1.5s" repeatCount="indefinite" />
-      </circle>
+      <circle cx="120" cy="58" r="3" fill="#B300FF" opacity="0.72" />
     </svg>
   )
 }
@@ -107,19 +91,11 @@ export function RocketWireframe() {
       <path d="M192 162 L222 202 L192 186" stroke="#EDEDED" strokeWidth="1.5" fill="none" opacity="0.7" />
       <path d="M132 208 L142 234 L158 234 L168 208" stroke="#EDEDED" strokeWidth="1.2" fill="none" opacity="0.8" />
       <circle cx="150" cy="134" r="12" stroke="#EDEDED" strokeWidth="1.2" fill="none" />
-      <circle cx="150" cy="134" r="6" stroke="#4DFF94" strokeWidth="1" fill="none">
-        <animate attributeName="opacity" values="0.35;0.9;0.35" dur="2s" repeatCount="indefinite" />
-      </circle>
-      <path d="M142 234 Q150 262 158 234" stroke="#4DFF94" strokeWidth="1.5" fill="none" opacity="0.85">
-        <animate attributeName="d" values="M142,234 Q150,262 158,234;M142,234 Q150,248 158,234;M142,234 Q150,262 158,234" dur="0.75s" repeatCount="indefinite" />
-      </path>
-      <path d="M145 234 Q150 248 155 234" stroke="#B300FF" strokeWidth="1" fill="none" opacity="0.6">
-        <animate attributeName="d" values="M145,234 Q150,248 155,234;M145,234 Q150,238 155,234;M145,234 Q150,248 155,234" dur="0.55s" repeatCount="indefinite" />
-      </path>
-      {[{ cx: 50, cy: 55, d: '3s' }, { cx: 262, cy: 38, d: '2.5s', b: '1s' }, { cx: 68, cy: 185, d: '4s', b: '0.5s' }, { cx: 252, cy: 165, d: '3.5s', b: '2s' }].map((star, index) => (
-        <circle key={index} cx={star.cx} cy={star.cy} r="1.5" fill="#EDEDED" opacity="0.5">
-          <animate attributeName="opacity" values="0.2;0.8;0.2" dur={star.d} repeatCount="indefinite" begin={star.b || '0s'} />
-        </circle>
+      <circle cx="150" cy="134" r="6" stroke="#4DFF94" strokeWidth="1" fill="none" opacity="0.72" />
+      <path d="M142 234 Q150 256 158 234" stroke="#4DFF94" strokeWidth="1.5" fill="none" opacity="0.72" />
+      <path d="M145 234 Q150 244 155 234" stroke="#B300FF" strokeWidth="1" fill="none" opacity="0.55" />
+      {[{ cx: 50, cy: 55 }, { cx: 262, cy: 38 }, { cx: 68, cy: 185 }, { cx: 252, cy: 165 }].map((star, index) => (
+        <circle key={index} cx={star.cx} cy={star.cy} r="1.5" fill="#EDEDED" opacity="0.48" />
       ))}
     </svg>
   )
@@ -139,16 +115,9 @@ export function NetworkGrowthWireframe() {
       {[{ cx: 40, cy: 205 }, { cx: 90, cy: 178 }, { cx: 140, cy: 152 }].map((point, index) => (
         <circle key={index} cx={point.cx} cy={point.cy} r="5" fill="#EDEDED" />
       ))}
-      <circle cx="190" cy="112" r="6" fill="#4DFF94">
-        <animate attributeName="r" values="4;9;4" dur="2s" repeatCount="indefinite" />
-      </circle>
-      <circle cx="240" cy="70" r="7" fill="#4DFF94">
-        <animate attributeName="r" values="5;11;5" dur="2.5s" repeatCount="indefinite" />
-        <animate attributeName="opacity" values="0.6;1;0.6" dur="2.5s" repeatCount="indefinite" />
-      </circle>
-      <circle cx="240" cy="70" r="22" fill="#4DFF94" opacity="0.04">
-        <animate attributeName="r" values="15;35;15" dur="3s" repeatCount="indefinite" />
-      </circle>
+      <circle cx="190" cy="112" r="6" fill="#4DFF94" opacity="0.72" />
+      <circle cx="240" cy="70" r="7" fill="#4DFF94" />
+      <circle cx="240" cy="70" r="18" fill="#4DFF94" opacity="0.06" />
       <line x1="40" y1="205" x2="90" y2="178" stroke="#B300FF" strokeWidth="0.8" strokeDasharray="3 4" opacity="0.45" />
       <line x1="90" y1="178" x2="140" y2="152" stroke="#B300FF" strokeWidth="0.8" strokeDasharray="3 4" opacity="0.45" />
       <line x1="140" y1="152" x2="190" y2="112" stroke="#4DFF94" strokeWidth="1.2" strokeDasharray="3 3" opacity="0.45" />
@@ -173,12 +142,7 @@ export function TabWireframe({ tabId }: { tabId: string }) {
         <rect x="234" y="188" width="84" height="12" rx="6" fill="#EDEDED" fillOpacity="0.1" />
         <path d="M250 78 L296 78 L296 122" stroke="#EDEDED" strokeWidth="1" opacity="0.25" strokeDasharray="4 4" />
         <circle cx="296" cy="122" r="10" stroke={tabId.startsWith('redacted-') ? '#B300FF' : '#4DFF94'} strokeWidth="1.5" fill="none" />
-        <circle cx="296" cy="122" r="4" fill={tabId.startsWith('redacted-') ? '#B300FF' : '#4DFF94'} opacity="0.9">
-          <animate attributeName="opacity" values="0.35;1;0.35" dur="2s" repeatCount="indefinite" />
-        </circle>
-        <circle cx="296" cy="122" r="18" fill={tabId.startsWith('redacted-') ? '#B300FF' : '#4DFF94'} opacity="0.06">
-          <animate attributeName="r" values="14;24;14" dur="2.6s" repeatCount="indefinite" />
-        </circle>
+        <circle cx="296" cy="122" r="4" fill={tabId.startsWith('redacted-') ? '#B300FF' : '#4DFF94'} opacity="0.72" />
       </svg>
     )
   }
@@ -197,9 +161,7 @@ export function TabWireframe({ tabId }: { tabId: string }) {
         <text x="36" y="140" fill="#4DFF94" fontSize="11" fontFamily="monospace" opacity="0.85">  ✓ Generated 12 files</text>
         <text x="36" y="160" fill="#4DFF94" fontSize="11" fontFamily="monospace" opacity="0.85">  ✓ Tests passing (47/47)</text>
         <text x="36" y="185" fill="#B300FF" fontSize="11" fontFamily="monospace" opacity="0.9">$ _</text>
-        <rect x="47" y="175" width="7" height="13" fill="#B300FF" opacity="0.9">
-          <animate attributeName="opacity" values="0;1;0" dur="1s" repeatCount="indefinite" />
-        </rect>
+        <rect x="47" y="175" width="7" height="13" fill="#B300FF" opacity="0.9" />
       </svg>
     )
   }
@@ -259,10 +221,6 @@ export function TabWireframe({ tabId }: { tabId: string }) {
             <line key={`ho-${hiddenY}-${outputY}`} x1="252" y1={hiddenY} x2="308" y2={outputY} stroke="#4DFF94" strokeWidth="0.5" opacity="0.3" />
           )),
         )}
-        <circle r="4" fill="#4DFF94" opacity="0.9">
-          <animateMotion dur="3s" repeatCount="indefinite" path="M60,150 L150,150 L240,150 L320,150" />
-          <animate attributeName="opacity" values="0;1;0" dur="3s" repeatCount="indefinite" />
-        </circle>
       </svg>
     )
   }
@@ -287,9 +245,7 @@ export function TabWireframe({ tabId }: { tabId: string }) {
       ))}
       <path d="M280,60 Q310,60 310,90 L310,100 Q310,120 280,120" stroke="#B300FF" strokeWidth="1.2" fill="none" opacity="0.7" strokeDasharray="4 3" />
       <circle cx="280" cy="120" r="6" stroke="#B300FF" strokeWidth="1.2" fill="none" />
-      <circle cx="280" cy="120" r="3" fill="#B300FF" opacity="0.8">
-        <animate attributeName="opacity" values="0.35;1;0.35" dur="2s" repeatCount="indefinite" />
-      </circle>
+      <circle cx="280" cy="120" r="3" fill="#B300FF" opacity="0.72" />
       <rect x="100" y="52" width="60" height="16" rx="2" stroke="#EDEDED" strokeWidth="0.8" fill="none" opacity="0.35" />
       <rect x="220" y="52" width="60" height="16" rx="2" stroke="#4DFF94" strokeWidth="0.8" fill="none" opacity="0.45" />
     </svg>

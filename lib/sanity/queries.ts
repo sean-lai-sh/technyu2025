@@ -6,7 +6,9 @@ import {
   PressPost,
   PressPostPreview,
   PressSpotlight,
+  AlumniResultsSection,
 } from '../types'
+import { normalizeAlumniResults } from '../homepage/alumni-results'
 
 const pressClient = client.withConfig({
   useCdn: false,
@@ -410,5 +412,51 @@ export async function getAllPressSlugs(): Promise<{ slug: string }[]> {
   } catch (error) {
     console.error('Error fetching press slugs from Sanity:', error)
     return []
+  }
+}
+
+// ===== Homepage alumni-results bento =====
+// Document type does not exist in production yet. Empty / failed fetch
+// falls back to the current outcomeCompanies wall + marked example tiles.
+// Logo projection matches logoSliderSection: imageUrl / alt / width / height.
+
+const alumniResultsSectionQuery = defineQuery(/* groq */ `
+  *[_type == "alumniResultsSection"][0]{
+    heading,
+    body,
+    footnote,
+    tiles[]{
+      _key,
+      tileType,
+      col,
+      row,
+      span,
+      tall,
+      href,
+      foundedByEboard,
+      marker,
+      alt,
+      "imageUrl": image.asset->url,
+      width,
+      height,
+      quote,
+      attributionName,
+      attributionRole,
+      statValue,
+      statLabel,
+      personName,
+      personRole,
+      "personImageUrl": personImage.asset->url
+    }
+  }
+`)
+
+export async function getAlumniResultsSection(): Promise<AlumniResultsSection> {
+  try {
+    const section = await client.fetch(alumniResultsSectionQuery)
+    return normalizeAlumniResults(section)
+  } catch (error) {
+    console.error('Error fetching alumni results from Sanity:', error)
+    return normalizeAlumniResults(null)
   }
 }

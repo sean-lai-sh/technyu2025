@@ -2,6 +2,7 @@
 
 import Link from 'next/link'
 import { motion } from 'framer-motion'
+import { motionTokens } from '@/lib/motion'
 import type { ProgramV2ViewModel } from '../types'
 
 type ProgramTrackBentoProps = {
@@ -48,8 +49,8 @@ function ProgramBentoCard({ program }: { program: ProgramV2ViewModel }) {
             borderColor: 'rgba(255,255,255,1)',
           }}
           transition={{
-            duration: 0.18,
-            ease: [0.23, 1, 0.32, 1],
+            duration: motionTokens.hoverInDurationMs / 1000,
+            ease: motionTokens.brandEnterEase,
           }}
         >
           Learn more
@@ -96,8 +97,8 @@ function CommunitySubCard({
             borderColor: 'rgba(255,255,255,1)',
           }}
           transition={{
-            duration: 0.18,
-            ease: [0.23, 1, 0.32, 1],
+            duration: motionTokens.hoverInDurationMs / 1000,
+            ease: motionTokens.brandEnterEase,
           }}
         >
           Learn more
